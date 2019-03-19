@@ -1,12 +1,10 @@
-var path = require("path");
-var Immutable = require("immutable");
-
-var markdownParser = require("gitbook-markdown");
-var asciidocParser = require("gitbook-asciidoc");
-
-var EXTENSIONS_MARKDOWN = require("./constants/extsMarkdown");
-var EXTENSIONS_ASCIIDOC = require("./constants/extsAsciidoc");
-var Parser = require("./models/parser");
+import path from "path";
+import Immutable from "immutable";
+import markdownParser from "gitbook-markdown";
+import asciidocParser from "gitbook-asciidoc";
+import EXTENSIONS_MARKDOWN from "./constants/extsMarkdown";
+import EXTENSIONS_ASCIIDOC from "./constants/extsAsciidoc";
+import Parser from "./models/parser";
 
 // This list is ordered by priority of parsers to use
 var parsers = Immutable.List([
@@ -55,7 +53,7 @@ var extensions = parsers
     })
     .flatten();
 
-module.exports = {
+export default {
     extensions: extensions,
     get: getParser,
     getByExt: getParserByExt,

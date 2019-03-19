@@ -1,6 +1,5 @@
-var Immutable = require("immutable");
-
-var location = require("../utils/location");
+import Immutable from "immutable";
+import location from "../utils/location";
 
 /*
     An article represents an entry in the Summary / table of Contents
@@ -185,4 +184,4 @@ SummaryArticle.findArticle = function(base, iter) {
     }, null);
 };
 
-module.exports = SummaryArticle;
+export default SummaryArticle;

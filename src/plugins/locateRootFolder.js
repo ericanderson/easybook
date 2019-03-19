@@ -1,7 +1,6 @@
-var path = require("path");
-var resolve = require("resolve");
-
-var DEFAULT_PLUGINS = require("../constants/defaultPlugins");
+import path from "path";
+import resolve from "resolve";
+import DEFAULT_PLUGINS from "../constants/defaultPlugins";
 
 /**
  * Resolve the root folder containing for node_modules
@@ -22,4 +21,4 @@ function locateRootFolder() {
     return nodeModules;
 }
 
-module.exports = locateRootFolder;
+export default locateRootFolder;

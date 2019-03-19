@@ -1,14 +1,13 @@
-var fs = require("graceful-fs");
-var mkdirp = require("mkdirp");
-var destroy = require("destroy");
-var rmdir = require("rmdir");
-var tmp = require("tmp");
-var request = require("request");
-var path = require("path");
-var cp = require("cp");
-var cpr = require("cpr");
-
-var Promise = require("./promise");
+import fs from "graceful-fs";
+import mkdirp from "mkdirp";
+import destroy from "destroy";
+import rmdir from "rmdir";
+import tmp from "tmp";
+import request from "request";
+import path from "path";
+import cp from "cp";
+import cpr from "cpr";
+import Promise from "./promise";
 
 // Write a stream to a file
 function writeStream(filename, st) {
@@ -142,7 +141,7 @@ function ensureFolder(rootFolder) {
         });
 }
 
-module.exports = {
+export default {
     exists: fileExists,
     existsSync: fs.existsSync,
     mkdirp: Promise.nfbind(mkdirp),

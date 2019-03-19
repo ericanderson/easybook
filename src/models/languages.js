@@ -1,7 +1,6 @@
-var Immutable = require("immutable");
-
-var File = require("./file");
-var Language = require("./language");
+import Immutable from "immutable";
+import File from "./file";
+import Language from "./language";
 
 var Languages = Immutable.Record({
     file: File(),
@@ -68,4 +67,4 @@ Languages.createFromList = function(file, langs) {
     });
 };
 
-module.exports = Languages;
+export default Languages;

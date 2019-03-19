@@ -1,5 +1,5 @@
-var encodeFile = require("./encodeFile");
-var encodeSummaryPart = require("./encodeSummaryPart");
+import encodeFile from "./encodeFile";
+import encodeSummaryPart from "./encodeSummaryPart";
 
 /**
     Encode a summary to JSON
@@ -17,4 +17,4 @@ function encodeSummary(summary) {
     };
 }
 
-module.exports = encodeSummary;
+export default encodeSummary;

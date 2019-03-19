@@ -1,5 +1,5 @@
-var generateMock = require("./generateMock");
-var JSONGenerator = require("../json");
+import generateMock from "./generateMock";
+import JSONGenerator from "../json";
 
 describe("JSONGenerator", function() {
     it("should generate a README.json", function() {

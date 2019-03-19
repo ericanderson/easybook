@@ -1,13 +1,13 @@
-module.exports = {
-    insertArticle: require("./insertArticle"),
-    moveArticle: require("./moveArticle"),
-    moveArticleAfter: require("./moveArticleAfter"),
-    removeArticle: require("./removeArticle"),
-    unshiftArticle: require("./unshiftArticle"),
-    editArticleTitle: require("./editArticleTitle"),
-    editArticleRef: require("./editArticleRef"),
+export default {
+    insertArticle: require("./insertArticle").default,
+    moveArticle: require("./moveArticle").default,
+    moveArticleAfter: require("./moveArticleAfter").default,
+    removeArticle: require("./removeArticle").default,
+    unshiftArticle: require("./unshiftArticle").default,
+    editArticleTitle: require("./editArticleTitle").default,
+    editArticleRef: require("./editArticleRef").default,
 
-    insertPart: require("./insertPart"),
-    removePart: require("./removePart"),
-    editPartTitle: require("./editPartTitle")
+    insertPart: require("./insertPart").default,
+    removePart: require("./removePart").default,
+    editPartTitle: require("./editPartTitle").default
 };

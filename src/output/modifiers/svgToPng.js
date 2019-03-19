@@ -1,11 +1,9 @@
-var crc = require("crc");
-var path = require("path");
-
-var imagesUtil = require("../../utils/images");
-var fs = require("../../utils/fs");
-var LocationUtils = require("../../utils/location");
-
-var editHTMLElement = require("./editHTMLElement");
+import crc from "crc";
+import path from "path";
+import imagesUtil from "../../utils/images";
+import fs from "../../utils/fs";
+import LocationUtils from "../../utils/location";
+import editHTMLElement from "./editHTMLElement";
 
 /**
     Convert all SVG images to PNG
@@ -50,4 +48,4 @@ function svgToPng(rootFolder, currentFile, $) {
     });
 }
 
-module.exports = svgToPng;
+export default svgToPng;

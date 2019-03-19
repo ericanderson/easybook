@@ -1,9 +1,9 @@
-var Immutable = require("immutable");
+import Immutable from "immutable";
 
 var generators = Immutable.List([
-    require("./json"),
-    require("./website"),
-    require("./ebook")
+    require("./json").default,
+    require("./website").default,
+    require("./ebook").default
 ]);
 
 /**
@@ -18,7 +18,7 @@ function getGenerator(name) {
     });
 }
 
-module.exports = {
-    generate: require("./generateBook"),
+export default {
+    generate: require("./generateBook").default,
     getGenerator: getGenerator
 };

@@ -1,7 +1,6 @@
-var npmi = require("npmi");
-
-var Promise = require("../utils/promise");
-var resolveVersion = require("./resolveVersion");
+import npmi from "npmi";
+import Promise from "../utils/promise";
+import resolveVersion from "./resolveVersion";
 
 /**
     Install a plugin for a book
@@ -57,4 +56,4 @@ function installPlugin(book, plugin) {
         });
 }
 
-module.exports = installPlugin;
+export default installPlugin;

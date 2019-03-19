@@ -1,8 +1,8 @@
-module.exports = {
-    loadForBook: require("./loadForBook"),
-    validateConfig: require("./validateConfig"),
-    installPlugins: require("./installPlugins"),
-    listResources: require("./listResources"),
-    listBlocks: require("./listBlocks"),
-    listFilters: require("./listFilters")
+export default {
+    loadForBook: require("./loadForBook").default,
+    validateConfig: require("./validateConfig").default,
+    installPlugins: require("./installPlugins").default,
+    listResources: require("./listResources").default,
+    listBlocks: require("./listBlocks").default,
+    listFilters: require("./listFilters").default
 };

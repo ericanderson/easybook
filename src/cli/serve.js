@@ -1,19 +1,17 @@
 /* eslint-disable no-console */
 
-var tinylr = require("tiny-lr");
-var open = require("open");
+import tinylr from "tiny-lr";
 
-var Parse = require("../parse");
-var Output = require("../output");
-var ConfigModifier = require("../modifiers").Config;
-
-var Promise = require("../utils/promise");
-
-var options = require("./options");
-var getBook = require("./getBook");
-var getOutputFolder = require("./getOutputFolder");
-var Server = require("./server");
-var watch = require("./watch");
+import open from "open";
+import Parse from "../parse";
+import Output from "../output";
+import {Config as ConfigModifier} from "../modifiers";
+import Promise from "../utils/promise";
+import options from "./options";
+import getBook from "./getBook";
+import getOutputFolder from "./getOutputFolder";
+import Server from "./server";
+import watch from "./watch";
 
 var server, lrServer, lrPath;
 
@@ -93,7 +91,7 @@ function generateBook(args, kwargs) {
         });
 }
 
-module.exports = {
+export default {
     name: "serve [book] [output]",
     description: "serve the book as a website for testing",
     options: [

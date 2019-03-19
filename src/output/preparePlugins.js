@@ -1,5 +1,5 @@
-var Plugins = require("../plugins");
-var Promise = require("../utils/promise");
+import Plugins from "../plugins";
+import Promise from "../utils/promise";
 
 /**
  * Load and setup plugins
@@ -35,4 +35,4 @@ function preparePlugins(output) {
     );
 }
 
-module.exports = preparePlugins;
+export default preparePlugins;

@@ -1,5 +1,5 @@
-var nunjucks = require("nunjucks");
-var Immutable = require("immutable");
+import nunjucks from "nunjucks";
+import Immutable from "immutable";
 
 var TemplateEngine = Immutable.Record(
     {
@@ -136,4 +136,4 @@ TemplateEngine.create = function(def) {
     });
 };
 
-module.exports = TemplateEngine;
+export default TemplateEngine;

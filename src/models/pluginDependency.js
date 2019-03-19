@@ -1,8 +1,7 @@
-var is = require("is");
-var semver = require("semver");
-var Immutable = require("immutable");
-
-var PREFIX = require("../constants/pluginPrefix");
+import is from "is";
+import semver from "semver";
+import Immutable from "immutable";
+import PREFIX from "../constants/pluginPrefix";
 var DEFAULT_VERSION = "*";
 
 /*
@@ -168,4 +167,4 @@ PluginDependency.nameToNpmID = function(s) {
     return PREFIX + s;
 };
 
-module.exports = PluginDependency;
+export default PluginDependency;

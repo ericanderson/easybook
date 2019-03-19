@@ -1,6 +1,5 @@
-var Immutable = require("immutable");
-
-var File = require("./file");
+import Immutable from "immutable";
+import File from "./file";
 
 var Readme = Immutable.Record({
     file: File(),
@@ -37,4 +36,4 @@ Readme.create = function(file, def) {
     });
 };
 
-module.exports = Readme;
+export default Readme;

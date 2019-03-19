@@ -1,6 +1,6 @@
-var Promise = require("../utils/promise");
-var error = require("../utils/error");
-var render = require("./render");
+import Promise from "../utils/promise";
+import error from "../utils/error";
+import render from "./render";
 
 /**
  * Render a template
@@ -37,4 +37,4 @@ function renderTemplateFile(engine, filePath, context) {
         });
 }
 
-module.exports = renderTemplateFile;
+export default renderTemplateFile;

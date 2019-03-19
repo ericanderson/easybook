@@ -1,6 +1,6 @@
-var File = require("../file");
-var Glossary = require("../glossary");
-var GlossaryEntry = require("../glossaryEntry");
+import File from "../file";
+import Glossary from "../glossary";
+import GlossaryEntry from "../glossaryEntry";
 
 describe("Glossary", function() {
     var glossary = Glossary.createFromEntries(File(), [

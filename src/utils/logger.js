@@ -1,7 +1,7 @@
-var is = require("is");
-var util = require("util");
-var color = require("bash-color");
-var Immutable = require("immutable");
+import is from "is";
+import util from "util";
+import color from "bash-color";
+import Immutable from "immutable";
 
 var LEVELS = Immutable.Map({
     DEBUG: 0,
@@ -176,4 +176,4 @@ Logger.prototype.promise = function(level, p) {
 
 Logger.LEVELS = LEVELS;
 
-module.exports = Logger;
+export default Logger;

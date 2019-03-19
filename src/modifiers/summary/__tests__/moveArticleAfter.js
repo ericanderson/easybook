@@ -1,9 +1,9 @@
-var Immutable = require("immutable");
-var Summary = require("../../../models/summary");
-var File = require("../../../models/file");
+import Immutable from "immutable";
+import Summary from "../../../models/summary";
+import File from "../../../models/file";
 
 describe("moveArticleAfter", function() {
-    var moveArticleAfter = require("../moveArticleAfter");
+    var moveArticleAfter = require("../moveArticleAfter").default;
     var summary = Summary.createFromParts(File(), [
         {
             articles: [

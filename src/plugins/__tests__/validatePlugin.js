@@ -1,6 +1,6 @@
-var Promise = require("../../utils/promise");
-var Plugin = require("../../models/plugin");
-var validatePlugin = require("../validatePlugin");
+import Promise from "../../utils/promise";
+import Plugin from "../../models/plugin";
+import validatePlugin from "../validatePlugin";
 
 describe("validatePlugin", function() {
     it("must not validate a not loaded plugin", function() {

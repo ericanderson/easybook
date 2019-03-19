@@ -1,8 +1,7 @@
-var Immutable = require("immutable");
-var path = require("path");
-
-var LocationUtils = require("../utils/location");
-var PLUGIN_RESOURCES = require("../constants/pluginResources");
+import Immutable from "immutable";
+import path from "path";
+import LocationUtils from "../utils/location";
+import PLUGIN_RESOURCES from "../constants/pluginResources";
 
 /**
     List all resources from a list of plugins
@@ -44,4 +43,4 @@ function listResources(plugins, resources) {
     }, Immutable.Map());
 }
 
-module.exports = listResources;
+export default listResources;

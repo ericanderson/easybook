@@ -1,13 +1,12 @@
-var Promise = require("../utils/promise");
-var timing = require("../utils/timing");
-var Book = require("../models/book");
-
-var parseIgnore = require("./parseIgnore");
-var parseConfig = require("./parseConfig");
-var parseGlossary = require("./parseGlossary");
-var parseSummary = require("./parseSummary");
-var parseReadme = require("./parseReadme");
-var parseLanguages = require("./parseLanguages");
+import Promise, {reduce} from "../utils/promise";
+import timing from "../utils/timing";
+import Book from "../models/book";
+import parseIgnore from "./parseIgnore";
+import parseConfig from "./parseConfig";
+import parseGlossary from "./parseGlossary";
+import parseSummary from "./parseSummary";
+import parseReadme from "./parseReadme";
+import parseLanguages from "./parseLanguages";
 
 /**
     Parse content of a book
@@ -32,7 +31,7 @@ function parseMultilingualBook(book) {
     var languages = book.getLanguages();
     var langList = languages.getList();
 
-    return Promise.reduce(
+    return reduce(
         langList,
         function(currentBook, lang) {
             var langID = lang.getID();
@@ -77,4 +76,4 @@ function parseBook(book) {
     );
 }
 
-module.exports = parseBook;
+export default parseBook;

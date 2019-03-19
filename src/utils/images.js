@@ -1,7 +1,7 @@
-var Promise = require("./promise");
-var command = require("./command");
-var fs = require("./fs");
-var error = require("./error");
+import Promise from "./promise";
+import command from "./command";
+import fs from "./fs";
+import error from "./error";
 
 // Convert a svg file to a pmg
 function convertSVGToPNG(source, dest, options) {
@@ -57,7 +57,7 @@ function convertInlinePNG(source, dest) {
     });
 }
 
-module.exports = {
+export default {
     convertSVGToPNG: convertSVGToPNG,
     convertSVGBufferToPNG: convertSVGBufferToPNG,
     convertInlinePNG: convertInlinePNG

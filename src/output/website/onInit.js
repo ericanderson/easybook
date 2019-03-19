@@ -1,8 +1,7 @@
-var Promise = require("../../utils/promise");
-
-var copyPluginAssets = require("./copyPluginAssets");
-var prepareI18n = require("./prepareI18n");
-var prepareResources = require("./prepareResources");
+import Promise from "../../utils/promise";
+import copyPluginAssets from "./copyPluginAssets";
+import prepareI18n from "./prepareI18n";
+import prepareResources from "./prepareResources";
 
 /**
     Initialize the generator
@@ -17,4 +16,4 @@ function onInit(output) {
         .then(copyPluginAssets);
 }
 
-module.exports = onInit;
+export default onInit;

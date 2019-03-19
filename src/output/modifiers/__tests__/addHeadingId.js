@@ -1,5 +1,5 @@
-var cheerio = require("cheerio");
-var addHeadingId = require("../addHeadingId");
+import cheerio from "cheerio";
+import addHeadingId from "../addHeadingId";
 
 describe("addHeadingId", function() {
     it("should add an ID if none", function() {

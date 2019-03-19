@@ -1,8 +1,8 @@
-var path = require("path");
-var Immutable = require("immutable");
+import path from "path";
+import Immutable from "immutable";
 
 describe("findInstalled", function() {
-    var findInstalled = require("../findInstalled");
+    var findInstalled = require("../findInstalled").default;
 
     it("must list default plugins for gitbook directory", function() {
         // Read gitbook-plugins from package.json

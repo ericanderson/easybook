@@ -1,5 +1,5 @@
-var path = require("path");
-var locateRootFolder = require("../locateRootFolder");
+import path from "path";
+import locateRootFolder from "../locateRootFolder";
 
 describe("locateRootFolder", function() {
     it("should correctly resolve the node_modules for gitbook", function() {

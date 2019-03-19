@@ -1,5 +1,5 @@
-var PluginDependency = require("../../models/pluginDependency");
-var resolveVersion = require("../resolveVersion");
+import PluginDependency from "../../models/pluginDependency";
+import resolveVersion from "../resolveVersion";
 
 describe("resolveVersion", function() {
     it("must skip resolving and return non-semver versions", function() {

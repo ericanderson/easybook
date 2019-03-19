@@ -1,10 +1,9 @@
-var is = require("is");
-var extend = require("extend");
-var Immutable = require("immutable");
-
-var Promise = require("../utils/promise");
-var genKey = require("../utils/genKey");
-var TemplateShortcut = require("./templateShortcut");
+import is from "is";
+import extend from "extend";
+import Immutable from "immutable";
+import Promise from "../utils/promise";
+import genKey from "../utils/genKey";
+import TemplateShortcut from "./templateShortcut";
 
 var NODE_ENDARGS = "%%endargs%%";
 
@@ -295,4 +294,4 @@ function extractKwargs(args) {
     return is.object(last) && last.__keywords ? args.pop() : {};
 }
 
-module.exports = TemplateBlock;
+export default TemplateBlock;

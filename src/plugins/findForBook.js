@@ -1,9 +1,8 @@
-var Immutable = require("immutable");
-
-var Promise = require("../utils/promise");
-var timing = require("../utils/timing");
-var findInstalled = require("./findInstalled");
-var locateRootFolder = require("./locateRootFolder");
+import Immutable from "immutable";
+import Promise from "../utils/promise";
+import timing from "../utils/timing";
+import findInstalled from "./findInstalled";
+import locateRootFolder from "./locateRootFolder";
 
 /**
  * List all plugins installed in a book
@@ -29,4 +28,4 @@ function findForBook(book) {
     );
 }
 
-module.exports = findForBook;
+export default findForBook;

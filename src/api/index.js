@@ -1,7 +1,7 @@
-module.exports = {
-    encodePage: require("./encodePage"),
-    decodePage: require("./decodePage"),
+export default {
+    encodePage: require("./encodePage").default,
+    decodePage: require("./decodePage").default,
 
-    encodeGlobal: require("./encodeGlobal"),
-    decodeGlobal: require("./decodeGlobal")
+    encodeGlobal: require("./encodeGlobal").default,
+    decodeGlobal: require("./decodeGlobal").default
 };

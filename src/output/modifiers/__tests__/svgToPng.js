@@ -1,9 +1,8 @@
-var cheerio = require("cheerio");
-var tmp = require("tmp");
-var path = require("path");
-
-var svgToImg = require("../svgToImg");
-var svgToPng = require("../svgToPng");
+import cheerio from "cheerio";
+import tmp from "tmp";
+import path from "path";
+import svgToImg from "../svgToImg";
+import svgToPng from "../svgToPng";
 
 describe("svgToPng", function() {
     var dir;

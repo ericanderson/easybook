@@ -1,5 +1,5 @@
-var Immutable = require("immutable");
-var slug = require("github-slugid");
+import Immutable from "immutable";
+import slug from "github-slugid";
 
 /*
     A definition represents an entry in the glossary
@@ -37,4 +37,4 @@ GlossaryEntry.nameToID = function nameToID(name) {
     return slug(name);
 };
 
-module.exports = GlossaryEntry;
+export default GlossaryEntry;

@@ -1,7 +1,6 @@
-var path = require("path");
-
-var LocationUtils = require("../../utils/location");
-var editHTMLElement = require("./editHTMLElement");
+import path from "path";
+import LocationUtils from "../../utils/location";
+import editHTMLElement from "./editHTMLElement";
 
 /**
     Resolve all HTML images:
@@ -30,4 +29,4 @@ function resolveImages(currentFile, $) {
     });
 }
 
-module.exports = resolveImages;
+export default resolveImages;

@@ -1,9 +1,9 @@
-var cheerio = require("cheerio");
-var tmp = require("tmp");
+import cheerio from "cheerio";
+import tmp from "tmp";
 
 describe("svgToImg", function() {
     var dir;
-    var svgToImg = require("../svgToImg");
+    var svgToImg = require("../svgToImg").default;
 
     beforeEach(function() {
         dir = tmp.dirSync();

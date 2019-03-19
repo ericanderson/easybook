@@ -1,3 +1,2 @@
-var Immutable = require("immutable");
-
-module.exports = Immutable.List(["js", "css"]);
+import Immutable from "immutable";
+export default Immutable.List(["js", "css"]);

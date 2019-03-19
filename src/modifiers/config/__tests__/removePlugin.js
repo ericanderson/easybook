@@ -1,5 +1,5 @@
-var removePlugin = require("../removePlugin");
-var Config = require("../../../models/config");
+import removePlugin from "../removePlugin";
+import Config from "../../../models/config";
 
 describe("removePlugin", function() {
     var config = Config.createWithValues({

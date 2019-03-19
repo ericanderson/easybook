@@ -1,8 +1,8 @@
-var Summary = require("../../../models/summary");
-var File = require("../../../models/file");
+import Summary from "../../../models/summary";
+import File from "../../../models/file";
 
 describe("removeArticle", function() {
-    var removeArticle = require("../removeArticle");
+    var removeArticle = require("../removeArticle").default;
     var summary = Summary.createFromParts(File(), [
         {
             articles: [

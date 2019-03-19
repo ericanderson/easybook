@@ -1,6 +1,6 @@
-var JSONUtils = require("../json");
-var deprecate = require("./deprecate");
-var encodeProgress = require("./encodeProgress");
+import JSONUtils from "../json";
+import deprecate from "./deprecate";
+import encodeProgress from "./encodeProgress";
 
 /**
     Encode a page in a context to a JS API
@@ -50,4 +50,4 @@ function encodePage(output, page) {
     return result;
 }
 
-module.exports = encodePage;
+export default encodePage;

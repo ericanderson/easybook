@@ -1,6 +1,6 @@
-var Promise = require("../utils/promise");
-var error = require("../utils/error");
-var lookupStructureFile = require("./lookupStructureFile");
+import Promise from "../utils/promise";
+import error from "../utils/error";
+import lookupStructureFile from "./lookupStructureFile";
 
 /**
     Parse a ParsableFile using a specific method
@@ -60,4 +60,4 @@ function parseStructureFile(book, type) {
     });
 }
 
-module.exports = parseStructureFile;
+export default parseStructureFile;

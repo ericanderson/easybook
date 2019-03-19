@@ -1,9 +1,9 @@
-var extend = require("extend");
-var WebsiteGenerator = require("../website");
+import extend from "extend";
+import WebsiteGenerator from "../website";
 
-module.exports = extend({}, WebsiteGenerator, {
+export default extend({}, WebsiteGenerator, {
     name: "ebook",
-    Options: require("./options"),
-    onPage: require("./onPage"),
-    onFinish: require("./onFinish")
+    Options: require("./options").default,
+    onPage: require("./onPage").default,
+    onFinish: require("./onFinish").default
 });

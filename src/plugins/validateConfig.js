@@ -1,10 +1,9 @@
-var Immutable = require("immutable");
-var jsonschema = require("jsonschema");
-var jsonSchemaDefaults = require("json-schema-defaults");
-
-var Promise = require("../utils/promise");
-var error = require("../utils/error");
-var mergeDefaults = require("../utils/mergeDefaults");
+import Immutable from "immutable";
+import jsonschema from "jsonschema";
+import jsonSchemaDefaults from "json-schema-defaults";
+import Promise, {reduce} from "../utils/promise";
+import error from "../utils/error";
+import mergeDefaults from "../utils/mergeDefaults";
 
 /**
     Validate one plugin for a book and update book's confiration
@@ -59,7 +58,7 @@ function validatePluginConfig(book, plugin) {
     @return {Promise<Book>}
 */
 function validateConfig(book, plugins) {
-    return Promise.reduce(
+    return reduce(
         plugins,
         function(newBook, plugin) {
             return validatePluginConfig(newBook, plugin);
@@ -68,4 +67,4 @@ function validateConfig(book, plugins) {
     );
 }
 
-module.exports = validateConfig;
+export default validateConfig;

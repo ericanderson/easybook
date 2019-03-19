@@ -1,4 +1,4 @@
-var path = require("path");
+import path from "path";
 
 /**
     Return path to output folder
@@ -16,4 +16,4 @@ function getOutputFolder(args) {
     return outputFolder;
 }
 
-module.exports = getOutputFolder;
+export default getOutputFolder;

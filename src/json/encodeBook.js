@@ -1,10 +1,9 @@
-var extend = require("extend");
-
-var gitbook = require("../gitbook");
-var encodeSummary = require("./encodeSummary");
-var encodeGlossary = require("./encodeGlossary");
-var encodeReadme = require("./encodeReadme");
-var encodeLanguages = require("./encodeLanguages");
+import extend from "extend";
+import gitbook from "../gitbook";
+import encodeSummary from "./encodeSummary";
+import encodeGlossary from "./encodeGlossary";
+import encodeReadme from "./encodeReadme";
+import encodeLanguages from "./encodeLanguages";
 
 /**
     Encode a book to JSON
@@ -44,4 +43,4 @@ function encodeBookToJson(book) {
     };
 }
 
-module.exports = encodeBookToJson;
+export default encodeBookToJson;

@@ -1,15 +1,14 @@
-var path = require("path");
-var omit = require("omit-keys");
-
-var Templating = require("../../templating");
-var Plugins = require("../../plugins");
-var JSONUtils = require("../../json");
-var LocationUtils = require("../../utils/location");
-var Modifiers = require("../modifiers");
-var writeFile = require("../helper/writeFile");
-var getModifiers = require("../getModifiers");
-var createTemplateEngine = require("./createTemplateEngine");
-var fileToOutput = require("../helper/fileToOutput");
+import path from "path";
+import omit from "omit-keys";
+import Templating from "../../templating";
+import Plugins from "../../plugins";
+import JSONUtils from "../../json";
+import LocationUtils from "../../utils/location";
+import Modifiers from "../modifiers";
+import writeFile from "../helper/writeFile";
+import getModifiers from "../getModifiers";
+import createTemplateEngine from "./createTemplateEngine";
+import fileToOutput from "../helper/fileToOutput";
 
 /**
  * Write a page as a json file
@@ -76,4 +75,4 @@ function onPage(output, page) {
     });
 }
 
-module.exports = onPage;
+export default onPage;

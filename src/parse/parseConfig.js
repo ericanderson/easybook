@@ -1,7 +1,6 @@
-var Promise = require("../utils/promise");
-
-var validateConfig = require("./validateConfig");
-var CONFIG_FILES = require("../constants/configFiles");
+import Promise, { some } from "../utils/promise";
+import validateConfig from "./validateConfig";
+import CONFIG_FILES from "../constants/configFiles";
 
 /**
     Parse configuration from "book.json" or "book.js"
@@ -13,7 +12,7 @@ function parseConfig(book) {
     var fs = book.getFS();
     var config = book.getConfig();
 
-    return Promise.some(CONFIG_FILES, function(filename) {
+    return some(CONFIG_FILES, function(filename) {
         // Is this file ignored?
         if (book.isFileIgnored(filename)) {
             return;
@@ -34,8 +33,7 @@ function parseConfig(book) {
                 if (err.code != "MODULE_NOT_FOUND") throw err;
                 else return Promise(false);
             });
-    })
-    .then(function(result) {
+    }).then(function(result) {
         var values = result ? result.values : {};
         values = validateConfig(values);
 
@@ -51,4 +49,4 @@ function parseConfig(book) {
     });
 }
 
-module.exports = parseConfig;
+export default parseConfig;

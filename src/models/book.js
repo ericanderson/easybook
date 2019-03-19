@@ -1,15 +1,13 @@
-var path = require("path");
-var Immutable = require("immutable");
-
-var Logger = require("../utils/logger");
-
-var FS = require("./fs");
-var Config = require("./config");
-var Readme = require("./readme");
-var Summary = require("./summary");
-var Glossary = require("./glossary");
-var Languages = require("./languages");
-var Ignore = require("./ignore");
+import path from "path";
+import Immutable from "immutable";
+import Logger from "../utils/logger";
+import FS from "./fs";
+import Config from "./config";
+import Readme from "./readme";
+import Summary from "./summary";
+import Glossary from "./glossary";
+import Languages from "./languages";
+import Ignore from "./ignore";
 
 var Book = Immutable.Record({
     // Logger for outptu message
@@ -362,4 +360,4 @@ Book.createFromParent = function createFromParent(parent, language) {
     });
 };
 
-module.exports = Book;
+export default Book;

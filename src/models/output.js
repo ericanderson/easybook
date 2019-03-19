@@ -1,7 +1,6 @@
-var Immutable = require("immutable");
-
-var Book = require("./book");
-var LocationUtils = require("../utils/location");
+import Immutable from "immutable";
+import Book from "./book";
+import LocationUtils from "../utils/location";
 
 var Output = Immutable.Record({
     book: Book(),
@@ -104,4 +103,4 @@ Output.prototype.getLogger = function() {
     return this.getBook().getLogger();
 };
 
-module.exports = Output;
+export default Output;

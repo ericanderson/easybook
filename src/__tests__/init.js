@@ -1,5 +1,5 @@
-var tmp = require("tmp");
-var initBook = require("../init");
+import tmp from "tmp";
+import initBook from "../init";
 
 describe("initBook", function() {
     it("should create a README and SUMMARY for empty book", function() {

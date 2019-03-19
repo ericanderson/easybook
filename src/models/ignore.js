@@ -1,5 +1,5 @@
-var Immutable = require("immutable");
-var IgnoreMutable = require("ignore");
+import Immutable from "immutable";
+import IgnoreMutable from "ignore";
 
 /*
     Immutable version of node-ignore
@@ -42,4 +42,4 @@ Ignore.prototype.add = function(rule) {
     return this.set("ignore", newIgnore);
 };
 
-module.exports = Ignore;
+export default Ignore;

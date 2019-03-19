@@ -1,9 +1,8 @@
-var Immutable = require("immutable");
-var nunjucks = require("nunjucks");
-var fs = require("fs");
-var path = require("path");
-
-var PathUtils = require("../utils/path");
+import Immutable from "immutable";
+import nunjucks from "nunjucks";
+import fs from "fs";
+import path from "path";
+import PathUtils from "../utils/path";
 
 var ThemesLoader = nunjucks.Loader.extend({
     init: function(searchPaths) {
@@ -112,4 +111,4 @@ var ThemesLoader = nunjucks.Loader.extend({
     }
 });
 
-module.exports = ThemesLoader;
+export default ThemesLoader;

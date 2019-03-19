@@ -1,11 +1,10 @@
-var path = require("path");
-var Immutable = require("immutable");
-var stream = require("stream");
-
-var File = require("./file");
-var Promise = require("../utils/promise");
-var error = require("../utils/error");
-var PathUtil = require("../utils/path");
+import path from "path";
+import Immutable from "immutable";
+import stream from "stream";
+import File from "./file";
+import Promise, {reduce} from "../utils/promise";
+import error from "../utils/error";
+import PathUtil from "../utils/path";
 
 var FS = Immutable.Record({
     root: String(),
@@ -202,7 +201,7 @@ FS.prototype.listAllFiles = function(dirName, filterFn) {
     dirName = dirName || ".";
 
     return this.readDir(dirName).then(function(files) {
-        return Promise.reduce(
+        return reduce(
             files,
             function(out, file) {
                 var isDirectory = pathIsFolder(file);
@@ -299,4 +298,4 @@ function pathIsFolder(filename) {
     return lastChar == "/" || lastChar == "\\";
 }
 
-module.exports = FS;
+export default FS;

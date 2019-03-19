@@ -1,9 +1,8 @@
-var Immutable = require("immutable");
-
-var Book = require("../../models/book");
-var createMockFS = require("../../fs/mock");
-var listAssets = require("../listAssets");
-var parseGlossary = require("../parseGlossary");
+import Immutable from "immutable";
+import Book from "../../models/book";
+import createMockFS from "../../fs/mock";
+import listAssets from "../listAssets";
+import parseGlossary from "../parseGlossary";
 
 describe("listAssets", function() {
     it("should not list glossary as asset", function() {

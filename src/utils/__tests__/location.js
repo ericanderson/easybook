@@ -1,4 +1,4 @@
-var LocationUtils = require("../location");
+import LocationUtils from "../location";
 
 describe("LocationUtils", function() {
     it("should correctly test external location", function() {

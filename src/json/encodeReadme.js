@@ -1,4 +1,4 @@
-var encodeFile = require("./encodeFile");
+import encodeFile from "./encodeFile";
 
 /**
     Encode a readme to JSON
@@ -14,4 +14,4 @@ function encodeReadme(readme) {
     };
 }
 
-module.exports = encodeReadme;
+export default encodeReadme;

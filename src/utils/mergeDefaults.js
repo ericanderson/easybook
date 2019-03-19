@@ -1,4 +1,4 @@
-var Immutable = require("immutable");
+import Immutable from "immutable";
 
 /**
  * Merge
@@ -13,4 +13,4 @@ function mergeDefaults(obj, src) {
     return srcValue.mergeDeep(objValue).toJS();
 }
 
-module.exports = mergeDefaults;
+export default mergeDefaults;

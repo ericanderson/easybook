@@ -1,10 +1,9 @@
-var events = require("events");
-var http = require("http");
-var send = require("send");
-var util = require("util");
-var url = require("url");
-
-var Promise = require("../utils/promise");
+import events from "events";
+import http from "http";
+import send from "send";
+import util from "util";
+import url from "url";
+import Promise from "../utils/promise";
 
 function Server() {
     this.running = null;
@@ -125,4 +124,4 @@ function urlTransform(uri, fn) {
     return url.format(fn(url.parse(uri)));
 }
 
-module.exports = Server;
+export default Server;

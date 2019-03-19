@@ -1,7 +1,6 @@
-var Immutable = require("immutable");
-var yaml = require("js-yaml");
-
-var File = require("./file");
+import Immutable from "immutable";
+import yaml from "js-yaml";
+import File from "./file";
 
 var Page = Immutable.Record({
     file: File(),
@@ -70,4 +69,4 @@ Page.createForFile = function(file) {
     });
 };
 
-module.exports = Page;
+export default Page;

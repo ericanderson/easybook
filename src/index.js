@@ -1,13 +1,12 @@
-var extend = require("extend");
+import extend from "extend";
+import common from "./browser";
 
-var common = require("./browser");
-
-module.exports = extend(
+export default extend(
     {
-        initBook: require("./init"),
-        createNodeFS: require("./fs/node"),
-        Output: require("./output"),
-        commands: require("./cli")
+        initBook: require("./init").default,
+        createNodeFS: require("./fs/node").default,
+        Output: require("./output").default,
+        commands: require("./cli").default
     },
     common
 );

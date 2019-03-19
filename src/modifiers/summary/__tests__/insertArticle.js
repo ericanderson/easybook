@@ -1,9 +1,9 @@
-var Summary = require("../../../models/summary");
-var SummaryArticle = require("../../../models/summaryArticle");
-var File = require("../../../models/file");
+import Summary from "../../../models/summary";
+import SummaryArticle from "../../../models/summaryArticle";
+import File from "../../../models/file";
 
 describe("insertArticle", function() {
-    var insertArticle = require("../insertArticle");
+    var insertArticle = require("../insertArticle").default;
     var summary = Summary.createFromParts(File(), [
         {
             articles: [

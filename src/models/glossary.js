@@ -1,9 +1,8 @@
-var Immutable = require("immutable");
-
-var error = require("../utils/error");
-var File = require("./file");
-var GlossaryEntry = require("./glossaryEntry");
-var parsers = require("../parsers");
+import Immutable from "immutable";
+import error from "../utils/error";
+import File from "./file";
+import GlossaryEntry from "./glossaryEntry";
+import parsers from "../parsers";
 
 var Glossary = Immutable.Record({
     file: File(),
@@ -104,4 +103,4 @@ Glossary.createFromEntries = function createFromEntries(file, entries) {
     });
 };
 
-module.exports = Glossary;
+export default Glossary;

@@ -1,6 +1,5 @@
-var Immutable = require("immutable");
-
-var SummaryArticle = require("./summaryArticle");
+import Immutable from "immutable";
+import SummaryArticle from "./summaryArticle";
 
 /*
     A part represents a section in the Summary / table of Contents
@@ -58,4 +57,4 @@ SummaryPart.create = function(def, level) {
     });
 };
 
-module.exports = SummaryPart;
+export default SummaryPart;

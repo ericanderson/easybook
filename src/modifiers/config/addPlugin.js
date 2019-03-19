@@ -1,6 +1,6 @@
-var PluginDependency = require("../../models/pluginDependency");
-var togglePlugin = require("./togglePlugin");
-var isDefaultPlugin = require("./isDefaultPlugin");
+import PluginDependency from "../../models/pluginDependency";
+import togglePlugin from "./togglePlugin";
+import isDefaultPlugin from "./isDefaultPlugin";
 
 /**
  * Add a plugin to a book's configuration
@@ -22,4 +22,4 @@ function addPlugin(config, pluginName, version) {
     return config.setPluginDependencies(deps);
 }
 
-module.exports = addPlugin;
+export default addPlugin;

@@ -1,12 +1,10 @@
-var path = require("path");
-var resolve = require("resolve");
-var Immutable = require("immutable");
-
-var Promise = require("../utils/promise");
-var error = require("../utils/error");
-var timing = require("../utils/timing");
-
-var validatePlugin = require("./validatePlugin");
+import path from "path";
+import resolve from "resolve";
+import Immutable from "immutable";
+import Promise from "../utils/promise";
+import error from "../utils/error";
+import timing from "../utils/timing";
+import validatePlugin from "./validatePlugin";
 
 // Return true if an error is a "module not found"
 // Wait on https://github.com/substack/node-resolve/pull/81 to be merged
@@ -67,7 +65,7 @@ function loadPlugin(book, plugin) {
             // Load plugin JS content
             if (packageMain) {
                 try {
-                    content = require(packageMain);
+                    content = require(packageMain).default;
                 } catch (err) {
                     throw new error.PluginError(err, {
                         plugin: name
@@ -90,4 +88,4 @@ function loadPlugin(book, plugin) {
     return logger.info.promise(p);
 }
 
-module.exports = loadPlugin;
+export default loadPlugin;

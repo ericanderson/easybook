@@ -1,10 +1,10 @@
-var Modifiers = require("./modifiers");
-var resolveFileToURL = require("./helper/resolveFileToURL");
-var Api = require("../api");
-var Plugins = require("../plugins");
-var Promise = require("../utils/promise");
-var defaultBlocks = require("../constants/defaultBlocks");
-var fileToOutput = require("./helper/fileToOutput");
+import Modifiers from "./modifiers";
+import resolveFileToURL from "./helper/resolveFileToURL";
+import Api from "../api";
+import Plugins from "../plugins";
+import Promise from "../utils/promise";
+import defaultBlocks from "../constants/defaultBlocks";
+import fileToOutput from "./helper/fileToOutput";
 
 var CODEBLOCK = "code";
 
@@ -75,4 +75,4 @@ function getModifiers(output, page) {
     ];
 }
 
-module.exports = getModifiers;
+export default getModifiers;

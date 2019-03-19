@@ -1,4 +1,4 @@
-var encodeSummaryArticle = require("./encodeSummaryArticle");
+import encodeSummaryArticle from "./encodeSummaryArticle";
 
 /**
     Encode a SummaryPart to JSON
@@ -16,4 +16,4 @@ function encodeSummaryPart(part) {
     };
 }
 
-module.exports = encodeSummaryPart;
+export default encodeSummaryPart;

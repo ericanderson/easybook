@@ -1,4 +1,4 @@
-var SummaryPart = require("../summaryPart");
+import SummaryPart from "../summaryPart";
 
 describe("SummaryPart", function() {
     describe("createChildLevel", function() {

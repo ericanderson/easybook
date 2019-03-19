@@ -1,5 +1,5 @@
-var addPlugin = require("../addPlugin");
-var Config = require("../../../models/config");
+import addPlugin from "../addPlugin";
+import Config from "../../../models/config";
 
 describe("addPlugin", function() {
     var config = Config.createWithValues({

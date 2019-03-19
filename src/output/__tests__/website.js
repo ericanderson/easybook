@@ -1,6 +1,6 @@
-var fs = require("fs");
-var generateMock = require("./generateMock");
-var WebsiteGenerator = require("../website");
+import fs from "fs";
+import generateMock from "./generateMock";
+import WebsiteGenerator from "../website";
 
 describe("WebsiteGenerator", function() {
     it("should generate an index.html", function() {

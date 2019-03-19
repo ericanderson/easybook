@@ -1,8 +1,7 @@
-var path = require("path");
-
-var Promise = require("../../utils/promise");
-var fs = require("../../utils/fs");
-var JSONUtils = require("../../json");
+import path from "path";
+import Promise from "../../utils/promise";
+import fs from "../../utils/fs";
+import JSONUtils from "../../json";
 
 /**
     Finish the generation
@@ -50,4 +49,4 @@ function onFinish(output) {
     );
 }
 
-module.exports = onFinish;
+export default onFinish;

@@ -1,10 +1,9 @@
-var Immutable = require("immutable");
-
-var Output = require("../../models/output");
-var Book = require("../../models/book");
-var parseBook = require("../../parse/parseBook");
-var createMockFS = require("../../fs/mock");
-var preparePlugins = require("../preparePlugins");
+import Immutable from "immutable";
+import Output from "../../models/output";
+import Book from "../../models/book";
+import parseBook from "../../parse/parseBook";
+import createMockFS from "../../fs/mock";
+import preparePlugins from "../preparePlugins";
 
 /**
  * Create an output using a generator
@@ -35,4 +34,4 @@ function createMockOutput(generator, files, options) {
         .then(preparePlugins);
 }
 
-module.exports = createMockOutput;
+export default createMockOutput;

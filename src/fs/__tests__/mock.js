@@ -1,4 +1,4 @@
-var createMockFS = require("../mock");
+import createMockFS from "../mock";
 
 describe("MockFS", function() {
     var fs = createMockFS({

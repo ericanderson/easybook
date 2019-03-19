@@ -1,10 +1,8 @@
-var path = require("path");
-
-var Book = require("../../models/book");
-var NodeFS = require("../../fs/node");
-var installPlugins = require("../installPlugins");
-
-var Parse = require("../../parse");
+import path from "path";
+import Book from "../../models/book";
+import NodeFS from "../../fs/node";
+import installPlugins from "../installPlugins";
+import Parse from "../../parse";
 
 describe("installPlugins", function() {
     var book;

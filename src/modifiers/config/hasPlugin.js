@@ -14,4 +14,4 @@ function hasPlugin(deps, pluginName, version) {
     });
 }
 
-module.exports = hasPlugin;
+export default hasPlugin;

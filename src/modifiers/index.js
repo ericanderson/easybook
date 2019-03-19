@@ -1,4 +1,4 @@
-module.exports = {
-    Summary: require("./summary"),
-    Config: require("./config")
+export default {
+    Summary: require("./summary").default,
+    Config: require("./config").default
 };

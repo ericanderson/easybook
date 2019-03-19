@@ -1,6 +1,6 @@
-var encodeBook = require("./encodeBook");
-var encodePage = require("./encodePage");
-var encodeFile = require("./encodeFile");
+import encodeBook from "./encodeBook";
+import encodePage from "./encodePage";
+import encodeFile from "./encodeFile";
 
 /**
  * Return a JSON representation of a book with a specific file
@@ -19,4 +19,4 @@ function encodeBookWithPage(book, page) {
     return result;
 }
 
-module.exports = encodeBookWithPage;
+export default encodeBookWithPage;

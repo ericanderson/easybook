@@ -1,6 +1,4 @@
-var Immutable = require("immutable");
-var jsonSchemaDefaults = require("json-schema-defaults");
-
-var schema = require("./configSchema");
-
-module.exports = Immutable.fromJS(jsonSchemaDefaults(schema));
+import Immutable from "immutable";
+import jsonSchemaDefaults from "json-schema-defaults";
+import schema from "./configSchema";
+export default Immutable.fromJS(jsonSchemaDefaults(schema));

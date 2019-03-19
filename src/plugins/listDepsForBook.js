@@ -1,4 +1,4 @@
-var listDependencies = require("./listDependencies");
+import listDependencies from "./listDependencies";
 
 /**
  * List all plugin requirements for a book.
@@ -15,4 +15,4 @@ function listDepsForBook(book) {
     return listDependencies(plugins);
 }
 
-module.exports = listDepsForBook;
+export default listDepsForBook;

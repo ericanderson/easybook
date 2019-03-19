@@ -1,11 +1,10 @@
-var readInstalled = require("read-installed");
-var Immutable = require("immutable");
-var path = require("path");
-
-var Promise = require("../utils/promise");
-var fs = require("../utils/fs");
-var Plugin = require("../models/plugin");
-var PREFIX = require("../constants/pluginPrefix");
+import readInstalled from "read-installed";
+import Immutable from "immutable";
+import path from "path";
+import Promise, {serie} from "../utils/promise";
+import fs from "../utils/fs";
+import Plugin from "../models/plugin";
+import PREFIX from "../constants/pluginPrefix";
 
 /**
  * Validate if a package name is a GitBook plugin
@@ -68,13 +67,13 @@ function findInstalled(folder) {
     return fs
         .readdir(node_modules)
         .fail(function() {
-            return Promise([]);
+            return Promise.resolve([]);
         })
         .then(function(modules) {
-            return Promise.serie(modules, function(module) {
+            return serie(modules, function(module) {
                 // Not a gitbook-plugin
                 if (!validateId(module)) {
-                    return Promise();
+                    return Promise.resolve();
                 }
 
                 // Read gitbook-plugin package details
@@ -94,4 +93,4 @@ function findInstalled(folder) {
         });
 }
 
-module.exports = findInstalled;
+export default findInstalled;

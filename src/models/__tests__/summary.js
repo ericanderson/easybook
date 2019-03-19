@@ -1,6 +1,6 @@
+import File from "../file";
+import Summary from "../summary";
 describe("Summary", function() {
-    var File = require("../file");
-    var Summary = require("../summary");
 
     var summary = Summary.createFromParts(File(), [
         {

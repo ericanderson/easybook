@@ -1,4 +1,4 @@
-var gitbook = require("../gitbook");
+import gitbook from "../gitbook";
 
 describe("satisfies", function() {
     it("should return true for *", function() {

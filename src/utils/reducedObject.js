@@ -1,4 +1,4 @@
-var Immutable = require("immutable");
+import Immutable from "immutable";
 
 /**
  *  Reduce the difference between a map and its default version
@@ -30,4 +30,4 @@ function reducedObject(defaultVersion, currentVersion) {
     }, Immutable.Map());
 }
 
-module.exports = reducedObject;
+export default reducedObject;

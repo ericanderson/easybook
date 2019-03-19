@@ -1,6 +1,6 @@
-var cheerio = require("cheerio");
-var Promise = require("../../../utils/promise");
-var highlightCode = require("../highlightCode");
+import cheerio from "cheerio";
+import Promise from "../../../utils/promise";
+import highlightCode from "../highlightCode";
 
 describe("highlightCode", function() {
     function doHighlight(lang, code) {

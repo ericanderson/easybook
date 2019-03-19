@@ -1,5 +1,5 @@
-var Immutable = require("immutable");
-var Promise = require("../utils/promise");
+import Immutable from "immutable";
+import Promise from "../utils/promise";
 
 var Parser = Immutable.Record({
     name: String(),
@@ -119,4 +119,4 @@ Parser.create = function(name, extensions, module) {
     });
 };
 
-module.exports = Parser;
+export default Parser;

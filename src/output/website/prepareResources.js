@@ -1,8 +1,7 @@
-var is = require("is");
-var Immutable = require("immutable");
-var Promise = require("../../utils/promise");
-
-var Api = require("../../api");
+import is from "is";
+import Immutable from "immutable";
+import Promise, {forEach} from "../../utils/promise";
+import Api from "../../api";
 
 /**
     Prepare plugins resources, add all output corresponding type resources
@@ -19,7 +18,7 @@ function prepareResources(output) {
 
     var result = Immutable.Map();
 
-    return Promise.forEach(plugins, function(plugin) {
+    return forEach(plugins, function(plugin) {
         var pluginResources = plugin.getResources(type);
 
         return Promise()
@@ -48,4 +47,4 @@ function prepareResources(output) {
     });
 }
 
-module.exports = prepareResources;
+export default prepareResources;

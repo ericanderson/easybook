@@ -1,5 +1,5 @@
-var Q = require("q");
-var Immutable = require("immutable");
+import Q from "q";
+import Immutable from "immutable";
 
 // Debugging for long stack traces
 if (process.env.DEBUG || process.env.CI) {
@@ -139,10 +139,10 @@ function wrap(func) {
     };
 }
 
-module.exports = Q;
-module.exports.forEach = forEach;
-module.exports.reduce = reduce;
-module.exports.map = map;
-module.exports.serie = serie;
-module.exports.some = some;
-module.exports.wrapfn = wrap;
+export default Q;
+export {forEach};
+export {reduce};
+export {map};
+export {serie};
+export {some};
+export {wrap as wrapfn};

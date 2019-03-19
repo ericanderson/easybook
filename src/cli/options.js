@@ -1,4 +1,4 @@
-var Logger = require("../utils/logger");
+import Logger from "../utils/logger";
 
 var logOptions = {
     name: "log",
@@ -24,7 +24,7 @@ var timingOption = {
     defaults: false
 };
 
-module.exports = {
+export default {
     log: logOptions,
     format: formatOption,
     timing: timingOption

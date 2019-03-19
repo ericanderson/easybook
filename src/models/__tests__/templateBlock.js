@@ -1,9 +1,9 @@
-var nunjucks = require("nunjucks");
-var Immutable = require("immutable");
-var Promise = require("../../utils/promise");
+import nunjucks from "nunjucks";
+import Immutable from "immutable";
+import Promise from "../../utils/promise";
 
 describe("TemplateBlock", function() {
-    var TemplateBlock = require("../templateBlock");
+    var TemplateBlock = require("../templateBlock").default;
 
     describe("create", function() {
         it("must initialize a simple TemplateBlock from a function", function() {

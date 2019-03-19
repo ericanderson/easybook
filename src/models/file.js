@@ -1,7 +1,6 @@
-var path = require("path");
-var Immutable = require("immutable");
-
-var parsers = require("../parsers");
+import path from "path";
+import Immutable from "immutable";
+import parsers from "../parsers";
 
 var File = Immutable.Record({
     // Path of the file, relative to the FS
@@ -86,4 +85,4 @@ File.createWithFilepath = function createWithFilepath(filepath) {
     });
 };
 
-module.exports = File;
+export default File;

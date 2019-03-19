@@ -1,7 +1,6 @@
-var Immutable = require("immutable");
-
-var TemplateBlock = require("../../models/templateBlock");
-var replaceShortcuts = require("../replaceShortcuts");
+import Immutable from "immutable";
+import TemplateBlock from "../../models/templateBlock";
+import replaceShortcuts from "../replaceShortcuts";
 
 describe("replaceShortcuts", function() {
     var blocks = Immutable.List([

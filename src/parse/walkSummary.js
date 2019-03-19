@@ -1,4 +1,4 @@
-var Promise = require("../utils/promise");
+import Promise, {forEach} from "../utils/promise";
 
 /**
     Walk over a list of articles
@@ -8,7 +8,7 @@ var Promise = require("../utils/promise");
     @return {Promise}
 */
 function walkArticles(articles, fn) {
-    return Promise.forEach(articles, function(article) {
+    return forEach(articles, function(article) {
         return Promise(fn(article)).then(function() {
             return walkArticles(article.getArticles(), fn);
         });
@@ -25,9 +25,9 @@ function walkArticles(articles, fn) {
 function walkSummary(summary, fn) {
     var parts = summary.getParts();
 
-    return Promise.forEach(parts, function(part) {
+    return forEach(parts, function(part) {
         return walkArticles(part.getArticles(), fn);
     });
 }
 
-module.exports = walkSummary;
+export default walkSummary;

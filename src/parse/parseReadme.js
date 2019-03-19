@@ -1,7 +1,6 @@
-var parseStructureFile = require("./parseStructureFile");
-var Readme = require("../models/readme");
-
-var error = require("../utils/error");
+import parseStructureFile from "./parseStructureFile";
+import Readme from "../models/readme";
+import error from "../utils/error";
 
 /**
     Parse readme from book
@@ -24,4 +23,4 @@ function parseReadme(book) {
     });
 }
 
-module.exports = parseReadme;
+export default parseReadme;

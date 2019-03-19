@@ -1,6 +1,6 @@
-var path = require("path");
-var cheerio = require("cheerio");
-var resolveLinks = require("../resolveLinks");
+import path from "path";
+import cheerio from "cheerio";
+import resolveLinks from "../resolveLinks";
 
 describe("resolveLinks", function() {
     function resolveFileBasic(href) {

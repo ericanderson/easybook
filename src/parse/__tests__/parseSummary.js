@@ -1,8 +1,8 @@
-var Book = require("../../models/book");
-var createMockFS = require("../../fs/mock");
+import Book from "../../models/book";
+import createMockFS from "../../fs/mock";
 
 describe("parseSummary", function() {
-    var parseSummary = require("../parseSummary");
+    var parseSummary = require("../parseSummary").default;
 
     it("should parse summary if exists", function() {
         var fs = createMockFS({

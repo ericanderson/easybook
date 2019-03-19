@@ -1,5 +1,5 @@
-var Immutable = require("immutable");
-var is = require("is");
+import Immutable from "immutable";
+import is from "is";
 
 var timers = {};
 var startDate = Date.now();
@@ -109,7 +109,7 @@ function dump(logger) {
     logger.setLevel(logLevel);
 }
 
-module.exports = {
+export default {
     measure: measure,
     dump: dump
 };

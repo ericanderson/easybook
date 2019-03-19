@@ -1,5 +1,5 @@
-var parsePageFromString = require("../parsePageFromString");
-var Page = require("../../models/page");
+import parsePageFromString from "../parsePageFromString";
+import Page from "../../models/page";
 
 describe("parsePageFromString", function() {
     var page = new Page();

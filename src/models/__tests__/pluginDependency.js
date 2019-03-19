@@ -1,5 +1,5 @@
-var Immutable = require("immutable");
-var PluginDependency = require("../pluginDependency");
+import Immutable from "immutable";
+import PluginDependency from "../pluginDependency";
 
 describe("PluginDependency", function() {
     describe("createFromString", function() {

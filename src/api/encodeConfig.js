@@ -1,5 +1,5 @@
-var objectPath = require("object-path");
-var deprecate = require("./deprecate");
+import objectPath from "object-path";
+import deprecate from "./deprecate";
 
 /**
     Encode a config object into a JS config api
@@ -51,4 +51,4 @@ function encodeConfig(output, config) {
     return result;
 }
 
-module.exports = encodeConfig;
+export default encodeConfig;

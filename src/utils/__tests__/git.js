@@ -1,7 +1,6 @@
-var path = require("path");
-var os = require("os");
-
-var Git = require("../git");
+import path from "path";
+import os from "os";
+import Git from "../git";
 
 describe("Git", function() {
     describe("URL parsing", function() {

@@ -1,6 +1,5 @@
-var gitbook = require("../gitbook");
-
-var Promise = require("../utils/promise");
+import gitbook from "../gitbook";
+import Promise from "../utils/promise";
 
 /**
     Validate a plugin
@@ -43,4 +42,4 @@ function validatePlugin(plugin) {
     return Promise(plugin);
 }
 
-module.exports = validatePlugin;
+export default validatePlugin;

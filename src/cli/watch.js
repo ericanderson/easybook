@@ -1,8 +1,7 @@
-var path = require("path");
-var chokidar = require("chokidar");
-
-var Promise = require("../utils/promise");
-var parsers = require("../parsers");
+import path from "path";
+import chokidar from "chokidar";
+import Promise from "../utils/promise";
+import parsers from "../parsers";
 
 /**
     Watch a folder and resolve promise once a file is modified
@@ -41,4 +40,4 @@ function watch(dir) {
     return d.promise;
 }
 
-module.exports = watch;
+export default watch;

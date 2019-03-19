@@ -1,5 +1,5 @@
-var is = require("is");
-var objectPath = require("object-path");
+import is from "is";
+import objectPath from "object-path";
 
 var logged = {};
 var disabled = {};
@@ -115,7 +115,7 @@ function deprecateRenamedMethod(book, key, instance, oldName, newName, msg) {
     instance[oldName] = deprecateMethod(book, key, fn, msg);
 }
 
-module.exports = {
+export default {
     method: deprecateMethod,
     renamedMethod: deprecateRenamedMethod,
     field: deprecateField,

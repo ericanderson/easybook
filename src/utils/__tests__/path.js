@@ -1,7 +1,7 @@
-var path = require("path");
+import path from "path";
 
 describe("Paths", function() {
-    var PathUtils = require("..//path");
+    var PathUtils = require("..//path").default;
 
     describe("setExtension", function() {
         it("should correctly change extension of filename", function() {

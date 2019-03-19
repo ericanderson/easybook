@@ -1,5 +1,5 @@
-var DEFAULT_PLUGINS = require("../constants/defaultPlugins");
-var sortDependencies = require("./sortDependencies");
+import DEFAULT_PLUGINS from "../constants/defaultPlugins";
+import sortDependencies from "./sortDependencies";
 
 /**
  * List all dependencies for a book, including default plugins.
@@ -30,4 +30,4 @@ function listDependencies(deps) {
     return sortDependencies(deps);
 }
 
-module.exports = listDependencies;
+export default listDependencies;

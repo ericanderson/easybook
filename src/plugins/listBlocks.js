@@ -1,4 +1,4 @@
-var Immutable = require("immutable");
+import Immutable from "immutable";
 
 /**
     List blocks from a list of plugins
@@ -13,4 +13,4 @@ function listBlocks(plugins) {
     }, Immutable.Map());
 }
 
-module.exports = listBlocks;
+export default listBlocks;

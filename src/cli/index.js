@@ -1,11 +1,11 @@
-var buildEbook = require("./buildEbook");
+import buildEbook from "./buildEbook";
 
-module.exports = [
-    require("./build"),
-    require("./serve"),
-    require("./install"),
-    require("./parse"),
-    require("./init"),
+export default [
+    require("./build").default,
+    require("./serve").default,
+    require("./install").default,
+    require("./parse").default,
+    require("./init").default,
     buildEbook("pdf"),
     buildEbook("epub"),
     buildEbook("mobi")

@@ -1,9 +1,8 @@
-var Immutable = require("immutable");
-
-var Promise = require("../utils/promise");
-var listDepsForBook = require("./listDepsForBook");
-var findForBook = require("./findForBook");
-var loadPlugin = require("./loadPlugin");
+import Immutable from "immutable";
+import Promise, {map} from "../utils/promise";
+import listDepsForBook from "./listDepsForBook";
+import findForBook from "./findForBook";
+import loadPlugin from "./loadPlugin";
 
 /**
  * Load all plugins in a book
@@ -61,10 +60,10 @@ function loadForBook(book) {
             );
         }
 
-        return Promise.map(plugins, function(plugin) {
+        return map(plugins, function(plugin) {
             return loadPlugin(book, plugin);
         });
     });
 }
 
-module.exports = loadForBook;
+export default loadForBook;

@@ -1,6 +1,6 @@
-var PluginDependency = require("../../models/pluginDependency");
-var hasPlugin = require("./hasPlugin");
-var isDefaultPlugin = require("./isDefaultPlugin");
+import PluginDependency from "../../models/pluginDependency";
+import hasPlugin from "./hasPlugin";
+import isDefaultPlugin from "./isDefaultPlugin";
 
 /**
  * Enable/disable a plugin dependency
@@ -28,4 +28,4 @@ function togglePlugin(config, pluginName, state) {
     return config.setPluginDependencies(deps);
 }
 
-module.exports = togglePlugin;
+export default togglePlugin;

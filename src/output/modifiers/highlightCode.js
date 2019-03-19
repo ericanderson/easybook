@@ -1,8 +1,7 @@
-var is = require("is");
-var Immutable = require("immutable");
-
-var Promise = require("../../utils/promise");
-var editHTMLElement = require("./editHTMLElement");
+import is from "is";
+import Immutable from "immutable";
+import Promise from "../../utils/promise";
+import editHTMLElement from "./editHTMLElement";
 
 /**
     Return language for a code blocks from a list of class names
@@ -53,4 +52,4 @@ function highlightCode(highlight, $) {
     });
 }
 
-module.exports = highlightCode;
+export default highlightCode;

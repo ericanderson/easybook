@@ -1,4 +1,4 @@
-var Immutable = require("immutable");
+import Immutable from "immutable";
 
 /**
     List filters from a list of plugins
@@ -12,4 +12,4 @@ function listFilters(plugins) {
     }, Immutable.Map());
 }
 
-module.exports = listFilters;
+export default listFilters;

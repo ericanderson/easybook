@@ -1,6 +1,5 @@
-var Immutable = require("immutable");
-
-var THEME_PREFIX = require("../constants/themePrefix");
+import Immutable from "immutable";
+import THEME_PREFIX from "../constants/themePrefix";
 
 var TYPE_PLUGIN = "plugin";
 var TYPE_THEME = "theme";
@@ -30,4 +29,4 @@ function sortDependencies(plugins) {
         .concat(byTypes.get(TYPE_THEME, Immutable.List()));
 }
 
-module.exports = sortDependencies;
+export default sortDependencies;

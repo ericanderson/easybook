@@ -1,12 +1,11 @@
-var is = require("is");
-var Immutable = require("immutable");
-
-var error = require("../utils/error");
-var LocationUtils = require("../utils/location");
-var File = require("./file");
-var SummaryPart = require("./summaryPart");
-var SummaryArticle = require("./summaryArticle");
-var parsers = require("../parsers");
+import is from "is";
+import Immutable from "immutable";
+import error from "../utils/error";
+import LocationUtils from "../utils/location";
+import File from "./file";
+import SummaryPart from "./summaryPart";
+import SummaryArticle from "./summaryArticle";
+import parsers from "../parsers";
 
 var Summary = Immutable.Record(
     {
@@ -227,4 +226,4 @@ function getParentLevel(level) {
     return parts.slice(0, -1).join(".");
 }
 
-module.exports = Summary;
+export default Summary;

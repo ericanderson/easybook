@@ -1,5 +1,5 @@
-var Immutable = require("immutable");
-var is = require("is");
+import Immutable from "immutable";
+import is from "is";
 
 /*
     A TemplateShortcut is defined in plugin's template blocks
@@ -73,4 +73,4 @@ TemplateShortcut.createForBlock = function(block, details) {
     });
 };
 
-module.exports = TemplateShortcut;
+export default TemplateShortcut;

@@ -1,8 +1,8 @@
-var Summary = require("../../../models/summary");
-var File = require("../../../models/file");
+import Summary from "../../../models/summary";
+import File from "../../../models/file";
 
 describe("editPartTitle", function() {
-    var editPartTitle = require("../editPartTitle");
+    var editPartTitle = require("../editPartTitle").default;
     var summary = Summary.createFromParts(File(), [
         {
             articles: [

@@ -1,4 +1,4 @@
-var Promise = require("../utils/promise");
+import Promise, {reduce} from "../utils/promise";
 
 /**
     Output all assets using a generator
@@ -16,7 +16,7 @@ function generateAssets(generator, output) {
         return Promise(output);
     }
 
-    return Promise.reduce(
+    return reduce(
         assets,
         function(out, assetFile) {
             logger.debug.ln('copy asset "' + assetFile + '"');
@@ -27,4 +27,4 @@ function generateAssets(generator, output) {
     );
 }
 
-module.exports = generateAssets;
+export default generateAssets;

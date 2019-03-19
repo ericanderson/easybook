@@ -1,5 +1,5 @@
-var path = require("path");
-var Immutable = require("immutable");
+import path from "path";
+import Immutable from "immutable";
 
 var Language = Immutable.Record({
     title: String(),
@@ -18,4 +18,4 @@ Language.prototype.getID = function() {
     return path.basename(this.getPath());
 };
 
-module.exports = Language;
+export default Language;

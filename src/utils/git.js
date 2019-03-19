@@ -1,12 +1,11 @@
-var is = require("is");
-var path = require("path");
-var crc = require("crc");
-var URI = require("urijs");
-
-var pathUtil = require("./path");
-var Promise = require("./promise");
-var command = require("./command");
-var fs = require("./fs");
+import is from "is";
+import path from "path";
+import crc from "crc";
+import URI from "urijs";
+import pathUtil from "./path";
+import Promise from "./promise";
+import command from "./command";
+import fs from "./fs";
 
 var GIT_PREFIX = "git+";
 
@@ -135,4 +134,4 @@ Git.parseUrl = function(giturl) {
     };
 };
 
-module.exports = Git;
+export default Git;

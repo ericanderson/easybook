@@ -1,5 +1,5 @@
-var jsonschema = require("jsonschema");
-var schema = require("../configSchema");
+import jsonschema from "jsonschema";
+import schema from "../configSchema";
 
 describe("configSchema", function() {
     function validate(cfg) {

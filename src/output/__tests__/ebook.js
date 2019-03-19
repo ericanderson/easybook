@@ -1,5 +1,5 @@
-var generateMock = require("./generateMock");
-var EbookGenerator = require("../ebook");
+import generateMock from "./generateMock";
+import EbookGenerator from "../ebook";
 
 describe("EbookGenerator", function() {
     it("should generate a SUMMARY.html", function() {

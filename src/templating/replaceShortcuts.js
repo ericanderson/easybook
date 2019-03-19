@@ -1,5 +1,5 @@
-var escapeStringRegexp = require("escape-string-regexp");
-var listShortcuts = require("./listShortcuts");
+import escapeStringRegexp from "escape-string-regexp";
+import listShortcuts from "./listShortcuts";
 
 /**
  * Apply a shortcut of block to a template
@@ -38,4 +38,4 @@ function replaceShortcuts(blocks, filePath, content) {
     return shortcuts.reduce(applyShortcut, content);
 }
 
-module.exports = replaceShortcuts;
+export default replaceShortcuts;

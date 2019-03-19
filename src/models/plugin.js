@@ -1,8 +1,7 @@
-var Immutable = require("immutable");
-
-var TemplateBlock = require("./templateBlock");
-var PluginDependency = require("./pluginDependency");
-var THEME_PREFIX = require("../constants/themePrefix");
+import Immutable from "immutable";
+import TemplateBlock from "./templateBlock";
+import PluginDependency from "./pluginDependency";
+import THEME_PREFIX from "../constants/themePrefix";
 
 var DEFAULT_VERSION = "*";
 
@@ -170,4 +169,4 @@ Plugin.createFromDep = function(dep) {
 
 Plugin.nameToNpmID = PluginDependency.nameToNpmID;
 
-module.exports = Plugin;
+export default Plugin;

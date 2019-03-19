@@ -1,7 +1,6 @@
-var is = require("is");
-
-var TypedError = require("error/typed");
-var WrappedError = require("error/wrapped");
+import is from "is";
+import TypedError from "error/typed";
+import WrappedError from "error/wrapped";
 
 // Enforce as an Error object, and cleanup message
 function enforce(err) {
@@ -80,7 +79,7 @@ var EbookError = WrappedError({
     stdout: ""
 });
 
-module.exports = {
+export default {
     enforce: enforce,
 
     ParsingError: ParsingError,

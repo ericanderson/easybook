@@ -1,8 +1,8 @@
-var Promise = require("../../utils/promise");
-var JSONUtils = require("../../json");
-var Templating = require("../../templating");
-var writeFile = require("../helper/writeFile");
-var createTemplateEngine = require("./createTemplateEngine");
+import Promise from "../../utils/promise";
+import JSONUtils from "../../json";
+import Templating from "../../templating";
+import writeFile from "../helper/writeFile";
+import createTemplateEngine from "./createTemplateEngine";
 
 /**
     Finish the generation, write the languages index
@@ -34,4 +34,4 @@ function onFinish(output) {
     );
 }
 
-module.exports = onFinish;
+export default onFinish;

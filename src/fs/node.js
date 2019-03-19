@@ -1,9 +1,8 @@
-var path = require("path");
-var Immutable = require("immutable");
-var fresh = require("fresh-require");
-
-var fs = require("../utils/fs");
-var FS = require("../models/fs");
+import path from "path";
+import Immutable from "immutable";
+import fresh from "fresh-require";
+import fs from "../utils/fs";
+import FS from "../models/fs";
 
 function fsReadDir(folder) {
     return fs.readdir(folder).then(function(files) {
@@ -27,7 +26,7 @@ function fsLoadObject(filename) {
     return fresh(filename, require);
 }
 
-module.exports = function createNodeFS(root) {
+export default function createNodeFS(root) {
     return FS.create({
         root: root,
 

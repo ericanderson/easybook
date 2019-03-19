@@ -1,4 +1,4 @@
-var Immutable = require("immutable");
+import Immutable from "immutable";
 
 var TemplateOutput = Immutable.Record(
     {
@@ -42,4 +42,4 @@ TemplateOutput.create = function(content, blocks) {
     });
 };
 
-module.exports = TemplateOutput;
+export default TemplateOutput;

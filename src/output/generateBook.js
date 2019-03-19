@@ -1,16 +1,14 @@
-var path = require("path");
-var Immutable = require("immutable");
-
-var Output = require("../models/output");
-var Promise = require("../utils/promise");
-var fs = require("../utils/fs");
-
-var callHook = require("./callHook");
-var preparePlugins = require("./preparePlugins");
-var preparePages = require("./preparePages");
-var prepareAssets = require("./prepareAssets");
-var generateAssets = require("./generateAssets");
-var generatePages = require("./generatePages");
+import path from "path";
+import Immutable from "immutable";
+import Output from "../models/output";
+import Promise, {forEach} from "../utils/promise";
+import fs from "../utils/fs";
+import callHook from "./callHook";
+import preparePlugins from "./preparePlugins";
+import preparePages from "./preparePages";
+import prepareAssets from "./prepareAssets";
+import generateAssets from "./generateAssets";
+import generatePages from "./generatePages";
 
 /**
  * Process an output to generate the book
@@ -85,7 +83,7 @@ function processOutput(generator, startOutput) {
             var state = output.getState();
             var options = output.getOptions();
 
-            return Promise.forEach(books, function(langBook) {
+            return forEach(books, function(langBook) {
                 // Inherits plugins list, options and state
                 var langOptions = options.set(
                     "root",
@@ -205,4 +203,4 @@ function generateBook(generator, book, options) {
     );
 }
 
-module.exports = generateBook;
+export default generateBook;

@@ -1,5 +1,5 @@
 describe("TemplateBlock", function() {
-    var TemplateEngine = require("../templateEngine");
+    var TemplateEngine = require("../templateEngine").default;
 
     describe("create", function() {
         it("must initialize with a list of filters", function() {

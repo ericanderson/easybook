@@ -1,10 +1,9 @@
-var path = require("path");
-var is = require("is");
-var Buffer = require("buffer").Buffer;
-var Immutable = require("immutable");
-
-var FS = require("../models/fs");
-var error = require("../utils/error");
+import path from "path";
+import is from "is";
+import {Buffer} from "buffer";
+import Immutable from "immutable";
+import FS from "../models/fs";
+import error from "../utils/error";
 
 /**
     Create a fake filesystem for unit testing GitBook.
@@ -92,4 +91,4 @@ function createMockFS(files) {
     });
 }
 
-module.exports = createMockFS;
+export default createMockFS;

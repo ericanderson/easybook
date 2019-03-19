@@ -1,5 +1,5 @@
-var WebsiteGenerator = require("../website");
-var Modifiers = require("../modifiers");
+import WebsiteGenerator from "../website";
+import Modifiers from "../modifiers";
 
 /**
     Write a page for ebook output
@@ -26,4 +26,4 @@ function onPage(output, page) {
     );
 }
 
-module.exports = onPage;
+export default onPage;

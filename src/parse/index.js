@@ -1,14 +1,14 @@
-module.exports = {
-    parseBook: require("./parseBook"),
-    parseSummary: require("./parseSummary"),
-    parseGlossary: require("./parseGlossary"),
-    parseReadme: require("./parseReadme"),
-    parseConfig: require("./parseConfig"),
-    parsePagesList: require("./parsePagesList"),
-    parseIgnore: require("./parseIgnore"),
-    listAssets: require("./listAssets"),
-    parseLanguages: require("./parseLanguages"),
-    parsePage: require("./parsePage"),
-    parsePageFromString: require("./parsePageFromString"),
-    lookupStructureFile: require("./lookupStructureFile")
+export default {
+    parseBook: require("./parseBook").default,
+    parseSummary: require("./parseSummary").default,
+    parseGlossary: require("./parseGlossary").default,
+    parseReadme: require("./parseReadme").default,
+    parseConfig: require("./parseConfig").default,
+    parsePagesList: require("./parsePagesList").default,
+    parseIgnore: require("./parseIgnore").default,
+    listAssets: require("./listAssets").default,
+    parseLanguages: require("./parseLanguages").default,
+    parsePage: require("./parsePage").default,
+    parsePageFromString: require("./parsePageFromString").default,
+    lookupStructureFile: require("./lookupStructureFile").default
 };

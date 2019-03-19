@@ -1,5 +1,5 @@
-var path = require("path");
-var error = require("./error");
+import path from "path";
+import error from "./error";
 
 // Normalize a filename
 function normalizePath(filename) {
@@ -64,7 +64,7 @@ function isPureRelative(filename) {
     return filename.indexOf("./") === 0 || filename.indexOf("../") === 0;
 }
 
-module.exports = {
+export default {
     isInRoot: isInRoot,
     resolveInRoot: resolveInRoot,
     normalize: normalizePath,

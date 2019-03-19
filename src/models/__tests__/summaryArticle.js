@@ -1,5 +1,5 @@
-var SummaryArticle = require("../summaryArticle");
-var File = require("../file");
+import SummaryArticle from "../summaryArticle";
+import File from "../file";
 
 describe("SummaryArticle", function() {
     describe("createChildLevel", function() {

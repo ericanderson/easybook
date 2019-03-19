@@ -1,12 +1,11 @@
-var Parse = require("../parse");
-var Output = require("../output");
-var timing = require("../utils/timing");
+import Parse from "../parse";
+import Output from "../output";
+import timing from "../utils/timing";
+import options from "./options";
+import getBook from "./getBook";
+import getOutputFolder from "./getOutputFolder";
 
-var options = require("./options");
-var getBook = require("./getBook");
-var getOutputFolder = require("./getOutputFolder");
-
-module.exports = {
+export default {
     name: "build [book] [output]",
     description: "build a book",
     options: [options.log, options.format, options.timing],

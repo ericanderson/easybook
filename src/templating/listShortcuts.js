@@ -1,5 +1,5 @@
-var Immutable = require("immutable");
-var parsers = require("../parsers");
+import Immutable from "immutable";
+import parsers from "../parsers";
 
 /**
  * Return a list of all shortcuts that can apply
@@ -25,4 +25,4 @@ function listShortcuts(blocks, filePath) {
         });
 }
 
-module.exports = listShortcuts;
+export default listShortcuts;

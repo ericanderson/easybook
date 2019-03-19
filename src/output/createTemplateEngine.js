@@ -1,11 +1,9 @@
-var Templating = require("../templating");
-var TemplateEngine = require("../models/templateEngine");
-
-var Api = require("../api");
-var Plugins = require("../plugins");
-
-var defaultBlocks = require("../constants/defaultBlocks");
-var defaultFilters = require("../constants/defaultFilters");
+import Templating from "../templating";
+import TemplateEngine from "../models/templateEngine";
+import Api from "../api";
+import Plugins from "../plugins";
+import defaultBlocks from "../constants/defaultBlocks";
+import defaultFilters from "../constants/defaultFilters";
 
 /**
     Create template engine for an output.
@@ -42,4 +40,4 @@ function createTemplateEngine(output) {
     });
 }
 
-module.exports = createTemplateEngine;
+export default createTemplateEngine;

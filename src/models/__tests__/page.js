@@ -1,5 +1,5 @@
-var Immutable = require("immutable");
-var Page = require("../page");
+import Immutable from "immutable";
+import Page from "../page";
 
 describe("Page", function() {
     describe("toText", function() {

@@ -1,9 +1,8 @@
-var tmp = require("tmp");
-
-var Book = require("../../models/book");
-var createMockFS = require("../../fs/mock");
-var parseBook = require("../../parse/parseBook");
-var generateBook = require("../generateBook");
+import tmp from "tmp";
+import Book from "../../models/book";
+import createMockFS from "../../fs/mock";
+import parseBook from "../../parse/parseBook";
+import generateBook from "../generateBook";
 
 /**
  * Generate a book using a generator
@@ -37,4 +36,4 @@ function generateMock(Generator, files) {
         .thenResolve(dir.name);
 }
 
-module.exports = generateMock;
+export default generateMock;

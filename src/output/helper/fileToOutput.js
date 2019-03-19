@@ -1,7 +1,6 @@
-var path = require("path");
-
-var PathUtils = require("../../utils/path");
-var LocationUtils = require("../../utils/location");
+import path from "path";
+import PathUtils from "../../utils/path";
+import LocationUtils from "../../utils/location";
 
 var OUTPUT_EXTENSION = ".html";
 
@@ -32,4 +31,4 @@ function fileToOutput(output, filePath) {
     return LocationUtils.normalize(filePath);
 }
 
-module.exports = fileToOutput;
+export default fileToOutput;

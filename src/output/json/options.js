@@ -1,8 +1,8 @@
-var Immutable = require("immutable");
+import Immutable from "immutable";
 
 var Options = Immutable.Record({
     // Root folder for the output
     root: String()
 });
 
-module.exports = Options;
+export default Options;

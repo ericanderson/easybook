@@ -1,8 +1,7 @@
-var TemplateEngine = require("../../models/templateEngine");
-var TemplateBlock = require("../../models/templateBlock");
-
-var renderTemplate = require("../render");
-var postRender = require("../postRender");
+import TemplateEngine from "../../models/templateEngine";
+import TemplateBlock from "../../models/templateBlock";
+import renderTemplate from "../render";
+import postRender from "../postRender";
 
 describe("postRender", function() {
     var testPost;

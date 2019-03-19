@@ -1,9 +1,8 @@
-var path = require("path");
+import path from "path";
+import options from "./options";
+import initBook from "../init";
 
-var options = require("./options");
-var initBook = require("../init");
-
-module.exports = {
+export default {
     name: "init [book]",
     description: "setup and create files for chapters",
     options: [options.log],

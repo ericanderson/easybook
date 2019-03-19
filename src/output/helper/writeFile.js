@@ -1,5 +1,5 @@
-var path = require("path");
-var fs = require("../../utils/fs");
+import path from "path";
+import fs from "../../utils/fs";
 
 /**
     Write a file to the output folder
@@ -21,4 +21,4 @@ function writeFile(output, filePath, content) {
         .thenResolve(output);
 }
 
-module.exports = writeFile;
+export default writeFile;

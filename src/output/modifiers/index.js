@@ -1,14 +1,14 @@
-module.exports = {
-    modifyHTML: require("./modifyHTML"),
-    inlineAssets: require("./inlineAssets"),
+export default {
+    modifyHTML: require("./modifyHTML").default,
+    inlineAssets: require("./inlineAssets").default,
 
     // HTML transformations
-    addHeadingId: require("./addHeadingId"),
-    svgToImg: require("./svgToImg"),
-    fetchRemoteImages: require("./fetchRemoteImages"),
-    svgToPng: require("./svgToPng"),
-    resolveLinks: require("./resolveLinks"),
-    resolveImages: require("./resolveImages"),
-    annotateText: require("./annotateText"),
-    highlightCode: require("./highlightCode")
+    addHeadingId: require("./addHeadingId").default,
+    svgToImg: require("./svgToImg").default,
+    fetchRemoteImages: require("./fetchRemoteImages").default,
+    svgToPng: require("./svgToPng").default,
+    resolveLinks: require("./resolveLinks").default,
+    resolveImages: require("./resolveImages").default,
+    annotateText: require("./annotateText").default,
+    highlightCode: require("./highlightCode").default
 };

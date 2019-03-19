@@ -1,8 +1,7 @@
-var extend = require("extend");
-
-var Promise = require("../../utils/promise");
-var getPDFTemplate = require("./getPDFTemplate");
-var getCoverPath = require("./getCoverPath");
+import extend from "extend";
+import Promise from "../../utils/promise";
+import getPDFTemplate from "./getPDFTemplate";
+import getCoverPath from "./getCoverPath";
 
 /**
     Generate options for ebook-convert
@@ -71,4 +70,4 @@ function getConvertOptions(output) {
     });
 }
 
-module.exports = getConvertOptions;
+export default getConvertOptions;

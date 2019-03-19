@@ -1,8 +1,7 @@
-var path = require("path");
-
-var ASSET_FOLDER = require("../../constants/pluginAssetsFolder");
-var Promise = require("../../utils/promise");
-var fs = require("../../utils/fs");
+import path from "path";
+import ASSET_FOLDER from "../../constants/pluginAssetsFolder";
+import Promise, {forEach} from "../../utils/promise";
+import fs from "../../utils/fs";
 
 /**
     Copy all assets from plugins.
@@ -28,7 +27,7 @@ function copyPluginAssets(output) {
         // so that first plugins can replace assets from other plugins.
         .reverse();
 
-    return Promise.forEach(plugins, function(plugin) {
+    return forEach(plugins, function(plugin) {
         return copyAssets(output, plugin).then(function() {
             return copyResources(output, plugin);
         });
@@ -107,4 +106,4 @@ function copyResources(output, plugin) {
     });
 }
 
-module.exports = copyPluginAssets;
+export default copyPluginAssets;

@@ -1,4 +1,4 @@
-var GlossaryEntry = require("../glossaryEntry");
+import GlossaryEntry from "../glossaryEntry";
 
 describe("GlossaryEntry", function() {
     describe("getID", function() {

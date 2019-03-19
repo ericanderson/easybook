@@ -1,7 +1,7 @@
-var Immutable = require("immutable");
-var cheerio = require("cheerio");
-var GlossaryEntry = require("../../../models/glossaryEntry");
-var annotateText = require("../annotateText");
+import Immutable from "immutable";
+import cheerio from "cheerio";
+import GlossaryEntry from "../../../models/glossaryEntry";
+import annotateText from "../annotateText";
 
 describe("annotateText", function() {
     var entries = Immutable.List([

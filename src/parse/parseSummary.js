@@ -1,6 +1,6 @@
-var parseStructureFile = require("./parseStructureFile");
-var Summary = require("../models/summary");
-var SummaryModifier = require("../modifiers").Summary;
+import parseStructureFile from "./parseStructureFile";
+import Summary from "../models/summary";
+import unshiftArticle from "../modifiers/summary/unshiftArticle";
 
 /**
     Parse summary in a book, the summary can only be parsed
@@ -29,7 +29,7 @@ function parseSummary(book) {
         var readmeArticle = summary.getByPath(readmeFile.getPath());
 
         if (readmeFile.exists() && !readmeArticle) {
-            summary = SummaryModifier.unshiftArticle(summary, {
+            summary = unshiftArticle(summary, {
                 title: "Introduction",
                 ref: readmeFile.getPath()
             });
@@ -40,4 +40,4 @@ function parseSummary(book) {
     });
 }
 
-module.exports = parseSummary;
+export default parseSummary;

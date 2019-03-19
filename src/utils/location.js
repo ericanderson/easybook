@@ -1,5 +1,5 @@
-var url = require("url");
-var path = require("path");
+import url from "url";
+import path from "path";
 
 // Is the url an external url
 function isExternal(href) {
@@ -128,7 +128,7 @@ function areIdenticalPaths(p1, p2) {
     return normalize(p1) === normalize(p2);
 }
 
-module.exports = {
+export default {
     areIdenticalPaths: areIdenticalPaths,
     isDataURI: isDataURI,
     isExternal: isExternal,

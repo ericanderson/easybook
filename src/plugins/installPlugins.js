@@ -1,8 +1,7 @@
-var npmi = require("npmi");
-
-var DEFAULT_PLUGINS = require("../constants/defaultPlugins");
-var Promise = require("../utils/promise");
-var installPlugin = require("./installPlugin");
+import npmi from "npmi";
+import DEFAULT_PLUGINS from "../constants/defaultPlugins";
+import Promise, {forEach} from "../utils/promise";
+import installPlugin from "./installPlugin";
 
 /**
     Install plugin requirements for a book
@@ -41,9 +40,9 @@ function installPlugins(book) {
         "plugins using npm@" + npmi.NPM_VERSION
     );
 
-    return Promise.forEach(plugins, function(plugin) {
+    return forEach(plugins, function(plugin) {
         return installPlugin(book, plugin);
     }).thenResolve(plugins.size);
 }
 
-module.exports = installPlugins;
+export default installPlugins;

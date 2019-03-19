@@ -1,6 +1,6 @@
-var Promise = require("../utils/promise");
-var timing = require("../utils/timing");
-var Api = require("../api");
+import Promise, {reduce} from "../utils/promise";
+import timing from "../utils/timing";
+import Api from "../api";
 
 function defaultGetArgument() {
     return undefined;
@@ -38,7 +38,7 @@ function callHook(name, getArgument, handleResult, output) {
         Promise(getArgument(output))
             // Call the hooks in serie
             .then(function(arg) {
-                return Promise.reduce(
+                return reduce(
                     plugins,
                     function(prev, plugin) {
                         var hook = plugin.getHook(name);
@@ -60,4 +60,4 @@ function callHook(name, getArgument, handleResult, output) {
     );
 }
 
-module.exports = callHook;
+export default callHook;

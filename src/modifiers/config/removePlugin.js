@@ -1,5 +1,5 @@
-var togglePlugin = require("./togglePlugin");
-var isDefaultPlugin = require("./isDefaultPlugin");
+import togglePlugin from "./togglePlugin";
+import isDefaultPlugin from "./isDefaultPlugin";
 
 /**
  * Remove a plugin from a book's configuration
@@ -22,4 +22,4 @@ function removePlugin(config, pluginName) {
     return config.setPluginDependencies(deps);
 }
 
-module.exports = removePlugin;
+export default removePlugin;

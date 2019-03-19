@@ -1,4 +1,4 @@
-var Promise = require("../utils/promise");
+import Promise, {forEach} from "../utils/promise";
 
 /**
  * Replace position markers of blocks by body after processing
@@ -40,7 +40,7 @@ function postRender(engine, output) {
 
     var result = replaceBlocks(content, blocks);
 
-    return Promise.forEach(blocks, function(block) {
+    return forEach(blocks, function(block) {
         var post = block.get("post");
 
         if (!post) {
@@ -51,4 +51,4 @@ function postRender(engine, output) {
     }).thenResolve(result);
 }
 
-module.exports = postRender;
+export default postRender;

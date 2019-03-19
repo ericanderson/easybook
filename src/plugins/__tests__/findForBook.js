@@ -1,8 +1,7 @@
-var path = require("path");
-
-var Book = require("../../models/book");
-var createNodeFS = require("../../fs/node");
-var findForBook = require("../findForBook");
+import path from "path";
+import Book from "../../models/book";
+import createNodeFS from "../../fs/node";
+import findForBook from "../findForBook";
 
 describe("findForBook", function() {
     var fs = createNodeFS(path.resolve(__dirname, "../../.."));

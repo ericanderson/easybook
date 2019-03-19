@@ -1,7 +1,7 @@
-var Promise = require("../utils/promise");
-var timing = require("../utils/timing");
-var TemplateOutput = require("../models/templateOutput");
-var replaceShortcuts = require("./replaceShortcuts");
+import Promise from "../utils/promise";
+import timing from "../utils/timing";
+import TemplateOutput from "../models/templateOutput";
+import replaceShortcuts from "./replaceShortcuts";
 
 /**
  * Render a template
@@ -35,4 +35,4 @@ function renderTemplate(engine, filePath, content, context) {
     );
 }
 
-module.exports = renderTemplate;
+export default renderTemplate;

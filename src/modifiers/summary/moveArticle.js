@@ -1,6 +1,6 @@
-var is = require("is");
-var removeArticle = require("./removeArticle");
-var insertArticle = require("./insertArticle");
+import is from "is";
+import removeArticle from "./removeArticle";
+import insertArticle from "./insertArticle";
 
 /**
     Returns a new summary, with the given article removed from its
@@ -22,4 +22,4 @@ function moveArticle(summary, origin, target) {
     return insertArticle(removed, article, targetLevel);
 }
 
-module.exports = moveArticle;
+export default moveArticle;

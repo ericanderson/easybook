@@ -1,9 +1,8 @@
-var path = require("path");
-var crc = require("crc");
-
-var editHTMLElement = require("./editHTMLElement");
-var fs = require("../../utils/fs");
-var LocationUtils = require("../../utils/location");
+import path from "path";
+import crc from "crc";
+import editHTMLElement from "./editHTMLElement";
+import fs from "../../utils/fs";
+import LocationUtils from "../../utils/location";
 
 /**
     Fetch all remote images
@@ -42,4 +41,4 @@ function fetchRemoteImages(rootFolder, currentFile, $) {
     });
 }
 
-module.exports = fetchRemoteImages;
+export default fetchRemoteImages;

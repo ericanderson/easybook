@@ -1,5 +1,5 @@
-var Promise = require("../utils/promise");
-var generatePage = require("./generatePage");
+import Promise, {reduce} from "../utils/promise";
+import generatePage from "./generatePage";
 
 /**
     Output all pages using a generator
@@ -17,7 +17,7 @@ function generatePages(generator, output) {
         return Promise(output);
     }
 
-    return Promise.reduce(
+    return reduce(
         pages,
         function(out, page) {
             var file = page.getFile();
@@ -39,4 +39,4 @@ function generatePages(generator, output) {
     );
 }
 
-module.exports = generatePages;
+export default generatePages;

@@ -1,5 +1,5 @@
-var Promise = require("../utils/promise");
-var IGNORE_FILES = require("../constants/ignoreFiles");
+import Promise, {serie} from "../utils/promise";
+import IGNORE_FILES from "../constants/ignoreFiles";
 
 var DEFAULT_IGNORES = [
     // Skip Git stuff
@@ -36,7 +36,7 @@ function parseIgnore(book) {
 
     ignore = ignore.add(DEFAULT_IGNORES);
 
-    return Promise.serie(IGNORE_FILES, function(filename) {
+    return serie(IGNORE_FILES, function(filename) {
         return fs.readAsString(filename).then(
             function(content) {
                 ignore = ignore.add(content.toString().split(/\r?\n/));
@@ -51,4 +51,4 @@ function parseIgnore(book) {
     });
 }
 
-module.exports = parseIgnore;
+export default parseIgnore;

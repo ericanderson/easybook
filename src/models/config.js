@@ -1,10 +1,9 @@
-var is = require("is");
-var Immutable = require("immutable");
-
-var File = require("./file");
-var PluginDependency = require("./pluginDependency");
-var configDefault = require("../constants/configDefault");
-var reducedObject = require("../utils/reducedObject");
+import is from "is";
+import Immutable from "immutable";
+import File from "./file";
+import PluginDependency from "./pluginDependency";
+import configDefault from "../constants/configDefault";
+import reducedObject from "../utils/reducedObject";
 
 var Config = Immutable.Record(
     {
@@ -179,4 +178,4 @@ Config.keyToKeyPath = function(keyPath) {
     return keyPath;
 };
 
-module.exports = Config;
+export default Config;

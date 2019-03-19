@@ -1,5 +1,5 @@
-var DEFAULT_PLUGINS = require("../../constants/defaultPlugins");
-var hasPlugin = require("./hasPlugin");
+import DEFAULT_PLUGINS from "../../constants/defaultPlugins";
+import hasPlugin from "./hasPlugin";
 
 /**
  * Test if a plugin is a default one
@@ -11,4 +11,4 @@ function isDefaultPlugin(pluginName, version) {
     return hasPlugin(DEFAULT_PLUGINS, pluginName, version);
 }
 
-module.exports = isDefaultPlugin;
+export default isDefaultPlugin;

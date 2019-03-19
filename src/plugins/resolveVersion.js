@@ -1,10 +1,9 @@
-var npm = require("npm");
-var semver = require("semver");
-var Immutable = require("immutable");
-
-var Promise = require("../utils/promise");
-var Plugin = require("../models/plugin");
-var gitbook = require("../gitbook");
+import npm from "npm";
+import semver from "semver";
+import Immutable from "immutable";
+import Promise from "../utils/promise";
+import Plugin from "../models/plugin";
+import gitbook from "../gitbook";
 
 var npmIsReady;
 
@@ -72,4 +71,4 @@ function resolveVersion(plugin) {
         });
 }
 
-module.exports = resolveVersion;
+export default resolveVersion;

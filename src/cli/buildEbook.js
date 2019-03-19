@@ -1,15 +1,13 @@
-var path = require("path");
-var tmp = require("tmp");
+import path from "path";
+import tmp from "tmp";
+import Promise from "../utils/promise";
+import fs from "../utils/fs";
+import Parse from "../parse";
+import Output from "../output";
+import options from "./options";
+import getBook from "./getBook";
 
-var Promise = require("../utils/promise");
-var fs = require("../utils/fs");
-var Parse = require("../parse");
-var Output = require("../output");
-
-var options = require("./options");
-var getBook = require("./getBook");
-
-module.exports = function(format) {
+export default function(format) {
     return {
         name: format + " [book] [output]",
         description: "build a book into an ebook file",

@@ -1,7 +1,7 @@
-var Immutable = require("immutable");
-var TemplateBlock = require("../models/templateBlock");
+import Immutable from "immutable";
+import TemplateBlock from "../models/templateBlock";
 
-module.exports = Immutable.Map({
+export default Immutable.Map({
     html: TemplateBlock({
         name: "html",
         process: function(blk) {

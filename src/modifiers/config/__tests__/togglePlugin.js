@@ -1,5 +1,5 @@
-var togglePlugin = require("../togglePlugin");
-var Config = require("../../../models/config");
+import togglePlugin from "../togglePlugin";
+import Config from "../../../models/config";
 
 describe("togglePlugin", function() {
     var config = Config.createWithValues({

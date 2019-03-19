@@ -1,7 +1,7 @@
-var is = require("is");
-var childProcess = require("child_process");
-var spawn = require("spawn-cmd").spawn;
-var Promise = require("./promise");
+import is from "is";
+import childProcess from "child_process";
+import {spawn} from "spawn-cmd";
+import Promise from "./promise";
 
 /**
     Execute a command
@@ -115,7 +115,7 @@ function optionsToShellArgs(options) {
     return result.join(" ");
 }
 
-module.exports = {
+export default {
     exec: exec,
     spawn: spawnCmd,
     optionsToShellArgs: optionsToShellArgs

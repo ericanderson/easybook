@@ -1,5 +1,5 @@
-var Immutable = require("immutable");
-var Config = require("../config");
+import Immutable from "immutable";
+import Config from "../config";
 
 describe("Config", function() {
     var config = Config.createWithValues({

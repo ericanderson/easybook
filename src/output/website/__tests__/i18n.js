@@ -1,8 +1,7 @@
-var createMockOutput = require("../../__tests__/createMock");
-var prepareI18n = require("../prepareI18n");
-var createTemplateEngine = require("../createTemplateEngine");
-
-var WebsiteGenerator = require("../");
+import createMockOutput from "../../__tests__/createMock";
+import prepareI18n from "../prepareI18n";
+import createTemplateEngine from "../createTemplateEngine";
+import WebsiteGenerator from "../";
 
 describe("i18n", function() {
     it("should correctly use english as default language", function() {

@@ -1,6 +1,6 @@
-var PluginDependency = require("../../models/pluginDependency");
-var sortDependencies = require("../sortDependencies");
-var toNames = require("../toNames");
+import PluginDependency from "../../models/pluginDependency";
+import sortDependencies from "../sortDependencies";
+import toNames from "../toNames";
 
 describe("sortDependencies", function() {
     it("must load themes after plugins", function() {

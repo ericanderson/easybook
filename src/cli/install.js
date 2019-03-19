@@ -1,10 +1,9 @@
-var options = require("./options");
-var getBook = require("./getBook");
+import options from "./options";
+import getBook from "./getBook";
+import Parse from "../parse";
+import Plugins from "../plugins";
 
-var Parse = require("../parse");
-var Plugins = require("../plugins");
-
-module.exports = {
+export default {
     name: "install [book]",
     description: "install all plugins dependencies",
     options: [options.log],

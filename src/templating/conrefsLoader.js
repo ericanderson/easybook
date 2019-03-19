@@ -1,10 +1,9 @@
-var path = require("path");
-var nunjucks = require("nunjucks");
-
-var fs = require("../utils/fs");
-var Git = require("../utils/git");
-var LocationUtils = require("../utils/location");
-var PathUtils = require("../utils/path");
+import path from "path";
+import nunjucks from "nunjucks";
+import fs from "../utils/fs";
+import Git from "../utils/git";
+import LocationUtils from "../utils/location";
+import PathUtils from "../utils/path";
 
 /**
  * Template loader resolving both:
@@ -100,4 +99,4 @@ var ConrefsLoader = nunjucks.Loader.extend({
     }
 });
 
-module.exports = ConrefsLoader;
+export default ConrefsLoader;

@@ -1,6 +1,6 @@
-var PluginDependency = require("../../models/pluginDependency");
-var listDependencies = require("../listDependencies");
-var toNames = require("../toNames");
+import PluginDependency from "../../models/pluginDependency";
+import listDependencies from "../listDependencies";
+import toNames from "../toNames";
 
 describe("listDependencies", function() {
     it("must list default", function() {
