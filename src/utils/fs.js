@@ -1,14 +1,14 @@
-var fs = require('graceful-fs');
-var mkdirp = require('mkdirp');
-var destroy = require('destroy');
-var rmdir = require('rmdir');
-var tmp = require('tmp');
-var request = require('request');
-var path = require('path');
-var cp = require('cp');
-var cpr = require('cpr');
+var fs = require("graceful-fs");
+var mkdirp = require("mkdirp");
+var destroy = require("destroy");
+var rmdir = require("rmdir");
+var tmp = require("tmp");
+var request = require("request");
+var path = require("path");
+var cp = require("cp");
+var cpr = require("cpr");
 
-var Promise = require('./promise');
+var Promise = require("./promise");
 
 // Write a stream to a file
 function writeStream(filename, st) {
@@ -20,16 +20,16 @@ function writeStream(filename, st) {
         wstream.removeAllListeners();
     };
 
-    wstream.on('finish', function () {
+    wstream.on("finish", function() {
         cleanup();
         d.resolve();
     });
-    wstream.on('error', function (err) {
+    wstream.on("error", function(err) {
         cleanup();
         d.reject(err);
     });
 
-    st.on('error', function(err) {
+    st.on("error", function(err) {
         cleanup();
         d.reject(err);
     });
@@ -52,14 +52,12 @@ function fileExists(filename) {
 
 // Generate temporary file
 function genTmpFile(opts) {
-    return Promise.nfcall(tmp.file, opts)
-        .get(0);
+    return Promise.nfcall(tmp.file, opts).get(0);
 }
 
 // Generate temporary dir
 function genTmpDir(opts) {
-    return Promise.nfcall(tmp.dir, opts)
-        .get(0);
+    return Promise.nfcall(tmp.dir, opts).get(0);
 }
 
 // Download an image
@@ -73,11 +71,11 @@ function uniqueFilename(base, filename) {
     filename = path.resolve(base, filename);
     filename = path.join(path.dirname(filename), path.basename(filename, ext));
 
-    var _filename = filename+ext;
+    var _filename = filename + ext;
 
     var i = 0;
     while (fs.existsSync(filename)) {
-        _filename = filename + '_' + i + ext;
+        _filename = filename + "_" + i + ext;
         i = i + 1;
     }
 
@@ -105,8 +103,7 @@ function rmDir(base) {
     @return {Promise}
 */
 function assertFile(filePath, generator) {
-    return fileExists(filePath)
-    .then(function(exists) {
+    return fileExists(filePath).then(function(exists) {
         if (exists) return;
 
         return generator();
@@ -137,12 +134,12 @@ function pickFile(rootFolder, fileName) {
 */
 function ensureFolder(rootFolder) {
     return rmDir(rootFolder)
-    .fail(function() {
-        return Promise();
-    })
-    .then(function() {
-        return Promise.nfcall(mkdirp, rootFolder);
-    });
+        .fail(function() {
+            return Promise();
+        })
+        .then(function() {
+            return Promise.nfcall(mkdirp, rootFolder);
+        });
 }
 
 module.exports = {

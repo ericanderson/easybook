@@ -1,17 +1,17 @@
-var path = require('path');
-var Immutable = require('immutable');
+var path = require("path");
+var Immutable = require("immutable");
 
-var markdownParser = require('gitbook-markdown');
-var asciidocParser = require('gitbook-asciidoc');
+var markdownParser = require("gitbook-markdown");
+var asciidocParser = require("gitbook-asciidoc");
 
-var EXTENSIONS_MARKDOWN = require('./constants/extsMarkdown');
-var EXTENSIONS_ASCIIDOC = require('./constants/extsAsciidoc');
-var Parser = require('./models/parser');
+var EXTENSIONS_MARKDOWN = require("./constants/extsMarkdown");
+var EXTENSIONS_ASCIIDOC = require("./constants/extsAsciidoc");
+var Parser = require("./models/parser");
 
 // This list is ordered by priority of parsers to use
 var parsers = Immutable.List([
-    Parser.create('markdown', EXTENSIONS_MARKDOWN, markdownParser),
-    Parser.create('asciidoc', EXTENSIONS_ASCIIDOC, asciidocParser)
+    Parser.create("markdown", EXTENSIONS_MARKDOWN, markdownParser),
+    Parser.create("asciidoc", EXTENSIONS_ASCIIDOC, asciidocParser)
 ]);
 
 /**

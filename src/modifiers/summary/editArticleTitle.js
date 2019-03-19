@@ -1,4 +1,4 @@
-var mergeAtLevel = require('./mergeAtLevel');
+var mergeAtLevel = require("./mergeAtLevel");
 
 /**
     Edit title of an article

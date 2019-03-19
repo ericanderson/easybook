@@ -1,8 +1,8 @@
 module.exports = [
-    'init',
-    'finish',
-    'finish:before',
-    'config',
-    'page',
-    'page:before'
+    "init",
+    "finish",
+    "finish:before",
+    "config",
+    "page",
+    "page:before"
 ];

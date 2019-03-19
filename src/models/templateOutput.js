@@ -1,19 +1,22 @@
-var Immutable = require('immutable');
+var Immutable = require("immutable");
 
-var TemplateOutput = Immutable.Record({
-    // Text content of the template
-    content:        String(),
+var TemplateOutput = Immutable.Record(
+    {
+        // Text content of the template
+        content: String(),
 
-    // Map of blocks to replace / post process
-    blocks:         Immutable.Map()
-}, 'TemplateOutput');
+        // Map of blocks to replace / post process
+        blocks: Immutable.Map()
+    },
+    "TemplateOutput"
+);
 
 TemplateOutput.prototype.getContent = function() {
-    return this.get('content');
+    return this.get("content");
 };
 
 TemplateOutput.prototype.getBlocks = function() {
-    return this.get('blocks');
+    return this.get("blocks");
 };
 
 /**
@@ -22,7 +25,7 @@ TemplateOutput.prototype.getBlocks = function() {
  * @return {TemplateContent}
  */
 TemplateOutput.prototype.setContent = function(content) {
-    return this.set('content', content);
+    return this.set("content", content);
 };
 
 /**
@@ -34,8 +37,8 @@ TemplateOutput.prototype.setContent = function(content) {
  */
 TemplateOutput.create = function(content, blocks) {
     return new TemplateOutput({
-        content:    content,
-        blocks:     Immutable.fromJS(blocks)
+        content: content,
+        blocks: Immutable.fromJS(blocks)
     });
 };
 

@@ -1,4 +1,3 @@
-
 /**
     Encode a SummaryArticle to JSON
 

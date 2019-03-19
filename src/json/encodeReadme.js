@@ -1,4 +1,4 @@
-var encodeFile = require('./encodeFile');
+var encodeFile = require("./encodeFile");
 
 /**
     Encode a readme to JSON

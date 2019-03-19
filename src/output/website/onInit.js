@@ -1,8 +1,8 @@
-var Promise = require('../../utils/promise');
+var Promise = require("../../utils/promise");
 
-var copyPluginAssets = require('./copyPluginAssets');
-var prepareI18n = require('./prepareI18n');
-var prepareResources = require('./prepareResources');
+var copyPluginAssets = require("./copyPluginAssets");
+var prepareI18n = require("./prepareI18n");
+var prepareResources = require("./prepareResources");
 
 /**
     Initialize the generator
@@ -12,9 +12,9 @@ var prepareResources = require('./prepareResources');
 */
 function onInit(output) {
     return Promise(output)
-    .then(prepareI18n)
-    .then(prepareResources)
-    .then(copyPluginAssets);
+        .then(prepareI18n)
+        .then(prepareResources)
+        .then(copyPluginAssets);
 }
 
 module.exports = onInit;

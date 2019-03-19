@@ -1,4 +1,4 @@
-var Immutable = require('immutable');
+var Immutable = require("immutable");
 
 /**
     Encode an article for next/prev
@@ -14,7 +14,7 @@ function encodeArticle(pages, article) {
         path: articlePath,
         title: article.getTitle(),
         level: article.getLevel(),
-        exists: (articlePath && pages.has(articlePath)),
+        exists: articlePath && pages.has(articlePath),
         external: article.isExternal()
     };
 }
@@ -31,7 +31,6 @@ function encodeNavigation(output) {
     var summary = book.getSummary();
     var articles = summary.getArticlesAsList();
 
-
     var navigation = articles
         .map(function(article, i) {
             var ref = article.getRef();
@@ -47,9 +46,9 @@ function encodeNavigation(output) {
                 {
                     index: i,
                     title: article.getTitle(),
-                    introduction: (i === 0),
-                    prev: prev? encodeArticle(pages, prev) : undefined,
-                    next: next? encodeArticle(pages, next) : undefined,
+                    introduction: i === 0,
+                    prev: prev ? encodeArticle(pages, prev) : undefined,
+                    next: next ? encodeArticle(pages, next) : undefined,
                     level: article.getLevel()
                 }
             ];

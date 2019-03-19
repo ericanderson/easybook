@@ -1,7 +1,7 @@
-var is = require('is');
-var util = require('util');
-var color = require('bash-color');
-var Immutable = require('immutable');
+var is = require("is");
+var util = require("util");
+var color = require("bash-color");
+var Immutable = require("immutable");
 
 var LEVELS = Immutable.Map({
     DEBUG: 0,
@@ -21,27 +21,29 @@ var COLORS = Immutable.Map({
 function Logger(write, logLevel) {
     if (!(this instanceof Logger)) return new Logger(write, logLevel);
 
-    this._write = write || function(msg) {
-        if(process.stdout) {
-            process.stdout.write(msg);
-        }
-    };
-    this.lastChar = '\n';
+    this._write =
+        write ||
+        function(msg) {
+            if (process.stdout) {
+                process.stdout.write(msg);
+            }
+        };
+    this.lastChar = "\n";
 
-    this.setLevel(logLevel || 'info');
+    this.setLevel(logLevel || "info");
 
     // Create easy-to-use method like "logger.debug.ln('....')"
     LEVELS.forEach(function(level, levelKey) {
-        if (levelKey === 'DISABLED') {
+        if (levelKey === "DISABLED") {
             return;
         }
         levelKey = levelKey.toLowerCase();
 
-        this[levelKey] =            this.log.bind(this, level);
-        this[levelKey].ln =         this.logLn.bind(this, level);
-        this[levelKey].ok =         this.ok.bind(this, level);
-        this[levelKey].fail =       this.fail.bind(this, level);
-        this[levelKey].promise =    this.promise.bind(this, level);
+        this[levelKey] = this.log.bind(this, level);
+        this[levelKey].ln = this.logLn.bind(this, level);
+        this[levelKey].ok = this.ok.bind(this, level);
+        this[levelKey].fail = this.fail.bind(this, level);
+        this[levelKey].promise = this.promise.bind(this, level);
     }, this);
 }
 
@@ -92,7 +94,7 @@ Logger.prototype.format = function() {
     @param {String}
 */
 Logger.prototype.writeLn = function(msg) {
-    return this.write((msg || '')+'\n');
+    return this.write((msg || "") + "\n");
 };
 
 /**
@@ -109,8 +111,8 @@ Logger.prototype.log = function(level) {
     var args = Array.prototype.slice.apply(arguments, [1]);
     var msg = this.format.apply(this, args);
 
-    if (this.lastChar == '\n') {
-        msg = COLORS.get(levelKey)(levelKey.toLowerCase()+':')+' '+msg;
+    if (this.lastChar == "\n") {
+        msg = COLORS.get(levelKey)(levelKey.toLowerCase() + ":") + " " + msg;
     }
 
     return this.write(msg);
@@ -120,10 +122,10 @@ Logger.prototype.log = function(level) {
     Log/Print a line if level is allowed
 */
 Logger.prototype.logLn = function() {
-    if (this.lastChar != '\n') this.write('\n');
+    if (this.lastChar != "\n") this.write("\n");
 
     var args = Array.prototype.slice.apply(arguments);
-    args.push('\n');
+    args.push("\n");
     return this.log.apply(this, args);
 };
 
@@ -134,9 +136,12 @@ Logger.prototype.ok = function(level) {
     var args = Array.prototype.slice.apply(arguments, [1]);
     var msg = this.format.apply(this, args);
     if (arguments.length > 1) {
-        this.logLn(level, color.green('>> ') + msg.trim().replace(/\n/g, color.green('\n>> ')));
+        this.logLn(
+            level,
+            color.green(">> ") + msg.trim().replace(/\n/g, color.green("\n>> "))
+        );
     } else {
-        this.log(level, color.green('OK'), '\n');
+        this.log(level, color.green("OK"), "\n");
     }
 };
 
@@ -144,7 +149,7 @@ Logger.prototype.ok = function(level) {
     Log a "FAIL"
 */
 Logger.prototype.fail = function(level) {
-    return this.log(level, color.red('ERROR') + '\n');
+    return this.log(level, color.red("ERROR") + "\n");
 };
 
 /**
@@ -157,16 +162,18 @@ Logger.prototype.fail = function(level) {
 Logger.prototype.promise = function(level, p) {
     var that = this;
 
-    return p.
-    then(function(st) {
-        that.ok(level);
-        return st;
-    }, function(err) {
-        that.fail(level);
-        throw err;
-    });
+    return p.then(
+        function(st) {
+            that.ok(level);
+            return st;
+        },
+        function(err) {
+            that.fail(level);
+            throw err;
+        }
+    );
 };
 
 Logger.LEVELS = LEVELS;
 
-module.exports =  Logger;
+module.exports = Logger;

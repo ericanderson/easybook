@@ -1,6 +1,6 @@
-var PluginDependency = require('../../models/pluginDependency');
-var hasPlugin = require('./hasPlugin');
-var isDefaultPlugin = require('./isDefaultPlugin');
+var PluginDependency = require("../../models/pluginDependency");
+var hasPlugin = require("./hasPlugin");
+var isDefaultPlugin = require("./isDefaultPlugin");
 
 /**
  * Enable/disable a plugin dependency

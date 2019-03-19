@@ -1,5 +1,5 @@
-var DEFAULT_PLUGINS = require('../constants/defaultPlugins');
-var sortDependencies = require('./sortDependencies');
+var DEFAULT_PLUGINS = require("../constants/defaultPlugins");
+var sortDependencies = require("./sortDependencies");
 
 /**
  * List all dependencies for a book, including default plugins.

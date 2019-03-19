@@ -1,34 +1,37 @@
-var is = require('is');
-var semver = require('semver');
-var Immutable = require('immutable');
+var is = require("is");
+var semver = require("semver");
+var Immutable = require("immutable");
 
-var PREFIX = require('../constants/pluginPrefix');
-var DEFAULT_VERSION = '*';
+var PREFIX = require("../constants/pluginPrefix");
+var DEFAULT_VERSION = "*";
 
 /*
  * PluginDependency represents the informations about a plugin
  * stored in config.plugins
  */
-var PluginDependency = Immutable.Record({
-    name:       String(),
+var PluginDependency = Immutable.Record(
+    {
+        name: String(),
 
-    // Requirement version (ex: ">1.0.0")
-    version:    String(DEFAULT_VERSION),
+        // Requirement version (ex: ">1.0.0")
+        version: String(DEFAULT_VERSION),
 
-    // Is this plugin enabled or disabled?
-    enabled:    Boolean(true)
-}, 'PluginDependency');
+        // Is this plugin enabled or disabled?
+        enabled: Boolean(true)
+    },
+    "PluginDependency"
+);
 
 PluginDependency.prototype.getName = function() {
-    return this.get('name');
+    return this.get("name");
 };
 
 PluginDependency.prototype.getVersion = function() {
-    return this.get('version');
+    return this.get("version");
 };
 
 PluginDependency.prototype.isEnabled = function() {
-    return this.get('enabled');
+    return this.get("enabled");
 };
 
 /**
@@ -41,7 +44,7 @@ PluginDependency.prototype.toggle = function(state) {
         state = !this.isEnabled();
     }
 
-    return this.set('enabled', state);
+    return this.set("enabled", state);
 };
 
 /**
@@ -83,12 +86,12 @@ PluginDependency.create = function(name, version, enabled) {
  * @return {Plugin|undefined}
  */
 PluginDependency.createFromString = function(s) {
-    var parts = s.split('@');
+    var parts = s.split("@");
     var name = parts[0];
-    var version = parts.slice(1).join('@');
+    var version = parts.slice(1).join("@");
     var enabled = true;
 
-    if (name[0] === '-') {
+    if (name[0] === "-") {
         enabled = false;
         name = name.slice(1);
     }
@@ -106,7 +109,7 @@ PluginDependency.createFromString = function(s) {
  * @return {List<PluginDependency>}
  */
 PluginDependency.listFromString = function(s) {
-    var parts = s.split(',');
+    var parts = s.split(",");
     return PluginDependency.listFromArray(parts);
 };
 
@@ -122,8 +125,8 @@ PluginDependency.listFromArray = function(arr) {
                 return PluginDependency.createFromString(entry);
             } else {
                 return PluginDependency({
-                    name: entry.get('name'),
-                    version: entry.get('version')
+                    name: entry.get("name"),
+                    version: entry.get("version")
                 });
             }
         })
@@ -140,15 +143,15 @@ PluginDependency.listFromArray = function(arr) {
 PluginDependency.listToArray = function(list) {
     return list
         .map(function(dep) {
-            var result = '';
+            var result = "";
 
             if (!dep.isEnabled()) {
-                result += '-';
+                result += "-";
             }
 
             result += dep.getName();
             if (dep.getVersion() !== DEFAULT_VERSION) {
-                result += '@' + dep.getVersion();
+                result += "@" + dep.getVersion();
             }
 
             return result;

@@ -1,5 +1,5 @@
-var is = require('is');
-var objectPath = require('object-path');
+var is = require("is");
+var objectPath = require("object-path");
 
 var logged = {};
 var disabled = {};
@@ -57,7 +57,7 @@ function deprecateField(book, key, instance, property, value, msg) {
         else store = value;
     };
 
-    var getter = function(){
+    var getter = function() {
         prepare();
 
         logNotice(book, key, msg);
@@ -107,7 +107,9 @@ function disableDeprecation(key) {
     @param {String} newName
 */
 function deprecateRenamedMethod(book, key, instance, oldName, newName, msg) {
-    msg = msg || ('"' + oldName + '" is deprecated, use "' + newName + '()" instead');
+    msg =
+        msg ||
+        '"' + oldName + '" is deprecated, use "' + newName + '()" instead';
     var fn = objectPath.get(instance, newName);
 
     instance[oldName] = deprecateMethod(book, key, fn, msg);

@@ -1,5 +1,4 @@
-var Promise = require('../utils/promise');
-
+var Promise = require("../utils/promise");
 
 /**
  * Replace position markers of blocks by body after processing
@@ -9,12 +8,15 @@ var Promise = require('../utils/promise');
  * @return {Object} {blocks: Set, content: String}
  */
 function replaceBlocks(content, blocks) {
-    var newContent = content.replace(/\{\{\-\%([\s\S]+?)\%\-\}\}/g, function(match, key) {
+    var newContent = content.replace(/\{\{\-\%([\s\S]+?)\%\-\}\}/g, function(
+        match,
+        key
+    ) {
         var replacedWith = match;
 
         var block = blocks.get(key);
         if (block) {
-            replacedWith = replaceBlocks(block.get('body'), blocks);
+            replacedWith = replaceBlocks(block.get("body"), blocks);
         }
 
         return replacedWith;
@@ -39,15 +41,14 @@ function postRender(engine, output) {
     var result = replaceBlocks(content, blocks);
 
     return Promise.forEach(blocks, function(block) {
-        var post = block.get('post');
+        var post = block.get("post");
 
         if (!post) {
             return;
         }
 
         return post();
-    })
-    .thenResolve(result);
+    }).thenResolve(result);
 }
 
 module.exports = postRender;

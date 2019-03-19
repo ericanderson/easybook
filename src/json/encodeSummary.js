@@ -1,5 +1,5 @@
-var encodeFile = require('./encodeFile');
-var encodeSummaryPart = require('./encodeSummaryPart');
+var encodeFile = require("./encodeFile");
+var encodeSummaryPart = require("./encodeSummaryPart");
 
 /**
     Encode a summary to JSON

@@ -1,4 +1,4 @@
-var Promise = require('../utils/promise');
+var Promise = require("../utils/promise");
 
 /**
     Walk over a list of articles
@@ -9,8 +9,7 @@ var Promise = require('../utils/promise');
 */
 function walkArticles(articles, fn) {
     return Promise.forEach(articles, function(article) {
-        return Promise(fn(article))
-        .then(function() {
+        return Promise(fn(article)).then(function() {
             return walkArticles(article.getArticles(), fn);
         });
     });

@@ -1,10 +1,10 @@
-var events = require('events');
-var http = require('http');
-var send = require('send');
-var util = require('util');
-var url = require('url');
+var events = require("events");
+var http = require("http");
+var send = require("send");
+var util = require("util");
+var url = require("url");
 
-var Promise = require('../utils/promise');
+var Promise = require("../utils/promise");
 
 function Server() {
     this.running = null;
@@ -35,7 +35,7 @@ Server.prototype.stop = function() {
     var d = Promise.defer();
     this.running.close(function(err) {
         that.running = null;
-        that.emit('state', false);
+        that.emit("state", false);
 
         if (err) d.reject(err);
         else d.resolve();
@@ -54,15 +54,15 @@ Server.prototype.stop = function() {
     @return {Promise}
 */
 Server.prototype.start = function(dir, port) {
-    var that = this, pre = Promise();
+    var that = this,
+        pre = Promise();
     port = port || 8004;
 
     if (that.isRunning()) pre = this.stop();
-    return pre
-    .then(function() {
+    return pre.then(function() {
         var d = Promise.defer();
 
-        that.running = http.createServer(function(req, res){
+        that.running = http.createServer(function(req, res) {
             // Render error
             function error(err) {
                 res.statusCode = err.status || 500;
@@ -72,30 +72,30 @@ Server.prototype.start = function(dir, port) {
             // Redirect to directory's index.html
             function redirect() {
                 var resultURL = urlTransform(req.url, function(parsed) {
-                    parsed.pathname += '/';
+                    parsed.pathname += "/";
                     return parsed;
                 });
 
                 res.statusCode = 301;
-                res.setHeader('Location', resultURL);
-                res.end('Redirecting to ' + resultURL);
+                res.setHeader("Location", resultURL);
+                res.end("Redirecting to " + resultURL);
             }
 
-            res.setHeader('X-Current-Location', req.url);
+            res.setHeader("X-Current-Location", req.url);
 
             // Send file
             send(req, url.parse(req.url).pathname, {
                 root: dir
             })
-            .on('error', error)
-            .on('directory', redirect)
-            .pipe(res);
+                .on("error", error)
+                .on("directory", redirect)
+                .pipe(res);
         });
 
-        that.running.on('connection', function (socket) {
+        that.running.on("connection", function(socket) {
             that.sockets.push(socket);
             socket.setTimeout(4000);
-            socket.on('close', function () {
+            socket.on("close", function() {
                 that.sockets.splice(that.sockets.indexOf(socket), 1);
             });
         });
@@ -105,7 +105,7 @@ Server.prototype.start = function(dir, port) {
 
             that.port = port;
             that.dir = dir;
-            that.emit('state', true);
+            that.emit("state", true);
             d.resolve();
         });
 

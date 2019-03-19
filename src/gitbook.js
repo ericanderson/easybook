@@ -1,8 +1,8 @@
-var semver = require('semver');
-var pkg = require('../package.json');
+var semver = require("semver");
+var pkg = require("../package.json");
 
 var VERSION = pkg.version;
-var VERSION_STABLE = VERSION.replace(/\-(\S+)/g, '');
+var VERSION_STABLE = VERSION.replace(/\-(\S+)/g, "");
 
 var START_TIME = new Date();
 

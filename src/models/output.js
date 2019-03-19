@@ -1,56 +1,56 @@
-var Immutable = require('immutable');
+var Immutable = require("immutable");
 
-var Book = require('./book');
-var LocationUtils = require('../utils/location');
+var Book = require("./book");
+var LocationUtils = require("../utils/location");
 
 var Output = Immutable.Record({
-    book:       Book(),
+    book: Book(),
 
     // Name of the generator being used
-    generator:  String(),
+    generator: String(),
 
     // Map of plugins to use (String -> Plugin)
-    plugins:    Immutable.OrderedMap(),
+    plugins: Immutable.OrderedMap(),
 
     // Map pages to generation (String -> Page)
-    pages:      Immutable.OrderedMap(),
+    pages: Immutable.OrderedMap(),
 
     // List assets (String)
-    assets:     Immutable.List(),
+    assets: Immutable.List(),
 
     // Option for the generation
-    options:    Immutable.Map(),
+    options: Immutable.Map(),
 
     // Internal state for the generation
-    state:      Immutable.Map()
+    state: Immutable.Map()
 });
 
 Output.prototype.getBook = function() {
-    return this.get('book');
+    return this.get("book");
 };
 
 Output.prototype.getGenerator = function() {
-    return this.get('generator');
+    return this.get("generator");
 };
 
 Output.prototype.getPlugins = function() {
-    return this.get('plugins');
+    return this.get("plugins");
 };
 
 Output.prototype.getPages = function() {
-    return this.get('pages');
+    return this.get("pages");
 };
 
 Output.prototype.getOptions = function() {
-    return this.get('options');
+    return this.get("options");
 };
 
 Output.prototype.getAssets = function() {
-    return this.get('assets');
+    return this.get("assets");
 };
 
 Output.prototype.getState = function() {
-    return this.get('state');
+    return this.get("state");
 };
 
 /**
@@ -72,7 +72,7 @@ Output.prototype.getPage = function(filePath) {
     @return {String}
 */
 Output.prototype.getRoot = function() {
-    return this.getOptions().get('root');
+    return this.getOptions().get("root");
 };
 
 /**
@@ -82,7 +82,7 @@ Output.prototype.getRoot = function() {
     @return {Output}
 */
 Output.prototype.setState = function(newState) {
-    return this.set('state', newState);
+    return this.set("state", newState);
 };
 
 /**
@@ -92,7 +92,7 @@ Output.prototype.setState = function(newState) {
     @return {Output}
 */
 Output.prototype.setOptions = function(newOptions) {
-    return this.set('options', newOptions);
+    return this.set("options", newOptions);
 };
 
 /**

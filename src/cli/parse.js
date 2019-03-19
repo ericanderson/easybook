@@ -1,7 +1,7 @@
-var options = require('./options');
-var getBook = require('./getBook');
+var options = require("./options");
+var getBook = require("./getBook");
 
-var Parse = require('../parse');
+var Parse = require("../parse");
 
 function printBook(book) {
     var logger = book.getLogger();
@@ -19,19 +19,19 @@ function printBook(book) {
     var glossaryFile = glossary.getFile();
 
     if (configFile.exists()) {
-        logger.info.ln('Configuration file is', configFile.getPath());
+        logger.info.ln("Configuration file is", configFile.getPath());
     }
 
     if (readmeFile.exists()) {
-        logger.info.ln('Introduction file is', readmeFile.getPath());
+        logger.info.ln("Introduction file is", readmeFile.getPath());
     }
 
     if (glossaryFile.exists()) {
-        logger.info.ln('Glossary file is', glossaryFile.getPath());
+        logger.info.ln("Glossary file is", glossaryFile.getPath());
     }
 
     if (summaryFile.exists()) {
-        logger.info.ln('Table of Contents file is', summaryFile.getPath());
+        logger.info.ln("Table of Contents file is", summaryFile.getPath());
     }
 }
 
@@ -40,33 +40,30 @@ function printMultingualBook(book) {
     var languages = book.getLanguages();
     var books = book.getBooks();
 
-    logger.info.ln(languages.size + ' languages');
+    logger.info.ln(languages.size + " languages");
 
     languages.forEach(function(lang) {
-        logger.info.ln('Language:', lang.getTitle());
+        logger.info.ln("Language:", lang.getTitle());
         printBook(books.get(lang.getID()));
-        logger.info.ln('');
+        logger.info.ln("");
     });
 }
 
 module.exports = {
-    name: 'parse [book]',
-    description: 'parse and print debug information about a book',
-    options: [
-        options.log
-    ],
+    name: "parse [book]",
+    description: "parse and print debug information about a book",
+    options: [options.log],
     exec: function(args, kwargs) {
         var book = getBook(args, kwargs);
         var logger = book.getLogger();
 
-        return Parse.parseBook(book)
-        .then(function(resultBook) {
+        return Parse.parseBook(book).then(function(resultBook) {
             var rootFolder = book.getRoot();
             var contentFolder = book.getContentRoot();
 
-            logger.info.ln('Book located in:', rootFolder);
+            logger.info.ln("Book located in:", rootFolder);
             if (contentFolder != rootFolder) {
-                logger.info.ln('Content located in:', contentFolder);
+                logger.info.ln("Content located in:", contentFolder);
             }
 
             if (resultBook.isMultilingual()) {

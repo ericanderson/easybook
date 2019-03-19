@@ -1,4 +1,4 @@
-var Promise = require('../../utils/promise');
+var Promise = require("../../utils/promise");
 
 /**
     Edit all elements matching a selector

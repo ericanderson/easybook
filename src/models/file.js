@@ -1,22 +1,22 @@
-var path = require('path');
-var Immutable = require('immutable');
+var path = require("path");
+var Immutable = require("immutable");
 
-var parsers = require('../parsers');
+var parsers = require("../parsers");
 
 var File = Immutable.Record({
     // Path of the file, relative to the FS
-    path:       String(),
+    path: String(),
 
     // Time when file data last modified
-    mtime:      Date()
+    mtime: Date()
 });
 
 File.prototype.getPath = function() {
-    return this.get('path');
+    return this.get("path");
 };
 
 File.prototype.getMTime = function() {
-    return this.get('mtime');
+    return this.get("mtime");
 };
 
 /**

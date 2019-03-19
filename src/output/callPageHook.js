@@ -1,5 +1,5 @@
-var Api = require('../api');
-var callHook = require('./callHook');
+var Api = require("../api");
+var callHook = require("./callHook");
 
 /**
     Call a hook for a specific page

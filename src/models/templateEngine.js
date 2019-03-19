@@ -1,52 +1,55 @@
-var nunjucks = require('nunjucks');
-var Immutable = require('immutable');
+var nunjucks = require("nunjucks");
+var Immutable = require("immutable");
 
-var TemplateEngine = Immutable.Record({
-    // Map of {TemplateBlock}
-    blocks:     Immutable.Map(),
+var TemplateEngine = Immutable.Record(
+    {
+        // Map of {TemplateBlock}
+        blocks: Immutable.Map(),
 
-    // Map of Extension
-    extensions: Immutable.Map(),
+        // Map of Extension
+        extensions: Immutable.Map(),
 
-    // Map of filters: {String} name -> {Function} fn
-    filters:    Immutable.Map(),
+        // Map of filters: {String} name -> {Function} fn
+        filters: Immutable.Map(),
 
-    // Map of globals: {String} name -> {Mixed}
-    globals:    Immutable.Map(),
+        // Map of globals: {String} name -> {Mixed}
+        globals: Immutable.Map(),
 
-    // Context for filters / blocks
-    context:    Object(),
+        // Context for filters / blocks
+        context: Object(),
 
-    // Nunjucks loader
-    loader:     nunjucks.FileSystemLoader('views')
-}, 'TemplateEngine');
+        // Nunjucks loader
+        loader: nunjucks.FileSystemLoader("views")
+    },
+    "TemplateEngine"
+);
 
 TemplateEngine.prototype.getBlocks = function() {
-    return this.get('blocks');
+    return this.get("blocks");
 };
 
 TemplateEngine.prototype.getGlobals = function() {
-    return this.get('globals');
+    return this.get("globals");
 };
 
 TemplateEngine.prototype.getFilters = function() {
-    return this.get('filters');
+    return this.get("filters");
 };
 
 TemplateEngine.prototype.getShortcuts = function() {
-    return this.get('shortcuts');
+    return this.get("shortcuts");
 };
 
 TemplateEngine.prototype.getLoader = function() {
-    return this.get('loader');
+    return this.get("loader");
 };
 
 TemplateEngine.prototype.getContext = function() {
-    return this.get('context');
+    return this.get("context");
 };
 
 TemplateEngine.prototype.getExtensions = function() {
-    return this.get('extensions');
+    return this.get("extensions");
 };
 
 /**
@@ -75,23 +78,20 @@ TemplateEngine.prototype.toNunjucks = function(blocksOutput) {
     var extensions = this.getExtensions();
     var context = this.getContext();
 
-    var env = new nunjucks.Environment(
-        loader,
-        {
-            // Escaping is done after by the asciidoc/markdown parser
-            autoescape: false,
+    var env = new nunjucks.Environment(loader, {
+        // Escaping is done after by the asciidoc/markdown parser
+        autoescape: false,
 
-            // Syntax
-            tags: {
-                blockStart: '{%',
-                blockEnd: '%}',
-                variableStart: '{{',
-                variableEnd: '}}',
-                commentStart: '{###',
-                commentEnd: '###}'
-            }
+        // Syntax
+        tags: {
+            blockStart: "{%",
+            blockEnd: "%}",
+            variableStart: "{{",
+            variableEnd: "}}",
+            commentStart: "{###",
+            commentEnd: "###}"
         }
-    );
+    });
 
     // Add filters
     filters.forEach(function(filterFn, filterName) {
@@ -127,12 +127,12 @@ TemplateEngine.prototype.toNunjucks = function(blocksOutput) {
 */
 TemplateEngine.create = function(def) {
     return new TemplateEngine({
-        blocks:     Immutable.List(def.blocks || []),
+        blocks: Immutable.List(def.blocks || []),
         extensions: Immutable.Map(def.extensions || {}),
-        filters:    Immutable.Map(def.filters || {}),
-        globals:    Immutable.Map(def.globals || {}),
-        context:    def.context,
-        loader:     def.loader
+        filters: Immutable.Map(def.filters || {}),
+        globals: Immutable.Map(def.globals || {}),
+        context: def.context,
+        loader: def.loader
     });
 };
 

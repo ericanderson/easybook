@@ -1,5 +1,5 @@
-var escapeStringRegexp = require('escape-string-regexp');
-var listShortcuts = require('./listShortcuts');
+var escapeStringRegexp = require("escape-string-regexp");
+var listShortcuts = require("./listShortcuts");
 
 /**
  * Apply a shortcut of block to a template
@@ -15,11 +15,13 @@ function applyShortcut(content, shortcut) {
     var tagEnd = shortcut.getEndTag();
 
     var regex = new RegExp(
-        escapeStringRegexp(start) + '([\\s\\S]*?[^\\$])' + escapeStringRegexp(end),
-       'g'
+        escapeStringRegexp(start) +
+            "([\\s\\S]*?[^\\$])" +
+            escapeStringRegexp(end),
+        "g"
     );
     return content.replace(regex, function(all, match) {
-        return '{% ' + tagStart + ' %}' + match + '{% ' + tagEnd + ' %}';
+        return "{% " + tagStart + " %}" + match + "{% " + tagEnd + " %}";
     });
 }
 

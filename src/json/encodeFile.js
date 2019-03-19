@@ -1,4 +1,3 @@
-
 /**
     Return a JSON representation of a file
 

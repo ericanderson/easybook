@@ -1,8 +1,8 @@
-var is = require('is');
-var path = require('path');
-var fs = require('fs');
-var expect = require('expect');
-var cheerio = require('cheerio');
+var is = require("is");
+var path = require("path");
+var fs = require("fs");
+var expect = require("expect");
+var cheerio = require("cheerio");
 
 expect.extend({
     /**
@@ -15,7 +15,7 @@ expect.extend({
 
         expect.assert(
             exists,
-            'expected %s to have file %s',
+            "expected %s to have file %s",
             this.actual,
             fileName
         );
@@ -27,7 +27,7 @@ expect.extend({
 
         expect.assert(
             !exists,
-            'expected %s to not have file %s',
+            "expected %s to not have file %s",
             this.actual,
             fileName
         );
@@ -40,7 +40,7 @@ expect.extend({
     toBeDefined: function() {
         expect.assert(
             !(is.undefined(this.actual) || is.null(this.actual)),
-            'expected to be defined'
+            "expected to be defined"
         );
         return this;
     },
@@ -50,8 +50,8 @@ expect.extend({
      */
     toNotBeDefined: function() {
         expect.assert(
-            (is.undefined(this.actual) || is.null(this.actual)),
-            'expected %s to be not defined',
+            is.undefined(this.actual) || is.null(this.actual),
+            "expected %s to be not defined",
             this.actual
         );
         return this;
@@ -65,7 +65,7 @@ expect.extend({
         var $ = cheerio.load(this.actual);
         var $el = $(selector);
 
-        expect.assert($el.length > 0, 'expected HTML to contains %s', selector);
+        expect.assert($el.length > 0, "expected HTML to contains %s", selector);
     }
 });
 

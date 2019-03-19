@@ -1,21 +1,21 @@
-var Immutable = require('immutable');
+var Immutable = require("immutable");
 
-var error = require('../utils/error');
-var File = require('./file');
-var GlossaryEntry = require('./glossaryEntry');
-var parsers = require('../parsers');
+var error = require("../utils/error");
+var File = require("./file");
+var GlossaryEntry = require("./glossaryEntry");
+var parsers = require("../parsers");
 
 var Glossary = Immutable.Record({
-    file:       File(),
-    entries:    Immutable.OrderedMap()
+    file: File(),
+    entries: Immutable.OrderedMap()
 });
 
 Glossary.prototype.getFile = function() {
-    return this.get('file');
+    return this.get("file");
 };
 
 Glossary.prototype.getEntries = function() {
-    return this.get('entries');
+    return this.get("entries");
 };
 
 /**
@@ -40,7 +40,7 @@ Glossary.prototype.toText = function(parser) {
     var file = this.getFile();
     var entries = this.getEntries();
 
-    parser = parser? parsers.getByExt(parser) : file.getParser();
+    parser = parser ? parsers.getByExt(parser) : file.getParser();
 
     if (!parser) {
         throw error.FileNotParsableError({
@@ -50,7 +50,6 @@ Glossary.prototype.toText = function(parser) {
 
     return parser.renderGlossary(entries.toJS());
 };
-
 
 /**
     Add/Replace an entry to a glossary
@@ -64,7 +63,7 @@ Glossary.addEntry = function addEntry(glossary, entry) {
     var entries = glossary.getEntries();
 
     entries = entries.set(id, entry);
-    return glossary.set('entries', entries);
+    return glossary.set("entries", entries);
 };
 
 /**
@@ -104,6 +103,5 @@ Glossary.createFromEntries = function createFromEntries(file, entries) {
         entries: Immutable.OrderedMap(entries)
     });
 };
-
 
 module.exports = Glossary;

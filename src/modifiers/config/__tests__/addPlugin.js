@@ -1,32 +1,30 @@
-var addPlugin = require('../addPlugin');
-var Config = require('../../../models/config');
+var addPlugin = require("../addPlugin");
+var Config = require("../../../models/config");
 
-describe('addPlugin', function() {
+describe("addPlugin", function() {
     var config = Config.createWithValues({
-        plugins: ['hello', 'world', '-disabled']
+        plugins: ["hello", "world", "-disabled"]
     });
 
-    it('should have correct state of dependencies', function() {
-        var disabledDep = config.getPluginDependency('disabled');
+    it("should have correct state of dependencies", function() {
+        var disabledDep = config.getPluginDependency("disabled");
 
         expect(disabledDep).toBeDefined();
-        expect(disabledDep.getVersion()).toEqual('*');
+        expect(disabledDep.getVersion()).toEqual("*");
         expect(disabledDep.isEnabled()).toBeFalsy();
     });
 
-    it('should add the plugin to the list', function() {
-        var newConfig = addPlugin(config, 'test');
+    it("should add the plugin to the list", function() {
+        var newConfig = addPlugin(config, "test");
 
-        var testDep = newConfig.getPluginDependency('test');
+        var testDep = newConfig.getPluginDependency("test");
         expect(testDep).toBeDefined();
-        expect(testDep.getVersion()).toEqual('*');
+        expect(testDep.getVersion()).toEqual("*");
         expect(testDep.isEnabled()).toBeTruthy();
 
-        var disabledDep = newConfig.getPluginDependency('disabled');
+        var disabledDep = newConfig.getPluginDependency("disabled");
         expect(disabledDep).toBeDefined();
-        expect(disabledDep.getVersion()).toEqual('*');
+        expect(disabledDep.getVersion()).toEqual("*");
         expect(disabledDep.isEnabled()).toBeFalsy();
     });
 });
-
-

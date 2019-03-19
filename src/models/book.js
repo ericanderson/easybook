@@ -1,78 +1,78 @@
-var path = require('path');
-var Immutable = require('immutable');
+var path = require("path");
+var Immutable = require("immutable");
 
-var Logger = require('../utils/logger');
+var Logger = require("../utils/logger");
 
-var FS = require('./fs');
-var Config = require('./config');
-var Readme = require('./readme');
-var Summary = require('./summary');
-var Glossary = require('./glossary');
-var Languages = require('./languages');
-var Ignore = require('./ignore');
+var FS = require("./fs");
+var Config = require("./config");
+var Readme = require("./readme");
+var Summary = require("./summary");
+var Glossary = require("./glossary");
+var Languages = require("./languages");
+var Ignore = require("./ignore");
 
 var Book = Immutable.Record({
     // Logger for outptu message
-    logger:         Logger(),
+    logger: Logger(),
 
     // Filesystem binded to the book scope to read files/directories
-    fs:             FS(),
+    fs: FS(),
 
     // Ignore files parser
-    ignore:         Ignore(),
+    ignore: Ignore(),
 
     // Structure files
-    config:         Config(),
-    readme:         Readme(),
-    summary:        Summary(),
-    glossary:       Glossary(),
-    languages:      Languages(),
+    config: Config(),
+    readme: Readme(),
+    summary: Summary(),
+    glossary: Glossary(),
+    languages: Languages(),
 
     // ID of the language for language books
-    language:       String(),
+    language: String(),
 
     // List of children, if multilingual (String -> Book)
-    books:          Immutable.OrderedMap()
+    books: Immutable.OrderedMap()
 });
 
 Book.prototype.getLogger = function() {
-    return this.get('logger');
+    return this.get("logger");
 };
 
 Book.prototype.getFS = function() {
-    return this.get('fs');
+    return this.get("fs");
 };
 
 Book.prototype.getIgnore = function() {
-    return this.get('ignore');
+    return this.get("ignore");
 };
 
 Book.prototype.getConfig = function() {
-    return this.get('config');
+    return this.get("config");
 };
 
 Book.prototype.getReadme = function() {
-    return this.get('readme');
+    return this.get("readme");
 };
 
 Book.prototype.getSummary = function() {
-    return this.get('summary');
+    return this.get("summary");
 };
 
 Book.prototype.getGlossary = function() {
-    return this.get('glossary');
+    return this.get("glossary");
 };
 
 Book.prototype.getLanguages = function() {
-    return this.get('languages');
+    return this.get("languages");
 };
 
 Book.prototype.getBooks = function() {
-    return this.get('books');
+    return this.get("books");
 };
 
 Book.prototype.getLanguage = function() {
-    return this.get('language');
+    return this.get("language");
 };
 
 /**
@@ -83,7 +83,7 @@ Book.prototype.getLanguage = function() {
 Book.prototype.getContentFS = function() {
     var fs = this.getFS();
     var config = this.getConfig();
-    var rootFolder = config.getValue('root');
+    var rootFolder = config.getValue("root");
 
     if (rootFolder) {
         return FS.reduceScope(fs, rootFolder);
@@ -138,7 +138,7 @@ Book.prototype.isFileIgnored = function(filename) {
 */
 Book.prototype.isContentFileIgnored = function(filename) {
     var config = this.getConfig();
-    var rootFolder = config.getValue('root');
+    var rootFolder = config.getValue("root");
 
     if (rootFolder) {
         filename = path.join(rootFolder, filename);
@@ -163,7 +163,7 @@ Book.prototype.getPage = function(ref) {
     @return {Boolean}
 */
 Book.prototype.isMultilingual = function() {
-    return (this.getLanguages().getCount() > 0);
+    return this.getLanguages().getCount() > 0;
 };
 
 /**
@@ -197,7 +197,7 @@ Book.prototype.addLanguageBook = function(language, book) {
     var books = this.getBooks();
     books = books.set(language, book);
 
-    return this.set('books', books);
+    return this.set("books", books);
 };
 
 /**
@@ -207,7 +207,7 @@ Book.prototype.addLanguageBook = function(language, book) {
     @return {Book}
 */
 Book.prototype.setSummary = function(summary) {
-    return this.set('summary', summary);
+    return this.set("summary", summary);
 };
 
 /**
@@ -217,7 +217,7 @@ Book.prototype.setSummary = function(summary) {
     @return {Book}
 */
 Book.prototype.setReadme = function(readme) {
-    return this.set('readme', readme);
+    return this.set("readme", readme);
 };
 
 /**
@@ -227,7 +227,7 @@ Book.prototype.setReadme = function(readme) {
     @return {Book}
 */
 Book.prototype.setConfig = function(config) {
-    return this.set('config', config);
+    return this.set("config", config);
 };
 
 /**
@@ -237,7 +237,7 @@ Book.prototype.setConfig = function(config) {
     @return {Book}
 */
 Book.prototype.setIgnore = function(ignore) {
-    return this.set('ignore', ignore);
+    return this.set("ignore", ignore);
 };
 
 /**
@@ -269,26 +269,27 @@ Book.createForFS = function createForFS(fs) {
 */
 Book.prototype.getDefaultExt = function() {
     // Inferring sources
-    var clues = [
-        this.getReadme(),
-        this.getSummary(),
-        this.getGlossary()
-    ];
+    var clues = [this.getReadme(), this.getSummary(), this.getGlossary()];
 
     // List their extensions
-    var exts = clues.map(function (clue) {
+    var exts = clues.map(function(clue) {
         var file = clue.getFile();
         if (file.exists()) {
-            return file.getParser().getExtensions().first();
+            return file
+                .getParser()
+                .getExtensions()
+                .first();
         } else {
             return null;
         }
     });
     // Adds the general default extension
-    exts.push('.md');
+    exts.push(".md");
 
     // Choose the first non null
-    return exts.find(function (e) { return e !== null; });
+    return exts.find(function(e) {
+        return e !== null;
+    });
 };
 
 /**
@@ -298,7 +299,7 @@ Book.prototype.getDefaultExt = function() {
     @return {String}
 */
 Book.prototype.getDefaultReadmePath = function(absolute) {
-    var defaultPath = 'README'+this.getDefaultExt();
+    var defaultPath = "README" + this.getDefaultExt();
     if (absolute) {
         return path.join(this.getContentRoot(), defaultPath);
     } else {
@@ -313,7 +314,7 @@ Book.prototype.getDefaultReadmePath = function(absolute) {
     @return {String}
 */
 Book.prototype.getDefaultSummaryPath = function(absolute) {
-    var defaultPath = 'SUMMARY'+this.getDefaultExt();
+    var defaultPath = "SUMMARY" + this.getDefaultExt();
     if (absolute) {
         return path.join(this.getContentRoot(), defaultPath);
     } else {
@@ -328,7 +329,7 @@ Book.prototype.getDefaultSummaryPath = function(absolute) {
     @return {String}
 */
 Book.prototype.getDefaultGlossaryPath = function(absolute) {
-    var defaultPath = 'GLOSSARY'+this.getDefaultExt();
+    var defaultPath = "GLOSSARY" + this.getDefaultExt();
     if (absolute) {
         return path.join(this.getContentRoot(), defaultPath);
     } else {
@@ -348,7 +349,7 @@ Book.createFromParent = function createFromParent(parent, language) {
     var config = parent.getConfig();
 
     // Set language in configuration
-    config = config.setValue('language', language);
+    config = config.setValue("language", language);
 
     return new Book({
         // Inherits config. logegr and list of ignored files

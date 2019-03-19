@@ -1,6 +1,6 @@
-var parseStructureFile = require('./parseStructureFile');
-var Summary = require('../models/summary');
-var SummaryModifier = require('../modifiers').Summary;
+var parseStructureFile = require("./parseStructureFile");
+var Summary = require("../models/summary");
+var SummaryModifier = require("../modifiers").Summary;
 
 /**
     Parse summary in a book, the summary can only be parsed
@@ -14,15 +14,14 @@ function parseSummary(book) {
     var logger = book.getLogger();
     var readmeFile = readme.getFile();
 
-    return parseStructureFile(book, 'summary')
-    .spread(function(file, result) {
+    return parseStructureFile(book, "summary").spread(function(file, result) {
         var summary;
 
         if (!file) {
-            logger.warn.ln('no summary file in this book');
+            logger.warn.ln("no summary file in this book");
             summary = Summary();
         } else {
-            logger.debug.ln('summary file found at', file.getPath());
+            logger.debug.ln("summary file found at", file.getPath());
             summary = Summary.createFromParts(file, result.parts);
         }
 
@@ -31,7 +30,7 @@ function parseSummary(book) {
 
         if (readmeFile.exists() && !readmeArticle) {
             summary = SummaryModifier.unshiftArticle(summary, {
-                title: 'Introduction',
+                title: "Introduction",
                 ref: readmeFile.getPath()
             });
         }

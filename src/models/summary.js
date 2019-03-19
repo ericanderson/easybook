@@ -1,24 +1,27 @@
-var is = require('is');
-var Immutable = require('immutable');
+var is = require("is");
+var Immutable = require("immutable");
 
-var error = require('../utils/error');
-var LocationUtils = require('../utils/location');
-var File = require('./file');
-var SummaryPart = require('./summaryPart');
-var SummaryArticle = require('./summaryArticle');
-var parsers = require('../parsers');
+var error = require("../utils/error");
+var LocationUtils = require("../utils/location");
+var File = require("./file");
+var SummaryPart = require("./summaryPart");
+var SummaryArticle = require("./summaryArticle");
+var parsers = require("../parsers");
 
-var Summary = Immutable.Record({
-    file:       File(),
-    parts:      Immutable.List()
-}, 'Summary');
+var Summary = Immutable.Record(
+    {
+        file: File(),
+        parts: Immutable.List()
+    },
+    "Summary"
+);
 
 Summary.prototype.getFile = function() {
-    return this.get('file');
+    return this.get("file");
 };
 
 Summary.prototype.getParts = function() {
-    return this.get('parts');
+    return this.get("parts");
 };
 
 /**
@@ -51,7 +54,6 @@ Summary.prototype.getArticle = function(iter, partIter) {
     }, null);
 };
 
-
 /**
     Return a part/article by its level
 
@@ -60,7 +62,7 @@ Summary.prototype.getArticle = function(iter, partIter) {
 */
 Summary.prototype.getByLevel = function(level) {
     function iterByLevel(article) {
-        return (article.getLevel() === level);
+        return article.getLevel() === level;
     }
 
     return this.getArticle(iterByLevel, iterByLevel);
@@ -101,7 +103,7 @@ Summary.prototype.getFirstArticle = function() {
     @return {Article}
 */
 Summary.prototype.getNextArticle = function(current) {
-    var level = is.string(current)? current : current.getLevel();
+    var level = is.string(current) ? current : current.getLevel();
     var wasPrev = false;
 
     return this.getArticle(function(article) {
@@ -119,7 +121,7 @@ Summary.prototype.getNextArticle = function(current) {
     @return {Article}
 */
 Summary.prototype.getPrevArticle = function(current) {
-    var level = is.string(current)? current : current.getLevel();
+    var level = is.string(current) ? current : current.getLevel();
     var prev = undefined;
 
     this.getArticle(function(article) {
@@ -140,9 +142,9 @@ Summary.prototype.getPrevArticle = function(current) {
     @param {String|Article} current
     @return {Article|Part|Null}
 */
-Summary.prototype.getParent = function (level) {
+Summary.prototype.getParent = function(level) {
     // Coerce to level
-    level = is.string(level)? level : level.getLevel();
+    level = is.string(level) ? level : level.getLevel();
 
     // Get parent level
     var parentLevel = getParentLevel(level);
@@ -165,7 +167,7 @@ Summary.prototype.toText = function(parseExt) {
     var file = this.getFile();
     var parts = this.getParts();
 
-    var parser = parseExt? parsers.getByExt(parseExt) : file.getParser();
+    var parser = parseExt ? parsers.getByExt(parseExt) : file.getParser();
 
     if (!parser) {
         throw error.FileNotParsableError({
@@ -221,8 +223,8 @@ Summary.createFromParts = function createFromParts(file, parts) {
     @return {String}
 */
 function getParentLevel(level) {
-    var parts = level.split('.');
-    return parts.slice(0, -1).join('.');
+    var parts = level.split(".");
+    return parts.slice(0, -1).join(".");
 }
 
 module.exports = Summary;

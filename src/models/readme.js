@@ -1,23 +1,23 @@
-var Immutable = require('immutable');
+var Immutable = require("immutable");
 
-var File = require('./file');
+var File = require("./file");
 
 var Readme = Immutable.Record({
-    file:           File(),
-    title:          String(),
-    description:    String()
+    file: File(),
+    title: String(),
+    description: String()
 });
 
 Readme.prototype.getFile = function() {
-    return this.get('file');
+    return this.get("file");
 };
 
 Readme.prototype.getTitle = function() {
-    return this.get('title');
+    return this.get("title");
 };
 
 Readme.prototype.getDescription = function() {
-    return this.get('description');
+    return this.get("description");
 };
 
 /**
@@ -32,8 +32,8 @@ Readme.create = function(file, def) {
 
     return new Readme({
         file: file,
-        title: def.title || '',
-        description: def.description || ''
+        title: def.title || "",
+        description: def.description || ""
     });
 };
 

@@ -1,16 +1,16 @@
-var Immutable = require('immutable');
-var TemplateBlock = require('../models/templateBlock');
+var Immutable = require("immutable");
+var TemplateBlock = require("../models/templateBlock");
 
 module.exports = Immutable.Map({
     html: TemplateBlock({
-        name: 'html',
+        name: "html",
         process: function(blk) {
             return blk;
         }
     }),
 
     code: TemplateBlock({
-        name: 'code',
+        name: "code",
         process: function(blk) {
             return {
                 html: false,
@@ -20,32 +20,35 @@ module.exports = Immutable.Map({
     }),
 
     markdown: TemplateBlock({
-        name: 'markdown',
+        name: "markdown",
         process: function(blk) {
-            return this.book.renderInline('markdown', blk.body)
-            .then(function(out) {
-                return { body: out };
-            });
+            return this.book
+                .renderInline("markdown", blk.body)
+                .then(function(out) {
+                    return { body: out };
+                });
         }
     }),
 
     asciidoc: TemplateBlock({
-        name: 'asciidoc',
+        name: "asciidoc",
         process: function(blk) {
-            return this.book.renderInline('asciidoc', blk.body)
-            .then(function(out) {
-                return { body: out };
-            });
+            return this.book
+                .renderInline("asciidoc", blk.body)
+                .then(function(out) {
+                    return { body: out };
+                });
         }
     }),
 
     markup: TemplateBlock({
-        name: 'markup',
+        name: "markup",
         process: function(blk) {
-            return this.book.renderInline(this.ctx.file.type, blk.body)
-            .then(function(out) {
-                return { body: out };
-            });
+            return this.book
+                .renderInline(this.ctx.file.type, blk.body)
+                .then(function(out) {
+                    return { body: out };
+                });
         }
     })
 });

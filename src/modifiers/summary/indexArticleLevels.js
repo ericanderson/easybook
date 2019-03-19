@@ -1,4 +1,3 @@
-
 /**
     Index levels in an article tree
 
@@ -11,7 +10,7 @@ function indexArticleLevels(article, baseLevel) {
     var articles = article.getArticles();
 
     articles = articles.map(function(inner, i) {
-        return indexArticleLevels(inner, baseLevel + '.' + (i + 1));
+        return indexArticleLevels(inner, baseLevel + "." + (i + 1));
     });
 
     return article.merge({

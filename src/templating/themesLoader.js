@@ -1,15 +1,13 @@
-var Immutable = require('immutable');
-var nunjucks = require('nunjucks');
-var fs = require('fs');
-var path = require('path');
+var Immutable = require("immutable");
+var nunjucks = require("nunjucks");
+var fs = require("fs");
+var path = require("path");
 
-var PathUtils = require('../utils/path');
-
+var PathUtils = require("../utils/path");
 
 var ThemesLoader = nunjucks.Loader.extend({
     init: function(searchPaths) {
-        this.searchPaths = Immutable.List(searchPaths)
-            .map(path.normalize);
+        this.searchPaths = Immutable.List(searchPaths).map(path.normalize);
     },
 
     /**
@@ -23,15 +21,18 @@ var ThemesLoader = nunjucks.Loader.extend({
         fullpath = this.resolve(null, fullpath);
         var templateName = this.getTemplateName(fullpath);
 
-        if(!fullpath) {
+        if (!fullpath) {
             return null;
         }
 
-        var src = fs.readFileSync(fullpath, 'utf-8');
+        var src = fs.readFileSync(fullpath, "utf-8");
 
-        src = '{% do %}var template = template || {}; template.stack = template.stack || []; template.stack.push(template.self); template.self = ' + JSON.stringify(templateName) + '{% enddo %}\n' +
+        src =
+            "{% do %}var template = template || {}; template.stack = template.stack || []; template.stack.push(template.self); template.self = " +
+            JSON.stringify(templateName) +
+            "{% enddo %}\n" +
             src +
-            '\n{% do %}template.self = template.stack.pop();{% enddo %}';
+            "\n{% do %}template.self = template.stack.pop();{% enddo %}";
 
         return {
             src: src,
@@ -59,7 +60,7 @@ var ThemesLoader = nunjucks.Loader.extend({
                 return -s.length;
             })
             .find(function(basePath) {
-                return (filepath && filepath.indexOf(basePath) === 0);
+                return filepath && filepath.indexOf(basePath) === 0;
             });
     },
 
@@ -70,7 +71,9 @@ var ThemesLoader = nunjucks.Loader.extend({
      */
     getTemplateName: function(filepath) {
         var originalSearchPath = this.getSearchPath(filepath);
-        return originalSearchPath? path.relative(originalSearchPath, filepath) : null;
+        return originalSearchPath
+            ? path.relative(originalSearchPath, filepath)
+            : null;
     },
 
     /**
@@ -102,10 +105,7 @@ var ThemesLoader = nunjucks.Loader.extend({
         var resultFolder = searchPaths.find(function(basePath) {
             var p = path.resolve(basePath, to);
 
-            return (
-                p.indexOf(basePath) === 0
-                && fs.existsSync(p)
-            );
+            return p.indexOf(basePath) === 0 && fs.existsSync(p);
         });
         if (!resultFolder) return null;
         return path.resolve(resultFolder, to);

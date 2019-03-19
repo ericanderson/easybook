@@ -1,5 +1,5 @@
-var Immutable = require('immutable');
-var parsers = require('../parsers');
+var Immutable = require("immutable");
+var parsers = require("../parsers");
 
 /**
  * Return a list of all shortcuts that can apply
@@ -21,10 +21,7 @@ function listShortcuts(blocks, filePath) {
             return block.getShortcuts();
         })
         .filter(function(shortcuts) {
-            return (
-                shortcuts &&
-                shortcuts.acceptParser(parser.getName())
-            );
+            return shortcuts && shortcuts.acceptParser(parser.getName());
         });
 }
 

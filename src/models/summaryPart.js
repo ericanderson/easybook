@@ -1,27 +1,27 @@
-var Immutable = require('immutable');
+var Immutable = require("immutable");
 
-var SummaryArticle = require('./summaryArticle');
+var SummaryArticle = require("./summaryArticle");
 
 /*
     A part represents a section in the Summary / table of Contents
 */
 
 var SummaryPart = Immutable.Record({
-    level:      String(),
-    title:      String(),
-    articles:   Immutable.List()
+    level: String(),
+    title: String(),
+    articles: Immutable.List()
 });
 
 SummaryPart.prototype.getLevel = function() {
-    return this.get('level');
+    return this.get("level");
 };
 
 SummaryPart.prototype.getTitle = function() {
-    return this.get('title');
+    return this.get("title");
 };
 
 SummaryPart.prototype.getArticles = function() {
-    return this.get('articles');
+    return this.get("articles");
 };
 
 /**
@@ -30,9 +30,9 @@ SummaryPart.prototype.getArticles = function() {
  * @return {String}
  */
 SummaryPart.prototype.createChildLevel = function() {
-    var level       = this.getLevel();
+    var level = this.getLevel();
     var subArticles = this.getArticles();
-    var childLevel  = level + '.' + (subArticles.size + 1);
+    var childLevel = level + "." + (subArticles.size + 1);
 
     return childLevel;
 };
@@ -48,7 +48,7 @@ SummaryPart.create = function(def, level) {
         if (article instanceof SummaryArticle) {
             return article;
         }
-        return SummaryArticle.create(article, [level, i + 1].join('.'));
+        return SummaryArticle.create(article, [level, i + 1].join("."));
     });
 
     return new SummaryPart({

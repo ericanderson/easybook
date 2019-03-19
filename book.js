@@ -1,15 +1,15 @@
-var pkg = require('./package.json');
+var pkg = require("./package.json");
 
 module.exports = {
     // Documentation for GitBook is stored under "docs"
-    root: './docs',
-    title: 'GitBook Toolchain Documentation',
+    root: "./docs",
+    title: "GitBook Toolchain Documentation",
 
     // Enforce use of GitBook v3
-    gitbook: '3.1.1',
+    gitbook: "3.1.1",
 
     // Use the "official" theme
-    plugins: ['theme-official@2.1.1', '-sharing', '-fontsettings', 'sitemap'],
+    plugins: ["theme-official@2.1.1", "-sharing", "-fontsettings", "sitemap"],
 
     variables: {
         version: pkg.version
@@ -17,7 +17,7 @@ module.exports = {
 
     pluginsConfig: {
         sitemap: {
-            hostname: 'https://toolchain.gitbook.com'
+            hostname: "https://toolchain.gitbook.com"
         }
     }
 };

@@ -1,53 +1,55 @@
-var is = require('is');
-var extend = require('extend');
-var Immutable = require('immutable');
+var is = require("is");
+var extend = require("extend");
+var Immutable = require("immutable");
 
-var Promise = require('../utils/promise');
-var genKey = require('../utils/genKey');
-var TemplateShortcut = require('./templateShortcut');
+var Promise = require("../utils/promise");
+var genKey = require("../utils/genKey");
+var TemplateShortcut = require("./templateShortcut");
 
-var NODE_ENDARGS = '%%endargs%%';
+var NODE_ENDARGS = "%%endargs%%";
 
-var TemplateBlock = Immutable.Record({
-    // Name of block, also the start tag
-    name:           String(),
+var TemplateBlock = Immutable.Record(
+    {
+        // Name of block, also the start tag
+        name: String(),
 
-    // End tag, default to "end<name>"
-    end:            String(),
+        // End tag, default to "end<name>"
+        end: String(),
 
-    // Function to process the block content
-    process:        Function(),
+        // Function to process the block content
+        process: Function(),
 
-    // List of String, for inner block tags
-    blocks:         Immutable.List(),
+        // List of String, for inner block tags
+        blocks: Immutable.List(),
 
-    // List of shortcuts to replace with this block
-    shortcuts:      Immutable.Map()
-}, 'TemplateBlock');
+        // List of shortcuts to replace with this block
+        shortcuts: Immutable.Map()
+    },
+    "TemplateBlock"
+);
 
 TemplateBlock.prototype.getName = function() {
-    return this.get('name');
+    return this.get("name");
 };
 
 TemplateBlock.prototype.getEndTag = function() {
-    return this.get('end') || ('end' + this.getName());
+    return this.get("end") || "end" + this.getName();
 };
 
 TemplateBlock.prototype.getProcess = function() {
-    return this.get('process');
+    return this.get("process");
 };
 
 TemplateBlock.prototype.getBlocks = function() {
-    return this.get('blocks');
+    return this.get("blocks");
 };
-
 
 /**
  * Return shortcuts associated with this block or undefined
  * @return {TemplateShortcut|undefined}
  */
 TemplateBlock.prototype.getShortcuts = function() {
-    var shortcuts = this.get('shortcuts');
+    var shortcuts = this.get("shortcuts");
     if (shortcuts.size === 0) {
         return undefined;
     }
@@ -60,7 +62,7 @@ TemplateBlock.prototype.getShortcuts = function() {
  * @return {String}
  */
 TemplateBlock.prototype.getExtensionName = function() {
-    return 'Block' + this.getName() + 'Extension';
+    return "Block" + this.getName() + "Extension";
 };
 
 /**
@@ -96,11 +98,22 @@ TemplateBlock.prototype.toNunjucksExt = function(mainContext, blocksOutput) {
             // Parse while we found "end<block>"
             do {
                 // Read body
-                var currentBody = parser.parseUntilBlocks.apply(parser, allBlocks);
+                var currentBody = parser.parseUntilBlocks.apply(
+                    parser,
+                    allBlocks
+                );
 
                 // Handle body with previous block name and args
-                blockNamesNode.addChild(new nodes.Literal(args.lineno, args.colno, lastBlockName));
-                blockArgCounts.addChild(new nodes.Literal(args.lineno, args.colno, lastBlockArgs.children.length));
+                blockNamesNode.addChild(
+                    new nodes.Literal(args.lineno, args.colno, lastBlockName)
+                );
+                blockArgCounts.addChild(
+                    new nodes.Literal(
+                        args.lineno,
+                        args.colno,
+                        lastBlockArgs.children.length
+                    )
+                );
                 bodies.push(currentBody);
 
                 // Append arguments of this block as arguments of the run function
@@ -121,9 +134,11 @@ TemplateBlock.prototype.toNunjucksExt = function(mainContext, blocksOutput) {
 
             args.addChild(blockNamesNode);
             args.addChild(blockArgCounts);
-            args.addChild(new nodes.Literal(args.lineno, args.colno, NODE_ENDARGS));
+            args.addChild(
+                new nodes.Literal(args.lineno, args.colno, NODE_ENDARGS)
+            );
 
-            return new nodes.CallExtensionAsync(this, 'run', args, bodies);
+            return new nodes.CallExtensionAsync(this, "run", args, bodies);
         };
 
         this.run = function(context) {
@@ -155,7 +170,7 @@ TemplateBlock.prototype.toNunjucksExt = function(mainContext, blocksOutput) {
                 var countArgs = blockArgCounts[i];
                 var blockBody = bodies.shift();
 
-                var blockArgs = countArgs > 0? args.slice(0, countArgs) : [];
+                var blockArgs = countArgs > 0 ? args.slice(0, countArgs) : [];
                 args = args.slice(countArgs);
                 var blockKwargs = extractKwargs(blockArgs);
 
@@ -171,17 +186,20 @@ TemplateBlock.prototype.toNunjucksExt = function(mainContext, blocksOutput) {
             mainBlock.blocks = blocks;
 
             Promise()
-            .then(function() {
-                var ctx = extend({
-                    ctx: context
-                }, mainContext || {});
+                .then(function() {
+                    var ctx = extend(
+                        {
+                            ctx: context
+                        },
+                        mainContext || {}
+                    );
 
-                return that.applyBlock(mainBlock, ctx);
-            })
-            .then(function(result) {
-                return that.blockResultToHtml(result, blocksOutput);
-            })
-            .nodeify(callback);
+                    return that.applyBlock(mainBlock, ctx);
+                })
+                .then(function(result) {
+                    return that.blockResultToHtml(result, blocksOutput);
+                })
+                .nodeify(callback);
         };
     }
 
@@ -233,7 +251,7 @@ TemplateBlock.prototype.normalizeBlockResult = function(result) {
  */
 TemplateBlock.prototype.blockResultToHtml = function(result, blocksOutput) {
     var indexedKey;
-    var toIndex = (!result.parse) || (result.post !== undefined);
+    var toIndex = !result.parse || result.post !== undefined;
 
     if (toIndex) {
         indexedKey = genKey();
@@ -246,8 +264,7 @@ TemplateBlock.prototype.blockResultToHtml = function(result, blocksOutput) {
     }
 
     // Return it as a position marker
-    return '{{-%' + indexedKey + '%-}}';
-
+    return "{{-%" + indexedKey + "%-}}";
 };
 
 /**
@@ -264,7 +281,7 @@ TemplateBlock.create = function(blockName, block) {
     }
 
     block = new TemplateBlock(block);
-    block = block.set('name', blockName);
+    block = block.set("name", blockName);
     return block;
 };
 
@@ -275,7 +292,7 @@ TemplateBlock.create = function(blockName, block) {
  */
 function extractKwargs(args) {
     var last = args[args.length - 1];
-    return (is.object(last) && last.__keywords)? args.pop() : {};
+    return is.object(last) && last.__keywords ? args.pop() : {};
 }
 
 module.exports = TemplateBlock;

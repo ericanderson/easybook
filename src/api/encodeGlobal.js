@@ -1,19 +1,19 @@
-var path = require('path');
-var Promise = require('../utils/promise');
-var PathUtils = require('../utils/path');
-var fs = require('../utils/fs');
+var path = require("path");
+var Promise = require("../utils/promise");
+var PathUtils = require("../utils/path");
+var fs = require("../utils/fs");
 
-var Plugins = require('../plugins');
-var deprecate = require('./deprecate');
-var fileToURL = require('../output/helper/fileToURL');
-var defaultBlocks = require('../constants/defaultBlocks');
-var gitbook = require('../gitbook');
-var parsers = require('../parsers');
+var Plugins = require("../plugins");
+var deprecate = require("./deprecate");
+var fileToURL = require("../output/helper/fileToURL");
+var defaultBlocks = require("../constants/defaultBlocks");
+var gitbook = require("../gitbook");
+var parsers = require("../parsers");
 
-var encodeConfig = require('./encodeConfig');
-var encodeSummary = require('./encodeSummary');
-var encodeNavigation = require('./encodeNavigation');
-var encodePage = require('./encodePage');
+var encodeConfig = require("./encodeConfig");
+var encodeSummary = require("./encodeSummary");
+var encodeNavigation = require("./encodeNavigation");
+var encodePage = require("./encodePage");
 
 /**
     Encode a global context into a JS object
@@ -106,8 +106,7 @@ function encodeGlobal(output) {
         renderBlock: function(type, text) {
             var parser = parsers.get(type);
 
-            return parser.parsePage(text)
-                .get('content');
+            return parser.parsePage(text).get("content");
         },
 
         /**
@@ -120,8 +119,7 @@ function encodeGlobal(output) {
         renderInline: function(type, text) {
             var parser = parsers.get(type);
 
-            return parser.parseInline(text)
-                .get('content');
+            return parser.parseInline(text).get("content");
         },
 
         template: {
@@ -178,9 +176,11 @@ function encodeGlobal(output) {
                 @return {Promise}
             */
             hasFile: function(fileName, content) {
-                return Promise()
-                .then(function() {
-                    var filePath = PathUtils.resolveInRoot(outputFolder, fileName);
+                return Promise().then(function() {
+                    var filePath = PathUtils.resolveInRoot(
+                        outputFolder,
+                        fileName
+                    );
 
                     return fs.exists(filePath);
                 });
@@ -195,12 +195,13 @@ function encodeGlobal(output) {
                 @return {Promise}
             */
             writeFile: function(fileName, content) {
-                return Promise()
-                .then(function() {
-                    var filePath = PathUtils.resolveInRoot(outputFolder, fileName);
+                return Promise().then(function() {
+                    var filePath = PathUtils.resolveInRoot(
+                        outputFolder,
+                        fileName
+                    );
 
-                    return fs.ensureFile(filePath)
-                    .then(function() {
+                    return fs.ensureFile(filePath).then(function() {
                         return fs.writeFile(filePath, content);
                     });
                 });
@@ -216,12 +217,13 @@ function encodeGlobal(output) {
                 @return {Promise}
             */
             copyFile: function(inputFile, outputFile, content) {
-                return Promise()
-                .then(function() {
-                    var outputFilePath = PathUtils.resolveInRoot(outputFolder, outputFile);
+                return Promise().then(function() {
+                    var outputFilePath = PathUtils.resolveInRoot(
+                        outputFolder,
+                        outputFile
+                    );
 
-                    return fs.ensureFile(outputFilePath)
-                    .then(function() {
+                    return fs.ensureFile(outputFilePath).then(function() {
                         return fs.copy(inputFile, outputFilePath);
                     });
                 });
@@ -235,21 +237,58 @@ function encodeGlobal(output) {
 
     // Deprecated properties
 
-    deprecate.renamedMethod(output, 'this.isSubBook', result, 'isSubBook', 'isLanguageBook');
-    deprecate.renamedMethod(output, 'this.contentLink', result, 'contentLink', 'output.toURL');
+    deprecate.renamedMethod(
+        output,
+        "this.isSubBook",
+        result,
+        "isSubBook",
+        "isLanguageBook"
+    );
+    deprecate.renamedMethod(
+        output,
+        "this.contentLink",
+        result,
+        "contentLink",
+        "output.toURL"
+    );
 
-    deprecate.field(output, 'this.generator', result, 'generator',
-        output.getGenerator(), '"this.generator" property is deprecated, use "this.output.name" instead');
+    deprecate.field(
+        output,
+        "this.generator",
+        result,
+        "generator",
+        output.getGenerator(),
+        '"this.generator" property is deprecated, use "this.output.name" instead'
+    );
 
-    deprecate.field(output, 'this.navigation', result, 'navigation', function() {
-        return encodeNavigation(output);
-    }, '"navigation" property is deprecated');
+    deprecate.field(
+        output,
+        "this.navigation",
+        result,
+        "navigation",
+        function() {
+            return encodeNavigation(output);
+        },
+        '"navigation" property is deprecated'
+    );
 
-    deprecate.field(output, 'this.book', result, 'book',
-        result, '"book" property is deprecated, use "this" directly instead');
+    deprecate.field(
+        output,
+        "this.book",
+        result,
+        "book",
+        result,
+        '"book" property is deprecated, use "this" directly instead'
+    );
 
-    deprecate.field(output, 'this.options', result, 'options',
-        result.config.values, '"options" property is deprecated, use config.get(key) instead');
+    deprecate.field(
+        output,
+        "this.options",
+        result,
+        "options",
+        result.config.values,
+        '"options" property is deprecated, use config.get(key) instead'
+    );
 
     return result;
 }

@@ -1,8 +1,8 @@
-var npmi = require('npmi');
+var npmi = require("npmi");
 
-var DEFAULT_PLUGINS = require('../constants/defaultPlugins');
-var Promise = require('../utils/promise');
-var installPlugin = require('./installPlugin');
+var DEFAULT_PLUGINS = require("../constants/defaultPlugins");
+var Promise = require("../utils/promise");
+var installPlugin = require("./installPlugin");
 
 /**
     Install plugin requirements for a book
@@ -25,24 +25,25 @@ function installPlugins(book) {
         return (
             // Disabled plugin
             !plugin.isEnabled() ||
-
             // Or default one installed in GitBook itself
-            (dependency &&
-            plugin.getVersion() === dependency.getVersion())
+            (dependency && plugin.getVersion() === dependency.getVersion())
         );
     });
 
     if (plugins.size == 0) {
-        logger.info.ln('nothing to install!');
+        logger.info.ln("nothing to install!");
         return Promise();
     }
 
-    logger.info.ln('installing', plugins.size, 'plugins using npm@' + npmi.NPM_VERSION);
+    logger.info.ln(
+        "installing",
+        plugins.size,
+        "plugins using npm@" + npmi.NPM_VERSION
+    );
 
     return Promise.forEach(plugins, function(plugin) {
         return installPlugin(book, plugin);
-    })
-    .thenResolve(plugins.size);
+    }).thenResolve(plugins.size);
 }
 
 module.exports = installPlugins;

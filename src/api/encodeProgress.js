@@ -1,5 +1,5 @@
-var Immutable = require('immutable');
-var encodeNavigation = require('./encodeNavigation');
+var Immutable = require("immutable");
+var encodeNavigation = require("./encodeNavigation");
 
 /**
     page.progress is a deprecated property from GitBook v2
@@ -14,7 +14,9 @@ function encodeProgress(output, page) {
     navigation = Immutable.Map(navigation);
 
     var n = navigation.size;
-    var percent = 0, prevPercent = 0, currentChapter = null;
+    var percent = 0,
+        prevPercent = 0,
+        currentChapter = null;
     var done = true;
 
     var chapters = navigation
@@ -28,7 +30,7 @@ function encodeProgress(output, page) {
         })
         .map(function(nav, i) {
             // Calcul percent
-            nav.percent = (i * 100) / Math.max((n - 1), 1);
+            nav.percent = (i * 100) / Math.max(n - 1, 1);
 
             // Is it done
             nav.done = done;
@@ -60,4 +62,3 @@ function encodeProgress(output, page) {
 }
 
 module.exports = encodeProgress;
-

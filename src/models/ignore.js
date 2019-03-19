@@ -1,15 +1,18 @@
-var Immutable = require('immutable');
-var IgnoreMutable = require('ignore');
+var Immutable = require("immutable");
+var IgnoreMutable = require("ignore");
 
 /*
     Immutable version of node-ignore
 */
-var Ignore = Immutable.Record({
-    ignore: new IgnoreMutable()
-}, 'Ignore');
+var Ignore = Immutable.Record(
+    {
+        ignore: new IgnoreMutable()
+    },
+    "Ignore"
+);
 
 Ignore.prototype.getIgnore = function() {
-    return this.get('ignore');
+    return this.get("ignore");
 };
 
 /**
@@ -36,7 +39,7 @@ Ignore.prototype.add = function(rule) {
     newIgnore.add(ignore);
     newIgnore.add(rule);
 
-    return this.set('ignore', newIgnore);
+    return this.set("ignore", newIgnore);
 };
 
 module.exports = Ignore;

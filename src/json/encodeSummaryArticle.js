@@ -1,4 +1,3 @@
-
 /**
     Encode a SummaryArticle to JSON
 
@@ -8,7 +7,8 @@
 function encodeSummaryArticle(article, recursive) {
     var articles = undefined;
     if (recursive !== false) {
-        articles = article.getArticles()
+        articles = article
+            .getArticles()
             .map(encodeSummaryArticle)
             .toJS();
     }

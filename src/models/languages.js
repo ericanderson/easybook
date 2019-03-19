@@ -1,19 +1,19 @@
-var Immutable = require('immutable');
+var Immutable = require("immutable");
 
-var File = require('./file');
-var Language = require('./language');
+var File = require("./file");
+var Language = require("./language");
 
 var Languages = Immutable.Record({
-    file:       File(),
-    list:       Immutable.OrderedMap()
+    file: File(),
+    list: Immutable.OrderedMap()
 });
 
 Languages.prototype.getFile = function() {
-    return this.get('file');
+    return this.get("file");
 };
 
 Languages.prototype.getList = function() {
-    return this.get('list');
+    return this.get("list");
 };
 
 /**

@@ -1,4 +1,4 @@
-var encodeBook = require('./encodeBook');
+var encodeBook = require("./encodeBook");
 
 /**
  * Encode an output to JSON

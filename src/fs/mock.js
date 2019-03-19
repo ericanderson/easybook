@@ -1,10 +1,10 @@
-var path = require('path');
-var is = require('is');
-var Buffer = require('buffer').Buffer;
-var Immutable = require('immutable');
+var path = require("path");
+var is = require("is");
+var Buffer = require("buffer").Buffer;
+var Immutable = require("immutable");
 
-var FS = require('../models/fs');
-var error = require('../utils/error');
+var FS = require("../models/fs");
+var error = require("../utils/error");
 
 /**
     Create a fake filesystem for unit testing GitBook.
@@ -22,13 +22,13 @@ function createMockFS(files) {
 
             var file;
 
-            if (!part || part === '.') file = list;
+            if (!part || part === ".") file = list;
             else file = list.get(part);
 
             if (!file) return null;
 
             if (is.string(file)) {
-                if (i === (parts.length - 1)) return file;
+                if (i === parts.length - 1) return file;
                 else return null;
             }
 
@@ -48,7 +48,7 @@ function createMockFS(files) {
             });
         }
 
-        return new Buffer(file, 'utf8');
+        return new Buffer(file, "utf8");
     }
 
     function fsStatFile(filePath) {
@@ -75,7 +75,7 @@ function createMockFS(files) {
         return dir
             .map(function(content, name) {
                 if (!is.string(content)) {
-                    name = name + '/';
+                    name = name + "/";
                 }
 
                 return name;
@@ -84,7 +84,7 @@ function createMockFS(files) {
     }
 
     return FS.create({
-        root: '',
+        root: "",
         fsExists: fsExists,
         fsReadFile: fsReadFile,
         fsStatFile: fsStatFile,

@@ -1,6 +1,6 @@
-var is = require('is');
-var mergeAtLevel = require('./mergeAtLevel');
-var indexArticleLevels = require('./indexArticleLevels');
+var is = require("is");
+var mergeAtLevel = require("./mergeAtLevel");
+var indexArticleLevels = require("./indexArticleLevels");
 
 /**
     Remove an article from a level.
@@ -11,7 +11,7 @@ var indexArticleLevels = require('./indexArticleLevels');
 */
 function removeArticle(summary, level) {
     // Coerce to level
-    level = is.string(level)? level : level.getLevel();
+    level = is.string(level) ? level : level.getLevel();
 
     var parent = summary.getParent(level);
 
@@ -26,7 +26,7 @@ function removeArticle(summary, level) {
 
     // Remove from children
     articles = articles.remove(index);
-    parent = parent.set('articles', articles);
+    parent = parent.set("articles", articles);
 
     // Reindex the level from here
     parent = indexArticleLevels(parent);

@@ -1,28 +1,25 @@
-var Immutable = require('immutable');
-var Page = require('../page');
+var Immutable = require("immutable");
+var Page = require("../page");
 
-describe('Page', function() {
-
-    describe('toText', function() {
-        it('must not prepend frontmatter if no attributes', function() {
+describe("Page", function() {
+    describe("toText", function() {
+        it("must not prepend frontmatter if no attributes", function() {
             var page = Page().merge({
-                content: 'Hello World'
+                content: "Hello World"
             });
 
-            expect(page.toText()).toBe('Hello World');
+            expect(page.toText()).toBe("Hello World");
         });
 
-        it('must prepend frontmatter if attributes', function() {
+        it("must prepend frontmatter if attributes", function() {
             var page = Page().merge({
-                content: 'Hello World',
+                content: "Hello World",
                 attributes: Immutable.fromJS({
-                    hello: 'world'
+                    hello: "world"
                 })
             });
 
-            expect(page.toText()).toBe('---\nhello: world\n---\n\nHello World');
+            expect(page.toText()).toBe("---\nhello: world\n---\n\nHello World");
         });
     });
 });
-
-

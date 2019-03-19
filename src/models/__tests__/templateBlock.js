@@ -1,42 +1,48 @@
-var nunjucks = require('nunjucks');
-var Immutable = require('immutable');
-var Promise = require('../../utils/promise');
+var nunjucks = require("nunjucks");
+var Immutable = require("immutable");
+var Promise = require("../../utils/promise");
 
-describe('TemplateBlock', function() {
-    var TemplateBlock = require('../templateBlock');
+describe("TemplateBlock", function() {
+    var TemplateBlock = require("../templateBlock");
 
-    describe('create', function() {
-        it('must initialize a simple TemplateBlock from a function', function() {
-            var templateBlock = TemplateBlock.create('sayhello', function(block) {
+    describe("create", function() {
+        it("must initialize a simple TemplateBlock from a function", function() {
+            var templateBlock = TemplateBlock.create("sayhello", function(
+                block
+            ) {
                 return {
-                    body: '<p>Hello, World!</p>',
+                    body: "<p>Hello, World!</p>",
                     parse: true
                 };
             });
 
             // Check basic templateBlock properties
-            expect(templateBlock.getName()).toBe('sayhello');
-            expect(templateBlock.getEndTag()).toBe('endsayhello');
+            expect(templateBlock.getName()).toBe("sayhello");
+            expect(templateBlock.getEndTag()).toBe("endsayhello");
             expect(templateBlock.getBlocks().size).toBe(0);
-            expect(templateBlock.getExtensionName()).toBe('BlocksayhelloExtension');
+            expect(templateBlock.getExtensionName()).toBe(
+                "BlocksayhelloExtension"
+            );
 
             // Check result of applying block
             return Promise()
-            .then(function() {
-                return templateBlock.applyBlock();
-            })
-            .then(function(result) {
-                expect(result.name).toBe('sayhello');
-                expect(result.body).toBe('<p>Hello, World!</p>');
-            });
+                .then(function() {
+                    return templateBlock.applyBlock();
+                })
+                .then(function(result) {
+                    expect(result.name).toBe("sayhello");
+                    expect(result.body).toBe("<p>Hello, World!</p>");
+                });
         });
     });
 
-    describe('getShortcuts', function() {
-        it('must return undefined if no shortcuts', function() {
-            var templateBlock = TemplateBlock.create('sayhello', function(block) {
+    describe("getShortcuts", function() {
+        it("must return undefined if no shortcuts", function() {
+            var templateBlock = TemplateBlock.create("sayhello", function(
+                block
+            ) {
                 return {
-                    body: '<p>Hello, World!</p>',
+                    body: "<p>Hello, World!</p>",
                     parse: true
                 };
             });
@@ -44,32 +50,34 @@ describe('TemplateBlock', function() {
             expect(templateBlock.getShortcuts()).toNotExist();
         });
 
-        it('must return complete shortcut', function() {
-            var templateBlock = TemplateBlock.create('sayhello', {
+        it("must return complete shortcut", function() {
+            var templateBlock = TemplateBlock.create("sayhello", {
                 process: function(block) {
-                    return '<p>Hello, World!</p>';
+                    return "<p>Hello, World!</p>";
                 },
                 shortcuts: {
-                    parsers: ['markdown'],
-                    start: '$',
-                    end: '-'
+                    parsers: ["markdown"],
+                    start: "$",
+                    end: "-"
                 }
             });
 
             var shortcut = templateBlock.getShortcuts();
 
             expect(shortcut).toBeDefined();
-            expect(shortcut.getStart()).toEqual('$');
-            expect(shortcut.getEnd()).toEqual('-');
-            expect(shortcut.getStartTag()).toEqual('sayhello');
-            expect(shortcut.getEndTag()).toEqual('endsayhello');
+            expect(shortcut.getStart()).toEqual("$");
+            expect(shortcut.getEnd()).toEqual("-");
+            expect(shortcut.getStartTag()).toEqual("sayhello");
+            expect(shortcut.getEndTag()).toEqual("endsayhello");
         });
     });
 
-    describe('toNunjucksExt()', function() {
-        it('should replace by block anchor', function() {
-            var templateBlock = TemplateBlock.create('sayhello', function(block) {
-                return 'Hello';
+    describe("toNunjucksExt()", function() {
+        it("should replace by block anchor", function() {
+            var templateBlock = TemplateBlock.create("sayhello", function(
+                block
+            ) {
+                return "Hello";
             });
 
             var blocks = {};
@@ -82,25 +90,28 @@ describe('TemplateBlock', function() {
             env.addExtension(templateBlock.getExtensionName(), new Ext());
 
             // Render a template using the block
-            var src = '{% sayhello %}{% endsayhello %}';
-            return Promise.nfcall(env.renderString.bind(env), src)
-            .then(function(res) {
-                blocks = Immutable.fromJS(blocks);
-                expect(blocks.size).toBe(1);
+            var src = "{% sayhello %}{% endsayhello %}";
+            return Promise.nfcall(env.renderString.bind(env), src).then(
+                function(res) {
+                    blocks = Immutable.fromJS(blocks);
+                    expect(blocks.size).toBe(1);
 
-                var blockId = blocks.keySeq().get(0);
-                var block = blocks.get(blockId);
+                    var blockId = blocks.keySeq().get(0);
+                    var block = blocks.get(blockId);
 
-                expect(res).toBe('{{-%' + blockId + '%-}}');
-                expect(block.get('body')).toBe('Hello');
-                expect(block.get('name')).toBe('sayhello');
-            });
+                    expect(res).toBe("{{-%" + blockId + "%-}}");
+                    expect(block.get("body")).toBe("Hello");
+                    expect(block.get("name")).toBe("sayhello");
+                }
+            );
         });
 
-        it('must create a valid nunjucks extension', function() {
-            var templateBlock = TemplateBlock.create('sayhello', function(block) {
+        it("must create a valid nunjucks extension", function() {
+            var templateBlock = TemplateBlock.create("sayhello", function(
+                block
+            ) {
                 return {
-                    body: '<p>Hello, World!</p>',
+                    body: "<p>Hello, World!</p>",
                     parse: true
                 };
             });
@@ -113,17 +124,27 @@ describe('TemplateBlock', function() {
             env.addExtension(templateBlock.getExtensionName(), new Ext());
 
             // Render a template using the block
-            var src = '{% sayhello %}{% endsayhello %}';
-            return Promise.nfcall(env.renderString.bind(env), src)
-            .then(function(res) {
-                expect(res).toBe('<p>Hello, World!</p>');
-            });
+            var src = "{% sayhello %}{% endsayhello %}";
+            return Promise.nfcall(env.renderString.bind(env), src).then(
+                function(res) {
+                    expect(res).toBe("<p>Hello, World!</p>");
+                }
+            );
         });
 
-        it('must apply block arguments correctly', function() {
-            var templateBlock = TemplateBlock.create('sayhello', function(block) {
+        it("must apply block arguments correctly", function() {
+            var templateBlock = TemplateBlock.create("sayhello", function(
+                block
+            ) {
                 return {
-                    body: '<'+block.kwargs.tag+'>Hello, '+block.kwargs.name+'!</'+block.kwargs.tag+'>',
+                    body:
+                        "<" +
+                        block.kwargs.tag +
+                        ">Hello, " +
+                        block.kwargs.name +
+                        "!</" +
+                        block.kwargs.tag +
+                        ">",
                     parse: true
                 };
             });
@@ -137,18 +158,20 @@ describe('TemplateBlock', function() {
 
             // Render a template using the block
             var src = '{% sayhello name="Samy", tag="p" %}{% endsayhello %}';
-            return Promise.nfcall(env.renderString.bind(env), src)
-            .then(function(res) {
-                expect(res).toBe('<p>Hello, Samy!</p>');
-            });
+            return Promise.nfcall(env.renderString.bind(env), src).then(
+                function(res) {
+                    expect(res).toBe("<p>Hello, Samy!</p>");
+                }
+            );
         });
 
-        it('must accept an async function', function() {
-            var templateBlock = TemplateBlock.create('sayhello', function(block) {
-                return Promise()
-                .then(function() {
+        it("must accept an async function", function() {
+            var templateBlock = TemplateBlock.create("sayhello", function(
+                block
+            ) {
+                return Promise().then(function() {
                     return {
-                        body: 'Hello ' + block.body,
+                        body: "Hello " + block.body,
                         parse: true
                     };
                 });
@@ -162,17 +185,18 @@ describe('TemplateBlock', function() {
             env.addExtension(templateBlock.getExtensionName(), new Ext());
 
             // Render a template using the block
-            var src = '{% sayhello %}Samy{% endsayhello %}';
-            return Promise.nfcall(env.renderString.bind(env), src)
-            .then(function(res) {
-                expect(res).toBe('Hello Samy');
-            });
+            var src = "{% sayhello %}Samy{% endsayhello %}";
+            return Promise.nfcall(env.renderString.bind(env), src).then(
+                function(res) {
+                    expect(res).toBe("Hello Samy");
+                }
+            );
         });
 
-        it('must handle nested blocks', function() {
+        it("must handle nested blocks", function() {
             var templateBlock = new TemplateBlock({
-                name: 'yoda',
-                blocks: Immutable.List(['start', 'end']),
+                name: "yoda",
+                blocks: Immutable.List(["start", "end"]),
                 process: function(block) {
                     var nested = {};
 
@@ -181,7 +205,12 @@ describe('TemplateBlock', function() {
                     });
 
                     return {
-                        body: '<p class="yoda">'+nested.end+' '+nested.start+'</p>',
+                        body:
+                            '<p class="yoda">' +
+                            nested.end +
+                            " " +
+                            nested.start +
+                            "</p>",
                         parse: true
                     };
                 }
@@ -195,11 +224,15 @@ describe('TemplateBlock', function() {
             env.addExtension(templateBlock.getExtensionName(), new Ext());
 
             // Render a template using the block
-            var src = '{% yoda %}{% start %}this sentence should be{% end %}inverted{% endyoda %}';
-            return Promise.nfcall(env.renderString.bind(env), src)
-            .then(function(res) {
-                expect(res).toBe('<p class="yoda">inverted this sentence should be</p>');
-            });
+            var src =
+                "{% yoda %}{% start %}this sentence should be{% end %}inverted{% endyoda %}";
+            return Promise.nfcall(env.renderString.bind(env), src).then(
+                function(res) {
+                    expect(res).toBe(
+                        '<p class="yoda">inverted this sentence should be</p>'
+                    );
+                }
+            );
         });
     });
 });

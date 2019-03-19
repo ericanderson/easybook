@@ -1,59 +1,62 @@
-var Immutable = require('immutable');
+var Immutable = require("immutable");
 
-var TemplateBlock = require('./templateBlock');
-var PluginDependency = require('./pluginDependency');
-var THEME_PREFIX = require('../constants/themePrefix');
+var TemplateBlock = require("./templateBlock");
+var PluginDependency = require("./pluginDependency");
+var THEME_PREFIX = require("../constants/themePrefix");
 
-var DEFAULT_VERSION = '*';
+var DEFAULT_VERSION = "*";
 
-var Plugin = Immutable.Record({
-    name:       String(),
+var Plugin = Immutable.Record(
+    {
+        name: String(),
 
-    // Requirement version (ex: ">1.0.0")
-    version:    String(DEFAULT_VERSION),
+        // Requirement version (ex: ">1.0.0")
+        version: String(DEFAULT_VERSION),
 
-    // Path to load this plugin
-    path:       String(),
+        // Path to load this plugin
+        path: String(),
 
-    // Depth of this plugin in the dependency tree
-    depth:      Number(0),
+        // Depth of this plugin in the dependency tree
+        depth: Number(0),
 
-    // Parent depending on this plugin
-    parent:     String(),
+        // Parent depending on this plugin
+        parent: String(),
 
-    // Content of the "package.json"
-    package:    Immutable.Map(),
+        // Content of the "package.json"
+        package: Immutable.Map(),
 
-    // Content of the package itself
-    content:    Immutable.Map()
-}, 'Plugin');
+        // Content of the package itself
+        content: Immutable.Map()
+    },
+    "Plugin"
+);
 
 Plugin.prototype.getName = function() {
-    return this.get('name');
+    return this.get("name");
 };
 
 Plugin.prototype.getPath = function() {
-    return this.get('path');
+    return this.get("path");
 };
 
 Plugin.prototype.getVersion = function() {
-    return this.get('version');
+    return this.get("version");
 };
 
 Plugin.prototype.getPackage = function() {
-    return this.get('package');
+    return this.get("package");
 };
 
 Plugin.prototype.getContent = function() {
-    return this.get('content');
+    return this.get("content");
 };
 
 Plugin.prototype.getDepth = function() {
-    return this.get('depth');
+    return this.get("depth");
 };
 
 Plugin.prototype.getParent = function() {
-    return this.get('parent');
+    return this.get("parent");
 };
 
 /**
@@ -78,7 +81,7 @@ Plugin.prototype.isLoaded = function() {
  */
 Plugin.prototype.isTheme = function() {
     var name = this.getName();
-    return (name && name.indexOf(THEME_PREFIX) === 0);
+    return name && name.indexOf(THEME_PREFIX) === 0;
 };
 
 /**
@@ -86,7 +89,7 @@ Plugin.prototype.isTheme = function() {
  * @return {Map<String:Function>}
  */
 Plugin.prototype.getHooks = function() {
-    return this.getContent().get('hooks') || Immutable.Map();
+    return this.getContent().get("hooks") || Immutable.Map();
 };
 
 /**
@@ -95,14 +98,16 @@ Plugin.prototype.getHooks = function() {
  * @return {Map<String:Mixed>}
  */
 Plugin.prototype.getResources = function(type) {
-    if (type != 'website' && type != 'ebook') {
-        throw new Error('Invalid assets type ' + type);
+    if (type != "website" && type != "ebook") {
+        throw new Error("Invalid assets type " + type);
     }
 
     var content = this.getContent();
-    return (content.get(type)
-        || (type == 'website'? content.get('book') : null)
-        || Immutable.Map());
+    return (
+        content.get(type) ||
+        (type == "website" ? content.get("book") : null) ||
+        Immutable.Map()
+    );
 };
 
 /**
@@ -110,7 +115,7 @@ Plugin.prototype.getResources = function(type) {
  * @return {Map<String:Function>}
  */
 Plugin.prototype.getFilters = function() {
-    return this.getContent().get('filters');
+    return this.getContent().get("filters");
 };
 
 /**
@@ -118,13 +123,12 @@ Plugin.prototype.getFilters = function() {
  * @return {Map<String:TemplateBlock>}
  */
 Plugin.prototype.getBlocks = function() {
-    var blocks = this.getContent().get('blocks');
+    var blocks = this.getContent().get("blocks");
     blocks = blocks || Immutable.Map();
 
-    return blocks
-        .map(function(block, blockName) {
-            return TemplateBlock.create(blockName, block);
-        });
+    return blocks.map(function(block, blockName) {
+        return TemplateBlock.create(blockName, block);
+    });
 };
 
 /**
@@ -142,9 +146,9 @@ Plugin.prototype.getHook = function(name) {
  * @return {Plugin}
  */
 Plugin.createFromString = function(s) {
-    var parts = s.split('@');
+    var parts = s.split("@");
     var name = parts[0];
-    var version = parts.slice(1).join('@');
+    var version = parts.slice(1).join("@");
 
     return new Plugin({
         name: name,
