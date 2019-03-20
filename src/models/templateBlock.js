@@ -97,10 +97,7 @@ TemplateBlock.prototype.toNunjucksExt = function(mainContext, blocksOutput) {
             // Parse while we found "end<block>"
             do {
                 // Read body
-                var currentBody = parser.parseUntilBlocks.apply(
-                    parser,
-                    allBlocks
-                );
+                var currentBody = parser.parseUntilBlocks(...allBlocks);
 
                 // Handle body with previous block name and args
                 blockNamesNode.addChild(

@@ -85,7 +85,7 @@ Logger.prototype.write = function(msg) {
     Format a string using the first argument as a printf-like format.
 */
 Logger.prototype.format = function(...args) {
-    return util.format.apply(util, args);
+    return util.format(...args);
 };
 
 /**
@@ -107,7 +107,7 @@ Logger.prototype.log = function(level) {
 
     var levelKey = LEVELS.findKey(v => v === level);
     var args = Array.prototype.slice.apply(arguments, [1]);
-    var msg = this.format.apply(this, args);
+    var msg = this.format(...args);
 
     if (this.lastChar == "\n") {
         msg = COLORS.get(levelKey)(levelKey.toLowerCase() + ":") + " " + msg;
@@ -124,7 +124,7 @@ Logger.prototype.logLn = function() {
 
     var args = Array.prototype.slice.apply(arguments);
     args.push("\n");
-    return this.log.apply(this, args);
+    return this.log(...args);
 };
 
 /**
@@ -132,7 +132,7 @@ Logger.prototype.logLn = function() {
 */
 Logger.prototype.ok = function(level) {
     var args = Array.prototype.slice.apply(arguments, [1]);
-    var msg = this.format.apply(this, args);
+    var msg = this.format(...args);
     if (arguments.length > 1) {
         this.logLn(
             level,

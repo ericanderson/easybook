@@ -124,7 +124,7 @@ function wrap(func) {
     return function() {
         var args = Array.prototype.slice.call(arguments, 0);
 
-        return Q().then(() => func.apply(null, args));
+        return Q().then(() => func(...args));
     };
 }
 

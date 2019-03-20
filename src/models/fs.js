@@ -49,7 +49,7 @@ FS.prototype.isInScope = function(filename) {
 FS.prototype.resolve = function() {
     var rootPath = this.getRoot();
     var args = Array.prototype.slice.call(arguments);
-    var filename = path.join.apply(path, [rootPath].concat(args));
+    var filename = path.join(...[rootPath].concat(args));
     filename = path.normalize(filename);
 
     if (!this.isInScope(filename)) {
