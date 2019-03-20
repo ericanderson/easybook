@@ -19,10 +19,12 @@ function defaultHandleResult(output, result) {
     @param {Output} output
     @return {Promise<Output>}
 */
-function callHook(name, getArgument, handleResult, output) {
-    getArgument = getArgument || defaultGetArgument;
-    handleResult = handleResult || defaultHandleResult;
-
+function callHook(
+    name,
+    getArgument = defaultGetArgument,
+    handleResult = defaultHandleResult,
+    output
+) {
     const logger = output.getLogger();
     const plugins = output.getPlugins();
 

@@ -68,9 +68,10 @@ TemplateBlock.prototype.getExtensionName = function() {
  * Return a nunjucks extension to represents this block
  * @return {Nunjucks.Extension}
  */
-TemplateBlock.prototype.toNunjucksExt = function(mainContext, blocksOutput) {
-    blocksOutput = blocksOutput || {};
-
+TemplateBlock.prototype.toNunjucksExt = function(
+    mainContext,
+    blocksOutput = {}
+) {
     const that = this;
     const name = this.getName();
     const endTag = this.getEndTag();

@@ -12,9 +12,7 @@ import replaceShortcuts from "./replaceShortcuts";
  * @param {Object} context (optional)
  * @return {Promise<TemplateOutput>}
  */
-function renderTemplate(engine, filePath, content, context) {
-    context = context || {};
-
+function renderTemplate(engine, filePath, content, context = {}) {
     // Mutable objects to contains all blocks requiring post-processing
     const blocks = {};
 

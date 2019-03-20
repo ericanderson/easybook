@@ -106,10 +106,14 @@ function disableDeprecation(key) {
     @param {String} oldName
     @param {String} newName
 */
-function deprecateRenamedMethod(book, key, instance, oldName, newName, msg) {
-    msg =
-        msg ||
-        '"' + oldName + '" is deprecated, use "' + newName + '()" instead';
+function deprecateRenamedMethod(
+    book,
+    key,
+    instance,
+    oldName,
+    newName,
+    msg = '"' + oldName + '" is deprecated, use "' + newName + '()" instead'
+) {
     const fn = objectPath.get(instance, newName);
 
     instance[oldName] = deprecateMethod(book, key, fn, msg);

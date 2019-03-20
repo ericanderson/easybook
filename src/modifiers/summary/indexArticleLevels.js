@@ -5,8 +5,7 @@
     @param {String} baseLevel
     @return {Article}
 */
-function indexArticleLevels(article, baseLevel) {
-    baseLevel = baseLevel || article.getLevel();
+function indexArticleLevels(article, baseLevel = article.getLevel()) {
     let articles = article.getArticles();
 
     articles = articles.map((inner, i) =>

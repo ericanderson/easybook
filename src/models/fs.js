@@ -102,9 +102,7 @@ FS.prototype.read = function(filename) {
     @param {String} filename
     @return {Promise<String>}
 */
-FS.prototype.readAsString = function(filename, encoding) {
-    encoding = encoding || "utf8";
-
+FS.prototype.readAsString = function(filename, encoding = "utf8") {
     return this.read(filename).then(buf => buf.toString(encoding));
 };
 
