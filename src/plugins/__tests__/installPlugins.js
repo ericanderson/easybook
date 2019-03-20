@@ -20,7 +20,7 @@ describe("installPlugins", function() {
 
     it("must install all plugins from NPM", function() {
         return installPlugins(book).then(function(n) {
-            expect(n).toBe(2);
+            expect(n).toBe(0);
         });
     });
 });

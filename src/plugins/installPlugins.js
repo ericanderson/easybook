@@ -31,7 +31,7 @@ function installPlugins(book) {
 
     if (plugins.size == 0) {
         logger.info.ln("nothing to install!");
-        return Promise();
+        return Promise(0);
     }
 
     logger.info.ln(
