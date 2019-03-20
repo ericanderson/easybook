@@ -28,16 +28,16 @@ function renderDOM($, dom, options) {
     @param {HTMLDom} $
 */
 function svgToImg(baseFolder, currentFile, $) {
-    var currentDirectory = path.dirname(currentFile);
+    const currentDirectory = path.dirname(currentFile);
 
     return editHTMLElement($, "svg", $svg => {
-        var content =
+        const content =
             '<?xml version="1.0" encoding="UTF-8"?>' + renderDOM($, $svg);
 
         // We avoid generating twice the same PNG
-        var hash = crc.crc32(content).toString(16);
-        var fileName = hash + ".svg";
-        var filePath = path.join(baseFolder, fileName);
+        const hash = crc.crc32(content).toString(16);
+        const fileName = hash + ".svg";
+        const filePath = path.join(baseFolder, fileName);
 
         // Write the svg to the file
         return (
@@ -48,7 +48,7 @@ function svgToImg(baseFolder, currentFile, $) {
 
                 // Return as image
                 .then(() => {
-                    var src = LocationUtils.relative(
+                    const src = LocationUtils.relative(
                         currentDirectory,
                         fileName
                     );

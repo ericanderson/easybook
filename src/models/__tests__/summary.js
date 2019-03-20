@@ -1,7 +1,7 @@
 import File from "../file";
 import Summary from "../summary";
 describe("Summary", () => {
-    var summary = Summary.createFromParts(File(), [
+    const summary = Summary.createFromParts(File(), [
         {
             articles: [
                 {
@@ -28,21 +28,21 @@ describe("Summary", () => {
 
     describe("createFromEntries", () => {
         it("must add all parts", () => {
-            var parts = summary.getParts();
+            const parts = summary.getParts();
             expect(parts.size).toBe(2);
         });
     });
 
     describe("getByLevel", () => {
         it("can return a Part", () => {
-            var part = summary.getByLevel("1");
+            const part = summary.getByLevel("1");
 
             expect(part).toBeDefined();
             expect(part.getArticles().size).toBe(4);
         });
 
         it("can return a Part (2)", () => {
-            var part = summary.getByLevel("2");
+            const part = summary.getByLevel("2");
 
             expect(part).toBeDefined();
             expect(part.getTitle()).toBe("Test");
@@ -50,7 +50,7 @@ describe("Summary", () => {
         });
 
         it("can return an Article", () => {
-            var article = summary.getByLevel("1.1");
+            const article = summary.getByLevel("1.1");
 
             expect(article).toBeDefined();
             expect(article.getTitle()).toBe("My First Article");
@@ -59,21 +59,21 @@ describe("Summary", () => {
 
     describe("getByPath", () => {
         it("return correct article", () => {
-            var article = summary.getByPath("README.md");
+            const article = summary.getByPath("README.md");
 
             expect(article).toBeDefined();
             expect(article.getTitle()).toBe("My First Article");
         });
 
         it("return correct article", () => {
-            var article = summary.getByPath("article.md");
+            const article = summary.getByPath("article.md");
 
             expect(article).toBeDefined();
             expect(article.getTitle()).toBe("My Second Article");
         });
 
         it("return undefined if not found", () => {
-            var article = summary.getByPath("NOT_EXISTING.md");
+            const article = summary.getByPath("NOT_EXISTING.md");
 
             expect(article).toBeFalsy();
         });

@@ -7,8 +7,8 @@ import Immutable from "immutable";
  * @return {Object}
  */
 function mergeDefaults(obj, src) {
-    var objValue = Immutable.fromJS(obj);
-    var srcValue = Immutable.fromJS(src);
+    const objValue = Immutable.fromJS(obj);
+    const srcValue = Immutable.fromJS(src);
 
     return srcValue.mergeDeep(objValue).toJS();
 }

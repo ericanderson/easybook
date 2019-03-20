@@ -28,15 +28,15 @@ function parseBookContent(book) {
     @return {Promise<Book>}
 */
 function parseMultilingualBook(book) {
-    var languages = book.getLanguages();
-    var langList = languages.getList();
+    const languages = book.getLanguages();
+    const langList = languages.getList();
 
     return reduce(
         langList,
         (currentBook, lang) => {
-            var langID = lang.getID();
-            var child = Book.createFromParent(currentBook, langID);
-            var ignore = currentBook.getIgnore();
+            const langID = lang.getID();
+            const child = Book.createFromParent(currentBook, langID);
+            let ignore = currentBook.getIgnore();
 
             return Promise(child)
                 .then(parseConfig)

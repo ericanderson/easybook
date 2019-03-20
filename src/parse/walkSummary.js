@@ -21,7 +21,7 @@ function walkArticles(articles, fn) {
     @return {Promise}
 */
 function walkSummary(summary, fn) {
-    var parts = summary.getParts();
+    const parts = summary.getParts();
 
     return forEach(parts, part => walkArticles(part.getArticles(), fn));
 }

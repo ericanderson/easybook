@@ -16,7 +16,7 @@ import Parse from "./parse";
     @return {Promise}
 */
 function initBook(rootFolder) {
-    var extension = ".md";
+    const extension = ".md";
 
     return (
         fs
@@ -24,18 +24,18 @@ function initBook(rootFolder) {
 
             // Parse the summary and readme
             .then(() => {
-                var fs = createNodeFS(rootFolder);
-                var book = Book.createForFS(fs);
+                const fs = createNodeFS(rootFolder);
+                const book = Book.createForFS(fs);
 
                 return (
                     Parse.parseReadme(book)
 
                         // Setup default readme if doesn't found one
                         .fail(() => {
-                            var readmeFile = File.createWithFilepath(
+                            const readmeFile = File.createWithFilepath(
                                 "README" + extension
                             );
-                            var readme = Readme.create(readmeFile);
+                            const readme = Readme.create(readmeFile);
                             return book.setReadme(readme);
                         })
                 );
@@ -43,19 +43,19 @@ function initBook(rootFolder) {
             .then(Parse.parseSummary)
 
             .then(book => {
-                var logger = book.getLogger();
-                var summary = book.getSummary();
-                var summaryFile = summary.getFile();
-                var summaryFilename =
+                const logger = book.getLogger();
+                const summary = book.getSummary();
+                const summaryFile = summary.getFile();
+                const summaryFilename =
                     summaryFile.getPath() || "SUMMARY" + extension;
 
-                var articles = summary.getArticlesAsList();
+                const articles = summary.getArticlesAsList();
 
                 // Write pages
                 return (
                     Promise.forEach(articles, article => {
-                        var articlePath = article.getPath();
-                        var filePath = articlePath
+                        const articlePath = article.getPath();
+                        const filePath = articlePath
                             ? path.join(rootFolder, articlePath)
                             : null;
                         if (!filePath) {
@@ -75,7 +75,7 @@ function initBook(rootFolder) {
 
                         // Write summary
                         .then(() => {
-                            var filePath = path.join(
+                            const filePath = path.join(
                                 rootFolder,
                                 summaryFilename
                             );

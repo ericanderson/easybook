@@ -15,8 +15,8 @@ function addPlugin(config, pluginName, version) {
         return togglePlugin(config, pluginName, true);
     }
 
-    var deps = config.getPluginDependencies();
-    var dep = PluginDependency.create(pluginName, version);
+    let deps = config.getPluginDependencies();
+    const dep = PluginDependency.create(pluginName, version);
 
     deps = deps.push(dep);
     return config.setPluginDependencies(deps);

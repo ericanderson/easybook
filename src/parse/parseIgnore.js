@@ -1,7 +1,7 @@
 import Promise, { serie } from "../utils/promise";
 import IGNORE_FILES from "../constants/ignoreFiles";
 
-var DEFAULT_IGNORES = [
+const DEFAULT_IGNORES = [
     // Skip Git stuff
     ".git/",
 
@@ -31,8 +31,8 @@ function parseIgnore(book) {
         );
     }
 
-    var fs = book.getFS();
-    var ignore = book.getIgnore();
+    const fs = book.getFS();
+    let ignore = book.getIgnore();
 
     ignore = ignore.add(DEFAULT_IGNORES);
 

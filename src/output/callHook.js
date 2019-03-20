@@ -23,13 +23,13 @@ function callHook(name, getArgument, handleResult, output) {
     getArgument = getArgument || defaultGetArgument;
     handleResult = handleResult || defaultHandleResult;
 
-    var logger = output.getLogger();
-    var plugins = output.getPlugins();
+    const logger = output.getLogger();
+    const plugins = output.getPlugins();
 
     logger.debug.ln('calling hook "' + name + '"');
 
     // Create the JS context for plugins
-    var context = Api.encodeGlobal(output);
+    const context = Api.encodeGlobal(output);
 
     return timing.measure(
         "call.hook." + name,
@@ -41,7 +41,7 @@ function callHook(name, getArgument, handleResult, output) {
                 reduce(
                     plugins,
                     (prev, plugin) => {
-                        var hook = plugin.getHook(name);
+                        const hook = plugin.getHook(name);
                         if (!hook) {
                             return prev;
                         }

@@ -10,7 +10,7 @@ import deprecate from "./deprecate";
     @return {Page}
 */
 function decodePage(output, page, result) {
-    var originalContent = page.getContent();
+    const originalContent = page.getContent();
 
     // No returned value
     // Existing content will be used

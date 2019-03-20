@@ -9,14 +9,14 @@ import DEFAULT_PLUGINS from "../constants/defaultPlugins";
  * @return {String} folderPath
  */
 function locateRootFolder() {
-    var firstDefaultPlugin = DEFAULT_PLUGINS.first();
-    var pluginPath = resolve.sync(
+    const firstDefaultPlugin = DEFAULT_PLUGINS.first();
+    const pluginPath = resolve.sync(
         firstDefaultPlugin.getNpmID() + "/package.json",
         {
             basedir: __dirname
         }
     );
-    var nodeModules = path.resolve(pluginPath, "../../..");
+    const nodeModules = path.resolve(pluginPath, "../../..");
 
     return nodeModules;
 }

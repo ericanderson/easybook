@@ -4,9 +4,9 @@ import toNames from "../toNames";
 
 describe("listDependencies", () => {
     it("must list default", () => {
-        var deps = PluginDependency.listFromString("ga,great");
-        var plugins = listDependencies(deps);
-        var names = toNames(plugins);
+        const deps = PluginDependency.listFromString("ga,great");
+        const plugins = listDependencies(deps);
+        const names = toNames(plugins);
 
         expect(names).toEqual([
             "ga",
@@ -21,9 +21,9 @@ describe("listDependencies", () => {
     });
 
     it("must list from array with -", () => {
-        var deps = PluginDependency.listFromString("ga,-great");
-        var plugins = listDependencies(deps);
-        var names = toNames(plugins);
+        const deps = PluginDependency.listFromString("ga,-great");
+        const plugins = listDependencies(deps);
+        const names = toNames(plugins);
 
         expect(names).toEqual([
             "ga",
@@ -37,9 +37,9 @@ describe("listDependencies", () => {
     });
 
     it("must remove default plugins using -", () => {
-        var deps = PluginDependency.listFromString("ga,-search");
-        var plugins = listDependencies(deps);
-        var names = toNames(plugins);
+        const deps = PluginDependency.listFromString("ga,-search");
+        const plugins = listDependencies(deps);
+        const names = toNames(plugins);
 
         expect(names).toEqual([
             "ga",

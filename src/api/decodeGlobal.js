@@ -9,8 +9,8 @@ import decodeConfig from "./decodeConfig";
     @return {Output}
 */
 function decodeGlobal(output, result) {
-    var book = output.getBook();
-    var config = book.getConfig();
+    let book = output.getBook();
+    let config = book.getConfig();
 
     // Update config
     config = decodeConfig(config, result.config);

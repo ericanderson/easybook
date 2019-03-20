@@ -11,8 +11,8 @@ import lookupStructureFile from "./lookupStructureFile";
     @return {Promise<Array<String, List|Map>>}
 */
 function parseFile(fs, file, type) {
-    var filepath = file.getPath();
-    var parser = file.getParser();
+    const filepath = file.getPath();
+    const parser = file.getParser();
 
     if (!parser) {
         return Promise.reject(
@@ -49,7 +49,7 @@ function parseFile(fs, file, type) {
     @return {Promise<List|Map>}
 */
 function parseStructureFile(book, type) {
-    var fs = book.getContentFS();
+    const fs = book.getContentFS();
 
     return lookupStructureFile(book, type).then(file => {
         if (!file) return [undefined, undefined];

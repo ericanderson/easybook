@@ -10,10 +10,10 @@ import editHTMLElement from "./editHTMLElement";
     @param {HTMLDom} $
 */
 function resolveImages(currentFile, $) {
-    var currentDirectory = path.dirname(currentFile);
+    const currentDirectory = path.dirname(currentFile);
 
     return editHTMLElement($, "img", $img => {
-        var src = $img.attr("src");
+        let src = $img.attr("src");
 
         if (LocationUtils.isExternal(src) || LocationUtils.isDataURI(src)) {
             return;

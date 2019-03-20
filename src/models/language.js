@@ -1,7 +1,7 @@
 import path from "path";
 import Immutable from "immutable";
 
-var Language = Immutable.Record({
+const Language = Immutable.Record({
     title: String(),
     path: String()
 });

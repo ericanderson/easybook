@@ -12,7 +12,7 @@ function fsReadDir(folder) {
             .map(file => {
                 if (file == "." || file == "..") return;
 
-                var stat = fs.statSync(path.join(folder, file));
+                const stat = fs.statSync(path.join(folder, file));
                 if (stat.isDirectory()) file = file + path.sep;
                 return file;
             })

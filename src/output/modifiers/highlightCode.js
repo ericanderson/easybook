@@ -36,9 +36,9 @@ function getLanguageForClass(classNames) {
 */
 function highlightCode(highlight, $) {
     return editHTMLElement($, "code", $code => {
-        var classNames = ($code.attr("class") || "").split(" ");
-        var lang = getLanguageForClass(classNames);
-        var source = $code.text();
+        const classNames = ($code.attr("class") || "").split(" ");
+        const lang = getLanguageForClass(classNames);
+        const source = $code.text();
 
         return Promise(highlight(lang, source)).then(r => {
             if (is.string(r.html)) {

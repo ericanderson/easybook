@@ -5,9 +5,9 @@ import Promise from "../utils/promise";
 import genKey from "../utils/genKey";
 import TemplateShortcut from "./templateShortcut";
 
-var NODE_ENDARGS = "%%endargs%%";
+const NODE_ENDARGS = "%%endargs%%";
 
-var TemplateBlock = Immutable.Record(
+const TemplateBlock = Immutable.Record(
     {
         // Name of block, also the start tag
         name: String(),
@@ -48,7 +48,7 @@ TemplateBlock.prototype.getBlocks = function() {
  * @return {TemplateShortcut|undefined}
  */
 TemplateBlock.prototype.getShortcuts = function() {
-    var shortcuts = this.get("shortcuts");
+    const shortcuts = this.get("shortcuts");
     if (shortcuts.size === 0) {
         return undefined;
     }
@@ -71,33 +71,33 @@ TemplateBlock.prototype.getExtensionName = function() {
 TemplateBlock.prototype.toNunjucksExt = function(mainContext, blocksOutput) {
     blocksOutput = blocksOutput || {};
 
-    var that = this;
-    var name = this.getName();
-    var endTag = this.getEndTag();
-    var blocks = this.getBlocks().toJS();
+    const that = this;
+    const name = this.getName();
+    const endTag = this.getEndTag();
+    const blocks = this.getBlocks().toJS();
 
     function Ext() {
         this.tags = [name];
 
         this.parse = function(parser, nodes) {
-            var lastBlockName = null;
-            var lastBlockArgs = null;
-            var allBlocks = blocks.concat([endTag]);
+            let lastBlockName = null;
+            let lastBlockArgs = null;
+            const allBlocks = blocks.concat([endTag]);
 
             // Parse first block
-            var tok = parser.nextToken();
+            const tok = parser.nextToken();
             lastBlockArgs = parser.parseSignature(null, true);
             parser.advanceAfterBlockEnd(tok.value);
 
-            var args = new nodes.NodeList();
-            var bodies = [];
-            var blockNamesNode = new nodes.Array(tok.lineno, tok.colno);
-            var blockArgCounts = new nodes.Array(tok.lineno, tok.colno);
+            const args = new nodes.NodeList();
+            const bodies = [];
+            const blockNamesNode = new nodes.Array(tok.lineno, tok.colno);
+            const blockArgCounts = new nodes.Array(tok.lineno, tok.colno);
 
             // Parse while we found "end<block>"
             do {
                 // Read body
-                var currentBody = parser.parseUntilBlocks(...allBlocks);
+                const currentBody = parser.parseUntilBlocks(...allBlocks);
 
                 // Handle body with previous block name and args
                 blockNamesNode.addChild(
@@ -138,20 +138,20 @@ TemplateBlock.prototype.toNunjucksExt = function(mainContext, blocksOutput) {
         };
 
         this.run = function(context) {
-            var fnArgs = Array.prototype.slice.call(arguments, 1);
+            const fnArgs = Array.prototype.slice.call(arguments, 1);
 
-            var args;
-            var blocks = [];
-            var bodies = [];
-            var blockNames;
-            var blockArgCounts;
-            var callback;
+            let args;
+            const blocks = [];
+            let bodies = [];
+            let blockNames;
+            let blockArgCounts;
+            let callback;
 
             // Extract callback
             callback = fnArgs.pop();
 
             // Detect end of arguments
-            var endArgIndex = fnArgs.indexOf(NODE_ENDARGS);
+            const endArgIndex = fnArgs.indexOf(NODE_ENDARGS);
 
             // Extract arguments and bodies
             args = fnArgs.slice(0, endArgIndex);
@@ -163,12 +163,12 @@ TemplateBlock.prototype.toNunjucksExt = function(mainContext, blocksOutput) {
 
             // Recreate list of blocks
             blockNames.forEach((name, i) => {
-                var countArgs = blockArgCounts[i];
-                var blockBody = bodies.shift();
+                const countArgs = blockArgCounts[i];
+                const blockBody = bodies.shift();
 
-                var blockArgs = countArgs > 0 ? args.slice(0, countArgs) : [];
+                const blockArgs = countArgs > 0 ? args.slice(0, countArgs) : [];
                 args = args.slice(countArgs);
-                var blockKwargs = extractKwargs(blockArgs);
+                const blockKwargs = extractKwargs(blockArgs);
 
                 blocks.push({
                     name,
@@ -178,12 +178,12 @@ TemplateBlock.prototype.toNunjucksExt = function(mainContext, blocksOutput) {
                 });
             });
 
-            var mainBlock = blocks.shift();
+            const mainBlock = blocks.shift();
             mainBlock.blocks = blocks;
 
             Promise()
                 .then(() => {
-                    var ctx = extend(
+                    const ctx = extend(
                         {
                             ctx: context
                         },
@@ -207,14 +207,14 @@ TemplateBlock.prototype.toNunjucksExt = function(mainContext, blocksOutput) {
  * @return {Promise<String>|String}
  */
 TemplateBlock.prototype.applyBlock = function(inner, context) {
-    var processFn = this.getProcess();
+    const processFn = this.getProcess();
 
     inner = inner || {};
     inner.args = inner.args || [];
     inner.kwargs = inner.kwargs || {};
     inner.blocks = inner.blocks || [];
 
-    var r = processFn.call(context, inner);
+    const r = processFn.call(context, inner);
 
     if (Promise.isPromiseAlike(r)) {
         return r.then(this.normalizeBlockResult.bind(this));
@@ -244,8 +244,8 @@ TemplateBlock.prototype.normalizeBlockResult = function(result) {
  * @return {String}
  */
 TemplateBlock.prototype.blockResultToHtml = (result, blocksOutput) => {
-    var indexedKey;
-    var toIndex = !result.parse || result.post !== undefined;
+    let indexedKey;
+    const toIndex = !result.parse || result.post !== undefined;
 
     if (toIndex) {
         indexedKey = genKey();
@@ -285,7 +285,7 @@ TemplateBlock.create = (blockName, block) => {
  * @return {Object}
  */
 function extractKwargs(args) {
-    var last = args[args.length - 1];
+    const last = args[args.length - 1];
     return is.object(last) && last.__keywords ? args.pop() : {};
 }
 

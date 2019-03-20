@@ -2,7 +2,7 @@ import Immutable from "immutable";
 import File from "./file";
 import Language from "./language";
 
-var Languages = Immutable.Record({
+const Languages = Immutable.Record({
     file: File(),
     list: Immutable.OrderedMap()
 });
@@ -51,7 +51,7 @@ Languages.prototype.getCount = function() {
     @return {Language}
 */
 Languages.createFromList = (file, langs) => {
-    var list = Immutable.OrderedMap();
+    let list = Immutable.OrderedMap();
 
     langs.forEach(lang => {
         lang = Language({

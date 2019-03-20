@@ -8,14 +8,14 @@
 */
 function editArticleInList(articles, level, newArticle) {
     return articles.map(article => {
-        var articleLevel = article.getLevel();
+        const articleLevel = article.getLevel();
 
         if (articleLevel === level) {
             // it is the article to edit
             return article.merge(newArticle);
         } else if (level.indexOf(articleLevel) === 0) {
             // it is a parent
-            var articles = editArticleInList(
+            const articles = editArticleInList(
                 article.getArticles(),
                 level,
                 newArticle
@@ -37,7 +37,7 @@ function editArticleInList(articles, level, newArticle) {
     @return {Part}
 */
 function editArticleInPart(part, level, newArticle) {
-    var articles = part.getArticles();
+    let articles = part.getArticles();
     articles = editArticleInList(articles, level, newArticle);
 
     return part.set("articles", articles);
@@ -52,16 +52,16 @@ function editArticleInPart(part, level, newArticle) {
     @return {Summary}
 */
 function mergeAtLevel(summary, level, newValue) {
-    var levelParts = level.split(".");
-    var partIndex = Number(levelParts[0]) - 1;
+    const levelParts = level.split(".");
+    const partIndex = Number(levelParts[0]) - 1;
 
-    var parts = summary.getParts();
-    var part = parts.get(partIndex);
+    let parts = summary.getParts();
+    let part = parts.get(partIndex);
     if (!part) {
         return summary;
     }
 
-    var isEditingPart = levelParts.length < 2;
+    const isEditingPart = levelParts.length < 2;
     if (isEditingPart) {
         part = part.merge(newValue);
     } else {

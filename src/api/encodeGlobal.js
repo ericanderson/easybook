@@ -21,14 +21,14 @@ import encodePage from "./encodePage";
     @return {Object}
 */
 function encodeGlobal(output) {
-    var book = output.getBook();
-    var bookFS = book.getContentFS();
-    var logger = output.getLogger();
-    var outputFolder = output.getRoot();
-    var plugins = output.getPlugins();
-    var blocks = Plugins.listBlocks(plugins);
+    const book = output.getBook();
+    const bookFS = book.getContentFS();
+    const logger = output.getLogger();
+    const outputFolder = output.getRoot();
+    const plugins = output.getPlugins();
+    const blocks = Plugins.listBlocks(plugins);
 
-    var result = {
+    const result = {
         log: logger,
         config: encodeConfig(output, book.getConfig()),
         summary: encodeSummary(output, book.getSummary()),
@@ -88,7 +88,7 @@ function encodeGlobal(output) {
             @return {String}
         */
         getPageByPath: function(filePath) {
-            var page = output.getPage(filePath);
+            const page = output.getPage(filePath);
             if (!page) return undefined;
 
             return encodePage(output, page);
@@ -102,7 +102,7 @@ function encodeGlobal(output) {
             @return {Promise<String>}
         */
         renderBlock: function(type, text) {
-            var parser = parsers.get(type);
+            const parser = parsers.get(type);
 
             return parser.parsePage(text).get("content");
         },
@@ -115,7 +115,7 @@ function encodeGlobal(output) {
             @return {Promise<String>}
         */
         renderInline: function(type, text) {
-            var parser = parsers.get(type);
+            const parser = parsers.get(type);
 
             return parser.parseInline(text).get("content");
         },
@@ -129,7 +129,7 @@ function encodeGlobal(output) {
                 @return {Promise|Object}
             */
             applyBlock: function(name, blockData) {
-                var block = blocks.get(name) || defaultBlocks.get(name);
+                const block = blocks.get(name) || defaultBlocks.get(name);
                 return Promise(block.applyBlock(blockData, result));
             }
         },
@@ -175,7 +175,7 @@ function encodeGlobal(output) {
             */
             hasFile: function(fileName, content) {
                 return Promise().then(() => {
-                    var filePath = PathUtils.resolveInRoot(
+                    const filePath = PathUtils.resolveInRoot(
                         outputFolder,
                         fileName
                     );
@@ -194,7 +194,7 @@ function encodeGlobal(output) {
             */
             writeFile: function(fileName, content) {
                 return Promise().then(() => {
-                    var filePath = PathUtils.resolveInRoot(
+                    const filePath = PathUtils.resolveInRoot(
                         outputFolder,
                         fileName
                     );
@@ -216,7 +216,7 @@ function encodeGlobal(output) {
             */
             copyFile: function(inputFile, outputFile, content) {
                 return Promise().then(() => {
-                    var outputFilePath = PathUtils.resolveInRoot(
+                    const outputFilePath = PathUtils.resolveInRoot(
                         outputFolder,
                         outputFile
                     );

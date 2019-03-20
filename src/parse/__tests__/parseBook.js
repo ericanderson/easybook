@@ -2,10 +2,10 @@ import Book from "../../models/book";
 import createMockFS from "../../fs/mock";
 
 describe("parseBook", () => {
-    var parseBook = require("../parseBook").default;
+    const parseBook = require("../parseBook").default;
 
     it("should parse multilingual book", () => {
-        var fs = createMockFS({
+        const fs = createMockFS({
             "LANGS.md": "# Languages\n\n* [en](en)\n* [fr](fr)",
             en: {
                 "README.md": "Hello"
@@ -14,11 +14,11 @@ describe("parseBook", () => {
                 "README.md": "Bonjour"
             }
         });
-        var book = Book.createForFS(fs);
+        const book = Book.createForFS(fs);
 
         return parseBook(book).then(resultBook => {
-            var languages = resultBook.getLanguages();
-            var books = resultBook.getBooks();
+            const languages = resultBook.getLanguages();
+            const books = resultBook.getBooks();
 
             expect(resultBook.isMultilingual()).toBe(true);
             expect(languages.getList().size).toBe(2);
@@ -27,7 +27,7 @@ describe("parseBook", () => {
     });
 
     it("should extend configuration for multilingual book", () => {
-        var fs = createMockFS({
+        const fs = createMockFS({
             "LANGS.md": "# Languages\n\n* [en](en)\n* [fr](fr)",
             "book.json": '{ "title": "Test", "author": "GitBook" }',
             en: {
@@ -38,19 +38,19 @@ describe("parseBook", () => {
                 "README.md": "Bonjour"
             }
         });
-        var book = Book.createForFS(fs);
+        const book = Book.createForFS(fs);
 
         return parseBook(book).then(resultBook => {
-            var books = resultBook.getBooks();
+            const books = resultBook.getBooks();
 
             expect(resultBook.isMultilingual()).toBe(true);
             expect(books.size).toBe(2);
 
-            var en = books.get("en");
-            var fr = books.get("fr");
+            const en = books.get("en");
+            const fr = books.get("fr");
 
-            var enConfig = en.getConfig();
-            var frConfig = fr.getConfig();
+            const enConfig = en.getConfig();
+            const frConfig = fr.getConfig();
 
             expect(enConfig.getValue("title")).toBe("Test EN");
             expect(enConfig.getValue("author")).toBe("GitBook");
@@ -61,7 +61,7 @@ describe("parseBook", () => {
     });
 
     it("should parse book in a directory", () => {
-        var fs = createMockFS({
+        const fs = createMockFS({
             "book.json": JSON.stringify({
                 root: "./test"
             }),
@@ -71,12 +71,12 @@ describe("parseBook", () => {
                 "page.md": "Page"
             }
         });
-        var book = Book.createForFS(fs);
+        const book = Book.createForFS(fs);
 
         return parseBook(book).then(resultBook => {
-            var readme = resultBook.getReadme();
-            var summary = resultBook.getSummary();
-            var articles = summary.getArticlesAsList();
+            const readme = resultBook.getReadme();
+            const summary = resultBook.getSummary();
+            const articles = summary.getArticlesAsList();
 
             expect(summary.file.exists()).toBe(true);
             expect(readme.file.exists()).toBe(true);

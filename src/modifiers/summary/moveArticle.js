@@ -13,12 +13,12 @@ import insertArticle from "./insertArticle";
 */
 function moveArticle(summary, origin, target) {
     // Coerce to level
-    var originLevel = is.string(origin) ? origin : origin.getLevel();
-    var targetLevel = is.string(target) ? target : target.getLevel();
-    var article = summary.getByLevel(originLevel);
+    const originLevel = is.string(origin) ? origin : origin.getLevel();
+    const targetLevel = is.string(target) ? target : target.getLevel();
+    const article = summary.getByLevel(originLevel);
 
     // Remove first
-    var removed = removeArticle(summary, originLevel);
+    const removed = removeArticle(summary, originLevel);
     return insertArticle(removed, article, targetLevel);
 }
 

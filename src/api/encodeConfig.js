@@ -9,7 +9,7 @@ import deprecate from "./deprecate";
     @return {Object}
 */
 function encodeConfig(output, config) {
-    var result = {
+    const result = {
         values: config.getValues().toJS(),
 
         get: function(key, defaultValue) {

@@ -4,8 +4,8 @@ import renderTemplate from "../render";
 import postRender from "../postRender";
 
 describe("postRender", () => {
-    var testPost;
-    var engine = TemplateEngine.create({
+    let testPost;
+    const engine = TemplateEngine.create({
         blocks: [
             TemplateBlock.create("lower", blk => blk.body.toLowerCase()),
             TemplateBlock.create("prefix", blk => ({

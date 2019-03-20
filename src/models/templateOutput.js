@@ -1,6 +1,6 @@
 import Immutable from "immutable";
 
-var TemplateOutput = Immutable.Record(
+const TemplateOutput = Immutable.Record(
     {
         // Text content of the template
         content: String(),

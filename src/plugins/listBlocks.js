@@ -8,7 +8,7 @@ import Immutable from "immutable";
 */
 function listBlocks(plugins) {
     return plugins.reverse().reduce((result, plugin) => {
-        var blocks = plugin.getBlocks();
+        const blocks = plugin.getBlocks();
         return result.merge(blocks);
     }, Immutable.Map());
 }

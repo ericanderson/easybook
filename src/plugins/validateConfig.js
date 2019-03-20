@@ -13,14 +13,14 @@ import mergeDefaults from "../utils/mergeDefaults";
     @return {Book}
 */
 function validatePluginConfig(book, plugin) {
-    var config = book.getConfig();
-    var packageInfos = plugin.getPackage();
+    let config = book.getConfig();
+    const packageInfos = plugin.getPackage();
 
-    var configKey = ["pluginsConfig", plugin.getName()].join(".");
+    const configKey = ["pluginsConfig", plugin.getName()].join(".");
 
-    var pluginConfig = config.getValue(configKey, {}).toJS();
+    let pluginConfig = config.getValue(configKey, {}).toJS();
 
-    var schema = (packageInfos.get("gitbook") || Immutable.Map()).toJS();
+    const schema = (packageInfos.get("gitbook") || Immutable.Map()).toJS();
     if (!schema) return book;
 
     // Normalize schema
@@ -28,8 +28,8 @@ function validatePluginConfig(book, plugin) {
     schema.type = "object";
 
     // Validate and throw if invalid
-    var v = new jsonschema.Validator();
-    var result = v.validate(pluginConfig, schema, {
+    const v = new jsonschema.Validator();
+    const result = v.validate(pluginConfig, schema, {
         propertyName: configKey
     });
 
@@ -39,7 +39,7 @@ function validatePluginConfig(book, plugin) {
     }
 
     // Insert default values
-    var defaults = jsonSchemaDefaults(schema);
+    const defaults = jsonSchemaDefaults(schema);
     pluginConfig = mergeDefaults(pluginConfig, defaults);
 
     // Update configuration

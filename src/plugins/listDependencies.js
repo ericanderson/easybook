@@ -10,7 +10,7 @@ import sortDependencies from "./sortDependencies";
  */
 function listDependencies(deps) {
     // Extract list of plugins to disable (starting with -)
-    var toRemove = deps
+    const toRemove = deps
         .filter(plugin => !plugin.isEnabled())
         .map(plugin => plugin.getName());
 

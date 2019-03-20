@@ -8,8 +8,8 @@ import encodeSummaryPart from "./encodeSummaryPart";
     @return {Object}
 */
 function encodeSummary(summary) {
-    var file = summary.getFile();
-    var parts = summary.getParts();
+    const file = summary.getFile();
+    const parts = summary.getParts();
 
     return {
         file: encodeFile(file),

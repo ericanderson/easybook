@@ -3,7 +3,7 @@ import TemplateBlock from "../../models/templateBlock";
 import replaceShortcuts from "../replaceShortcuts";
 
 describe("replaceShortcuts", () => {
-    var blocks = Immutable.List([
+    const blocks = Immutable.List([
         TemplateBlock.create("math", {
             shortcuts: {
                 start: "$$",
@@ -14,12 +14,12 @@ describe("replaceShortcuts", () => {
     ]);
 
     it("should correctly replace inline matches by block", () => {
-        var content = replaceShortcuts(blocks, "test.md", "Hello $$a = b$$");
+        const content = replaceShortcuts(blocks, "test.md", "Hello $$a = b$$");
         expect(content).toBe("Hello {% math %}a = b{% endmath %}");
     });
 
     it("should correctly replace block matches", () => {
-        var content = replaceShortcuts(
+        const content = replaceShortcuts(
             blocks,
             "test.md",
             "Hello\n$$\na = b\n$$\n"

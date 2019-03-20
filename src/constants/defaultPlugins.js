@@ -8,8 +8,8 @@ import pkg from "../../package.json";
  * @return {PluginDependency}
  */
 function createFromDependency(pluginName) {
-    var npmID = PluginDependency.nameToNpmID(pluginName);
-    var version = pkg.dependencies[npmID];
+    const npmID = PluginDependency.nameToNpmID(pluginName);
+    const version = pkg.dependencies[npmID];
 
     return PluginDependency.create(pluginName, version);
 }

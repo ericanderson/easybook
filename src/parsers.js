@@ -7,7 +7,7 @@ import EXTENSIONS_ASCIIDOC from "./constants/extsAsciidoc";
 import Parser from "./models/parser";
 
 // This list is ordered by priority of parsers to use
-var parsers = Immutable.List([
+const parsers = Immutable.List([
     Parser.create("markdown", EXTENSIONS_MARKDOWN, markdownParser),
     Parser.create("asciidoc", EXTENSIONS_ASCIIDOC, asciidocParser)
 ]);
@@ -43,7 +43,7 @@ function getParserForFile(filename) {
 }
 
 // List all parsable extensions
-var extensions = parsers.map(parser => parser.getExtensions()).flatten();
+const extensions = parsers.map(parser => parser.getExtensions()).flatten();
 
 export default {
     extensions,

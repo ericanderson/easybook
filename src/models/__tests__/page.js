@@ -4,7 +4,7 @@ import Page from "../page";
 describe("Page", () => {
     describe("toText", () => {
         it("must not prepend frontmatter if no attributes", () => {
-            var page = Page().merge({
+            const page = Page().merge({
                 content: "Hello World"
             });
 
@@ -12,7 +12,7 @@ describe("Page", () => {
         });
 
         it("must prepend frontmatter if attributes", () => {
-            var page = Page().merge({
+            const page = Page().merge({
                 content: "Hello World",
                 attributes: Immutable.fromJS({
                     hello: "world"

@@ -3,7 +3,7 @@ import GlossaryEntry from "../glossaryEntry";
 describe("GlossaryEntry", () => {
     describe("getID", () => {
         it("must return a normalized ID", () => {
-            var entry = new GlossaryEntry({
+            const entry = new GlossaryEntry({
                 name: "Hello World"
             });
 

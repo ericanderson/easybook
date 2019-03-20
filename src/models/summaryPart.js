@@ -5,7 +5,7 @@ import SummaryArticle from "./summaryArticle";
     A part represents a section in the Summary / table of Contents
 */
 
-var SummaryPart = Immutable.Record({
+const SummaryPart = Immutable.Record({
     level: String(),
     title: String(),
     articles: Immutable.List()
@@ -29,9 +29,9 @@ SummaryPart.prototype.getArticles = function() {
  * @return {String}
  */
 SummaryPart.prototype.createChildLevel = function() {
-    var level = this.getLevel();
-    var subArticles = this.getArticles();
-    var childLevel = level + "." + (subArticles.size + 1);
+    const level = this.getLevel();
+    const subArticles = this.getArticles();
+    const childLevel = level + "." + (subArticles.size + 1);
 
     return childLevel;
 };
@@ -43,7 +43,7 @@ SummaryPart.prototype.createChildLevel = function() {
  * @return {SummaryPart}
  */
 SummaryPart.create = (def, level) => {
-    var articles = (def.articles || []).map((article, i) => {
+    const articles = (def.articles || []).map((article, i) => {
         if (article instanceof SummaryArticle) {
             return article;
         }

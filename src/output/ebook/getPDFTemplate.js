@@ -12,12 +12,12 @@ import Promise from "../../utils/promise";
     @return {String}
 */
 function getPDFTemplate(output, type) {
-    var filePath = "pdf_" + type + ".html";
-    var outputRoot = output.getRoot();
-    var engine = WebsiteGenerator.createTemplateEngine(output, filePath);
+    const filePath = "pdf_" + type + ".html";
+    const outputRoot = output.getRoot();
+    const engine = WebsiteGenerator.createTemplateEngine(output, filePath);
 
     // Generate context
-    var context = JSONUtils.encodeOutput(output);
+    const context = JSONUtils.encodeOutput(output);
     context.page = {
         num: "_PAGENUM_",
         title: "_SECTION_"

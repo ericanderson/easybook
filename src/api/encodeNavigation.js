@@ -8,7 +8,7 @@ import Immutable from "immutable";
     @return {Object}
 */
 function encodeArticle(pages, article) {
-    var articlePath = article.getPath();
+    const articlePath = article.getPath();
 
     return {
         path: articlePath,
@@ -26,20 +26,20 @@ function encodeArticle(pages, article) {
     @return {Object}
 */
 function encodeNavigation(output) {
-    var book = output.getBook();
-    var pages = output.getPages();
-    var summary = book.getSummary();
-    var articles = summary.getArticlesAsList();
+    const book = output.getBook();
+    const pages = output.getPages();
+    const summary = book.getSummary();
+    const articles = summary.getArticlesAsList();
 
-    var navigation = articles
+    const navigation = articles
         .map((article, i) => {
-            var ref = article.getRef();
+            const ref = article.getRef();
             if (!ref) {
                 return undefined;
             }
 
-            var prev = articles.get(i - 1);
-            var next = articles.get(i + 1);
+            const prev = articles.get(i - 1);
+            const next = articles.get(i + 1);
 
             return [
                 ref,

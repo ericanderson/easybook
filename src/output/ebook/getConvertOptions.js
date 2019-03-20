@@ -10,15 +10,15 @@ import getCoverPath from "./getCoverPath";
     @return {Promise<Object>}
 */
 function getConvertOptions(output) {
-    var options = output.getOptions();
-    var format = options.get("format");
+    const options = output.getOptions();
+    const format = options.get("format");
 
-    var book = output.getBook();
-    var config = book.getConfig();
+    const book = output.getBook();
+    const config = book.getConfig();
 
     return Promise().then(() => {
-        var coverPath = getCoverPath(output);
-        var options = {
+        const coverPath = getCoverPath(output);
+        let options = {
             "--cover": coverPath,
             "--title": config.getValue("title"),
             "--comments": config.getValue("description"),
@@ -49,7 +49,7 @@ function getConvertOptions(output) {
             getPDFTemplate(output, "header"),
             getPDFTemplate(output, "footer")
         ]).spread((headerTpl, footerTpl) => {
-            var pdfOptions = config.getValue("pdf").toJS();
+            const pdfOptions = config.getValue("pdf").toJS();
 
             return (options = extend(options, {
                 "--chapter-mark": String(pdfOptions.chapterMark),

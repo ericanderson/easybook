@@ -1,7 +1,7 @@
 import I18n from "i18n-t";
 import Immutable from "immutable";
 
-var GeneratorState = Immutable.Record({
+const GeneratorState = Immutable.Record({
     i18n: I18n(),
 
     // List of plugins' resources

@@ -12,10 +12,10 @@ import encodeLanguages from "./encodeLanguages";
     @return {Object}
 */
 function encodeBookToJson(book) {
-    var config = book.getConfig();
-    var language = book.getLanguage();
+    const config = book.getConfig();
+    const language = book.getLanguage();
 
-    var variables = config.getValue("variables", {});
+    const variables = config.getValue("variables", {});
 
     return {
         summary: encodeSummary(book.getSummary()),

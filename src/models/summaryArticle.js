@@ -5,7 +5,7 @@ import location from "../utils/location";
     An article represents an entry in the Summary / table of Contents
 */
 
-var SummaryArticle = Immutable.Record(
+const SummaryArticle = Immutable.Record(
     {
         level: String(),
         title: String(),
@@ -52,14 +52,14 @@ SummaryArticle.prototype.getPath = function() {
         return undefined;
     }
 
-    var ref = this.getRef();
+    const ref = this.getRef();
     if (!ref) {
         return undefined;
     }
 
-    var parts = ref.split("#");
+    const parts = ref.split("#");
 
-    var pathname = parts.length > 1 ? parts.slice(0, -1).join("#") : ref;
+    const pathname = parts.length > 1 ? parts.slice(0, -1).join("#") : ref;
 
     // Normalize path to remove ('./', '/...', etc)
     return location.flatten(pathname);
@@ -80,10 +80,10 @@ SummaryArticle.prototype.getUrl = function() {
  * @return {String}
  */
 SummaryArticle.prototype.getAnchor = function() {
-    var ref = this.getRef();
-    var parts = ref.split("#");
+    const ref = this.getRef();
+    const parts = ref.split("#");
 
-    var anchor = parts.length > 1 ? "#" + parts[parts.length - 1] : undefined;
+    const anchor = parts.length > 1 ? "#" + parts[parts.length - 1] : undefined;
     return anchor;
 };
 
@@ -93,9 +93,9 @@ SummaryArticle.prototype.getAnchor = function() {
  * @return {String}
  */
 SummaryArticle.prototype.createChildLevel = function() {
-    var level = this.getLevel();
-    var subArticles = this.getArticles();
-    var childLevel = level + "." + (subArticles.size + 1);
+    const level = this.getLevel();
+    const subArticles = this.getArticles();
+    const childLevel = level + "." + (subArticles.size + 1);
 
     return childLevel;
 };
@@ -126,8 +126,8 @@ SummaryArticle.prototype.isFile = function(file) {
  * @return {Boolean}
  */
 SummaryArticle.prototype.isReadme = function(book) {
-    var readme = book.getFile ? book : book.getReadme();
-    var file = readme.file;
+    const readme = book.getFile ? book : book.getReadme();
+    const file = readme.file;
 
     return this.isFile(file);
 };
@@ -148,7 +148,7 @@ SummaryArticle.prototype.isExternal = function() {
  * @return {SummaryArticle}
  */
 SummaryArticle.create = (def, level) => {
-    var articles = (def.articles || []).map((article, i) => {
+    const articles = (def.articles || []).map((article, i) => {
         if (article instanceof SummaryArticle) {
             return article;
         }
@@ -171,7 +171,7 @@ SummaryArticle.create = (def, level) => {
  * @return {Article}
  */
 SummaryArticle.findArticle = (base, iter) => {
-    var articles = base.getArticles();
+    const articles = base.getArticles();
 
     return articles.reduce((result, article) => {
         if (result) return result;

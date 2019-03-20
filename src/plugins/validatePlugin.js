@@ -8,9 +8,9 @@ import Promise from "../utils/promise";
     @return {Promise<Plugin>}
 */
 function validatePlugin(plugin) {
-    var packageInfos = plugin.getPackage();
+    const packageInfos = plugin.getPackage();
 
-    var isValid =
+    const isValid =
         plugin.isLoaded() &&
         packageInfos &&
         packageInfos.get("name") &&
@@ -29,7 +29,7 @@ function validatePlugin(plugin) {
         );
     }
 
-    var engine = packageInfos.get("engines").get("gitbook");
+    const engine = packageInfos.get("engines").get("gitbook");
     if (!gitbook.satisfies(engine)) {
         return Promise.reject(
             new Error(

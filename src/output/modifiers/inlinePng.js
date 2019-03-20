@@ -13,20 +13,20 @@ import editHTMLElement from "./editHTMLElement";
     @return {Promise}
 */
 function inlinePng(rootFolder, currentFile, $) {
-    var currentDirectory = path.dirname(currentFile);
+    const currentDirectory = path.dirname(currentFile);
 
     return editHTMLElement($, "img", $img => {
-        var src = $img.attr("src");
+        const src = $img.attr("src");
         if (!LocationUtils.isDataURI(src)) {
             return;
         }
 
         // We avoid generating twice the same PNG
-        var hash = crc.crc32(src).toString(16);
-        var fileName = hash + ".png";
+        const hash = crc.crc32(src).toString(16);
+        let fileName = hash + ".png";
 
         // Result file path
-        var filePath = path.join(rootFolder, fileName);
+        const filePath = path.join(rootFolder, fileName);
 
         return fs
             .assertFile(filePath, () =>

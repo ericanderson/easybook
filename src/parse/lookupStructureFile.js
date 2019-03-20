@@ -10,9 +10,9 @@ import findParsableFile from "./findParsableFile";
     to the book content root.
 */
 function lookupStructureFile(book, type) {
-    var config = book.getConfig();
+    const config = book.getConfig();
 
-    var fileToSearch = config.getValue(["structure", type]);
+    const fileToSearch = config.getValue(["structure", type]);
 
     return findParsableFile(book, fileToSearch);
 }

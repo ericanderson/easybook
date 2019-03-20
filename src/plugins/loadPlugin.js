@@ -24,21 +24,23 @@ function isModuleNotFound(err) {
     @return {Promise<Plugin>}
 */
 function loadPlugin(book, plugin) {
-    var logger = book.getLogger();
+    const logger = book.getLogger();
 
-    var name = plugin.getName();
-    var pkgPath = plugin.getPath();
+    const name = plugin.getName();
+    let pkgPath = plugin.getPath();
 
     // Try loading plugins from different location
-    var p = Promise()
+    let p = Promise()
         .then(() => {
-            var packageContent;
-            var packageMain;
-            var content;
+            let packageContent;
+            let packageMain;
+            let content;
 
             // Locate plugin and load package.json
             try {
-                var res = resolve.sync("./package.json", { basedir: pkgPath });
+                const res = resolve.sync("./package.json", {
+                    basedir: pkgPath
+                });
 
                 pkgPath = path.dirname(res);
                 packageContent = require(res);
@@ -53,7 +55,9 @@ function loadPlugin(book, plugin) {
 
             // Locate the main package
             try {
-                var indexJs = path.normalize(packageContent.main || "index.js");
+                const indexJs = path.normalize(
+                    packageContent.main || "index.js"
+                );
                 packageMain = resolve.sync("./" + indexJs, {
                     basedir: pkgPath
                 });

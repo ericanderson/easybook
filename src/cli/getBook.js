@@ -11,10 +11,10 @@ import createNodeFS from "../fs/node";
     @return {Book}
 */
 function getBook(book, kwargs) {
-    var input = path.resolve(book || process.cwd());
-    var logLevel = kwargs.log;
+    const input = path.resolve(book || process.cwd());
+    const logLevel = kwargs.log;
 
-    var fs = createNodeFS(input);
+    const fs = createNodeFS(input);
     var book = Book.createForFS(fs);
 
     return book.setLogLevel(logLevel);

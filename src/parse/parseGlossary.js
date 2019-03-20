@@ -8,7 +8,7 @@ import Glossary from "../models/glossary";
     @return {Promise<Book>}
 */
 function parseGlossary(book) {
-    var logger = book.getLogger();
+    const logger = book.getLogger();
 
     return parseStructureFile(book, "glossary").spread((file, entries) => {
         if (!file) {
@@ -17,7 +17,7 @@ function parseGlossary(book) {
 
         logger.debug.ln("glossary index file found at", file.getPath());
 
-        var glossary = Glossary.createFromEntries(file, entries);
+        const glossary = Glossary.createFromEntries(file, entries);
         return book.set("glossary", glossary);
     });
 }

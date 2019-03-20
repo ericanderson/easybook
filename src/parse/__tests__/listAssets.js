@@ -6,14 +6,14 @@ import parseGlossary from "../parseGlossary";
 
 describe("listAssets", () => {
     it("should not list glossary as asset", () => {
-        var fs = createMockFS({
+        const fs = createMockFS({
             "GLOSSARY.md": "# Glossary\n\n## Hello\nDescription for hello",
             "assetFile.js": "",
             assets: {
                 "file.js": ""
             }
         });
-        var book = Book.createForFS(fs);
+        const book = Book.createForFS(fs);
 
         return parseGlossary(book)
             .then(resultBook => listAssets(resultBook, Immutable.Map()))

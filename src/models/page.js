@@ -2,7 +2,7 @@ import Immutable from "immutable";
 import yaml from "js-yaml";
 import File from "./file";
 
-var Page = Immutable.Record({
+const Page = Immutable.Record({
     file: File(),
 
     // Attributes extracted from the YAML header
@@ -36,14 +36,14 @@ Page.prototype.getDir = function() {
  * @return {String}
  */
 Page.prototype.toText = function() {
-    var attrs = this.getAttributes();
-    var content = this.getContent();
+    const attrs = this.getAttributes();
+    const content = this.getContent();
 
     if (attrs.size === 0) {
         return content;
     }
 
-    var frontMatter =
+    const frontMatter =
         "---\n" +
         yaml.safeDump(attrs.toJS(), { skipInvalid: true }) +
         "---\n\n";

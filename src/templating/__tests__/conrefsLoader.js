@@ -4,11 +4,11 @@ import renderTemplate from "../render";
 import ConrefsLoader from "../conrefsLoader";
 
 describe("ConrefsLoader", () => {
-    var dirName = __dirname + "/";
-    var fileName = path.join(dirName, "test.md");
+    const dirName = __dirname + "/";
+    const fileName = path.join(dirName, "test.md");
 
     describe("Git", () => {
-        var engine = TemplateEngine({
+        const engine = TemplateEngine({
             loader: new ConrefsLoader(dirName)
         });
 
@@ -41,7 +41,7 @@ describe("ConrefsLoader", () => {
     });
 
     describe("Local", () => {
-        var engine = TemplateEngine({
+        const engine = TemplateEngine({
             loader: new ConrefsLoader(dirName)
         });
 

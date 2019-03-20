@@ -11,17 +11,17 @@ import createTemplateEngine from "./createTemplateEngine";
     @return {Output}
 */
 function onFinish(output) {
-    var book = output.getBook();
-    var options = output.getOptions();
-    var prefix = options.get("prefix");
+    const book = output.getBook();
+    const options = output.getOptions();
+    const prefix = options.get("prefix");
 
     if (!book.isMultilingual()) {
         return Promise(output);
     }
 
-    var filePath = "index.html";
-    var engine = createTemplateEngine(output, filePath);
-    var context = JSONUtils.encodeOutput(output);
+    const filePath = "index.html";
+    const engine = createTemplateEngine(output, filePath);
+    const context = JSONUtils.encodeOutput(output);
 
     // Render the theme
     return (

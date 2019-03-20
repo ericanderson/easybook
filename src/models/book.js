@@ -10,7 +10,7 @@ import Languages from "./languages";
 import Ignore from "./ignore";
 import File from "../models/file";
 
-var Book = Immutable.Record({
+const Book = Immutable.Record({
     // Logger for outptu message
     logger: Logger(),
 
@@ -84,9 +84,9 @@ Book.prototype.getLanguage = function() {
     @return {FS}
 */
 Book.prototype.getContentFS = function() {
-    var fs = this.getFS();
-    var config = this.getConfig();
-    var rootFolder = config.getValue("root");
+    const fs = this.getFS();
+    const config = this.getConfig();
+    const rootFolder = config.getValue("root");
 
     if (rootFolder) {
         return FS.reduceScope(fs, rootFolder);
@@ -101,7 +101,7 @@ Book.prototype.getContentFS = function() {
     @return {String}
 */
 Book.prototype.getRoot = function() {
-    var fs = this.getFS();
+    const fs = this.getFS();
     return fs.getRoot();
 };
 
@@ -111,7 +111,7 @@ Book.prototype.getRoot = function() {
     @return {String}
 */
 Book.prototype.getContentRoot = function() {
-    var fs = this.getContentFS();
+    const fs = this.getContentFS();
     return fs.getRoot();
 };
 
@@ -122,8 +122,8 @@ Book.prototype.getContentRoot = function() {
     @return {Page|undefined}
 */
 Book.prototype.isFileIgnored = function(filename) {
-    var ignore = this.getIgnore();
-    var language = this.getLanguage();
+    const ignore = this.getIgnore();
+    const language = this.getLanguage();
 
     // Ignore is always relative to the root of the main book
     if (language) {
@@ -140,8 +140,8 @@ Book.prototype.isFileIgnored = function(filename) {
     @return {Page|undefined}
 */
 Book.prototype.isContentFileIgnored = function(filename) {
-    var config = this.getConfig();
-    var rootFolder = config.getValue("root");
+    const config = this.getConfig();
+    const rootFolder = config.getValue("root");
 
     if (rootFolder) {
         filename = path.join(rootFolder, filename);
@@ -185,7 +185,7 @@ Book.prototype.isLanguageBook = function() {
     @return {Book}
 */
 Book.prototype.getLanguageBook = function(language) {
-    var books = this.getBooks();
+    const books = this.getBooks();
     return books.get(language);
 };
 
@@ -197,7 +197,7 @@ Book.prototype.getLanguageBook = function(language) {
     @return {Book}
 */
 Book.prototype.addLanguageBook = function(language, book) {
-    var books = this.getBooks();
+    let books = this.getBooks();
     books = books.set(language, book);
 
     return this.set("books", books);
@@ -272,11 +272,11 @@ Book.createForFS = function createForFS(fs) {
 */
 Book.prototype.getDefaultExt = function() {
     // Inferring sources
-    var clues = [this.getReadme(), this.getSummary(), this.getGlossary()];
+    const clues = [this.getReadme(), this.getSummary(), this.getGlossary()];
 
     // List their extensions
-    var exts = clues.map(clue => {
-        var file = clue.getFile();
+    const exts = clues.map(clue => {
+        const file = clue.getFile();
         if (file.exists()) {
             return file
                 .getParser()
@@ -300,7 +300,7 @@ Book.prototype.getDefaultExt = function() {
     @return {String}
 */
 Book.prototype.getDefaultReadmePath = function(absolute) {
-    var defaultPath = "README" + this.getDefaultExt();
+    const defaultPath = "README" + this.getDefaultExt();
     if (absolute) {
         return path.join(this.getContentRoot(), defaultPath);
     } else {
@@ -315,7 +315,7 @@ Book.prototype.getDefaultReadmePath = function(absolute) {
     @return {String}
 */
 Book.prototype.getDefaultSummaryPath = function(absolute) {
-    var defaultPath = "SUMMARY" + this.getDefaultExt();
+    const defaultPath = "SUMMARY" + this.getDefaultExt();
     if (absolute) {
         return path.join(this.getContentRoot(), defaultPath);
     } else {
@@ -330,7 +330,7 @@ Book.prototype.getDefaultSummaryPath = function(absolute) {
     @return {String}
 */
 Book.prototype.getDefaultGlossaryPath = function(absolute) {
-    var defaultPath = "GLOSSARY" + this.getDefaultExt();
+    const defaultPath = "GLOSSARY" + this.getDefaultExt();
     if (absolute) {
         return path.join(this.getContentRoot(), defaultPath);
     } else {
@@ -346,8 +346,8 @@ Book.prototype.getDefaultGlossaryPath = function(absolute) {
     @return {Book}
 */
 Book.createFromParent = function createFromParent(parent, language) {
-    var ignore = parent.getIgnore();
-    var config = parent.getConfig();
+    const ignore = parent.getIgnore();
+    let config = parent.getConfig();
 
     // Set language in configuration
     config = config.setValue("language", language);

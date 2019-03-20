@@ -1,8 +1,8 @@
 import Immutable from "immutable";
 import THEME_PREFIX from "../constants/themePrefix";
 
-var TYPE_PLUGIN = "plugin";
-var TYPE_THEME = "theme";
+const TYPE_PLUGIN = "plugin";
+const TYPE_THEME = "theme";
 
 /**
  * Returns the type of a plugin given its name
@@ -10,7 +10,7 @@ var TYPE_THEME = "theme";
  * @return {String}
  */
 function pluginType(plugin) {
-    var name = plugin.getName();
+    const name = plugin.getName();
     return name && name.indexOf(THEME_PREFIX) === 0 ? TYPE_THEME : TYPE_PLUGIN;
 }
 
@@ -22,7 +22,7 @@ function pluginType(plugin) {
  * @return {List<PluginDependency>}
  */
 function sortDependencies(plugins) {
-    var byTypes = plugins.groupBy(pluginType);
+    const byTypes = plugins.groupBy(pluginType);
 
     return byTypes
         .get(TYPE_PLUGIN, Immutable.List())

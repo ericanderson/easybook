@@ -1,6 +1,6 @@
 import path from "path";
 import nunjucks from "nunjucks";
-var DoExtension = require("nunjucks-do")(nunjucks);
+const DoExtension = require("nunjucks-do")(nunjucks);
 
 import Api from "../../api";
 import deprecate from "../../api/deprecate";
@@ -31,25 +31,25 @@ function templateFolder(dir) {
  * @return {TemplateEngine}
  */
 function createTemplateEngine(output, currentFile) {
-    var book = output.getBook();
-    var state = output.getState();
-    var i18n = state.getI18n();
-    var config = book.getConfig();
-    var summary = book.getSummary();
-    var outputFolder = output.getRoot();
+    const book = output.getBook();
+    const state = output.getState();
+    const i18n = state.getI18n();
+    const config = book.getConfig();
+    const summary = book.getSummary();
+    const outputFolder = output.getRoot();
 
     // Search paths for templates
-    var searchPaths = listSearchPaths(output);
-    var tplSearchPaths = searchPaths.map(templateFolder);
+    const searchPaths = listSearchPaths(output);
+    const tplSearchPaths = searchPaths.map(templateFolder);
 
     // Create loader
-    var loader = new Templating.ThemesLoader(tplSearchPaths);
+    const loader = new Templating.ThemesLoader(tplSearchPaths);
 
     // Get languages
-    var language = config.getValue("language");
+    const language = config.getValue("language");
 
     // Create API context
-    var context = Api.encodeGlobal(output);
+    const context = Api.encodeGlobal(output);
 
     /**
      * Check if a file exists
@@ -61,7 +61,7 @@ function createTemplateEngine(output, currentFile) {
             return false;
         }
 
-        var filePath = PathUtils.resolveInRoot(outputFolder, fileName);
+        const filePath = PathUtils.resolveInRoot(outputFolder, fileName);
         return fs.existsSync(filePath);
     }
 
@@ -71,7 +71,7 @@ function createTemplateEngine(output, currentFile) {
      * @return {Object|undefined}
      */
     function getArticleByPath(filePath) {
-        var article = summary.getByPath(filePath);
+        const article = summary.getByPath(filePath);
         if (!article) return undefined;
 
         return JSONUtils.encodeSummaryArticle(article);
@@ -83,7 +83,7 @@ function createTemplateEngine(output, currentFile) {
      * @return {Object|undefined}
      */
     function getPageByPath(filePath) {
-        var page = output.getPage(filePath);
+        const page = output.getPage(filePath);
         if (!page) return undefined;
 
         return JSONUtils.encodePage(page, summary);

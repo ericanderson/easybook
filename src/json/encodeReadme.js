@@ -7,7 +7,7 @@ import encodeFile from "./encodeFile";
     @return {Object}
 */
 function encodeReadme(readme) {
-    var file = readme.file;
+    const file = readme.file;
 
     return {
         file: encodeFile(file)

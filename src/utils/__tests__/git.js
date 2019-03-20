@@ -23,7 +23,7 @@ describe("Git", () => {
         });
 
         it("should parse HTTPS urls", () => {
-            var parts = Git.parseUrl(
+            const parts = Git.parseUrl(
                 "git+https://gist.github.com/69ea4542e4c8967d2fa7.git/test.md"
             );
 
@@ -35,7 +35,7 @@ describe("Git", () => {
         });
 
         it("should parse HTTPS urls with a reference", () => {
-            var parts = Git.parseUrl(
+            const parts = Git.parseUrl(
                 "git+https://gist.github.com/69ea4542e4c8967d2fa7.git/test.md#1.0.0"
             );
 
@@ -47,7 +47,7 @@ describe("Git", () => {
         });
 
         it("should parse SSH urls", () => {
-            var parts = Git.parseUrl(
+            const parts = Git.parseUrl(
                 "git+git@github.com:GitbookIO/gitbook.git/directory/README.md#e1594cde2c32e4ff48f6c4eff3d3d461743d74e1"
             );
 
@@ -59,7 +59,9 @@ describe("Git", () => {
 
     describe("Cloning and resolving", () => {
         it("should clone an HTTPS url", () => {
-            var git = new Git(path.join(os.tmpdir(), "test-git-" + Date.now()));
+            const git = new Git(
+                path.join(os.tmpdir(), "test-git-" + Date.now())
+            );
             return git
                 .resolve(
                     "git+https://gist.github.com/69ea4542e4c8967d2fa7.git/test.md"

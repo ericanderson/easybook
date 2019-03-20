@@ -10,11 +10,11 @@ import resolveVersion from "./resolveVersion";
     @return {Promise}
 */
 function installPlugin(book, plugin) {
-    var logger = book.getLogger();
+    const logger = book.getLogger();
 
-    var installFolder = book.getRoot();
-    var name = plugin.getName();
-    var requirement = plugin.getVersion();
+    const installFolder = book.getRoot();
+    const name = plugin.getName();
+    const requirement = plugin.getVersion();
 
     logger.info.ln("");
     logger.info.ln('installing plugin "' + name + '"');

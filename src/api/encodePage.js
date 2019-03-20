@@ -10,13 +10,13 @@ import encodeProgress from "./encodeProgress";
     @return {Object}
 */
 function encodePage(output, page) {
-    var book = output.getBook();
-    var summary = book.getSummary();
-    var fs = book.getContentFS();
-    var file = page.getFile();
+    const book = output.getBook();
+    const summary = book.getSummary();
+    const fs = book.getContentFS();
+    const file = page.getFile();
 
     // JS Page is based on the JSON output
-    var result = JSONUtils.encodePage(page, summary);
+    const result = JSONUtils.encodePage(page, summary);
 
     result.type = file.getType();
     result.path = file.getPath();

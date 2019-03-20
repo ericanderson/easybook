@@ -9,8 +9,8 @@ import CONFIG_FILES from "../constants/configFiles";
     @return {Promise<Book>}
 */
 function parseConfig(book) {
-    var fs = book.getFS();
-    var config = book.getConfig();
+    const fs = book.getFS();
+    let config = book.getConfig();
 
     return some(CONFIG_FILES, filename => {
         // Is this file ignored?
@@ -32,7 +32,7 @@ function parseConfig(book) {
                 else return Promise(false);
             });
     }).then(result => {
-        var values = result ? result.values : {};
+        let values = result ? result.values : {};
         values = validateConfig(values);
 
         // Set the file

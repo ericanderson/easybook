@@ -8,7 +8,7 @@ import Modifiers from "../modifiers";
     @param {Output}
 */
 function onPage(output, page) {
-    var options = output.getOptions();
+    const options = output.getOptions();
 
     // Inline assets
     return (

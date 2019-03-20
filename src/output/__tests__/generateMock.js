@@ -15,9 +15,9 @@ import generateBook from "../generateBook";
  * @return {Promise<String>}
  */
 function generateMock(Generator, files) {
-    var fs = createMockFS(files);
-    var book = Book.createForFS(fs);
-    var dir;
+    const fs = createMockFS(files);
+    let book = Book.createForFS(fs);
+    let dir;
 
     try {
         dir = tmp.dirSync();

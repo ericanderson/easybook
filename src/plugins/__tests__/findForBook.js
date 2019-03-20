@@ -4,8 +4,8 @@ import createNodeFS from "../../fs/node";
 import findForBook from "../findForBook";
 
 describe("findForBook", () => {
-    var fs = createNodeFS(path.resolve(__dirname, "../../.."));
-    var book = Book.createForFS(fs);
+    const fs = createNodeFS(path.resolve(__dirname, "../../.."));
+    const book = Book.createForFS(fs);
 
     it("should list default plugins", () =>
         findForBook(book).then(plugins => {

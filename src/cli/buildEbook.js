@@ -13,17 +13,17 @@ export default function(format) {
         description: "build a book into an ebook file",
         options: [options.log],
         exec: function(args, kwargs) {
-            var extension = "." + format;
+            const extension = "." + format;
 
             // Output file will be stored in
-            var outputFile = args[1] || "book" + extension;
+            const outputFile = args[1] || "book" + extension;
 
             // Create temporary directory
-            var outputFolder = tmp.dirSync().name;
+            const outputFolder = tmp.dirSync().name;
 
-            var book = getBook(args, kwargs);
-            var logger = book.getLogger();
-            var Generator = Output.getGenerator("ebook");
+            const book = getBook(args, kwargs);
+            const logger = book.getLogger();
+            const Generator = Output.getGenerator("ebook");
 
             return (
                 Parse.parseBook(book)
@@ -36,16 +36,16 @@ export default function(format) {
 
                     // Extract ebook file
                     .then(output => {
-                        var book = output.getBook();
-                        var languages = book.getLanguages();
+                        const book = output.getBook();
+                        const languages = book.getLanguages();
 
                         if (book.isMultilingual()) {
                             return Promise.forEach(
                                 languages.getList(),
                                 lang => {
-                                    var langID = lang.getID();
+                                    const langID = lang.getID();
 
-                                    var langOutputFile = path.join(
+                                    const langOutputFile = path.join(
                                         path.dirname(outputFile),
                                         path.basename(outputFile, extension) +
                                             "_" +

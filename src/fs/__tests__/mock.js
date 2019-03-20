@@ -1,7 +1,7 @@
 import createMockFS from "../mock";
 
 describe("MockFS", () => {
-    var fs = createMockFS({
+    const fs = createMockFS({
         "README.md": "Hello World",
         "SUMMARY.md": "# Summary",
         folder: {

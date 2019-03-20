@@ -10,12 +10,12 @@ import listSearchPaths from "./listSearchPaths";
  * @return {Promise<Output>}
  */
 function prepareI18n(output) {
-    var state = output.getState();
-    var i18n = state.getI18n();
-    var searchPaths = listSearchPaths(output);
+    const state = output.getState();
+    const i18n = state.getI18n();
+    const searchPaths = listSearchPaths(output);
 
     searchPaths.reverse().forEach(searchPath => {
-        var i18nRoot = path.resolve(searchPath, "_i18n");
+        const i18nRoot = path.resolve(searchPath, "_i18n");
 
         if (!fs.existsSync(i18nRoot)) return;
         i18n.load(i18nRoot);

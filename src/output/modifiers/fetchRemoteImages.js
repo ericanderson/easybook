@@ -13,20 +13,20 @@ import LocationUtils from "../../utils/location";
     @return {Promise}
 */
 function fetchRemoteImages(rootFolder, currentFile, $) {
-    var currentDirectory = path.dirname(currentFile);
+    const currentDirectory = path.dirname(currentFile);
 
     return editHTMLElement($, "img", $img => {
-        var src = $img.attr("src");
-        var extension = path.extname(src);
+        let src = $img.attr("src");
+        const extension = path.extname(src);
 
         if (!LocationUtils.isExternal(src)) {
             return;
         }
 
         // We avoid generating twice the same PNG
-        var hash = crc.crc32(src).toString(16);
-        var fileName = hash + extension;
-        var filePath = path.join(rootFolder, fileName);
+        const hash = crc.crc32(src).toString(16);
+        const fileName = hash + extension;
+        const filePath = path.join(rootFolder, fileName);
 
         return fs
             .assertFile(filePath, () => fs.download(src, filePath))

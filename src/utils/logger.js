@@ -3,7 +3,7 @@ import util from "util";
 import color from "bash-color";
 import Immutable from "immutable";
 
-var LEVELS = Immutable.Map({
+const LEVELS = Immutable.Map({
     DEBUG: 0,
     INFO: 1,
     WARN: 2,
@@ -11,7 +11,7 @@ var LEVELS = Immutable.Map({
     DISABLED: 10
 });
 
-var COLORS = Immutable.Map({
+const COLORS = Immutable.Map({
     DEBUG: color.purple,
     INFO: color.cyan,
     WARN: color.yellow,
@@ -105,9 +105,9 @@ Logger.prototype.writeLn = function(msg) {
 Logger.prototype.log = function(level) {
     if (level < this.logLevel) return;
 
-    var levelKey = LEVELS.findKey(v => v === level);
-    var args = Array.prototype.slice.apply(arguments, [1]);
-    var msg = this.format(...args);
+    const levelKey = LEVELS.findKey(v => v === level);
+    const args = Array.prototype.slice.apply(arguments, [1]);
+    let msg = this.format(...args);
 
     if (this.lastChar == "\n") {
         msg = COLORS.get(levelKey)(levelKey.toLowerCase() + ":") + " " + msg;
@@ -122,7 +122,7 @@ Logger.prototype.log = function(level) {
 Logger.prototype.logLn = function() {
     if (this.lastChar != "\n") this.write("\n");
 
-    var args = Array.prototype.slice.apply(arguments);
+    const args = Array.prototype.slice.apply(arguments);
     args.push("\n");
     return this.log(...args);
 };
@@ -131,8 +131,8 @@ Logger.prototype.logLn = function() {
     Log a confirmation [OK]
 */
 Logger.prototype.ok = function(level) {
-    var args = Array.prototype.slice.apply(arguments, [1]);
-    var msg = this.format(...args);
+    const args = Array.prototype.slice.apply(arguments, [1]);
+    const msg = this.format(...args);
     if (arguments.length > 1) {
         this.logLn(
             level,
@@ -158,7 +158,7 @@ Logger.prototype.fail = function(level) {
     @return {Promise}
 */
 Logger.prototype.promise = function(level, p) {
-    var that = this;
+    const that = this;
 
     return p.then(
         st => {

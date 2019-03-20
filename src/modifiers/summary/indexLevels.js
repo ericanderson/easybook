@@ -7,7 +7,7 @@ import indexPartLevels from "./indexPartLevels";
     @return {Summary}
 */
 function indexLevels(summary) {
-    var parts = summary.getParts();
+    let parts = summary.getParts();
     parts = parts.map(indexPartLevels);
 
     return summary.set("parts", parts);

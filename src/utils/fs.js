@@ -11,10 +11,10 @@ import Promise from "./promise";
 
 // Write a stream to a file
 function writeStream(filename, st) {
-    var d = Promise.defer();
+    const d = Promise.defer();
 
-    var wstream = fs.createWriteStream(filename);
-    var cleanup = () => {
+    const wstream = fs.createWriteStream(filename);
+    const cleanup = () => {
         destroy(wstream);
         wstream.removeAllListeners();
     };
@@ -40,7 +40,7 @@ function writeStream(filename, st) {
 
 // Return a promise resolved with a boolean
 function fileExists(filename) {
-    var d = Promise.defer();
+    const d = Promise.defer();
 
     fs.exists(filename, exists => {
         d.resolve(exists);
@@ -66,13 +66,13 @@ function download(uri, dest) {
 
 // Find a filename available in a folder
 function uniqueFilename(base, filename) {
-    var ext = path.extname(filename);
+    const ext = path.extname(filename);
     filename = path.resolve(base, filename);
     filename = path.join(path.dirname(filename), path.basename(filename, ext));
 
-    var _filename = filename + ext;
+    let _filename = filename + ext;
 
-    var i = 0;
+    let i = 0;
     while (fs.existsSync(filename)) {
         _filename = filename + "_" + i + ext;
         i = i + 1;
@@ -83,7 +83,7 @@ function uniqueFilename(base, filename) {
 
 // Create all required folder to create a file
 function ensureFile(filename) {
-    var base = path.dirname(filename);
+    const base = path.dirname(filename);
     return Promise.nfcall(mkdirp, base);
 }
 
@@ -117,7 +117,7 @@ function assertFile(filePath, generator) {
     @return {String}
 */
 function pickFile(rootFolder, fileName) {
-    var result = path.join(rootFolder, fileName);
+    const result = path.join(rootFolder, fileName);
     if (fs.existsSync(result)) {
         return result;
     }

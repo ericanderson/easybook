@@ -7,7 +7,7 @@ import Promise from "./promise";
 import command from "./command";
 import fs from "./fs";
 
-var GIT_PREFIX = "git+";
+const GIT_PREFIX = "git+";
 
 function Git() {
     this.tmpDir;
@@ -20,7 +20,7 @@ Git.prototype.repoID = (host, ref) =>
 
 // Allocate a temporary folder for cloning repos in it
 Git.prototype.allocateDir = function() {
-    var that = this;
+    const that = this;
 
     if (this.tmpDir) return Promise();
 
@@ -31,7 +31,7 @@ Git.prototype.allocateDir = function() {
 
 // Clone a git repository if non existant
 Git.prototype.clone = function(host, ref) {
-    var that = this;
+    const that = this;
 
     return (
         this.allocateDir()
@@ -39,10 +39,10 @@ Git.prototype.clone = function(host, ref) {
             // Return or clone the git repo
             .then(() => {
                 // Unique ID for repo/ref combinaison
-                var repoId = that.repoID(host, ref);
+                const repoId = that.repoID(host, ref);
 
                 // Absolute path to the folder
-                var repoPath = path.join(that.tmpDir, repoId);
+                const repoPath = path.join(that.tmpDir, repoId);
 
                 if (that.cloned[repoId]) return repoPath;
 
@@ -84,8 +84,8 @@ Git.prototype.resolve = function(giturl) {
 
 // Return root of git repo from a filepath
 Git.prototype.resolveRoot = function(filepath) {
-    var relativeToGit;
-    var repoId;
+    let relativeToGit;
+    let repoId;
 
     // No git repo cloned, or file is not in a git repository
     if (!this.tmpDir || !pathUtil.isInRoot(this.tmpDir, filepath)) return null;
@@ -106,10 +106,10 @@ Git.isUrl = giturl => giturl.indexOf(GIT_PREFIX) === 0;
 
 // Parse and extract infos
 Git.parseUrl = giturl => {
-    var ref;
-    var uri;
-    var fileParts;
-    var filepath;
+    let ref;
+    let uri;
+    let fileParts;
+    let filepath;
 
     if (!Git.isUrl(giturl)) return null;
     giturl = giturl.slice(GIT_PREFIX.length);

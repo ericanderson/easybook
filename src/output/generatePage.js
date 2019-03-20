@@ -15,16 +15,16 @@ import callPageHook from "./callPageHook";
  * @return {Promise<Page>}
  */
 function generatePage(output, page) {
-    var book = output.getBook();
-    var engine = createTemplateEngine(output);
+    const book = output.getBook();
+    const engine = createTemplateEngine(output);
 
     return timing.measure(
         "page.generate",
         Promise(page).then(resultPage => {
-            var file = resultPage.getFile();
-            var filePath = file.getPath();
-            var parser = file.getParser();
-            var context = JSONUtils.encodeOutputWithPage(output, resultPage);
+            const file = resultPage.getFile();
+            const filePath = file.getPath();
+            const parser = file.getParser();
+            const context = JSONUtils.encodeOutputWithPage(output, resultPage);
 
             if (!parser) {
                 return Promise.reject(
@@ -44,7 +44,7 @@ function generatePage(output, page) {
 
                     // Render templating syntax
                     .then(content => {
-                        var absoluteFilePath = path.join(
+                        const absoluteFilePath = path.join(
                             book.getContentRoot(),
                             filePath
                         );
@@ -57,7 +57,7 @@ function generatePage(output, page) {
                     })
 
                     .then(output => {
-                        var content = output.getContent();
+                        const content = output.getContent();
 
                         return parser
                             .parsePage(content)

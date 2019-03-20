@@ -8,12 +8,12 @@ import Promise, { forEach } from "../utils/promise";
  * @return {Object} {blocks: Set, content: String}
  */
 function replaceBlocks(content, blocks) {
-    var newContent = content.replace(
+    const newContent = content.replace(
         /\{\{\-\%([\s\S]+?)\%\-\}\}/g,
         (match, key) => {
-            var replacedWith = match;
+            let replacedWith = match;
 
-            var block = blocks.get(key);
+            const block = blocks.get(key);
             if (block) {
                 replacedWith = replaceBlocks(block.get("body"), blocks);
             }
@@ -35,13 +35,13 @@ function replaceBlocks(content, blocks) {
  * @return {Promise<String>}
  */
 function postRender(engine, output) {
-    var content = output.getContent();
-    var blocks = output.getBlocks();
+    const content = output.getContent();
+    const blocks = output.getBlocks();
 
-    var result = replaceBlocks(content, blocks);
+    const result = replaceBlocks(content, blocks);
 
     return forEach(blocks, block => {
-        var post = block.get("post");
+        const post = block.get("post");
 
         if (!post) {
             return;

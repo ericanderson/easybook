@@ -8,8 +8,8 @@ import Promise, { reduce } from "../utils/promise";
     @return {Promise<Output>}
 */
 function generateAssets(generator, output) {
-    var assets = output.getAssets();
-    var logger = output.getLogger();
+    const assets = output.getAssets();
+    const logger = output.getLogger();
 
     // Is generator ignoring assets?
     if (!generator.onAsset) {

@@ -13,12 +13,12 @@ import getOutputFolder from "./getOutputFolder";
 import Server from "./server";
 import watch from "./watch";
 
-var server;
-var lrServer;
-var lrPath;
+let server;
+let lrServer;
+let lrPath;
 
 function waitForCtrlC() {
-    var d = Promise.defer();
+    const d = Promise.defer();
 
     process.on("SIGINT", () => {
         d.resolve();
@@ -28,15 +28,15 @@ function waitForCtrlC() {
 }
 
 function generateBook(args, kwargs) {
-    var port = kwargs.port;
-    var outputFolder = getOutputFolder(args);
-    var book = getBook(args, kwargs);
-    var Generator = Output.getGenerator(kwargs.format);
-    var browser = kwargs["browser"];
+    const port = kwargs.port;
+    const outputFolder = getOutputFolder(args);
+    const book = getBook(args, kwargs);
+    const Generator = Output.getGenerator(kwargs.format);
+    const browser = kwargs["browser"];
 
-    var hasWatch = kwargs["watch"];
-    var hasLiveReloading = kwargs["live"];
-    var hasOpen = kwargs["open"];
+    const hasWatch = kwargs["watch"];
+    const hasLiveReloading = kwargs["live"];
+    const hasOpen = kwargs["open"];
 
     // Stop server if running
     if (server.isRunning()) console.log("Stopping server");
@@ -47,7 +47,7 @@ function generateBook(args, kwargs) {
             Parse.parseBook(book).then(resultBook => {
                 if (hasLiveReloading) {
                     // Enable livereload plugin
-                    var config = resultBook.getConfig();
+                    let config = resultBook.getConfig();
                     config = ConfigModifier.addPlugin(config, "livereload");
                     resultBook = resultBook.set("config", config);
                 }
@@ -132,8 +132,8 @@ export default {
     ],
     exec: function(args, kwargs) {
         server = new Server();
-        var hasWatch = kwargs["watch"];
-        var hasLiveReloading = kwargs["live"];
+        const hasWatch = kwargs["watch"];
+        const hasLiveReloading = kwargs["live"];
 
         return Promise()
             .then(() => {

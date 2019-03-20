@@ -3,7 +3,7 @@ import schema from "../configSchema";
 
 describe("configSchema", () => {
     function validate(cfg) {
-        var v = new jsonschema.Validator();
+        const v = new jsonschema.Validator();
         return v.validate(cfg, schema, {
             propertyName: "config"
         });
@@ -11,7 +11,7 @@ describe("configSchema", () => {
 
     describe("structure", () => {
         it("should accept dot in filename", () => {
-            var result = validate({
+            const result = validate({
                 structure: {
                     readme: "book-intro.adoc"
                 }
@@ -21,7 +21,7 @@ describe("configSchema", () => {
         });
 
         it("should accept uppercase in filename", () => {
-            var result = validate({
+            const result = validate({
                 structure: {
                     readme: "BOOK.adoc"
                 }
@@ -31,7 +31,7 @@ describe("configSchema", () => {
         });
 
         it("should not accept filepath", () => {
-            var result = validate({
+            const result = validate({
                 structure: {
                     readme: "folder/myFile.md"
                 }

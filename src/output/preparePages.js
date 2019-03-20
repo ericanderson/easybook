@@ -8,8 +8,8 @@ import Promise from "../utils/promise";
     @return {Promise<Output>}
 */
 function preparePages(output) {
-    var book = output.getBook();
-    var logger = book.getLogger();
+    const book = output.getBook();
+    const logger = book.getLogger();
 
     if (book.isMultilingual()) {
         return Promise(output);

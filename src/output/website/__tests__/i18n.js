@@ -10,8 +10,8 @@ describe("i18n", () => {
         })
             .then(output => prepareI18n(output))
             .then(output => {
-                var engine = createTemplateEngine(output, "README.md");
-                var t = engine.getFilters().get("t");
+                const engine = createTemplateEngine(output, "README.md");
+                const t = engine.getFilters().get("t");
 
                 expect(t("SUMMARY_INTRODUCTION")).toEqual("Introduction");
             }));
@@ -23,8 +23,8 @@ describe("i18n", () => {
         })
             .then(output => prepareI18n(output))
             .then(output => {
-                var engine = createTemplateEngine(output, "README.md");
-                var t = engine.getFilters().get("t");
+                const engine = createTemplateEngine(output, "README.md");
+                const t = engine.getFilters().get("t");
 
                 expect(t("GITBOOK_LINK")).toEqual("Publié avec GitBook");
             }));

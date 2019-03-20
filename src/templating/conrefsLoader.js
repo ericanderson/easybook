@@ -15,7 +15,7 @@ import PathUtils from "../utils/path";
  * @param {Function(filePath, source)} transformFn (optional)
  * @param {Logger} logger (optional)
  */
-var ConrefsLoader = nunjucks.Loader.extend({
+const ConrefsLoader = nunjucks.Loader.extend({
     async: true,
 
     init: function(rootFolder, transformFn, logger) {
@@ -26,7 +26,7 @@ var ConrefsLoader = nunjucks.Loader.extend({
     },
 
     getSource: function(sourceURL, callback) {
-        var that = this;
+        const that = this;
 
         this.git
             .resolve(sourceURL)
@@ -68,10 +68,10 @@ var ConrefsLoader = nunjucks.Loader.extend({
         // If origin is in the book, we enforce result file to be in the book
         if (PathUtils.isInRoot(this.rootFolder, from)) {
             // Path of current template in the rootFolder (not absolute to fs)
-            var fromRelative = path.relative(this.rootFolder, from);
+            const fromRelative = path.relative(this.rootFolder, from);
 
             // Resolve "to" to a filepath relative to rootFolder
-            var href = LocationUtils.toAbsolute(
+            const href = LocationUtils.toAbsolute(
                 to,
                 path.dirname(fromRelative),
                 ""
@@ -82,7 +82,7 @@ var ConrefsLoader = nunjucks.Loader.extend({
         }
 
         // If origin is in a git repository, we resolve file in the git repository
-        var gitRoot = this.git.resolveRoot(from);
+        const gitRoot = this.git.resolveRoot(from);
         if (gitRoot) {
             return PathUtils.resolveInRoot(gitRoot, to);
         }

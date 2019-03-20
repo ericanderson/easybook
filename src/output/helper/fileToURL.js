@@ -15,8 +15,8 @@ import fileToOutput from "./fileToOutput";
     @return {String}
 */
 function fileToURL(output, filePath) {
-    var options = output.getOptions();
-    var directoryIndex = options.get("directoryIndex");
+    const options = output.getOptions();
+    const directoryIndex = options.get("directoryIndex");
 
     filePath = fileToOutput(output, filePath);
 

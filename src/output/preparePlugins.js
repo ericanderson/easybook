@@ -8,7 +8,7 @@ import Promise from "../utils/promise";
  * @return {Promise<Output>}
  */
 function preparePlugins(output) {
-    var book = output.getBook();
+    const book = output.getBook();
 
     return (
         Promise()

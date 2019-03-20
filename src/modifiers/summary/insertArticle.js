@@ -16,14 +16,14 @@ function insertArticle(summary, article, level) {
     article = SummaryArticle(article);
     level = is.string(level) ? level : level.getLevel();
 
-    var parent = summary.getParent(level);
+    let parent = summary.getParent(level);
     if (!parent) {
         return summary;
     }
 
     // Find the index to insert at
-    var articles = parent.getArticles();
-    var index = getLeafIndex(level);
+    let articles = parent.getArticles();
+    const index = getLeafIndex(level);
 
     // Insert the article at the right index
     articles = articles.insert(index, article);
@@ -40,7 +40,7 @@ function insertArticle(summary, article, level) {
     @return {Number} The index of this level within its parent's children
  */
 function getLeafIndex(level) {
-    var arr = level.split(".").map(char => parseInt(char, 10));
+    const arr = level.split(".").map(char => parseInt(char, 10));
     return arr[arr.length - 1] - 1;
 }
 

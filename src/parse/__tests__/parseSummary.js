@@ -2,29 +2,29 @@ import Book from "../../models/book";
 import createMockFS from "../../fs/mock";
 
 describe("parseSummary", () => {
-    var parseSummary = require("../parseSummary").default;
+    const parseSummary = require("../parseSummary").default;
 
     it("should parse summary if exists", () => {
-        var fs = createMockFS({
+        const fs = createMockFS({
             "SUMMARY.md": "# Summary\n\n* [Hello](hello.md)"
         });
-        var book = Book.createForFS(fs);
+        const book = Book.createForFS(fs);
 
         return parseSummary(book).then(resultBook => {
-            var summary = resultBook.getSummary();
-            var file = summary.getFile();
+            const summary = resultBook.getSummary();
+            const file = summary.getFile();
 
             expect(file.exists()).toBeTruthy();
         });
     });
 
     it("should not fail if doesn't exist", () => {
-        var fs = createMockFS({});
-        var book = Book.createForFS(fs);
+        const fs = createMockFS({});
+        const book = Book.createForFS(fs);
 
         return parseSummary(book).then(resultBook => {
-            var summary = resultBook.getSummary();
-            var file = summary.getFile();
+            const summary = resultBook.getSummary();
+            const file = summary.getFile();
 
             expect(file.exists()).toBeFalsy();
         });

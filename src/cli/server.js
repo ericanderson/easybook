@@ -28,10 +28,10 @@ Server.prototype.isRunning = function() {
     @return {Promise}
 */
 Server.prototype.stop = function() {
-    var that = this;
+    const that = this;
     if (!this.isRunning()) return Promise();
 
-    var d = Promise.defer();
+    const d = Promise.defer();
     this.running.close(err => {
         that.running = null;
         that.emit("state", false);
@@ -40,7 +40,7 @@ Server.prototype.stop = function() {
         else d.resolve();
     });
 
-    for (var i = 0; i < this.sockets.length; i++) {
+    for (let i = 0; i < this.sockets.length; i++) {
         this.sockets[i].destroy();
     }
 
@@ -53,13 +53,13 @@ Server.prototype.stop = function() {
     @return {Promise}
 */
 Server.prototype.start = function(dir, port) {
-    var that = this;
-    var pre = Promise();
+    const that = this;
+    let pre = Promise();
     port = port || 8004;
 
     if (that.isRunning()) pre = this.stop();
     return pre.then(() => {
-        var d = Promise.defer();
+        const d = Promise.defer();
 
         that.running = http.createServer((req, res) => {
             // Render error
@@ -70,7 +70,7 @@ Server.prototype.start = function(dir, port) {
 
             // Redirect to directory's index.html
             function redirect() {
-                var resultURL = urlTransform(req.url, parsed => {
+                const resultURL = urlTransform(req.url, parsed => {
                     parsed.pathname += "/";
                     return parsed;
                 });

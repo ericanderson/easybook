@@ -10,16 +10,16 @@ import JSONUtils from "../../json";
     @return {Output}
 */
 function onFinish(output) {
-    var book = output.getBook();
-    var outputRoot = output.getRoot();
+    const book = output.getBook();
+    const outputRoot = output.getRoot();
 
     if (!book.isMultilingual()) {
         return Promise(output);
     }
 
     // Get main language
-    var languages = book.getLanguages();
-    var mainLanguage = languages.getDefaultLanguage();
+    const languages = book.getLanguages();
+    const mainLanguage = languages.getDefaultLanguage();
 
     // Read the main JSON
     return (
@@ -31,7 +31,7 @@ function onFinish(output) {
 
             // Extend the JSON
             .then(content => {
-                var json = JSON.parse(content);
+                const json = JSON.parse(content);
 
                 json.languages = JSONUtils.encodeLanguages(languages);
 

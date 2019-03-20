@@ -2,7 +2,7 @@ import path from "path";
 import Immutable from "immutable";
 import parsers from "../parsers";
 
-var File = Immutable.Record({
+const File = Immutable.Record({
     // Path of the file, relative to the FS
     path: String(),
 
@@ -33,7 +33,7 @@ File.prototype.exists = function() {
     @return {String}
 */
 File.prototype.getType = function() {
-    var parser = this.getParser();
+    const parser = this.getParser();
     if (parser) {
         return parser.getName();
     } else {

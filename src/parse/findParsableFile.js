@@ -10,16 +10,16 @@ import parsers from "../parsers";
     @return {Promise<File | Undefined>}
 */
 function findParsableFile(book, filename) {
-    var fs = book.getContentFS();
-    var ext = path.extname(filename);
-    var basename = path.basename(filename, ext);
-    var basedir = path.dirname(filename);
+    const fs = book.getContentFS();
+    const ext = path.extname(filename);
+    const basename = path.basename(filename, ext);
+    const basedir = path.dirname(filename);
 
     // Ordered list of extensions to test
-    var exts = parsers.extensions;
+    const exts = parsers.extensions;
 
     return some(exts, ext => {
-        var filepath = basename + ext;
+        const filepath = basename + ext;
 
         return fs.findFile(basedir, filepath).then(found => {
             if (!found || book.isContentFileIgnored(found)) {

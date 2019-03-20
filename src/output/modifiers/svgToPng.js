@@ -13,10 +13,10 @@ import editHTMLElement from "./editHTMLElement";
     @return {Promise}
 */
 function svgToPng(rootFolder, currentFile, $) {
-    var currentDirectory = path.dirname(currentFile);
+    const currentDirectory = path.dirname(currentFile);
 
     return editHTMLElement($, "img", $img => {
-        var src = $img.attr("src");
+        let src = $img.attr("src");
         if (path.extname(src) !== ".svg") {
             return;
         }
@@ -25,14 +25,14 @@ function svgToPng(rootFolder, currentFile, $) {
         src = LocationUtils.toAbsolute(src, currentDirectory, ".");
 
         // We avoid generating twice the same PNG
-        var hash = crc.crc32(src).toString(16);
-        var fileName = hash + ".png";
+        const hash = crc.crc32(src).toString(16);
+        let fileName = hash + ".png";
 
         // Input file path
-        var inputPath = path.join(rootFolder, src);
+        const inputPath = path.join(rootFolder, src);
 
         // Result file path
-        var filePath = path.join(rootFolder, fileName);
+        const filePath = path.join(rootFolder, fileName);
 
         return fs
             .assertFile(filePath, () =>

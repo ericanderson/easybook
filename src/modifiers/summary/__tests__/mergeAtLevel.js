@@ -3,8 +3,8 @@ import Summary from "../../../models/summary";
 import File from "../../../models/file";
 
 describe("mergeAtLevel", () => {
-    var mergeAtLevel = require("../mergeAtLevel").default;
-    var summary = Summary.createFromParts(File(), [
+    const mergeAtLevel = require("../mergeAtLevel").default;
+    const summary = Summary.createFromParts(File(), [
         {
             articles: [
                 {
@@ -24,9 +24,9 @@ describe("mergeAtLevel", () => {
     ]);
 
     it("should edit a part", () => {
-        var beforeChildren = summary.getByLevel("1").getArticles();
-        var newSummary = mergeAtLevel(summary, "1", { title: "Part O" });
-        var edited = newSummary.getByLevel("1");
+        const beforeChildren = summary.getByLevel("1").getArticles();
+        const newSummary = mergeAtLevel(summary, "1", { title: "Part O" });
+        const edited = newSummary.getByLevel("1");
 
         expect(edited.getTitle()).toBe("Part O");
         // Same children
@@ -34,11 +34,11 @@ describe("mergeAtLevel", () => {
     });
 
     it("should edit a part", () => {
-        var beforePath = summary.getByLevel("1.2").getPath();
-        var newSummary = mergeAtLevel(summary, "1.2", {
+        const beforePath = summary.getByLevel("1.2").getPath();
+        const newSummary = mergeAtLevel(summary, "1.2", {
             title: "Renamed article"
         });
-        var edited = newSummary.getByLevel("1.2");
+        const edited = newSummary.getByLevel("1.2");
 
         expect(edited.getTitle()).toBe("Renamed article");
         // Same children

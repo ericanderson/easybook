@@ -12,14 +12,14 @@ import PLUGIN_RESOURCES from "../constants/pluginResources";
 */
 function listResources(plugins, resources) {
     return plugins.reduce((result, plugin) => {
-        var npmId = plugin.getNpmID();
-        var pluginResources = resources.get(plugin.getName());
+        const npmId = plugin.getNpmID();
+        const pluginResources = resources.get(plugin.getName());
 
         PLUGIN_RESOURCES.forEach(resourceType => {
-            var assets = pluginResources.get(resourceType);
+            let assets = pluginResources.get(resourceType);
             if (!assets) return;
 
-            var list = result.get(resourceType) || Immutable.List();
+            let list = result.get(resourceType) || Immutable.List();
 
             assets = assets.map(assetFile => {
                 if (LocationUtils.isExternal(assetFile)) {

@@ -15,9 +15,9 @@ import preparePlugins from "../preparePlugins";
  * @return {Promise<Output>}
  */
 function createMockOutput(generator, files, options) {
-    var fs = createMockFS(files);
-    var book = Book.createForFS(fs);
-    var state = generator.State ? generator.State({}) : Immutable.Map();
+    const fs = createMockFS(files);
+    let book = Book.createForFS(fs);
+    const state = generator.State ? generator.State({}) : Immutable.Map();
 
     book = book.setLogLevel("disabled");
     options = generator.Options(options);

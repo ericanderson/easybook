@@ -101,7 +101,7 @@ function mapAsList(arr, iter) {
  */
 function map(arr, iter) {
     if (Immutable.Map.isMap(arr)) {
-        var type = "Map";
+        let type = "Map";
         if (Immutable.OrderedMap.isOrderedMap(arr)) {
             type = "OrderedMap";
         }
@@ -122,7 +122,7 @@ function map(arr, iter) {
  */
 function wrap(func) {
     return function() {
-        var args = Array.prototype.slice.call(arguments, 0);
+        const args = Array.prototype.slice.call(arguments, 0);
 
         return Q().then(() => func(...args));
     };

@@ -10,14 +10,14 @@ import installPlugin from "./installPlugin";
     @return {Promise<Number>}
 */
 function installPlugins(book) {
-    var logger = book.getLogger();
-    var config = book.getConfig();
-    var plugins = config.getPluginDependencies();
+    const logger = book.getLogger();
+    const config = book.getConfig();
+    let plugins = config.getPluginDependencies();
 
     // Remove default plugins
     // (only if version is same as installed)
     plugins = plugins.filterNot(plugin => {
-        var dependency = DEFAULT_PLUGINS.find(
+        const dependency = DEFAULT_PLUGINS.find(
             dep => dep.getName() === plugin.getName()
         );
 

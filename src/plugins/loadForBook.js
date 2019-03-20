@@ -11,20 +11,20 @@ import loadPlugin from "./loadPlugin";
  * @return {Promise<Map<String:Plugin>}
  */
 function loadForBook(book) {
-    var logger = book.getLogger();
+    const logger = book.getLogger();
 
     // List the dependencies
-    var requirements = listDepsForBook(book);
+    const requirements = listDepsForBook(book);
 
     // List all plugins installed in the book
     return findForBook(book).then(installedMap => {
-        var missing = [];
-        var plugins = requirements.reduce((result, dep) => {
-            var name = dep.getName();
-            var installed = installedMap.get(name);
+        const missing = [];
+        let plugins = requirements.reduce((result, dep) => {
+            const name = dep.getName();
+            const installed = installedMap.get(name);
 
             if (installed) {
-                var deps = installedMap
+                const deps = installedMap
                     .filter(plugin => plugin.getParent() === name)
                     .toArray();
 

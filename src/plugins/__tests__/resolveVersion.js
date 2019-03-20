@@ -3,7 +3,7 @@ import resolveVersion from "../resolveVersion";
 
 describe("resolveVersion", () => {
     it("must skip resolving and return non-semver versions", () => {
-        var plugin = PluginDependency.createFromString(
+        const plugin = PluginDependency.createFromString(
             "ga@git+ssh://samy@github.com/GitbookIO/plugin-ga.git"
         );
 
@@ -15,7 +15,7 @@ describe("resolveVersion", () => {
     });
 
     it("must resolve a normal plugin dependency", () => {
-        var plugin = PluginDependency.createFromString("ga@>0.9.0 < 1.0.1");
+        const plugin = PluginDependency.createFromString("ga@>0.9.0 < 1.0.1");
 
         return resolveVersion(plugin).then(version => {
             expect(version).toBe("1.0.0");

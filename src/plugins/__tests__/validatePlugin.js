@@ -4,7 +4,7 @@ import validatePlugin from "../validatePlugin";
 
 describe("validatePlugin", () => {
     it("must not validate a not loaded plugin", () => {
-        var plugin = Plugin.createFromString("test");
+        const plugin = Plugin.createFromString("test");
 
         return validatePlugin(plugin).then(
             () => {

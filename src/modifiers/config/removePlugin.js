@@ -8,7 +8,7 @@ import isDefaultPlugin from "./isDefaultPlugin";
  * @return {Config}
  */
 function removePlugin(config, pluginName) {
-    var deps = config.getPluginDependencies();
+    let deps = config.getPluginDependencies();
 
     // For default plugin, we have to disable it instead of removing from the list
     if (isDefaultPlugin(pluginName)) {

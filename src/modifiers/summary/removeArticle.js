@@ -13,11 +13,11 @@ function removeArticle(summary, level) {
     // Coerce to level
     level = is.string(level) ? level : level.getLevel();
 
-    var parent = summary.getParent(level);
+    let parent = summary.getParent(level);
 
-    var articles = parent.getArticles();
+    let articles = parent.getArticles();
     // Find the index to remove
-    var index = articles.findIndex(art => art.getLevel() === level);
+    const index = articles.findIndex(art => art.getLevel() === level);
     if (index === -1) {
         return summary;
     }

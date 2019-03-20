@@ -11,12 +11,12 @@ import Book from "../models/book";
     @return {Promise<Book>}
 */
 function parseSummary(book) {
-    var readme = book.getReadme();
-    var logger = book.getLogger();
-    var readmeFile = readme.file;
+    const readme = book.getReadme();
+    const logger = book.getLogger();
+    const readmeFile = readme.file;
 
     return parseStructureFile(book, "summary").spread((file, result) => {
-        var summary;
+        let summary;
 
         if (!file) {
             logger.warn.ln("no summary file in this book");
@@ -27,7 +27,7 @@ function parseSummary(book) {
         }
 
         // Insert readme as first entry if not in SUMMARY.md
-        var readmeArticle = summary.getByPath(readmeFile.getPath());
+        const readmeArticle = summary.getByPath(readmeFile.getPath());
 
         if (readmeFile.exists() && !readmeArticle) {
             summary = unshiftArticle(summary, {

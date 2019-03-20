@@ -2,8 +2,8 @@ import Summary from "../../../models/summary";
 import File from "../../../models/file";
 
 describe("removeArticle", () => {
-    var removeArticle = require("../removeArticle").default;
-    var summary = Summary.createFromParts(File(), [
+    const removeArticle = require("../removeArticle").default;
+    const summary = Summary.createFromParts(File(), [
         {
             articles: [
                 {
@@ -42,10 +42,10 @@ describe("removeArticle", () => {
     ]);
 
     it("should remove an article at a given level", () => {
-        var newSummary = removeArticle(summary, "2.1.1");
+        const newSummary = removeArticle(summary, "2.1.1");
 
-        var removed = newSummary.getByLevel("2.1.1");
-        var nextOne = newSummary.getByLevel("2.1.2");
+        const removed = newSummary.getByLevel("2.1.1");
+        const nextOne = newSummary.getByLevel("2.1.2");
 
         expect(removed.getTitle()).toBe("2.1.2");
         expect(nextOne).toBe(null);

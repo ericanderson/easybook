@@ -4,7 +4,7 @@ import File from "./file";
 import GlossaryEntry from "./glossaryEntry";
 import parsers from "../parsers";
 
-var Glossary = Immutable.Record({
+const Glossary = Immutable.Record({
     file: File(),
     entries: Immutable.OrderedMap()
 });
@@ -24,8 +24,8 @@ Glossary.prototype.getEntries = function() {
     @return {GlossaryEntry}
 */
 Glossary.prototype.getEntry = function(name) {
-    var entries = this.getEntries();
-    var id = GlossaryEntry.nameToID(name);
+    const entries = this.getEntries();
+    const id = GlossaryEntry.nameToID(name);
 
     return entries.get(id);
 };
@@ -36,8 +36,8 @@ Glossary.prototype.getEntry = function(name) {
     @return {Promise<String>}
 */
 Glossary.prototype.toText = function(parser) {
-    var file = this.getFile();
-    var entries = this.getEntries();
+    const file = this.getFile();
+    const entries = this.getEntries();
 
     parser = parser ? parsers.getByExt(parser) : file.getParser();
 
@@ -58,8 +58,8 @@ Glossary.prototype.toText = function(parser) {
     @return {Glossary}
 */
 Glossary.addEntry = function addEntry(glossary, entry) {
-    var id = entry.getID();
-    var entries = glossary.getEntries();
+    const id = entry.getID();
+    let entries = glossary.getEntries();
 
     entries = entries.set(id, entry);
     return glossary.set("entries", entries);
@@ -73,7 +73,7 @@ Glossary.addEntry = function addEntry(glossary, entry) {
     @return {Glossary}
 */
 Glossary.addEntryByName = function addEntryByName(glossary, name, description) {
-    var entry = new GlossaryEntry({
+    const entry = new GlossaryEntry({
         name,
         description
     });

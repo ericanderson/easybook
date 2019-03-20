@@ -2,7 +2,7 @@ import path from "path";
 import PathUtils from "../../utils/path";
 import LocationUtils from "../../utils/location";
 
-var OUTPUT_EXTENSION = ".html";
+const OUTPUT_EXTENSION = ".html";
 
 /**
  * Convert a filePath (absolute) to a filename for output
@@ -12,9 +12,9 @@ var OUTPUT_EXTENSION = ".html";
  * @return {String}
  */
 function fileToOutput(output, filePath) {
-    var book = output.getBook();
-    var readme = book.getReadme();
-    var fileReadme = readme.file;
+    const book = output.getBook();
+    const readme = book.getReadme();
+    const fileReadme = readme.file;
 
     if (
         path.basename(filePath, path.extname(filePath)) == "README" ||

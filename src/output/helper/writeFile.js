@@ -10,7 +10,7 @@ import fs from "../../utils/fs";
     @return {Promise}
 */
 function writeFile(output, filePath, content) {
-    var rootFolder = output.getRoot();
+    const rootFolder = output.getRoot();
     filePath = path.join(rootFolder, filePath);
 
     return fs

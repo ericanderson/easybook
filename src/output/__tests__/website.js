@@ -11,7 +11,7 @@ describe("WebsiteGenerator", () => {
         }));
 
     describe("Glossary", () => {
-        var folder;
+        let folder;
 
         before(() =>
             generateMock(WebsiteGenerator, {
@@ -31,14 +31,14 @@ describe("WebsiteGenerator", () => {
         });
 
         it("should correctly resolve glossary links in README", () => {
-            var html = fs.readFileSync(folder + "/index.html", "utf8");
+            const html = fs.readFileSync(folder + "/index.html", "utf8");
             expect(html).toHaveDOMElement(
                 '.page-inner a[href="GLOSSARY.html#hello"]'
             );
         });
 
         it("should correctly resolve glossary links in directory", () => {
-            var html = fs.readFileSync(folder + "/folder/page.html", "utf8");
+            const html = fs.readFileSync(folder + "/folder/page.html", "utf8");
             expect(html).toHaveDOMElement(
                 '.page-inner a[href="../GLOSSARY.html#hello"]'
             );
@@ -53,7 +53,7 @@ describe("WebsiteGenerator", () => {
                 expect(folder).toHaveFile("custom.html");
                 expect(folder).toNotHaveFile("GLOSSARY.html");
 
-                var html = fs.readFileSync(folder + "/index.html", "utf8");
+                const html = fs.readFileSync(folder + "/index.html", "utf8");
                 expect(html).toHaveDOMElement(
                     '.page-inner a[href="custom.html#hello"]'
                 );

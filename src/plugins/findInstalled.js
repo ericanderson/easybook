@@ -22,23 +22,23 @@ function validateId(name) {
  * @return {OrderedMap<String:Plugin>}
  */
 function findInstalled(folder) {
-    var options = {
+    const options = {
         dev: false,
         log: function() {},
         depth: 4
     };
-    var results = Immutable.OrderedMap();
+    let results = Immutable.OrderedMap();
 
     function onPackage(pkg, parent) {
         if (!pkg.name) return;
 
-        var name = pkg.name;
-        var version = pkg.version;
-        var pkgPath = pkg.realPath;
-        var depth = pkg.depth;
-        var dependencies = pkg.dependencies;
+        const name = pkg.name;
+        const version = pkg.version;
+        const pkgPath = pkg.realPath;
+        const depth = pkg.depth;
+        const dependencies = pkg.dependencies;
 
-        var pluginName = name.slice(PREFIX.length);
+        const pluginName = name.slice(PREFIX.length);
 
         if (!validateId(name)) {
             if (parent) return;
@@ -61,7 +61,7 @@ function findInstalled(folder) {
     }
 
     // Search for gitbook-plugins in node_modules folder
-    var node_modules = path.join(folder, "node_modules");
+    const node_modules = path.join(folder, "node_modules");
 
     // List all folders in node_modules
     return fs
@@ -75,7 +75,7 @@ function findInstalled(folder) {
                 }
 
                 // Read gitbook-plugin package details
-                var module_folder = path.join(node_modules, module);
+                const module_folder = path.join(node_modules, module);
                 return Promise.nfcall(
                     readInstalled,
                     module_folder,

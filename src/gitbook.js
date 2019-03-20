@@ -1,10 +1,10 @@
 import semver from "semver";
 import pkg from "../package.json";
 
-var VERSION = pkg.version;
-var VERSION_STABLE = VERSION.replace(/\-(\S+)/g, "");
+const VERSION = pkg.version;
+const VERSION_STABLE = VERSION.replace(/\-(\S+)/g, "");
 
-var START_TIME = new Date();
+const START_TIME = new Date();
 
 /**
     Verify that this gitbook version satisfies a requirement

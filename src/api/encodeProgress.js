@@ -9,17 +9,17 @@ import encodeNavigation from "./encodeNavigation";
     @return {Object}
 */
 function encodeProgress(output, page) {
-    var current = page.getPath();
-    var navigation = encodeNavigation(output);
+    const current = page.getPath();
+    let navigation = encodeNavigation(output);
     navigation = Immutable.Map(navigation);
 
-    var n = navigation.size;
-    var percent = 0;
-    var prevPercent = 0;
-    var currentChapter = null;
-    var done = true;
+    const n = navigation.size;
+    let percent = 0;
+    let prevPercent = 0;
+    let currentChapter = null;
+    let done = true;
 
-    var chapters = navigation
+    const chapters = navigation
         .map((nav, chapterPath) => {
             nav.path = chapterPath;
             return nav;

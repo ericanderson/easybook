@@ -12,8 +12,8 @@ import mergeDefaults from "../utils/mergeDefaults";
     @return {Object}
 */
 function validateConfig(bookJson) {
-    var v = new jsonschema.Validator();
-    var result = v.validate(bookJson, schema, {
+    const v = new jsonschema.Validator();
+    const result = v.validate(bookJson, schema, {
         propertyName: "config"
     });
 
@@ -23,7 +23,7 @@ function validateConfig(bookJson) {
     }
 
     // Insert default values
-    var defaults = jsonSchemaDefaults(schema);
+    const defaults = jsonSchemaDefaults(schema);
     return mergeDefaults(bookJson, defaults);
 }
 

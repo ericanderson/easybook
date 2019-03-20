@@ -10,7 +10,7 @@ import isDefaultPlugin from "./isDefaultPlugin";
  * @return {Config}
  */
 function togglePlugin(config, pluginName, state) {
-    var deps = config.getPluginDependencies();
+    let deps = config.getPluginDependencies();
 
     // For default plugin, we should ensure it's listed first
     if (isDefaultPlugin(pluginName) && !hasPlugin(deps, pluginName)) {

@@ -16,10 +16,10 @@ function renderTemplate(engine, filePath, content, context) {
     context = context || {};
 
     // Mutable objects to contains all blocks requiring post-processing
-    var blocks = {};
+    const blocks = {};
 
     // Create nunjucks environment
-    var env = engine.toNunjucks(blocks);
+    const env = engine.toNunjucks(blocks);
 
     // Replace shortcuts from plugin's blocks
     content = replaceShortcuts(engine.getBlocks(), filePath, content);

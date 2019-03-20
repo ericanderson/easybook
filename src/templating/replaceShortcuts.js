@@ -8,13 +8,13 @@ import listShortcuts from "./listShortcuts";
  * @return {String}
  */
 function applyShortcut(content, shortcut) {
-    var start = shortcut.getStart();
-    var end = shortcut.getEnd();
+    const start = shortcut.getStart();
+    const end = shortcut.getEnd();
 
-    var tagStart = shortcut.getStartTag();
-    var tagEnd = shortcut.getEndTag();
+    const tagStart = shortcut.getStartTag();
+    const tagEnd = shortcut.getEndTag();
 
-    var regex = new RegExp(
+    const regex = new RegExp(
         escapeStringRegexp(start) +
             "([\\s\\S]*?[^\\$])" +
             escapeStringRegexp(end),
@@ -36,7 +36,7 @@ function applyShortcut(content, shortcut) {
  * @return {String}
  */
 function replaceShortcuts(blocks, filePath, content) {
-    var shortcuts = listShortcuts(blocks, filePath);
+    const shortcuts = listShortcuts(blocks, filePath);
     return shortcuts.reduce(applyShortcut, content);
 }
 

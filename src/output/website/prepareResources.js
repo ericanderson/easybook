@@ -10,16 +10,16 @@ import Api from "../../api";
     @return {Promise<Output>}
 */
 function prepareResources(output) {
-    var plugins = output.getPlugins();
-    var options = output.getOptions();
-    var type = options.get("prefix");
-    var state = output.getState();
-    var context = Api.encodeGlobal(output);
+    const plugins = output.getPlugins();
+    const options = output.getOptions();
+    const type = options.get("prefix");
+    let state = output.getState();
+    const context = Api.encodeGlobal(output);
 
-    var result = Immutable.Map();
+    let result = Immutable.Map();
 
     return forEach(plugins, plugin => {
-        var pluginResources = plugin.getResources(type);
+        const pluginResources = plugin.getResources(type);
 
         return Promise()
             .then(() => {

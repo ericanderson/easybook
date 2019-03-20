@@ -1,8 +1,8 @@
 import Immutable from "immutable";
 import is from "is";
 
-var timers = {};
-var startDate = Date.now();
+const timers = {};
+const startDate = Date.now();
 
 /**
     Mesure an operation
@@ -20,11 +20,11 @@ function measure(type, p) {
         max: 0
     };
 
-    var start = Date.now();
+    const start = Date.now();
 
     return p.fin(() => {
-        var end = Date.now();
-        var duration = end - start;
+        const end = Date.now();
+        const duration = end - start;
 
         timers[type].count++;
         timers[type].total += duration;
@@ -59,12 +59,12 @@ function time(ms) {
     @param {Logger} logger
 */
 function dump(logger) {
-    var prefix = "    > ";
-    var measured = 0;
-    var totalDuration = Date.now() - startDate;
+    const prefix = "    > ";
+    let measured = 0;
+    const totalDuration = Date.now() - startDate;
 
     // Enable debug logging
-    var logLevel = logger.getLevel();
+    const logLevel = logger.getLevel();
     logger.setLevel("debug");
 
     Immutable.Map(timers)
@@ -74,7 +74,7 @@ function dump(logger) {
             return timer.total;
         })
         .forEach(timer => {
-            var percent = (timer.total * 100) / totalDuration;
+            const percent = (timer.total * 100) / totalDuration;
 
             logger.debug.ln(
                 percent.toFixed(1) +

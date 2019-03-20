@@ -5,7 +5,7 @@ import slug from "github-slugid";
     A definition represents an entry in the glossary
 */
 
-var GlossaryEntry = Immutable.Record({
+const GlossaryEntry = Immutable.Record({
     name: String(),
     description: String()
 });

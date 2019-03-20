@@ -1,6 +1,6 @@
 import Immutable from "immutable";
 
-var generators = Immutable.List([
+const generators = Immutable.List([
     require("./json").default,
     require("./website").default,
     require("./ebook").default

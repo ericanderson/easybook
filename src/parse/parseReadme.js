@@ -9,7 +9,7 @@ import error from "../utils/error";
     @return {Promise<Book>}
 */
 function parseReadme(book) {
-    var logger = book.getLogger();
+    const logger = book.getLogger();
 
     return parseStructureFile(book, "readme").spread((file, result) => {
         if (!file) {
@@ -18,7 +18,7 @@ function parseReadme(book) {
 
         logger.debug.ln("readme found at", file.getPath());
 
-        var readme = createReadme(file, result);
+        const readme = createReadme(file, result);
         return book.set("readme", readme);
     });
 }

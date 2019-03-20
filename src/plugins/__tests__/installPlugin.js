@@ -6,13 +6,13 @@ import installPlugin from "../installPlugin";
 import Parse from "../../parse";
 
 describe("installPlugin", function() {
-    var book;
+    let book;
 
     this.timeout(30000);
 
     before(() => {
-        var fs = NodeFS(path.resolve(__dirname, "../../../"));
-        var baseBook = Book.createForFS(fs);
+        const fs = NodeFS(path.resolve(__dirname, "../../../"));
+        const baseBook = Book.createForFS(fs);
 
         return Parse.parseConfig(baseBook).then(_book => {
             book = _book;
@@ -20,7 +20,7 @@ describe("installPlugin", function() {
     });
 
     it("must install a plugin from NPM", () => {
-        var dep = PluginDependency.createFromString("ga");
+        const dep = PluginDependency.createFromString("ga");
         return installPlugin(book, dep);
     });
 });

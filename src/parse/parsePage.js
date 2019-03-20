@@ -8,8 +8,8 @@ import parsePageFromString from "./parsePageFromString";
  * @return {Promise<Page>}
  */
 function parsePage(book, page) {
-    var fs = book.getContentFS();
-    var file = page.getFile();
+    const fs = book.getContentFS();
+    const file = page.getFile();
 
     return fs
         .readAsString(file.getPath())

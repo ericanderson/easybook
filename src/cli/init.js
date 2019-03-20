@@ -7,7 +7,7 @@ export default {
     description: "setup and create files for chapters",
     options: [options.log],
     exec: function(args, kwargs) {
-        var bookRoot = path.resolve(process.cwd(), args[0] || "./");
+        const bookRoot = path.resolve(process.cwd(), args[0] || "./");
 
         return initBook(bookRoot);
     }

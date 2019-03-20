@@ -11,9 +11,9 @@ import Promise from "./promise";
     @return {Promise}
 */
 function exec(command, options) {
-    var d = Promise.defer();
+    const d = Promise.defer();
 
-    var child = childProcess.exec(command, options, (err, stdout, stderr) => {
+    const child = childProcess.exec(command, options, (err, stdout, stderr) => {
         if (!err) {
             return d.resolve();
         }
@@ -42,8 +42,8 @@ function exec(command, options) {
     @return {Promise}
 */
 function spawnCmd(command, args, options) {
-    var d = Promise.defer();
-    var child = spawn(command, args, options);
+    const d = Promise.defer();
+    const child = spawn(command, args, options);
 
     child.on("error", error => d.reject(error));
 
@@ -90,10 +90,10 @@ function escapeShellArg(value) {
     @return {String}
 */
 function optionsToShellArgs(options) {
-    var result = [];
+    const result = [];
 
-    for (var key in options) {
-        var value = options[key];
+    for (const key in options) {
+        const value = options[key];
 
         if (value === null || value === undefined || value === false) {
             continue;

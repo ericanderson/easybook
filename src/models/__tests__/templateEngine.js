@@ -1,37 +1,37 @@
 describe("TemplateBlock", () => {
-    var TemplateEngine = require("../templateEngine").default;
+    const TemplateEngine = require("../templateEngine").default;
 
     describe("create", () => {
         it("must initialize with a list of filters", () => {
-            var engine = TemplateEngine.create({
+            const engine = TemplateEngine.create({
                 filters: {
                     hello: function(name) {
                         return "Hello " + name + "!";
                     }
                 }
             });
-            var env = engine.toNunjucks();
-            var res = env.renderString('{{ "Luke"|hello }}');
+            const env = engine.toNunjucks();
+            const res = env.renderString('{{ "Luke"|hello }}');
 
             expect(res).toBe("Hello Luke!");
         });
 
         it("must initialize with a list of globals", () => {
-            var engine = TemplateEngine.create({
+            const engine = TemplateEngine.create({
                 globals: {
                     hello: function(name) {
                         return "Hello " + name + "!";
                     }
                 }
             });
-            var env = engine.toNunjucks();
-            var res = env.renderString('{{ hello("Luke") }}');
+            const env = engine.toNunjucks();
+            const res = env.renderString('{{ hello("Luke") }}');
 
             expect(res).toBe("Hello Luke!");
         });
 
         it("must pass context to filters and blocks", () => {
-            var engine = TemplateEngine.create({
+            const engine = TemplateEngine.create({
                 filters: {
                     hello: function(name) {
                         return "Hello " + name + " " + this.lastName + "!";
@@ -41,8 +41,8 @@ describe("TemplateBlock", () => {
                     lastName: "Skywalker"
                 }
             });
-            var env = engine.toNunjucks();
-            var res = env.renderString('{{ "Luke"|hello }}');
+            const env = engine.toNunjucks();
+            const res = env.renderString('{{ "Luke"|hello }}');
 
             expect(res).toBe("Hello Luke Skywalker!");
         });

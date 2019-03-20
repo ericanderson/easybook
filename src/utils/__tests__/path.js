@@ -1,7 +1,7 @@
 import path from "path";
 
 describe("Paths", () => {
-    var PathUtils = require("..//path").default;
+    const PathUtils = require("..//path").default;
 
     describe("setExtension", () => {
         it("should correctly change extension of filename", () => {

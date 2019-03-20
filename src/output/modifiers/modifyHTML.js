@@ -10,11 +10,11 @@ import Promise, { forEach } from "../../utils/promise";
     @return {Promise<Page>}
 */
 function modifyHTML(page, operations) {
-    var html = page.getContent();
-    var $ = cheerio.load(html);
+    const html = page.getContent();
+    const $ = cheerio.load(html);
 
     return forEach(operations, op => op($)).then(() => {
-        var resultHTML = $.html();
+        const resultHTML = $.html();
         return page.set("content", resultHTML);
     });
 }

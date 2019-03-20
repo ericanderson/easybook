@@ -3,17 +3,17 @@ import Book from "../../models/book";
 import createMockFS from "../../fs/mock";
 
 describe("parseReadme", () => {
-    var parseReadme = require("../parseReadme").default;
+    const parseReadme = require("../parseReadme").default;
 
     it("should parse summary if exists", () => {
-        var fs = createMockFS({
+        const fs = createMockFS({
             "README.md": "# Hello\n\nAnd here is the description."
         });
-        var book = Book.createForFS(fs);
+        const book = Book.createForFS(fs);
 
         return parseReadme(book).then(resultBook => {
-            var readme = resultBook.getReadme();
-            var file = readme.file;
+            const readme = resultBook.getReadme();
+            const file = readme.file;
 
             expect(file.exists()).toBeTruthy();
             expect(readme.title).toBe("Hello");
@@ -22,8 +22,8 @@ describe("parseReadme", () => {
     });
 
     it("should fail if doesn't exist", () => {
-        var fs = createMockFS({});
-        var book = Book.createForFS(fs);
+        const fs = createMockFS({});
+        const book = Book.createForFS(fs);
 
         return parseReadme(book).then(
             resultBook => {

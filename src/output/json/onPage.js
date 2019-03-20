@@ -4,7 +4,7 @@ import Modifiers from "../modifiers";
 import writeFile from "../helper/writeFile";
 import getModifiers from "../getModifiers";
 
-var JSON_VERSION = "3";
+const JSON_VERSION = "3";
 
 /**
  * Write a page as a json file
@@ -13,13 +13,13 @@ var JSON_VERSION = "3";
  * @param {Page} page
  */
 function onPage(output, page) {
-    var file = page.getFile();
-    var readme = output.getBook().getReadme().file;
+    const file = page.getFile();
+    const readme = output.getBook().getReadme().file;
 
     return Modifiers.modifyHTML(page, getModifiers(output, page)).then(
         resultPage => {
             // Generate the JSON
-            var json = JSONUtils.encodeBookWithPage(
+            const json = JSONUtils.encodeBookWithPage(
                 output.getBook(),
                 resultPage
             );
@@ -31,7 +31,7 @@ function onPage(output, page) {
             json.version = JSON_VERSION;
 
             // File path in the output folder
-            var filePath =
+            let filePath =
                 file.getPath() == readme.getPath()
                     ? "README.json"
                     : file.getPath();

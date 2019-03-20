@@ -17,29 +17,31 @@ import fileToOutput from "../helper/fileToOutput";
  * @param {Page} page
  */
 function onPage(output, page) {
-    var options = output.getOptions();
-    var prefix = options.get("prefix");
+    const options = output.getOptions();
+    const prefix = options.get("prefix");
 
-    var file = page.getFile();
+    const file = page.getFile();
 
-    var book = output.getBook();
-    var plugins = output.getPlugins();
-    var state = output.getState();
-    var resources = state.getResources();
+    const book = output.getBook();
+    const plugins = output.getPlugins();
+    const state = output.getState();
+    const resources = state.getResources();
 
-    var engine = createTemplateEngine(output, page.getPath());
+    const engine = createTemplateEngine(output, page.getPath());
 
     // Output file path
-    var filePath = fileToOutput(output, file.getPath());
+    const filePath = fileToOutput(output, file.getPath());
 
     // Calcul relative path to the root
-    var outputDirName = path.dirname(filePath);
-    var basePath = LocationUtils.normalize(path.relative(outputDirName, "./"));
+    const outputDirName = path.dirname(filePath);
+    const basePath = LocationUtils.normalize(
+        path.relative(outputDirName, "./")
+    );
 
     return Modifiers.modifyHTML(page, getModifiers(output, page)).then(
         resultPage => {
             // Generate the context
-            var context = JSONUtils.encodeOutputWithPage(output, resultPage);
+            const context = JSONUtils.encodeOutputWithPage(output, resultPage);
             context.plugins = {
                 resources: Plugins.listResources(plugins, resources).toJS()
             };

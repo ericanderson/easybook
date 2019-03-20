@@ -12,13 +12,13 @@ import parsePage from "./parsePage";
     @return {Page?}
 */
 function parseFilePage(book, filePath) {
-    var fs = book.getContentFS();
+    const fs = book.getContentFS();
 
     return fs
         .statFile(filePath)
         .then(
             file => {
-                var page = Page.createForFile(file);
+                const page = Page.createForFile(file);
                 return parsePage(book, page);
             },
             (
@@ -26,7 +26,7 @@ function parseFilePage(book, filePath) {
             ) => null
         )
         .fail(err => {
-            var logger = book.getLogger();
+            const logger = book.getLogger();
             logger.error.ln('error while parsing page "' + filePath + '":');
             throw err;
         });
@@ -39,9 +39,9 @@ function parseFilePage(book, filePath) {
     @return {Promise<OrderedMap<Page>>}
 */
 function parsePagesList(book) {
-    var summary = book.getSummary();
-    var glossary = book.getGlossary();
-    var map = Immutable.OrderedMap();
+    const summary = book.getSummary();
+    const glossary = book.getGlossary();
+    let map = Immutable.OrderedMap();
 
     // Parse pages from summary
     return (
@@ -51,7 +51,7 @@ function parsePagesList(book) {
                 walkSummary(summary, article => {
                     if (!article.isPage()) return;
 
-                    var filepath = article.getPath();
+                    const filepath = article.getPath();
 
                     // Is the page ignored?
                     if (book.isContentFileIgnored(filepath)) return;
@@ -69,7 +69,7 @@ function parsePagesList(book) {
 
             // Parse glossary
             .then(() => {
-                var file = glossary.getFile();
+                const file = glossary.getFile();
 
                 if (!file.exists()) {
                     return;

@@ -10,7 +10,7 @@ import parsers from "../parsers";
  * @return {List<TemplateShortcut>}
  */
 function listShortcuts(blocks, filePath) {
-    var parser = parsers.getForFile(filePath);
+    const parser = parsers.getForFile(filePath);
 
     if (!parser) {
         return Immutable.List();

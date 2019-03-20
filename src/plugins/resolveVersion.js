@@ -5,7 +5,7 @@ import Promise from "../utils/promise";
 import Plugin from "../models/plugin";
 import gitbook from "../gitbook";
 
-var npmIsReady;
+let npmIsReady;
 
 /**
     Initialize and prepare NPM
@@ -30,8 +30,8 @@ function initNPM() {
     @return {Promise<String>}
 */
 function resolveVersion(plugin) {
-    var npmId = Plugin.nameToNpmID(plugin.getName());
-    var requiredVersion = plugin.getVersion();
+    const npmId = Plugin.nameToNpmID(plugin.getName());
+    const requiredVersion = plugin.getVersion();
 
     if (plugin.isGitDependency()) {
         return Promise.resolve(requiredVersion);
@@ -48,7 +48,7 @@ function resolveVersion(plugin) {
         .then(versions => {
             versions = Immutable.Map(versions).entrySeq();
 
-            var result = versions
+            const result = versions
                 .map(entry => ({
                     version: entry[0],
                     gitbook: (entry[1].engines || {}).gitbook

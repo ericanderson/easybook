@@ -14,41 +14,41 @@ describe("highlightCode", () => {
     }
 
     it("should call it for normal code element", () => {
-        var $ = cheerio.load("<p>This is a <code>test</code></p>");
+        const $ = cheerio.load("<p>This is a <code>test</code></p>");
 
         return highlightCode(doHighlight, $).then(() => {
-            var $code = $("code");
+            const $code = $("code");
             expect($code.text()).toBe("$test");
         });
     });
 
     it("should call it for markdown code block", () => {
-        var $ = cheerio.load('<pre><code class="lang-js">test</code></pre>');
+        const $ = cheerio.load('<pre><code class="lang-js">test</code></pre>');
 
         return highlightCode(doHighlight, $).then(() => {
-            var $code = $("code");
+            const $code = $("code");
             expect($code.text()).toBe("js$test");
         });
     });
 
     it("should call it for asciidoc code block", () => {
-        var $ = cheerio.load(
+        const $ = cheerio.load(
             '<pre><code class="language-python">test</code></pre>'
         );
 
         return highlightCode(doHighlight, $).then(() => {
-            var $code = $("code");
+            const $code = $("code");
             expect($code.text()).toBe("python$test");
         });
     });
 
     it("should accept async highlighter", () => {
-        var $ = cheerio.load(
+        const $ = cheerio.load(
             '<pre><code class="language-python">test</code></pre>'
         );
 
         return highlightCode(doHighlightAsync, $).then(() => {
-            var $code = $("code");
+            const $code = $("code");
             expect($code.text()).toBe("python$test");
         });
     });

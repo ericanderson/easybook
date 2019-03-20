@@ -11,10 +11,10 @@ import render from "./render";
  * @return {Promise<TemplateOutput>}
  */
 function renderTemplateFile(engine, filePath, context) {
-    var loader = engine.getLoader();
+    const loader = engine.getLoader();
 
     // Resolve the filePath
-    var resolvedFilePath = loader.resolve(null, filePath);
+    const resolvedFilePath = loader.resolve(null, filePath);
 
     return Promise()
         .then(() => {
@@ -22,7 +22,7 @@ function renderTemplateFile(engine, filePath, context) {
                 return loader.getSource(resolvedFilePath);
             }
 
-            var deferred = Promise.defer();
+            const deferred = Promise.defer();
             loader.getSource(resolvedFilePath, deferred.makeNodeResolver());
             return deferred.promise;
         })

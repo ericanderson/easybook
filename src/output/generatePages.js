@@ -9,8 +9,8 @@ import generatePage from "./generatePage";
     @return {Promise<Output>}
 */
 function generatePages(generator, output) {
-    var pages = output.getPages();
-    var logger = output.getLogger();
+    const pages = output.getPages();
+    const logger = output.getLogger();
 
     // Is generator ignoring assets?
     if (!generator.onPage) {
@@ -20,7 +20,7 @@ function generatePages(generator, output) {
     return reduce(
         pages,
         (out, page) => {
-            var file = page.getFile();
+            const file = page.getFile();
 
             logger.debug.ln('generate page "' + file.getPath() + '"');
 

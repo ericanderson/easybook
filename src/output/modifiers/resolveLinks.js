@@ -12,10 +12,10 @@ import editHTMLElement from "./editHTMLElement";
     @param {HTMLDom} $
 */
 function resolveLinks(currentFile, resolveFile, $) {
-    var currentDirectory = path.dirname(currentFile);
+    const currentDirectory = path.dirname(currentFile);
 
     return editHTMLElement($, "a", $a => {
-        var href = $a.attr("href");
+        let href = $a.attr("href");
 
         // Don't change a tag without href
         if (!href) {
@@ -28,7 +28,7 @@ function resolveLinks(currentFile, resolveFile, $) {
         }
 
         // Split anchor
-        var parsed = url.parse(href);
+        const parsed = url.parse(href);
         href = parsed.pathname || "";
 
         if (href) {

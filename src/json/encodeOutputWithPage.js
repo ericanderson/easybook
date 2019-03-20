@@ -10,10 +10,10 @@ import encodeFile from "./encodeFile";
  * @return {Object}
  */
 function encodeOutputWithPage(output, page) {
-    var file = page.getFile();
-    var book = output.getBook();
+    const file = page.getFile();
+    const book = output.getBook();
 
-    var result = encodeOutput(output);
+    const result = encodeOutput(output);
     result.page = encodePage(page, book.getSummary());
     result.file = encodeFile(file);
 

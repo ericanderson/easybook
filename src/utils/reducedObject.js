@@ -12,10 +12,10 @@ function reducedObject(defaultVersion, currentVersion) {
     }
 
     return currentVersion.reduce((result, value, key) => {
-        var defaultValue = defaultVersion.get(key);
+        const defaultValue = defaultVersion.get(key);
 
         if (Immutable.Map.isMap(value)) {
-            var diffs = reducedObject(defaultValue, value);
+            const diffs = reducedObject(defaultValue, value);
 
             if (diffs.size > 0) {
                 return result.set(key, diffs);

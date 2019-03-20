@@ -8,7 +8,7 @@ import indexLevels from "./indexLevels";
     @return {Summary}
 */
 function removePart(summary, index) {
-    var parts = summary.getParts().remove(index);
+    const parts = summary.getParts().remove(index);
     return indexLevels(summary.set("parts", parts));
 }
 

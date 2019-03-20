@@ -3,9 +3,9 @@ import TemplateBlock from "./templateBlock";
 import PluginDependency from "./pluginDependency";
 import THEME_PREFIX from "../constants/themePrefix";
 
-var DEFAULT_VERSION = "*";
+const DEFAULT_VERSION = "*";
 
-var Plugin = Immutable.Record(
+const Plugin = Immutable.Record(
     {
         name: String(),
 
@@ -79,7 +79,7 @@ Plugin.prototype.isLoaded = function() {
  * @return {Boolean}
  */
 Plugin.prototype.isTheme = function() {
-    var name = this.getName();
+    const name = this.getName();
     return name && name.indexOf(THEME_PREFIX) === 0;
 };
 
@@ -101,7 +101,7 @@ Plugin.prototype.getResources = function(type) {
         throw new Error("Invalid assets type " + type);
     }
 
-    var content = this.getContent();
+    const content = this.getContent();
     return (
         content.get(type) ||
         (type == "website" ? content.get("book") : null) ||
@@ -122,7 +122,7 @@ Plugin.prototype.getFilters = function() {
  * @return {Map<String:TemplateBlock>}
  */
 Plugin.prototype.getBlocks = function() {
-    var blocks = this.getContent().get("blocks");
+    let blocks = this.getContent().get("blocks");
     blocks = blocks || Immutable.Map();
 
     return blocks.map((block, blockName) =>
@@ -145,9 +145,9 @@ Plugin.prototype.getHook = function(name) {
  * @return {Plugin}
  */
 Plugin.createFromString = s => {
-    var parts = s.split("@");
-    var name = parts[0];
-    var version = parts.slice(1).join("@");
+    const parts = s.split("@");
+    const name = parts[0];
+    const version = parts.slice(1).join("@");
 
     return new Plugin({
         name,

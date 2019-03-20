@@ -12,14 +12,14 @@ import error from "../utils/error";
 */
 function createMockFS(files) {
     files = Immutable.fromJS(files);
-    var mtime = new Date();
+    const mtime = new Date();
 
     function getFile(filePath) {
-        var parts = path.normalize(filePath).split(path.sep);
+        const parts = path.normalize(filePath).split(path.sep);
         return parts.reduce((list, part, i) => {
             if (!list) return null;
 
-            var file;
+            let file;
 
             if (!part || part === ".") file = list;
             else file = list.get(part);
@@ -40,7 +40,7 @@ function createMockFS(files) {
     }
 
     function fsReadFile(filePath) {
-        var file = getFile(filePath);
+        const file = getFile(filePath);
         if (!is.string(file)) {
             throw error.FileNotFoundError({
                 filename: filePath
@@ -51,7 +51,7 @@ function createMockFS(files) {
     }
 
     function fsStatFile(filePath) {
-        var file = getFile(filePath);
+        const file = getFile(filePath);
         if (!file) {
             throw error.FileNotFoundError({
                 filename: filePath
@@ -64,7 +64,7 @@ function createMockFS(files) {
     }
 
     function fsReadDir(filePath) {
-        var dir = getFile(filePath);
+        const dir = getFile(filePath);
         if (!dir || is.string(dir)) {
             throw error.FileNotFoundError({
                 filename: filePath

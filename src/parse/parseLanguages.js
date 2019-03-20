@@ -8,14 +8,14 @@ import Languages from "../models/languages";
     @return {Promise<Book>}
 */
 function parseLanguages(book) {
-    var logger = book.getLogger();
+    const logger = book.getLogger();
 
     return parseStructureFile(book, "langs").spread((file, result) => {
         if (!file) {
             return book;
         }
 
-        var languages = Languages.createFromList(file, result);
+        const languages = Languages.createFromList(file, result);
 
         logger.debug.ln("languages index file found at", file.getPath());
         logger.info.ln(

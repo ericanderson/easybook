@@ -1,6 +1,6 @@
 import Logger from "../utils/logger";
 
-var logOptions = {
+const logOptions = {
     name: "log",
     description: "Minimum log level to display",
     values: Logger.LEVELS.keySeq()
@@ -9,14 +9,14 @@ var logOptions = {
     defaults: "debug"
 };
 
-var formatOption = {
+const formatOption = {
     name: "format",
     description: "Format to build to",
     values: ["website", "json", "ebook"],
     defaults: "website"
 };
 
-var timingOption = {
+const timingOption = {
     name: "timing",
     description: "Print timing debug information",
     defaults: false

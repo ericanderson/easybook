@@ -2,13 +2,13 @@ import is from "is";
 import semver from "semver";
 import Immutable from "immutable";
 import PREFIX from "../constants/pluginPrefix";
-var DEFAULT_VERSION = "*";
+const DEFAULT_VERSION = "*";
 
 /*
  * PluginDependency represents the informations about a plugin
  * stored in config.plugins
  */
-var PluginDependency = Immutable.Record(
+const PluginDependency = Immutable.Record(
     {
         name: String(),
 
@@ -85,10 +85,10 @@ PluginDependency.create = (name, version, enabled) => {
  * @return {Plugin|undefined}
  */
 PluginDependency.createFromString = s => {
-    var parts = s.split("@");
-    var name = parts[0];
-    var version = parts.slice(1).join("@");
-    var enabled = true;
+    const parts = s.split("@");
+    let name = parts[0];
+    const version = parts.slice(1).join("@");
+    let enabled = true;
 
     if (name[0] === "-") {
         enabled = false;
@@ -108,7 +108,7 @@ PluginDependency.createFromString = s => {
  * @return {List<PluginDependency>}
  */
 PluginDependency.listFromString = s => {
-    var parts = s.split(",");
+    const parts = s.split(",");
     return PluginDependency.listFromArray(parts);
 };
 
@@ -139,7 +139,7 @@ PluginDependency.listFromArray = arr =>
 PluginDependency.listToArray = list =>
     list
         .map(dep => {
-            var result = "";
+            let result = "";
 
             if (!dep.isEnabled()) {
                 result += "-";

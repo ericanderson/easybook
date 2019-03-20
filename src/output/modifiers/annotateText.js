@@ -1,7 +1,7 @@
 import escape from "escape-html";
 
 // Selector to ignore
-var ANNOTATION_IGNORE = ".no-glossary,code,pre,a,script,h1,h2,h3,h4,h5,h6";
+const ANNOTATION_IGNORE = ".no-glossary,code,pre,a,script,h1,h2,h3,h4,h5,h6";
 
 function pregQuote(str) {
     return (str + "").replace(
@@ -12,11 +12,11 @@ function pregQuote(str) {
 
 function replaceText($, el, search, replace, text_only) {
     return $(el).each(function() {
-        var node = this.firstChild;
-        var val;
-        var new_val;
+        let node = this.firstChild;
+        let val;
+        let new_val;
 
-        var // Elements to be removed at the end.
+        const // Elements to be removed at the end.
             remove = [];
 
         // Only continue if firstChild exists.
@@ -66,16 +66,16 @@ function replaceText($, el, search, replace, text_only) {
  */
 function annotateText(entries, glossaryFilePath, $) {
     entries.forEach(entry => {
-        var entryId = entry.getID();
-        var name = entry.getName();
-        var description = entry.getDescription();
-        var searchRegex = new RegExp(
+        const entryId = entry.getID();
+        const name = entry.getName();
+        const description = entry.getDescription();
+        const searchRegex = new RegExp(
             "\\b(" + pregQuote(name.toLowerCase()) + ")\\b",
             "gi"
         );
 
         $("*").each(function() {
-            var $this = $(this);
+            const $this = $(this);
 
             if (
                 $this.is(ANNOTATION_IGNORE) ||

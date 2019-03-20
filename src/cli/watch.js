@@ -10,17 +10,17 @@ import parsers from "../parsers";
     @return {Promise}
 */
 function watch(dir) {
-    var d = Promise.defer();
+    const d = Promise.defer();
     dir = path.resolve(dir);
 
-    var toWatch = ["book.json", "book.js", "_layouts/**"];
+    const toWatch = ["book.json", "book.js", "_layouts/**"];
 
     // Watch all parsable files
     parsers.extensions.forEach(ext => {
         toWatch.push("**/*" + ext);
     });
 
-    var watcher = chokidar.watch(toWatch, {
+    const watcher = chokidar.watch(toWatch, {
         cwd: dir,
         ignored: "_book/**",
         ignoreInitial: true

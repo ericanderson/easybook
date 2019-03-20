@@ -2,12 +2,12 @@ import path from "path";
 import Immutable from "immutable";
 
 describe("findInstalled", () => {
-    var findInstalled = require("../findInstalled").default;
+    const findInstalled = require("../findInstalled").default;
 
     it("must list default plugins for gitbook directory", () => {
         // Read gitbook-plugins from package.json
-        var pkg = require(path.resolve(__dirname, "../../../package.json"));
-        var gitbookPlugins = Immutable.Seq(pkg.dependencies)
+        const pkg = require(path.resolve(__dirname, "../../../package.json"));
+        const gitbookPlugins = Immutable.Seq(pkg.dependencies)
             .filter((v, k) => k.indexOf("gitbook-plugin") === 0)
             .cacheResult();
 

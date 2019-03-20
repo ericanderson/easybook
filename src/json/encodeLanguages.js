@@ -7,8 +7,8 @@ import encodeFile from "./encodeFile";
     @return {Object}
 */
 function encodeLanguages(languages) {
-    var file = languages.getFile();
-    var list = languages.getList();
+    const file = languages.getFile();
+    const list = languages.getList();
 
     return {
         file: encodeFile(file),

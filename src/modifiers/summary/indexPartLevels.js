@@ -8,8 +8,8 @@ import indexArticleLevels from "./indexArticleLevels";
     @return {Part}
 */
 function indexPartLevels(part, index) {
-    var baseLevel = String(index + 1);
-    var articles = part.getArticles();
+    const baseLevel = String(index + 1);
+    let articles = part.getArticles();
 
     articles = articles.map((inner, i) =>
         indexArticleLevels(inner, baseLevel + "." + (i + 1))

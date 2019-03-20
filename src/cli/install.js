@@ -8,7 +8,7 @@ export default {
     description: "install all plugins dependencies",
     options: [options.log],
     exec: function(args, kwargs) {
-        var book = getBook(args, kwargs);
+        const book = getBook(args, kwargs);
 
         return Parse.parseConfig(book).then(resultBook =>
             Plugins.installPlugins(resultBook)

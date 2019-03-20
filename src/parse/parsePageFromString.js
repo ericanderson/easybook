@@ -10,7 +10,7 @@ import direction from "direction";
  */
 function parsePageFromString(page, content) {
     // Parse page YAML
-    var parsed = fm(content);
+    const parsed = fm(content);
 
     return page.merge({
         content: parsed.body,

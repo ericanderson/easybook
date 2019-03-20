@@ -8,7 +8,7 @@ import encodeSummaryArticle from "../json/encodeSummaryArticle";
     @return {Object}
 */
 function encodeSummary(output, summary) {
-    var result = {
+    const result = {
         /**
             Iterate over the summary, it stops when the "iter" returns false
 
@@ -16,7 +16,7 @@ function encodeSummary(output, summary) {
         */
         walk: function(iter) {
             summary.getArticle(article => {
-                var jsonArticle = encodeSummaryArticle(article, false);
+                const jsonArticle = encodeSummaryArticle(article, false);
 
                 return iter(jsonArticle);
             });
@@ -29,7 +29,7 @@ function encodeSummary(output, summary) {
             @return {Object}
         */
         getArticleByLevel: function(level) {
-            var article = summary.getByLevel(level);
+            const article = summary.getByLevel(level);
             return article ? encodeSummaryArticle(article) : undefined;
         },
 
@@ -40,7 +40,7 @@ function encodeSummary(output, summary) {
             @return {Object}
         */
         getArticleByPath: function(level) {
-            var article = summary.getByPath(level);
+            const article = summary.getByPath(level);
             return article ? encodeSummaryArticle(article) : undefined;
         }
     };

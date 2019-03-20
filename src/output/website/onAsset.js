@@ -8,12 +8,12 @@ import fs from "../../utils/fs";
     @param {Page} page
 */
 function onAsset(output, asset) {
-    var book = output.getBook();
-    var options = output.getOptions();
-    var bookFS = book.getContentFS();
+    const book = output.getBook();
+    const options = output.getOptions();
+    const bookFS = book.getContentFS();
 
-    var outputFolder = options.get("root");
-    var outputPath = path.resolve(outputFolder, asset);
+    const outputFolder = options.get("root");
+    const outputPath = path.resolve(outputFolder, asset);
 
     return fs
         .ensureFile(outputPath)
