@@ -84,8 +84,8 @@ Logger.prototype.write = function(msg) {
 /**
     Format a string using the first argument as a printf-like format.
 */
-Logger.prototype.format = function() {
-    return util.format.apply(util, arguments);
+Logger.prototype.format = function(...args) {
+    return util.format.apply(util, args);
 };
 
 /**

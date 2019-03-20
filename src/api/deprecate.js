@@ -30,10 +30,10 @@ function logNotice(book, key, message) {
     @return {Function}
 */
 function deprecateMethod(book, key, fn, msg) {
-    return function() {
+    return function(...args) {
         logNotice(book, key, msg);
 
-        return fn.apply(this, arguments);
+        return fn.apply(this, args);
     };
 }
 
