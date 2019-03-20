@@ -84,7 +84,8 @@ Git.prototype.resolve = function(giturl) {
 
 // Return root of git repo from a filepath
 Git.prototype.resolveRoot = function(filepath) {
-    var relativeToGit, repoId;
+    var relativeToGit;
+    var repoId;
 
     // No git repo cloned, or file is not in a git repository
     if (!this.tmpDir || !pathUtil.isInRoot(this.tmpDir, filepath)) return null;
@@ -105,7 +106,10 @@ Git.isUrl = giturl => giturl.indexOf(GIT_PREFIX) === 0;
 
 // Parse and extract infos
 Git.parseUrl = giturl => {
-    var ref, uri, fileParts, filepath;
+    var ref;
+    var uri;
+    var fileParts;
+    var filepath;
 
     if (!Git.isUrl(giturl)) return null;
     giturl = giturl.slice(GIT_PREFIX.length);

@@ -12,10 +12,11 @@ function pregQuote(str) {
 
 function replaceText($, el, search, replace, text_only) {
     return $(el).each(function() {
-        var node = this.firstChild,
-            val,
-            new_val,
-            // Elements to be removed at the end.
+        var node = this.firstChild;
+        var val;
+        var new_val;
+
+        var // Elements to be removed at the end.
             remove = [];
 
         // Only continue if firstChild exists.

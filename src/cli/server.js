@@ -53,8 +53,8 @@ Server.prototype.stop = function() {
     @return {Promise}
 */
 Server.prototype.start = function(dir, port) {
-    var that = this,
-        pre = Promise();
+    var that = this;
+    var pre = Promise();
     port = port || 8004;
 
     if (that.isRunning()) pre = this.stop();

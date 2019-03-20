@@ -13,7 +13,9 @@ import getOutputFolder from "./getOutputFolder";
 import Server from "./server";
 import watch from "./watch";
 
-var server, lrServer, lrPath;
+var server;
+var lrServer;
+var lrPath;
 
 function waitForCtrlC() {
     var d = Promise.defer();

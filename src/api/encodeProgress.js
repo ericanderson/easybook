@@ -14,9 +14,9 @@ function encodeProgress(output, page) {
     navigation = Immutable.Map(navigation);
 
     var n = navigation.size;
-    var percent = 0,
-        prevPercent = 0,
-        currentChapter = null;
+    var percent = 0;
+    var prevPercent = 0;
+    var currentChapter = null;
     var done = true;
 
     var chapters = navigation
