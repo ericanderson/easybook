@@ -8,6 +8,7 @@ import Summary from "./summary";
 import Glossary from "./glossary";
 import Languages from "./languages";
 import Ignore from "./ignore";
+import File from "../models/file"
 
 var Book = Immutable.Record({
     // Logger for outptu message
@@ -21,7 +22,11 @@ var Book = Immutable.Record({
 
     // Structure files
     config: Config(),
-    readme: Readme(),
+    readme: {
+        file: File(),
+        description: "",
+        title: ""
+    },
     summary: Summary(),
     glossary: Glossary(),
     languages: Languages(),

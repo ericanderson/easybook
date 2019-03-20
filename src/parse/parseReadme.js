@@ -1,5 +1,5 @@
 import parseStructureFile from "./parseStructureFile";
-import Readme from "../models/readme";
+import {createReadme} from "../models/readme";
 import error from "../utils/error";
 
 /**
@@ -18,7 +18,7 @@ function parseReadme(book) {
 
         logger.debug.ln("readme found at", file.getPath());
 
-        var readme = Readme.create(file, result);
+        var readme = createReadme(file, result);
         return book.set("readme", readme);
     });
 }

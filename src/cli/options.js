@@ -8,7 +8,7 @@ var logOptions = {
             return s.toLowerCase();
         })
         .toJS(),
-    defaults: "info"
+    defaults: "debug"
 };
 
 var formatOption = {

@@ -12,7 +12,7 @@ function printBook(book) {
     var summaryFile = summary.getFile();
 
     var readme = book.getReadme();
-    var readmeFile = readme.getFile();
+    var readmeFile = readme.file;
 
     var glossary = book.getGlossary();
     var glossaryFile = glossary.getFile();

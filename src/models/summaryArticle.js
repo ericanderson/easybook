@@ -127,7 +127,7 @@ SummaryArticle.prototype.isFile = function(file) {
  */
 SummaryArticle.prototype.isReadme = function(book) {
     var readme = book.getFile ? book : book.getReadme();
-    var file = readme.getFile();
+    var file = readme.file;
 
     return this.isFile(file);
 };

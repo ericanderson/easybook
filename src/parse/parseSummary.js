@@ -1,6 +1,7 @@
 import parseStructureFile from "./parseStructureFile";
 import Summary from "../models/summary";
 import unshiftArticle from "../modifiers/summary/unshiftArticle";
+import Book from "../models/book";
 
 /**
     Parse summary in a book, the summary can only be parsed
@@ -12,7 +13,7 @@ import unshiftArticle from "../modifiers/summary/unshiftArticle";
 function parseSummary(book) {
     var readme = book.getReadme();
     var logger = book.getLogger();
-    var readmeFile = readme.getFile();
+    var readmeFile = readme.file;
 
     return parseStructureFile(book, "summary").spread(function(file, result) {
         var summary;

@@ -14,7 +14,7 @@ var OUTPUT_EXTENSION = ".html";
 function fileToOutput(output, filePath) {
     var book = output.getBook();
     var readme = book.getReadme();
-    var fileReadme = readme.getFile();
+    var fileReadme = readme.file;
 
     if (
         path.basename(filePath, path.extname(filePath)) == "README" ||

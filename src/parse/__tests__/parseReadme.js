@@ -13,11 +13,11 @@ describe("parseReadme", function() {
 
         return parseReadme(book).then(function(resultBook) {
             var readme = resultBook.getReadme();
-            var file = readme.getFile();
+            var file = readme.file;
 
             expect(file.exists()).toBeTruthy();
-            expect(readme.getTitle()).toBe("Hello");
-            expect(readme.getDescription()).toBe(
+            expect(readme.title).toBe("Hello");
+            expect(readme.description).toBe(
                 "And here is the description."
             );
         });

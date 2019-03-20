@@ -9,11 +9,16 @@ export default {
     name: "build [book] [output]",
     description: "build a book",
     options: [options.log, options.format, options.timing],
-    exec: function(args, kwargs) {
-        var book = getBook(args, kwargs);
-        var outputFolder = getOutputFolder(args);
+    exec: function(bookDir, outputDir, command) {
+        const kwargs = {
+            format: command.format,
+            log: command.log,
+            timing: command.timing
+        };
+        const book = getBook(bookDir, kwargs);
+        const outputFolder = getOutputFolder([bookDir, outputDir]);
 
-        var Generator = Output.getGenerator(kwargs.format);
+        const Generator = Output.getGenerator(kwargs.format || "website");
 
         return Parse.parseBook(book)
             .then(function(resultBook) {

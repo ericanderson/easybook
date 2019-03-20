@@ -78,8 +78,8 @@ describe("parseBook", function() {
             var summary = resultBook.getSummary();
             var articles = summary.getArticlesAsList();
 
-            expect(summary.getFile().exists()).toBe(true);
-            expect(readme.getFile().exists()).toBe(true);
+            expect(summary.file.exists()).toBe(true);
+            expect(readme.file.exists()).toBe(true);
             expect(articles.size).toBe(2);
         });
     });

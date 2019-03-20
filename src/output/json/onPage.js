@@ -17,7 +17,7 @@ function onPage(output, page) {
     var readme = output
         .getBook()
         .getReadme()
-        .getFile();
+        .file;
 
     return Modifiers.modifyHTML(page, getModifiers(output, page)).then(function(
         resultPage

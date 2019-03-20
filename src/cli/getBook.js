@@ -1,4 +1,4 @@
-import path from "path";
+import * as path from "path";
 import Book from "../models/book";
 import createNodeFS from "../fs/node";
 
@@ -10,8 +10,8 @@ import createNodeFS from "../fs/node";
     @param {Object} kwargs
     @return {Book}
 */
-function getBook(args, kwargs) {
-    var input = path.resolve(args[0] || process.cwd());
+function getBook(book, kwargs) {
+    var input = path.resolve(book || process.cwd());
     var logLevel = kwargs.log;
 
     var fs = createNodeFS(input);

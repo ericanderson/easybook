@@ -3,9 +3,15 @@
         "outDir": "./lib",
         "allowJs": true,
         "target": "es5",
-        "esModuleInterop": true
+        "esModuleInterop": true,
+        "rootDir": "src"
+        
     },
     "include": [
         "./src/**/*"
+    ],
+    "exclude": [
+        "node_modules",
+        "lib"
     ]
 }

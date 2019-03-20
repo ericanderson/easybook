@@ -1,7 +1,5 @@
 import Plugin from "../plugin";
 describe("Plugin", function() {
-    console.log(Plugin)
-
     describe("createFromString", function() {
         it("must parse name", function() {
             var plugin = Plugin.createFromString("hello");
