@@ -8,11 +8,9 @@ import Promise, { forEach } from "../utils/promise";
     @return {Promise}
 */
 function walkArticles(articles, fn) {
-    return forEach(articles, article => {
-        return Promise(fn(article)).then(() => {
-            return walkArticles(article.getArticles(), fn);
-        });
-    });
+    return forEach(articles, article =>
+        Promise(fn(article)).then(() => walkArticles(article.getArticles(), fn))
+    );
 }
 
 /**
@@ -25,9 +23,7 @@ function walkArticles(articles, fn) {
 function walkSummary(summary, fn) {
     var parts = summary.getParts();
 
-    return forEach(parts, part => {
-        return walkArticles(part.getArticles(), fn);
-    });
+    return forEach(parts, part => walkArticles(part.getArticles(), fn));
 }
 
 export default walkSummary;

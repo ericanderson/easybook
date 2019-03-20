@@ -5,11 +5,7 @@
  * @return {Array<String>}
  */
 function toNames(plugins) {
-    return plugins
-        .map(plugin => {
-            return plugin.getName();
-        })
-        .toArray();
+    return plugins.map(plugin => plugin.getName()).toArray();
 }
 
 export default toNames;

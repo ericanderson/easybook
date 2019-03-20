@@ -55,12 +55,8 @@ var ThemesLoader = nunjucks.Loader.extend({
      */
     getSearchPath: function(filepath) {
         return this.searchPaths
-            .sortBy(s => {
-                return -s.length;
-            })
-            .find(basePath => {
-                return filepath && filepath.indexOf(basePath) === 0;
-            });
+            .sortBy(s => -s.length)
+            .find(basePath => filepath && filepath.indexOf(basePath) === 0);
     },
 
     /**

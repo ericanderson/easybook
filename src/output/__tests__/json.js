@@ -2,16 +2,15 @@ import generateMock from "./generateMock";
 import JSONGenerator from "../json";
 
 describe("JSONGenerator", () => {
-    it("should generate a README.json", () => {
-        return generateMock(JSONGenerator, {
+    it("should generate a README.json", () =>
+        generateMock(JSONGenerator, {
             "README.md": "Hello World"
         }).then(folder => {
             expect(folder).toHaveFile("README.json");
-        });
-    });
+        }));
 
-    it("should generate a json file for each articles", () => {
-        return generateMock(JSONGenerator, {
+    it("should generate a json file for each articles", () =>
+        generateMock(JSONGenerator, {
             "README.md": "Hello World",
             "SUMMARY.md": "# Summary\n\n* [Page](test/page.md)",
             test: {
@@ -20,11 +19,10 @@ describe("JSONGenerator", () => {
         }).then(folder => {
             expect(folder).toHaveFile("README.json");
             expect(folder).toHaveFile("test/page.json");
-        });
-    });
+        }));
 
-    it("should generate a multilingual book", () => {
-        return generateMock(JSONGenerator, {
+    it("should generate a multilingual book", () =>
+        generateMock(JSONGenerator, {
             "LANGS.md": "# Languages\n\n* [en](en)\n* [fr](fr)",
             en: {
                 "README.md": "Hello"
@@ -36,6 +34,5 @@ describe("JSONGenerator", () => {
             expect(folder).toHaveFile("en/README.json");
             expect(folder).toHaveFile("fr/README.json");
             expect(folder).toHaveFile("README.json");
-        });
-    });
+        }));
 });

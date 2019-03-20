@@ -82,8 +82,11 @@ function annotateText(entries, glossaryFilePath, $) {
             )
                 return;
 
-            replaceText($, this, searchRegex, match => {
-                return (
+            replaceText(
+                $,
+                this,
+                searchRegex,
+                match =>
                     '<a href="/' +
                     glossaryFilePath +
                     "#" +
@@ -94,8 +97,7 @@ function annotateText(entries, glossaryFilePath, $) {
                     '">' +
                     match +
                     "</a>"
-                );
-            });
+            );
         });
     });
 }

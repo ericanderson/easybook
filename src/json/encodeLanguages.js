@@ -14,12 +14,10 @@ function encodeLanguages(languages) {
         file: encodeFile(file),
         list: list
             .valueSeq()
-            .map(lang => {
-                return {
-                    id: lang.getID(),
-                    title: lang.getTitle()
-                };
-            })
+            .map(lang => ({
+                id: lang.getID(),
+                title: lang.getTitle()
+            }))
             .toJS()
     };
 }

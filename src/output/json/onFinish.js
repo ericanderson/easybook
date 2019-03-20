@@ -38,12 +38,12 @@ function onFinish(output) {
                 return json;
             })
 
-            .then(json => {
-                return fs.writeFile(
+            .then(json =>
+                fs.writeFile(
                     path.resolve(outputRoot, "README.json"),
                     JSON.stringify(json, null, 4)
-                );
-            })
+                )
+            )
 
             .thenResolve(output)
     );

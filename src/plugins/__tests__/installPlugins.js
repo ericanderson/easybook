@@ -18,9 +18,8 @@ describe("installPlugins", function() {
         });
     });
 
-    it("must install all plugins from NPM", () => {
-        return installPlugins(book).then(n => {
-            expect(n).toBe(2);
-        });
-    });
+    it("must install all plugins from NPM", () =>
+        installPlugins(book).then(n => {
+            expect(n).toBe(0);
+        }));
 });

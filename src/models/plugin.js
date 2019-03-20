@@ -125,9 +125,9 @@ Plugin.prototype.getBlocks = function() {
     var blocks = this.getContent().get("blocks");
     blocks = blocks || Immutable.Map();
 
-    return blocks.map((block, blockName) => {
-        return TemplateBlock.create(blockName, block);
-    });
+    return blocks.map((block, blockName) =>
+        TemplateBlock.create(blockName, block)
+    );
 };
 
 /**
@@ -160,12 +160,11 @@ Plugin.createFromString = s => {
  * @param {PluginDependency}
  * @return {Plugin}
  */
-Plugin.createFromDep = dep => {
-    return new Plugin({
+Plugin.createFromDep = dep =>
+    new Plugin({
         name: dep.getName(),
         version: dep.getVersion()
     });
-};
 
 Plugin.nameToNpmID = PluginDependency.nameToNpmID;
 

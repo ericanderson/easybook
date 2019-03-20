@@ -12,35 +12,32 @@ describe("ConrefsLoader", () => {
             loader: new ConrefsLoader(dirName)
         });
 
-        it("should include content from git", () => {
-            return renderTemplate(
+        it("should include content from git", () =>
+            renderTemplate(
                 engine,
                 fileName,
                 '{% include "git+https://gist.github.com/69ea4542e4c8967d2fa7.git/test.md" %}'
             ).then(out => {
                 expect(out.getContent()).toBe("Hello from git");
-            });
-        });
+            }));
 
-        it("should handle deep inclusion (1)", () => {
-            return renderTemplate(
+        it("should handle deep inclusion (1)", () =>
+            renderTemplate(
                 engine,
                 fileName,
                 '{% include "git+https://gist.github.com/69ea4542e4c8967d2fa7.git/test2.md" %}'
             ).then(out => {
                 expect(out.getContent()).toBe("First Hello. Hello from git");
-            });
-        });
+            }));
 
-        it("should handle deep inclusion (2)", () => {
-            return renderTemplate(
+        it("should handle deep inclusion (2)", () =>
+            renderTemplate(
                 engine,
                 fileName,
                 '{% include "git+https://gist.github.com/69ea4542e4c8967d2fa7.git/test3.md" %}'
             ).then(out => {
                 expect(out.getContent()).toBe("First Hello. Hello from git");
-            });
-        });
+            }));
     });
 
     describe("Local", () => {

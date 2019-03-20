@@ -7,9 +7,12 @@ import Immutable from "immutable";
     @return {Map<String:Function>}
 */
 function listFilters(plugins) {
-    return plugins.reverse().reduce((result, plugin) => {
-        return result.merge(plugin.getFilters());
-    }, Immutable.Map());
+    return plugins
+        .reverse()
+        .reduce(
+            (result, plugin) => result.merge(plugin.getFilters()),
+            Immutable.Map()
+        );
 }
 
 export default listFilters;

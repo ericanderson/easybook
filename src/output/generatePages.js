@@ -25,9 +25,7 @@ function generatePages(generator, output) {
             logger.debug.ln('generate page "' + file.getPath() + '"');
 
             return generatePage(out, page)
-                .then(resultPage => {
-                    return generator.onPage(out, resultPage);
-                })
+                .then(resultPage => generator.onPage(out, resultPage))
                 .fail(err => {
                     logger.error.ln(
                         'error while generating page "' + file.getPath() + '":'

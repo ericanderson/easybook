@@ -102,9 +102,7 @@ Config.prototype.getPluginDependencies = function() {
 Config.prototype.getPluginDependency = function(name) {
     var plugins = this.getPluginDependencies();
 
-    return plugins.find(dep => {
-        return dep.getName() === name;
-    });
+    return plugins.find(dep => dep.getName() === name);
 };
 
 /**
@@ -150,23 +148,21 @@ Config.prototype.mergeValues = function(values) {
  * @param {Object} values
  * @returns {Config}
  */
-Config.create = (file, values) => {
-    return new Config({
+Config.create = (file, values) =>
+    new Config({
         file: file,
         values: Immutable.fromJS(values)
     });
-};
 
 /**
  * Create a new config
  * @param {Object} values
  * @returns {Config}
  */
-Config.createWithValues = values => {
-    return new Config({
+Config.createWithValues = values =>
+    new Config({
         values: Immutable.fromJS(values)
     });
-};
 
 /**
  * Convert a keyPath to an array of keys

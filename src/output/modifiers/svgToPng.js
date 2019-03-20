@@ -35,9 +35,9 @@ function svgToPng(rootFolder, currentFile, $) {
         var filePath = path.join(rootFolder, fileName);
 
         return fs
-            .assertFile(filePath, () => {
-                return imagesUtil.convertSVGToPNG(inputPath, filePath);
-            })
+            .assertFile(filePath, () =>
+                imagesUtil.convertSVGToPNG(inputPath, filePath)
+            )
             .then(() => {
                 // Convert filename to a relative filename
                 fileName = LocationUtils.relative(currentDirectory, fileName);

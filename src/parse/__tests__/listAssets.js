@@ -16,9 +16,7 @@ describe("listAssets", () => {
         var book = Book.createForFS(fs);
 
         return parseGlossary(book)
-            .then(resultBook => {
-                return listAssets(resultBook, Immutable.Map());
-            })
+            .then(resultBook => listAssets(resultBook, Immutable.Map()))
             .then(assets => {
                 expect(assets.size).toBe(2);
                 expect(assets.includes("assetFile.js"));

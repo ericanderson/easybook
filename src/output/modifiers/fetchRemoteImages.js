@@ -29,9 +29,7 @@ function fetchRemoteImages(rootFolder, currentFile, $) {
         var filePath = path.join(rootFolder, fileName);
 
         return fs
-            .assertFile(filePath, () => {
-                return fs.download(src, filePath);
-            })
+            .assertFile(filePath, () => fs.download(src, filePath))
             .then(() => {
                 // Convert to relative
                 src = LocationUtils.relative(currentDirectory, fileName);

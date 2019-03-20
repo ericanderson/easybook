@@ -60,9 +60,7 @@ TemplateEngine.prototype.getExtensions = function() {
 */
 TemplateEngine.prototype.getBlock = function(name) {
     var blocks = this.getBlocks();
-    return blocks.find(block => {
-        return block.getName() === name;
-    });
+    return blocks.find(block => block.getName() === name);
 };
 
 /**
@@ -125,8 +123,8 @@ TemplateEngine.prototype.toNunjucks = function(blocksOutput) {
     @param {Object} def
     @return {TemplateEngine}
 */
-TemplateEngine.create = def => {
-    return new TemplateEngine({
+TemplateEngine.create = def =>
+    new TemplateEngine({
         blocks: Immutable.List(def.blocks || []),
         extensions: Immutable.Map(def.extensions || {}),
         filters: Immutable.Map(def.filters || {}),
@@ -134,6 +132,5 @@ TemplateEngine.create = def => {
         context: def.context,
         loader: def.loader
     });
-};
 
 export default TemplateEngine;

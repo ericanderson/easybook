@@ -11,9 +11,9 @@ function indexPartLevels(part, index) {
     var baseLevel = String(index + 1);
     var articles = part.getArticles();
 
-    articles = articles.map((inner, i) => {
-        return indexArticleLevels(inner, baseLevel + "." + (i + 1));
-    });
+    articles = articles.map((inner, i) =>
+        indexArticleLevels(inner, baseLevel + "." + (i + 1))
+    );
 
     return part.merge({
         level: baseLevel,

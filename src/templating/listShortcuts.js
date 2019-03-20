@@ -17,12 +17,10 @@ function listShortcuts(blocks, filePath) {
     }
 
     return blocks
-        .map(block => {
-            return block.getShortcuts();
-        })
-        .filter(shortcuts => {
-            return shortcuts && shortcuts.acceptParser(parser.getName());
-        });
+        .map(block => block.getShortcuts())
+        .filter(
+            shortcuts => shortcuts && shortcuts.acceptParser(parser.getName())
+        );
 }
 
 export default listShortcuts;

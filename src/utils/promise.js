@@ -16,11 +16,10 @@ if (process.env.DEBUG || process.env.CI) {
 function reduce(arr, iter, base) {
     arr = Immutable.Iterable.isIterable(arr) ? arr : Immutable.List(arr);
 
-    return arr.reduce((prev, elem, key) => {
-        return prev.then(val => {
-            return iter(val, elem, key);
-        });
-    }, Q(base));
+    return arr.reduce(
+        (prev, elem, key) => prev.then(val => iter(val, elem, key)),
+        Q(base)
+    );
 }
 
 /**
@@ -31,9 +30,7 @@ function reduce(arr, iter, base) {
  * @return {Promise}
  */
 function forEach(arr, iter) {
-    return reduce(arr, (val, el, key) => {
-        return iter(el, key);
-    });
+    return reduce(arr, (val, el, key) => iter(el, key));
 }
 
 /**
@@ -46,12 +43,11 @@ function forEach(arr, iter) {
 function serie(arr, iter, base) {
     return reduce(
         arr,
-        (before, item, key) => {
-            return Q(iter(item, key)).then(r => {
+        (before, item, key) =>
+            Q(iter(item, key)).then(r => {
                 before.push(r);
                 return before;
-            });
-        },
+            }),
         []
     );
 }
@@ -66,13 +62,15 @@ function serie(arr, iter, base) {
 function some(arr, iter) {
     arr = Immutable.List(arr);
 
-    return arr.reduce((prev, elem, i) => {
-        return prev.then(val => {
-            if (val) return val;
+    return arr.reduce(
+        (prev, elem, i) =>
+            prev.then(val => {
+                if (val) return val;
 
-            return iter(elem, i);
-        });
-    }, Q());
+                return iter(elem, i);
+            }),
+        Q()
+    );
 }
 
 /**
@@ -85,12 +83,11 @@ function some(arr, iter) {
 function mapAsList(arr, iter) {
     return reduce(
         arr,
-        (prev, entry, i) => {
-            return Q(iter(entry, i)).then(out => {
+        (prev, entry, i) =>
+            Q(iter(entry, i)).then(out => {
                 prev.push(out);
                 return prev;
-            });
-        },
+            }),
         []
     );
 }
@@ -109,17 +106,11 @@ function map(arr, iter) {
             type = "OrderedMap";
         }
 
-        return mapAsList(arr, (value, key) => {
-            return Q(iter(value, key)).then(result => {
-                return [key, result];
-            });
-        }).then(result => {
-            return Immutable[type](result);
-        });
+        return mapAsList(arr, (value, key) =>
+            Q(iter(value, key)).then(result => [key, result])
+        ).then(result => Immutable[type](result));
     } else {
-        return mapAsList(arr, iter).then(result => {
-            return Immutable.List(result);
-        });
+        return mapAsList(arr, iter).then(result => Immutable.List(result));
     }
 }
 
@@ -133,9 +124,7 @@ function wrap(func) {
     return function() {
         var args = Array.prototype.slice.call(arguments, 0);
 
-        return Q().then(() => {
-            return func.apply(null, args);
-        });
+        return Q().then(() => func.apply(null, args));
     };
 }
 

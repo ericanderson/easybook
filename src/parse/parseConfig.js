@@ -21,14 +21,12 @@ function parseConfig(book) {
         // Try loading it
         return fs
             .loadAsObject(filename)
-            .then(cfg => {
-                return fs.statFile(filename).then(file => {
-                    return {
-                        file: file,
-                        values: cfg
-                    };
-                });
-            })
+            .then(cfg =>
+                fs.statFile(filename).then(file => ({
+                    file: file,
+                    values: cfg
+                }))
+            )
             .fail(err => {
                 if (err.code != "MODULE_NOT_FOUND") throw err;
                 else return Promise(false);

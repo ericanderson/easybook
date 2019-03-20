@@ -28,17 +28,13 @@ function getPDFTemplate(output, type) {
         Templating.renderFile(engine, "ebook/" + filePath, context)
 
             // Inline css and assets
-            .then(tplOut => {
-                return Promise.nfcall(
-                    juice.juiceResources,
-                    tplOut.getContent(),
-                    {
-                        webResources: {
-                            relativeTo: outputRoot
-                        }
+            .then(tplOut =>
+                Promise.nfcall(juice.juiceResources, tplOut.getContent(), {
+                    webResources: {
+                        relativeTo: outputRoot
                     }
-                );
-            })
+                })
+            )
     );
 }
 

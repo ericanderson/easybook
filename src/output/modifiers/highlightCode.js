@@ -24,9 +24,7 @@ function getLanguageForClass(classNames) {
 
             return null;
         })
-        .find(cl => {
-            return Boolean(cl);
-        });
+        .find(cl => Boolean(cl));
 }
 
 /**

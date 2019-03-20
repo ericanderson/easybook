@@ -22,18 +22,18 @@ export default Immutable.Map({
     markdown: TemplateBlock({
         name: "markdown",
         process: function(blk) {
-            return this.book.renderInline("markdown", blk.body).then(out => {
-                return { body: out };
-            });
+            return this.book.renderInline("markdown", blk.body).then(out => ({
+                body: out
+            }));
         }
     }),
 
     asciidoc: TemplateBlock({
         name: "asciidoc",
         process: function(blk) {
-            return this.book.renderInline("asciidoc", blk.body).then(out => {
-                return { body: out };
-            });
+            return this.book.renderInline("asciidoc", blk.body).then(out => ({
+                body: out
+            }));
         }
     }),
 
@@ -42,9 +42,9 @@ export default Immutable.Map({
         process: function(blk) {
             return this.book
                 .renderInline(this.ctx.file.type, blk.body)
-                .then(out => {
-                    return { body: out };
-                });
+                .then(out => ({
+                    body: out
+                }));
         }
     })
 });

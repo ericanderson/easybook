@@ -15,9 +15,8 @@ function Git() {
 }
 
 // Return an unique ID for a combinaison host/ref
-Git.prototype.repoID = (host, ref) => {
-    return crc.crc32(host + "#" + (ref || "")).toString(16);
-};
+Git.prototype.repoID = (host, ref) =>
+    crc.crc32(host + "#" + (ref || "")).toString(16);
 
 // Allocate a temporary folder for cloning repos in it
 Git.prototype.allocateDir = function() {
@@ -78,9 +77,9 @@ Git.prototype.resolve = function(giturl) {
     if (!giturl) return Promise(null);
 
     // Clone or get from cache
-    return this.clone(giturl.host, giturl.ref).then(repo => {
-        return path.resolve(repo, giturl.filepath);
-    });
+    return this.clone(giturl.host, giturl.ref).then(repo =>
+        path.resolve(repo, giturl.filepath)
+    );
 };
 
 // Return root of git repo from a filepath
@@ -102,9 +101,7 @@ Git.prototype.resolveRoot = function(filepath) {
 };
 
 // Check if an url is a git dependency url
-Git.isUrl = giturl => {
-    return giturl.indexOf(GIT_PREFIX) === 0;
-};
+Git.isUrl = giturl => giturl.indexOf(GIT_PREFIX) === 0;
 
 // Parse and extract infos
 Git.parseUrl = giturl => {

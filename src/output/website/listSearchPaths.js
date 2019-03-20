@@ -10,9 +10,7 @@ function listSearchPaths(output) {
 
     var searchPaths = plugins
         .valueSeq()
-        .map(plugin => {
-            return plugin.getPath();
-        })
+        .map(plugin => plugin.getPath())
         .toList();
 
     return searchPaths.unshift(book.getContentRoot());

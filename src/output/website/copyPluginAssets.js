@@ -27,11 +27,9 @@ function copyPluginAssets(output) {
         // so that first plugins can replace assets from other plugins.
         .reverse();
 
-    return forEach(plugins, plugin => {
-        return copyAssets(output, plugin).then(() => {
-            return copyResources(output, plugin);
-        });
-    }).thenResolve(output);
+    return forEach(plugins, plugin =>
+        copyAssets(output, plugin).then(() => copyResources(output, plugin))
+    ).thenResolve(output);
 }
 
 /**

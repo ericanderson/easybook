@@ -45,18 +45,7 @@ function processOutput(generator, startOutput) {
             )
         )
 
-        .then(
-            callHook.bind(
-                null,
-                "init",
-                output => {
-                    return {};
-                },
-                output => {
-                    return output;
-                }
-            )
-        )
+        .then(callHook.bind(null, "init", output => ({}), output => output))
 
         .then(output => {
             if (!generator.onInit) {
@@ -109,12 +98,8 @@ function processOutput(generator, startOutput) {
             callHook.bind(
                 null,
                 "finish:before",
-                output => {
-                    return {};
-                },
-                output => {
-                    return output;
-                }
+                output => ({}),
+                output => output
             )
         )
 
@@ -126,18 +111,7 @@ function processOutput(generator, startOutput) {
             return generator.onFinish(output);
         })
 
-        .then(
-            callHook.bind(
-                null,
-                "finish",
-                output => {
-                    return {};
-                },
-                output => {
-                    return output;
-                }
-            )
-        );
+        .then(callHook.bind(null, "finish", output => ({}), output => output));
 }
 
 /**

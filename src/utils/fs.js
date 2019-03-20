@@ -133,12 +133,8 @@ function pickFile(rootFolder, fileName) {
 */
 function ensureFolder(rootFolder) {
     return rmDir(rootFolder)
-        .fail(() => {
-            return Promise();
-        })
-        .then(() => {
-            return Promise.nfcall(mkdirp, rootFolder);
-        });
+        .fail(() => Promise())
+        .then(() => Promise.nfcall(mkdirp, rootFolder));
 }
 
 export default {

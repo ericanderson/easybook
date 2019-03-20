@@ -17,9 +17,9 @@ function installPlugins(book) {
     // Remove default plugins
     // (only if version is same as installed)
     plugins = plugins.filterNot(plugin => {
-        var dependency = DEFAULT_PLUGINS.find(dep => {
-            return dep.getName() === plugin.getName();
-        });
+        var dependency = DEFAULT_PLUGINS.find(
+            dep => dep.getName() === plugin.getName()
+        );
 
         return (
             // Disabled plugin
@@ -40,9 +40,9 @@ function installPlugins(book) {
         "plugins using npm@" + npmi.NPM_VERSION
     );
 
-    return forEach(plugins, plugin => {
-        return installPlugin(book, plugin);
-    }).thenResolve(plugins.size);
+    return forEach(plugins, plugin => installPlugin(book, plugin)).thenResolve(
+        plugins.size
+    );
 }
 
 export default installPlugins;

@@ -45,9 +45,7 @@ function spawnCmd(command, args, options) {
     var d = Promise.defer();
     var child = spawn(command, args, options);
 
-    child.on("error", error => {
-        return d.reject(error);
-    });
+    child.on("error", error => d.reject(error));
 
     child.stdout.on("data", data => {
         d.notify(data);

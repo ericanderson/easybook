@@ -53,8 +53,8 @@ function getModifiers(output, page) {
         ),
 
         // Highlight code blocks using "code" block
-        Modifiers.highlightCode.bind(null, (lang, source) => {
-            return Promise(
+        Modifiers.highlightCode.bind(null, (lang, source) =>
+            Promise(
                 code.applyBlock(
                     {
                         body: source,
@@ -70,8 +70,8 @@ function getModifiers(output, page) {
                 } else {
                     return { html: result.body };
                 }
-            });
-        })
+            })
+        )
     ];
 }
 

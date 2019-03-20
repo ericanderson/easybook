@@ -16,9 +16,7 @@ function removePlugin(config, pluginName) {
     }
 
     // Remove the dependency from the list
-    deps = deps.filterNot(dep => {
-        return dep.getName() === pluginName;
-    });
+    deps = deps.filterNot(dep => dep.getName() === pluginName);
     return config.setPluginDependencies(deps);
 }
 

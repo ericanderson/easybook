@@ -11,20 +11,14 @@ import sortDependencies from "./sortDependencies";
 function listDependencies(deps) {
     // Extract list of plugins to disable (starting with -)
     var toRemove = deps
-        .filter(plugin => {
-            return !plugin.isEnabled();
-        })
-        .map(plugin => {
-            return plugin.getName();
-        });
+        .filter(plugin => !plugin.isEnabled())
+        .map(plugin => plugin.getName());
 
     // Concat with default plugins
     deps = deps.concat(DEFAULT_PLUGINS);
 
     // Remove plugins
-    deps = deps.filterNot(plugin => {
-        return toRemove.includes(plugin.getName());
-    });
+    deps = deps.filterNot(plugin => toRemove.includes(plugin.getName()));
 
     // Sort
     return sortDependencies(deps);

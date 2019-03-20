@@ -38,9 +38,9 @@ function generatePage(output, page) {
             return (
                 callPageHook("page:before", output, resultPage)
                     // Escape code blocks with raw tags
-                    .then(currentPage => {
-                        return parser.preparePage(currentPage.getContent());
-                    })
+                    .then(currentPage =>
+                        parser.preparePage(currentPage.getContent())
+                    )
 
                     // Render templating syntax
                     .then(content => {
@@ -59,25 +59,21 @@ function generatePage(output, page) {
                     .then(output => {
                         var content = output.getContent();
 
-                        return parser.parsePage(content).then(result => {
-                            return output.setContent(result.content);
-                        });
+                        return parser
+                            .parsePage(content)
+                            .then(result => output.setContent(result.content));
                     })
 
                     // Post processing for templating syntax
-                    .then(output => {
-                        return Templating.postRender(engine, output);
-                    })
+                    .then(output => Templating.postRender(engine, output))
 
                     // Return new page
-                    .then(content => {
-                        return resultPage.set("content", content);
-                    })
+                    .then(content => resultPage.set("content", content))
 
                     // Call final hook
-                    .then(currentPage => {
-                        return callPageHook("page", output, currentPage);
-                    })
+                    .then(currentPage =>
+                        callPageHook("page", output, currentPage)
+                    )
             );
         })
     );

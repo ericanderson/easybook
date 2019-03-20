@@ -10,9 +10,7 @@ describe("highlightCode", () => {
     }
 
     function doHighlightAsync(lang, code) {
-        return Promise().then(() => {
-            return doHighlight(lang, code);
-        });
+        return Promise().then(() => doHighlight(lang, code));
     }
 
     it("should call it for normal code element", () => {

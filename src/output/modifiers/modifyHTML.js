@@ -13,9 +13,7 @@ function modifyHTML(page, operations) {
     var html = page.getContent();
     var $ = cheerio.load(html);
 
-    return forEach(operations, op => {
-        return op($);
-    }).then(() => {
+    return forEach(operations, op => op($)).then(() => {
         var resultHTML = $.html();
         return page.set("content", resultHTML);
     });

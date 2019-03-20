@@ -56,12 +56,10 @@ var ConrefsLoader = nunjucks.Loader.extend({
 
                         return source;
                     })
-                    .then(source => {
-                        return {
-                            src: source,
-                            path: filepath
-                        };
-                    });
+                    .then(source => ({
+                        src: source,
+                        path: filepath
+                    }));
             })
             .nodeify(callback);
     },

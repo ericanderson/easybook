@@ -199,9 +199,9 @@ function encodeGlobal(output) {
                         fileName
                     );
 
-                    return fs.ensureFile(filePath).then(() => {
-                        return fs.writeFile(filePath, content);
-                    });
+                    return fs
+                        .ensureFile(filePath)
+                        .then(() => fs.writeFile(filePath, content));
                 });
             },
 
@@ -221,9 +221,9 @@ function encodeGlobal(output) {
                         outputFile
                     );
 
-                    return fs.ensureFile(outputFilePath).then(() => {
-                        return fs.copy(inputFile, outputFilePath);
-                    });
+                    return fs
+                        .ensureFile(outputFilePath)
+                        .then(() => fs.copy(inputFile, outputFilePath));
                 });
             }
         },
@@ -264,9 +264,7 @@ function encodeGlobal(output) {
         "this.navigation",
         result,
         "navigation",
-        () => {
-            return encodeNavigation(output);
-        },
+        () => encodeNavigation(output),
         '"navigation" property is deprecated'
     );
 

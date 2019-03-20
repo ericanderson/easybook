@@ -35,11 +35,9 @@ function convertSVGBufferToPNG(buf, dest) {
         .tmpFile({
             postfix: ".svg"
         })
-        .then(tmpSvg => {
-            return fs.writeFile(tmpSvg, buf).then(() => {
-                return convertSVGToPNG(tmpSvg, dest);
-            });
-        });
+        .then(tmpSvg =>
+            fs.writeFile(tmpSvg, buf).then(() => convertSVGToPNG(tmpSvg, dest))
+        );
 }
 
 // Converts a inline data: to png file

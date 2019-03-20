@@ -3,19 +3,18 @@ import generateMock from "./generateMock";
 import WebsiteGenerator from "../website";
 
 describe("WebsiteGenerator", () => {
-    it("should generate an index.html", () => {
-        return generateMock(WebsiteGenerator, {
+    it("should generate an index.html", () =>
+        generateMock(WebsiteGenerator, {
             "README.md": "Hello World"
         }).then(folder => {
             expect(folder).toHaveFile("index.html");
-        });
-    });
+        }));
 
     describe("Glossary", () => {
         var folder;
 
-        before(() => {
-            return generateMock(WebsiteGenerator, {
+        before(() =>
+            generateMock(WebsiteGenerator, {
                 "README.md": "Hello World",
                 "SUMMARY.md": "* [Deep](folder/page.md)",
                 folder: {
@@ -24,8 +23,8 @@ describe("WebsiteGenerator", () => {
                 "GLOSSARY.md": "# Glossary\n\n## Hello\n\nHello World"
             }).then(_folder => {
                 folder = _folder;
-            });
-        });
+            })
+        );
 
         it("should generate a GLOSSARY.html", () => {
             expect(folder).toHaveFile("GLOSSARY.html");
@@ -45,8 +44,8 @@ describe("WebsiteGenerator", () => {
             );
         });
 
-        it("should accept a custom glossary file", () => {
-            return generateMock(WebsiteGenerator, {
+        it("should accept a custom glossary file", () =>
+            generateMock(WebsiteGenerator, {
                 "README.md": "Hello World",
                 "book.json": '{ "structure": { "glossary": "custom.md" } }',
                 "custom.md": "# Glossary\n\n## Hello\n\nHello World"
@@ -58,12 +57,11 @@ describe("WebsiteGenerator", () => {
                 expect(html).toHaveDOMElement(
                     '.page-inner a[href="custom.html#hello"]'
                 );
-            });
-        });
+            }));
     });
 
-    it("should copy asset files", () => {
-        return generateMock(WebsiteGenerator, {
+    it("should copy asset files", () =>
+        generateMock(WebsiteGenerator, {
             "README.md": "Hello World",
             "myJsFile.js": 'var a = "test";',
             folder: {
@@ -73,19 +71,17 @@ describe("WebsiteGenerator", () => {
             expect(folder).toHaveFile("index.html");
             expect(folder).toHaveFile("myJsFile.js");
             expect(folder).toHaveFile("folder/AnotherAssetFile.md");
-        });
-    });
+        }));
 
-    it("should generate an index.html for AsciiDoc", () => {
-        return generateMock(WebsiteGenerator, {
+    it("should generate an index.html for AsciiDoc", () =>
+        generateMock(WebsiteGenerator, {
             "README.adoc": "Hello World"
         }).then(folder => {
             expect(folder).toHaveFile("index.html");
-        });
-    });
+        }));
 
-    it("should generate an HTML file for each articles", () => {
-        return generateMock(WebsiteGenerator, {
+    it("should generate an HTML file for each articles", () =>
+        generateMock(WebsiteGenerator, {
             "README.md": "Hello World",
             "SUMMARY.md": "# Summary\n\n* [Page](test/page.md)",
             test: {
@@ -94,11 +90,10 @@ describe("WebsiteGenerator", () => {
         }).then(folder => {
             expect(folder).toHaveFile("index.html");
             expect(folder).toHaveFile("test/page.html");
-        });
-    });
+        }));
 
-    it("should not generate file if entry file doesn't exist", () => {
-        return generateMock(WebsiteGenerator, {
+    it("should not generate file if entry file doesn't exist", () =>
+        generateMock(WebsiteGenerator, {
             "README.md": "Hello World",
             "SUMMARY.md":
                 "# Summary\n\n* [Page 1](page.md)\n* [Page 2](test/page.md)",
@@ -109,11 +104,10 @@ describe("WebsiteGenerator", () => {
             expect(folder).toHaveFile("index.html");
             expect(folder).toNotHaveFile("page.html");
             expect(folder).toHaveFile("test/page.html");
-        });
-    });
+        }));
 
-    it("should generate a multilingual book", () => {
-        return generateMock(WebsiteGenerator, {
+    it("should generate a multilingual book", () =>
+        generateMock(WebsiteGenerator, {
             "LANGS.md": "# Languages\n\n* [en](en)\n* [fr](fr)",
             en: {
                 "README.md": "Hello"
@@ -135,6 +129,5 @@ describe("WebsiteGenerator", () => {
             expect(folder).toNotHaveFile("en/gitbook/style.css");
 
             expect(folder).toHaveFile("index.html");
-        });
-    });
+        }));
 });

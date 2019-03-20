@@ -27,12 +27,12 @@ export default function(format) {
 
             return (
                 Parse.parseBook(book)
-                    .then(resultBook => {
-                        return Output.generate(Generator, resultBook, {
+                    .then(resultBook =>
+                        Output.generate(Generator, resultBook, {
                             root: outputFolder,
                             format: format
-                        });
-                    })
+                        })
+                    )
 
                     // Extract ebook file
                     .then(output => {

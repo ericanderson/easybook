@@ -37,8 +37,8 @@ function callHook(name, getArgument, handleResult, output) {
         // Get the arguments
         Promise(getArgument(output))
             // Call the hooks in serie
-            .then(arg => {
-                return reduce(
+            .then(arg =>
+                reduce(
                     plugins,
                     (prev, plugin) => {
                         var hook = plugin.getHook(name);
@@ -49,8 +49,8 @@ function callHook(name, getArgument, handleResult, output) {
                         return hook.call(context, prev);
                     },
                     arg
-                );
-            })
+                )
+            )
 
             // Handle final result
             .then(result => {

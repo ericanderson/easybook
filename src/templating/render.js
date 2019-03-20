@@ -29,9 +29,7 @@ function renderTemplate(engine, filePath, content, context) {
 
         Promise.nfcall(env.renderString.bind(env), content, context, {
             path: filePath
-        }).then(content => {
-            return TemplateOutput.create(content, blocks);
-        })
+        }).then(content => TemplateOutput.create(content, blocks))
     );
 }
 

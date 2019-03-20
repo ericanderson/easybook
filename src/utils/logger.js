@@ -105,9 +105,7 @@ Logger.prototype.writeLn = function(msg) {
 Logger.prototype.log = function(level) {
     if (level < this.logLevel) return;
 
-    var levelKey = LEVELS.findKey(v => {
-        return v === level;
-    });
+    var levelKey = LEVELS.findKey(v => v === level);
     var args = Array.prototype.slice.apply(arguments, [1]);
     var msg = this.format.apply(this, args);
 

@@ -106,8 +106,8 @@ Parser.prototype.matchExtension = function(ext) {
     @param {Object} module
     @return {Parser}
 */
-Parser.create = (name, extensions, module) => {
-    return new Parser({
+Parser.create = (name, extensions, module) =>
+    new Parser({
         name: name,
         extensions: Immutable.List(extensions),
         readme: module.readme,
@@ -117,6 +117,5 @@ Parser.create = (name, extensions, module) => {
         page: module.page,
         inline: module.inline
     });
-};
 
 export default Parser;

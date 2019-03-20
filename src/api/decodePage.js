@@ -31,11 +31,7 @@ function decodePage(output, page, result) {
     else if (result.sections) {
         page = page.set(
             "content",
-            result.sections
-                .map(section => {
-                    return section.content;
-                })
-                .join("\n")
+            result.sections.map(section => section.content).join("\n")
         );
     }
 

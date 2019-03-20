@@ -22,14 +22,14 @@ function preparePlugins(output) {
             })
 
             // Update book's configuration using the plugins
-            .then(plugins => {
-                return Plugins.validateConfig(book, plugins).then(newBook => {
-                    return output.merge({
+            .then(plugins =>
+                Plugins.validateConfig(book, plugins).then(newBook =>
+                    output.merge({
                         book: newBook,
                         plugins: plugins
-                    });
-                });
-            })
+                    })
+                )
+            )
     );
 }
 

@@ -10,8 +10,8 @@ export default {
     exec: function(args, kwargs) {
         var book = getBook(args, kwargs);
 
-        return Parse.parseConfig(book).then(resultBook => {
-            return Plugins.installPlugins(resultBook);
-        });
+        return Parse.parseConfig(book).then(resultBook =>
+            Plugins.installPlugins(resultBook)
+        );
     }
 };

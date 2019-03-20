@@ -38,29 +38,23 @@ function resolveVersion(plugin) {
     }
 
     return initNPM()
-        .then(() => {
-            return Promise.nfcall(
+        .then(() =>
+            Promise.nfcall(
                 npm.commands.view,
                 [npmId + "@" + requiredVersion, "engines"],
                 true
-            );
-        })
+            )
+        )
         .then(versions => {
             versions = Immutable.Map(versions).entrySeq();
 
             var result = versions
-                .map(entry => {
-                    return {
-                        version: entry[0],
-                        gitbook: (entry[1].engines || {}).gitbook
-                    };
-                })
-                .filter(v => {
-                    return v.gitbook && gitbook.satisfies(v.gitbook);
-                })
-                .sort((v1, v2) => {
-                    return semver.lt(v1.version, v2.version) ? 1 : -1;
-                })
+                .map(entry => ({
+                    version: entry[0],
+                    gitbook: (entry[1].engines || {}).gitbook
+                }))
+                .filter(v => v.gitbook && gitbook.satisfies(v.gitbook))
+                .sort((v1, v2) => (semver.lt(v1.version, v2.version) ? 1 : -1))
                 .get(0);
 
             if (!result) {

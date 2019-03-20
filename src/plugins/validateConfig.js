@@ -60,9 +60,7 @@ function validatePluginConfig(book, plugin) {
 function validateConfig(book, plugins) {
     return reduce(
         plugins,
-        (newBook, plugin) => {
-            return validatePluginConfig(newBook, plugin);
-        },
+        (newBook, plugin) => validatePluginConfig(newBook, plugin),
         book
     );
 }

@@ -53,9 +53,7 @@ function encodeNavigation(output) {
                 }
             ];
         })
-        .filter(e => {
-            return Boolean(e);
-        });
+        .filter(e => Boolean(e));
 
     return Immutable.Map(navigation).toJS();
 }

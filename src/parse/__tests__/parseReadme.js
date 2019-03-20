@@ -29,9 +29,7 @@ describe("parseReadme", () => {
             resultBook => {
                 throw new Error("It should have fail");
             },
-            () => {
-                return Promise();
-            }
+            () => Promise()
         );
     });
 });

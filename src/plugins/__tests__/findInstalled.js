@@ -8,9 +8,7 @@ describe("findInstalled", () => {
         // Read gitbook-plugins from package.json
         var pkg = require(path.resolve(__dirname, "../../../package.json"));
         var gitbookPlugins = Immutable.Seq(pkg.dependencies)
-            .filter((v, k) => {
-                return k.indexOf("gitbook-plugin") === 0;
-            })
+            .filter((v, k) => k.indexOf("gitbook-plugin") === 0)
             .cacheResult();
 
         return findInstalled(path.resolve(__dirname, "../../../")).then(

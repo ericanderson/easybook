@@ -21,10 +21,9 @@ function parseFilePage(book, filePath) {
                 var page = Page.createForFile(file);
                 return parsePage(book, page);
             },
-            err => {
-                // file doesn't exist
-                return null;
-            }
+            (
+                err // file doesn't exist
+            ) => null
         )
         .fail(err => {
             var logger = book.getLogger();
@@ -86,9 +85,7 @@ function parsePagesList(book) {
                 });
             })
 
-            .then(() => {
-                return map;
-            })
+            .then(() => map)
     );
 }
 

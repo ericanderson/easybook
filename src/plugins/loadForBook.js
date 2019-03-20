@@ -25,9 +25,7 @@ function loadForBook(book) {
 
             if (installed) {
                 var deps = installedMap
-                    .filter(plugin => {
-                        return plugin.getParent() === name;
-                    })
+                    .filter(plugin => plugin.getParent() === name)
                     .toArray();
 
                 result = result.concat(deps);
@@ -40,9 +38,10 @@ function loadForBook(book) {
         }, []);
 
         // Convert plugins list to a map
-        plugins = Immutable.List(plugins).map(plugin => {
-            return [plugin.getName(), plugin];
-        });
+        plugins = Immutable.List(plugins).map(plugin => [
+            plugin.getName(),
+            plugin
+        ]);
         plugins = Immutable.OrderedMap(plugins);
 
         // Log state
@@ -60,9 +59,7 @@ function loadForBook(book) {
             );
         }
 
-        return map(plugins, plugin => {
-            return loadPlugin(book, plugin);
-        });
+        return map(plugins, plugin => loadPlugin(book, plugin));
     });
 }
 

@@ -10,9 +10,7 @@ describe("validatePlugin", () => {
             () => {
                 throw new Error("Should not be validate");
             },
-            err => {
-                return Promise();
-            }
+            err => Promise()
         );
     });
 });

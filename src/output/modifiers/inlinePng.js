@@ -29,9 +29,9 @@ function inlinePng(rootFolder, currentFile, $) {
         var filePath = path.join(rootFolder, fileName);
 
         return fs
-            .assertFile(filePath, () => {
-                return imagesUtil.convertInlinePNG(src, filePath);
-            })
+            .assertFile(filePath, () =>
+                imagesUtil.convertInlinePNG(src, filePath)
+            )
             .then(() => {
                 // Convert filename to a relative filename
                 fileName = LocationUtils.relative(currentDirectory, fileName);

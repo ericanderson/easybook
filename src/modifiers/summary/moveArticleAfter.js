@@ -40,9 +40,7 @@ function moveArticleAfter(summary, origin, afterTarget) {
     @return {Array<Number>}
  */
 function levelToArray(l) {
-    return l.split(".").map(char => {
-        return parseInt(char, 10);
-    });
+    return l.split(".").map(char => parseInt(char, 10));
 }
 
 /**

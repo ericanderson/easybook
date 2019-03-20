@@ -20,11 +20,12 @@ function findForBook(book) {
         ])
 
             // Merge all plugins
-            .then(results => {
-                return Immutable.List(results).reduce((out, result) => {
-                    return out.merge(result);
-                }, Immutable.OrderedMap());
-            })
+            .then(results =>
+                Immutable.List(results).reduce(
+                    (out, result) => out.merge(result),
+                    Immutable.OrderedMap()
+                )
+            )
     );
 }
 

@@ -17,21 +17,18 @@ describe("parseIgnore", () => {
         return parseIgnore(book);
     }
 
-    it("should load rules from .ignore", () => {
-        return getBook().then(book => {
+    it("should load rules from .ignore", () =>
+        getBook().then(book => {
             expect(book.isFileIgnored("test-1.js")).toBeTruthy();
-        });
-    });
+        }));
 
-    it("should load rules from .gitignore", () => {
-        return getBook().then(book => {
+    it("should load rules from .gitignore", () =>
+        getBook().then(book => {
             expect(book.isFileIgnored("test-2.js")).toBeTruthy();
-        });
-    });
+        }));
 
-    it("should load rules from .bookignore", () => {
-        return getBook().then(book => {
+    it("should load rules from .bookignore", () =>
+        getBook().then(book => {
             expect(book.isFileIgnored("test-3.js")).toBeFalsy();
-        });
-    });
+        }));
 });

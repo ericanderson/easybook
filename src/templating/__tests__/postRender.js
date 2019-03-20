@@ -7,22 +7,19 @@ describe("postRender", () => {
     var testPost;
     var engine = TemplateEngine.create({
         blocks: [
-            TemplateBlock.create("lower", blk => {
-                return blk.body.toLowerCase();
-            }),
-            TemplateBlock.create("prefix", blk => {
-                return {
-                    body: "_" + blk.body + "_",
-                    post: function() {
-                        testPost = true;
-                    }
-                };
-            })
+            TemplateBlock.create("lower", blk => blk.body.toLowerCase()),
+            TemplateBlock.create("prefix", blk => ({
+                body: "_" + blk.body + "_",
+
+                post: function() {
+                    testPost = true;
+                }
+            }))
         ]
     });
 
-    it("should correctly replace block", () => {
-        return renderTemplate(
+    it("should correctly replace block", () =>
+        renderTemplate(
             engine,
             "README.md",
             "Hello {% lower %}Samy{% endlower %}"
@@ -37,11 +34,10 @@ describe("postRender", () => {
             })
             .then(result => {
                 expect(result).toBe("Hello samy");
-            });
-    });
+            }));
 
-    it("should correctly replace blocks", () => {
-        return renderTemplate(
+    it("should correctly replace blocks", () =>
+        renderTemplate(
             engine,
             "README.md",
             "Hello {% lower %}Samy{% endlower %}{% prefix %}Pesse{% endprefix %}"
@@ -56,6 +52,5 @@ describe("postRender", () => {
             .then(result => {
                 expect(result).toBe("Hello samy_Pesse_");
                 expect(testPost).toBe(true);
-            });
-    });
+            }));
 });

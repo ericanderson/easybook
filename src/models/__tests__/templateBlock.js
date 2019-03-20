@@ -7,12 +7,10 @@ describe("TemplateBlock", () => {
 
     describe("create", () => {
         it("must initialize a simple TemplateBlock from a function", () => {
-            var templateBlock = TemplateBlock.create("sayhello", block => {
-                return {
-                    body: "<p>Hello, World!</p>",
-                    parse: true
-                };
-            });
+            var templateBlock = TemplateBlock.create("sayhello", block => ({
+                body: "<p>Hello, World!</p>",
+                parse: true
+            }));
 
             // Check basic templateBlock properties
             expect(templateBlock.getName()).toBe("sayhello");
@@ -24,9 +22,7 @@ describe("TemplateBlock", () => {
 
             // Check result of applying block
             return Promise()
-                .then(() => {
-                    return templateBlock.applyBlock();
-                })
+                .then(() => templateBlock.applyBlock())
                 .then(result => {
                     expect(result.name).toBe("sayhello");
                     expect(result.body).toBe("<p>Hello, World!</p>");
@@ -36,12 +32,10 @@ describe("TemplateBlock", () => {
 
     describe("getShortcuts", () => {
         it("must return undefined if no shortcuts", () => {
-            var templateBlock = TemplateBlock.create("sayhello", block => {
-                return {
-                    body: "<p>Hello, World!</p>",
-                    parse: true
-                };
-            });
+            var templateBlock = TemplateBlock.create("sayhello", block => ({
+                body: "<p>Hello, World!</p>",
+                parse: true
+            }));
 
             expect(templateBlock.getShortcuts()).toNotExist();
         });
@@ -70,9 +64,10 @@ describe("TemplateBlock", () => {
 
     describe("toNunjucksExt()", () => {
         it("should replace by block anchor", () => {
-            var templateBlock = TemplateBlock.create("sayhello", block => {
-                return "Hello";
-            });
+            var templateBlock = TemplateBlock.create(
+                "sayhello",
+                block => "Hello"
+            );
 
             var blocks = {};
 
@@ -99,12 +94,10 @@ describe("TemplateBlock", () => {
         });
 
         it("must create a valid nunjucks extension", () => {
-            var templateBlock = TemplateBlock.create("sayhello", block => {
-                return {
-                    body: "<p>Hello, World!</p>",
-                    parse: true
-                };
-            });
+            var templateBlock = TemplateBlock.create("sayhello", block => ({
+                body: "<p>Hello, World!</p>",
+                parse: true
+            }));
 
             // Create a fresh Nunjucks environment
             var env = new nunjucks.Environment(null, { autoescape: false });
@@ -121,19 +114,18 @@ describe("TemplateBlock", () => {
         });
 
         it("must apply block arguments correctly", () => {
-            var templateBlock = TemplateBlock.create("sayhello", block => {
-                return {
-                    body:
-                        "<" +
-                        block.kwargs.tag +
-                        ">Hello, " +
-                        block.kwargs.name +
-                        "!</" +
-                        block.kwargs.tag +
-                        ">",
-                    parse: true
-                };
-            });
+            var templateBlock = TemplateBlock.create("sayhello", block => ({
+                body:
+                    "<" +
+                    block.kwargs.tag +
+                    ">Hello, " +
+                    block.kwargs.name +
+                    "!</" +
+                    block.kwargs.tag +
+                    ">",
+
+                parse: true
+            }));
 
             // Create a fresh Nunjucks environment
             var env = new nunjucks.Environment(null, { autoescape: false });
@@ -150,14 +142,12 @@ describe("TemplateBlock", () => {
         });
 
         it("must accept an async function", () => {
-            var templateBlock = TemplateBlock.create("sayhello", block => {
-                return Promise().then(() => {
-                    return {
-                        body: "Hello " + block.body,
-                        parse: true
-                    };
-                });
-            });
+            var templateBlock = TemplateBlock.create("sayhello", block =>
+                Promise().then(() => ({
+                    body: "Hello " + block.body,
+                    parse: true
+                }))
+            );
 
             // Create a fresh Nunjucks environment
             var env = new nunjucks.Environment(null, { autoescape: false });

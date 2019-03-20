@@ -17,11 +17,11 @@ function onAsset(output, asset) {
 
     return fs
         .ensureFile(outputPath)
-        .then(() => {
-            return bookFS.readAsStream(asset).then(stream => {
-                return fs.writeStream(outputPath, stream);
-            });
-        })
+        .then(() =>
+            bookFS
+                .readAsStream(asset)
+                .then(stream => fs.writeStream(outputPath, stream))
+        )
         .thenResolve(output);
 }
 

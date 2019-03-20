@@ -20,9 +20,7 @@ function onPage(output, page) {
         ])
 
             // Write page using website generator
-            .then(resultPage => {
-                return WebsiteGenerator.onPage(output, resultPage);
-            })
+            .then(resultPage => WebsiteGenerator.onPage(output, resultPage))
     );
 }
 

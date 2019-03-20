@@ -4,9 +4,7 @@ var logOptions = {
     name: "log",
     description: "Minimum log level to display",
     values: Logger.LEVELS.keySeq()
-        .map(s => {
-            return s.toLowerCase();
-        })
+        .map(s => s.toLowerCase())
         .toJS(),
     defaults: "debug"
 };

@@ -18,9 +18,7 @@ describe("svgToPng", () => {
         var fileName = "index.html";
 
         return svgToImg(dir.name, fileName, $)
-            .then(() => {
-                return svgToPng(dir.name, fileName, $);
-            })
+            .then(() => svgToPng(dir.name, fileName, $))
             .then(() => {
                 var $img = $("img");
                 var src = $img.attr("src");

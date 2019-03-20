@@ -16,9 +16,7 @@ function fsReadDir(folder) {
                 if (stat.isDirectory()) file = file + path.sep;
                 return file;
             })
-            .filter(file => {
-                return Boolean(file);
-            });
+            .filter(file => Boolean(file));
     });
 }
 

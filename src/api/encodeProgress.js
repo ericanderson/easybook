@@ -25,9 +25,7 @@ function encodeProgress(output, page) {
             return nav;
         })
         .valueSeq()
-        .sortBy(nav => {
-            return nav.index;
-        })
+        .sortBy(nav => nav.index)
         .map((nav, i) => {
             // Calcul percent
             nav.percent = (i * 100) / Math.max(n - 1, 1);

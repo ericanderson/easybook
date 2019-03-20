@@ -66,11 +66,9 @@ function findInstalled(folder) {
     // List all folders in node_modules
     return fs
         .readdir(node_modules)
-        .fail(() => {
-            return Promise.resolve([]);
-        })
-        .then(modules => {
-            return serie(modules, module => {
+        .fail(() => Promise.resolve([]))
+        .then(modules =>
+            serie(modules, module => {
                 // Not a gitbook-plugin
                 if (!validateId(module)) {
                     return Promise.resolve();
@@ -85,12 +83,13 @@ function findInstalled(folder) {
                 ).then(data => {
                     onPackage(data);
                 });
-            });
-        })
-        .then(() => {
-            // Return installed plugins
-            return results;
-        });
+            })
+        )
+        .then(
+            () =>
+                // Return installed plugins
+                results
+        );
 }
 
 export default findInstalled;

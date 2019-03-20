@@ -37,9 +37,7 @@ function parseFile(fs, file, type) {
                 throw new Error('Parsing invalid type "' + type + '"');
             }
         })
-        .then(result => {
-            return [file, result];
-        });
+        .then(result => [file, result]);
 }
 
 /**

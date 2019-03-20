@@ -290,9 +290,7 @@ Book.prototype.getDefaultExt = function() {
     exts.push(".md");
 
     // Choose the first non null
-    return exts.find(e => {
-        return e !== null;
-    });
+    return exts.find(e => e !== null);
 };
 
 /**

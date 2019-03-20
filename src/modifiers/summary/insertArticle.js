@@ -40,9 +40,7 @@ function insertArticle(summary, article, level) {
     @return {Number} The index of this level within its parent's children
  */
 function getLeafIndex(level) {
-    var arr = level.split(".").map(char => {
-        return parseInt(char, 10);
-    });
+    var arr = level.split(".").map(char => parseInt(char, 10));
     return arr[arr.length - 1] - 1;
 }
 

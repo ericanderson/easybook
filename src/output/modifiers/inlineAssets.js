@@ -11,19 +11,16 @@ import Promise from "../../utils/promise";
     @param {String} rootFolder
 */
 function inlineAssets(rootFolder, currentFile) {
-    return $ => {
-        return (
-            Promise()
-                // Resolving images and fetching external images should be
-                // done before svg conversion
-                .then(resolveImages.bind(null, currentFile, $))
-                .then(fetchRemoteImages.bind(null, rootFolder, currentFile, $))
+    return $ =>
+        Promise()
+            // Resolving images and fetching external images should be
+            // done before svg conversion
+            .then(resolveImages.bind(null, currentFile, $))
+            .then(fetchRemoteImages.bind(null, rootFolder, currentFile, $))
 
-                .then(svgToImg.bind(null, rootFolder, currentFile, $))
-                .then(svgToPng.bind(null, rootFolder, currentFile, $))
-                .then(inlinePng.bind(null, rootFolder, currentFile, $))
-        );
-    };
+            .then(svgToImg.bind(null, rootFolder, currentFile, $))
+            .then(svgToPng.bind(null, rootFolder, currentFile, $))
+            .then(inlinePng.bind(null, rootFolder, currentFile, $));
 }
 
 export default inlineAssets;

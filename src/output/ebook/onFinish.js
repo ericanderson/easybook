@@ -28,9 +28,7 @@ function writeSummary(output) {
         Templating.renderFile(engine, prefix + "/summary.html", context)
 
             // Write it to the disk
-            .then(tplOut => {
-                return writeFile(output, filePath, tplOut.getContent());
-            })
+            .then(tplOut => writeFile(output, filePath, tplOut.getContent()))
     );
 }
 

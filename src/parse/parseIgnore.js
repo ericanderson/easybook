@@ -36,18 +36,14 @@ function parseIgnore(book) {
 
     ignore = ignore.add(DEFAULT_IGNORES);
 
-    return serie(IGNORE_FILES, filename => {
-        return fs.readAsString(filename).then(
+    return serie(IGNORE_FILES, filename =>
+        fs.readAsString(filename).then(
             content => {
                 ignore = ignore.add(content.toString().split(/\r?\n/));
             },
-            err => {
-                return Promise();
-            }
-        );
-    }).then(() => {
-        return book.setIgnore(ignore);
-    });
+            err => Promise()
+        )
+    ).then(() => book.setIgnore(ignore));
 }
 
 export default parseIgnore;

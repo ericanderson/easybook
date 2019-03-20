@@ -117,8 +117,8 @@ PluginDependency.listFromString = s => {
  * @param {Array}
  * @return {List<PluginDependency>}
  */
-PluginDependency.listFromArray = arr => {
-    return Immutable.List(arr)
+PluginDependency.listFromArray = arr =>
+    Immutable.List(arr)
         .map(entry => {
             if (is.string(entry)) {
                 return PluginDependency.createFromString(entry);
@@ -129,18 +129,15 @@ PluginDependency.listFromArray = arr => {
                 });
             }
         })
-        .filter(dep => {
-            return Boolean(dep.getName());
-        });
-};
+        .filter(dep => Boolean(dep.getName()));
 
 /**
  * Export plugin dependencies as an array
  * @param {List<PluginDependency>} list
  * @return {Array<String>}
  */
-PluginDependency.listToArray = list => {
-    return list
+PluginDependency.listToArray = list =>
+    list
         .map(dep => {
             var result = "";
 
@@ -156,15 +153,12 @@ PluginDependency.listToArray = list => {
             return result;
         })
         .toJS();
-};
 
 /**
  * Return NPM id for a plugin name
  * @param {String}
  * @return {String}
  */
-PluginDependency.nameToNpmID = s => {
-    return PREFIX + s;
-};
+PluginDependency.nameToNpmID = s => PREFIX + s;
 
 export default PluginDependency;

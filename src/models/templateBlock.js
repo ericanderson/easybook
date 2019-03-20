@@ -195,9 +195,7 @@ TemplateBlock.prototype.toNunjucksExt = function(mainContext, blocksOutput) {
 
                     return that.applyBlock(mainBlock, ctx);
                 })
-                .then(result => {
-                    return that.blockResultToHtml(result, blocksOutput);
-                })
+                .then(result => that.blockResultToHtml(result, blocksOutput))
                 .nodeify(callback);
         };
     }

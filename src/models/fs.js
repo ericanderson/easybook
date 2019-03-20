@@ -105,9 +105,7 @@ FS.prototype.read = function(filename) {
 FS.prototype.readAsString = function(filename, encoding) {
     encoding = encoding || "utf8";
 
-    return this.read(filename).then(buf => {
-        return buf.toString(encoding);
-    });
+    return this.read(filename).then(buf => buf.toString(encoding));
 };
 
 /**
@@ -149,9 +147,7 @@ FS.prototype.statFile = function(filename) {
 
             return stat(filepath);
         })
-        .then(stat => {
-            return File.createFromStat(filename, stat);
-        });
+        .then(stat => File.createFromStat(filename, stat));
 };
 
 /**
@@ -171,9 +167,7 @@ FS.prototype.readDir = function(dirname) {
 
             return readDir(dirpath);
         })
-        .then(files => {
-            return Immutable.List(files);
-        });
+        .then(files => Immutable.List(files));
 };
 
 /**
@@ -184,9 +178,7 @@ FS.prototype.readDir = function(dirname) {
     @return {Promise<List<String>>}
 */
 FS.prototype.listFiles = function(dirname) {
-    return this.readDir(dirname).then(files => {
-        return files.filterNot(pathIsFolder);
-    });
+    return this.readDir(dirname).then(files => files.filterNot(pathIsFolder));
 };
 
 /**
@@ -200,8 +192,8 @@ FS.prototype.listAllFiles = function(dirName, filterFn) {
     var that = this;
     dirName = dirName || ".";
 
-    return this.readDir(dirName).then(files => {
-        return reduce(
+    return this.readDir(dirName).then(files =>
+        reduce(
             files,
             (out, file) => {
                 var isDirectory = pathIsFolder(file);
@@ -215,13 +207,13 @@ FS.prototype.listAllFiles = function(dirName, filterFn) {
                     return out.push(newDirName);
                 }
 
-                return that.listAllFiles(newDirName, filterFn).then(inner => {
-                    return out.concat(inner);
-                });
+                return that
+                    .listAllFiles(newDirName, filterFn)
+                    .then(inner => out.concat(inner));
             },
             Immutable.List()
-        );
-    });
+        )
+    );
 };
 
 /**
@@ -233,11 +225,9 @@ FS.prototype.listAllFiles = function(dirName, filterFn) {
     @return {Promise<String>}
 */
 FS.prototype.findFile = function(dirname, filename) {
-    return this.listFiles(dirname).then(files => {
-        return files.find(file => {
-            return file.toLowerCase() == filename.toLowerCase();
-        });
-    });
+    return this.listFiles(dirname).then(files =>
+        files.find(file => file.toLowerCase() == filename.toLowerCase())
+    );
 };
 
 /**
@@ -262,9 +252,7 @@ FS.prototype.loadAsObject = function(filename) {
         if (fsLoadObject) {
             return fsLoadObject(that.resolve(filename));
         } else {
-            return that.readAsString(filename).then(str => {
-                return JSON.parse(str);
-            });
+            return that.readAsString(filename).then(str => JSON.parse(str));
         }
     });
 };

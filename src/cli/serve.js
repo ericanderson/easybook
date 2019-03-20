@@ -41,8 +41,8 @@ function generateBook(args, kwargs) {
 
     return server
         .stop()
-        .then(() => {
-            return Parse.parseBook(book).then(resultBook => {
+        .then(() =>
+            Parse.parseBook(book).then(resultBook => {
                 if (hasLiveReloading) {
                     // Enable livereload plugin
                     var config = resultBook.getConfig();
@@ -53,8 +53,8 @@ function generateBook(args, kwargs) {
                 return Output.generate(Generator, resultBook, {
                     root: outputFolder
                 });
-            });
-        })
+            })
+        )
         .then(() => {
             console.log();
             console.log("Starting server ...");
@@ -152,8 +152,6 @@ export default {
                     console.log("");
                 });
             })
-            .then(() => {
-                return generateBook(args, kwargs);
-            });
+            .then(() => generateBook(args, kwargs));
     }
 };

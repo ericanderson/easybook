@@ -42,9 +42,9 @@ function svgToImg(baseFolder, currentFile, $) {
         // Write the svg to the file
         return (
             fs
-                .assertFile(filePath, () => {
-                    return fs.writeFile(filePath, content, "utf8");
-                })
+                .assertFile(filePath, () =>
+                    fs.writeFile(filePath, content, "utf8")
+                )
 
                 // Return as image
                 .then(() => {

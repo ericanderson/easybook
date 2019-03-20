@@ -28,11 +28,11 @@ function generateMock(Generator, files) {
     book = book.setLogLevel("disabled");
 
     return parseBook(book)
-        .then(resultBook => {
-            return generateBook(Generator, resultBook, {
+        .then(resultBook =>
+            generateBook(Generator, resultBook, {
                 root: dir.name
-            });
-        })
+            })
+        )
         .thenResolve(dir.name);
 }
 

@@ -6,12 +6,11 @@
  * @return {Boolean}
  */
 function hasPlugin(deps, pluginName, version) {
-    return !!deps.find(dep => {
-        return (
+    return !!deps.find(
+        dep =>
             dep.getName() === pluginName &&
             (!version || dep.getVersion() === version)
-        );
-    });
+    );
 }
 
 export default hasPlugin;

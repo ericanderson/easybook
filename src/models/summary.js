@@ -90,9 +90,7 @@ Summary.prototype.getByPath = function(filePath) {
     @return {Article}
 */
 Summary.prototype.getFirstArticle = function() {
-    return this.getArticle(article => {
-        return true;
-    });
+    return this.getArticle(article => true);
 };
 
 /**

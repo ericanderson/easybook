@@ -28,10 +28,9 @@ describe("Glossary", () => {
     });
 
     describe("toText", () => {
-        it("return as markdown", () => {
-            return glossary.toText(".md").then(text => {
+        it("return as markdown", () =>
+            glossary.toText(".md").then(text => {
                 expect(text).toContain("# Glossary");
-            });
-        });
+            }));
     });
 });

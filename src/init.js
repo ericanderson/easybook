@@ -62,15 +62,15 @@ function initBook(rootFolder) {
                             return;
                         }
 
-                        return fs.assertFile(filePath, () => {
-                            return fs.ensureFile(filePath).then(() => {
+                        return fs.assertFile(filePath, () =>
+                            fs.ensureFile(filePath).then(() => {
                                 logger.info.ln("create", article.getPath());
                                 return fs.writeFile(
                                     filePath,
                                     "# " + article.getTitle() + "\n\n"
                                 );
-                            });
-                        });
+                            })
+                        );
                     })
 
                         // Write summary

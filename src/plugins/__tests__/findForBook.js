@@ -7,9 +7,8 @@ describe("findForBook", () => {
     var fs = createNodeFS(path.resolve(__dirname, "../../.."));
     var book = Book.createForFS(fs);
 
-    it("should list default plugins", () => {
-        return findForBook(book).then(plugins => {
+    it("should list default plugins", () =>
+        findForBook(book).then(plugins => {
             expect(plugins.has("fontsettings")).toBeTruthy();
-        });
-    });
+        }));
 });

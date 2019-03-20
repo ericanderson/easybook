@@ -80,10 +80,9 @@ describe("Summary", () => {
     });
 
     describe("toText", () => {
-        it("return as markdown", () => {
-            return summary.toText(".md").then(text => {
+        it("return as markdown", () =>
+            summary.toText(".md").then(text => {
                 expect(text).toContain("# Summary");
-            });
-        });
+            }));
     });
 });
