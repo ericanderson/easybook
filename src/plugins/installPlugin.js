@@ -17,27 +17,19 @@ function installPlugin(book, plugin) {
     const requirement = plugin.getVersion();
 
     logger.info.ln("");
-    logger.info.ln('installing plugin "' + name + '"');
+    logger.info.ln(`installing plugin "${name}"`);
 
     // Find a version to install
     return resolveVersion(plugin)
         .then(version => {
             if (!version) {
                 throw new Error(
-                    'Found no satisfactory version for plugin "' +
-                        name +
-                        '" with requirement "' +
-                        requirement +
-                        '"'
+                    `Found no satisfactory version for plugin "${name}" with requirement "${requirement}"`
                 );
             }
 
             logger.info.ln(
-                'install plugin "' +
-                    name +
-                    '" (' +
-                    requirement +
-                    ") from NPM with version",
+                `install plugin "${name}" (${requirement}) from NPM with version`,
                 version
             );
             return Promise.nfcall(npmi, {
@@ -52,7 +44,7 @@ function installPlugin(book, plugin) {
             });
         })
         .then(() => {
-            logger.info.ok('plugin "' + name + '" installed with success');
+            logger.info.ok(`plugin "${name}" installed with success`);
         });
 }
 

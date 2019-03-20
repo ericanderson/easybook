@@ -300,7 +300,7 @@ Book.prototype.getDefaultExt = function() {
     @return {String}
 */
 Book.prototype.getDefaultReadmePath = function(absolute) {
-    const defaultPath = "README" + this.getDefaultExt();
+    const defaultPath = `README${this.getDefaultExt()}`;
     if (absolute) {
         return path.join(this.getContentRoot(), defaultPath);
     } else {
@@ -315,7 +315,7 @@ Book.prototype.getDefaultReadmePath = function(absolute) {
     @return {String}
 */
 Book.prototype.getDefaultSummaryPath = function(absolute) {
-    const defaultPath = "SUMMARY" + this.getDefaultExt();
+    const defaultPath = `SUMMARY${this.getDefaultExt()}`;
     if (absolute) {
         return path.join(this.getContentRoot(), defaultPath);
     } else {
@@ -330,7 +330,7 @@ Book.prototype.getDefaultSummaryPath = function(absolute) {
     @return {String}
 */
 Book.prototype.getDefaultGlossaryPath = function(absolute) {
-    const defaultPath = "GLOSSARY" + this.getDefaultExt();
+    const defaultPath = `GLOSSARY${this.getDefaultExt()}`;
     if (absolute) {
         return path.join(this.getContentRoot(), defaultPath);
     } else {

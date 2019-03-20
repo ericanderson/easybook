@@ -83,7 +83,7 @@ SummaryArticle.prototype.getAnchor = function() {
     const ref = this.getRef();
     const parts = ref.split("#");
 
-    const anchor = parts.length > 1 ? "#" + parts[parts.length - 1] : undefined;
+    const anchor = parts.length > 1 ? `#${parts[parts.length - 1]}` : undefined;
     return anchor;
 };
 
@@ -95,7 +95,7 @@ SummaryArticle.prototype.getAnchor = function() {
 SummaryArticle.prototype.createChildLevel = function() {
     const level = this.getLevel();
     const subArticles = this.getArticles();
-    const childLevel = level + "." + (subArticles.size + 1);
+    const childLevel = `${level}.${subArticles.size + 1}`;
 
     return childLevel;
 };

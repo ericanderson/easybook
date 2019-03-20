@@ -19,7 +19,7 @@ function generateAssets(generator, output) {
     return reduce(
         assets,
         (out, assetFile) => {
-            logger.debug.ln('copy asset "' + assetFile + '"');
+            logger.debug.ln(`copy asset "${assetFile}"`);
 
             return generator.onAsset(out, assetFile);
         },

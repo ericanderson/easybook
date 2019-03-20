@@ -12,7 +12,7 @@ import Promise from "../../utils/promise";
     @return {String}
 */
 function getPDFTemplate(output, type) {
-    const filePath = "pdf_" + type + ".html";
+    const filePath = `pdf_${type}.html`;
     const outputRoot = output.getRoot();
     const engine = WebsiteGenerator.createTemplateEngine(output, filePath);
 
@@ -25,7 +25,7 @@ function getPDFTemplate(output, type) {
 
     // Render the theme
     return (
-        Templating.renderFile(engine, "ebook/" + filePath, context)
+        Templating.renderFile(engine, `ebook/${filePath}`, context)
 
             // Inline css and assets
             .then(tplOut =>

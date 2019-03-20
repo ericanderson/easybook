@@ -9,14 +9,14 @@ import getBook from "./getBook";
 
 export default function(format) {
     return {
-        name: format + " [book] [output]",
+        name: `${format} [book] [output]`,
         description: "build a book into an ebook file",
         options: [options.log],
         exec: function(args, kwargs) {
-            const extension = "." + format;
+            const extension = `.${format}`;
 
             // Output file will be stored in
-            const outputFile = args[1] || "book" + extension;
+            const outputFile = args[1] || `book${extension}`;
 
             // Create temporary directory
             const outputFolder = tmp.dirSync().name;
@@ -47,17 +47,17 @@ export default function(format) {
 
                                     const langOutputFile = path.join(
                                         path.dirname(outputFile),
-                                        path.basename(outputFile, extension) +
-                                            "_" +
-                                            langID +
+                                        `${path.basename(
+                                            outputFile,
                                             extension
+                                        )}_${langID}${extension}`
                                     );
 
                                     return fs.copy(
                                         path.resolve(
                                             outputFolder,
                                             langID,
-                                            "index" + extension
+                                            `index${extension}`
                                         ),
                                         langOutputFile
                                     );
@@ -68,7 +68,7 @@ export default function(format) {
                                 .copy(
                                     path.resolve(
                                         outputFolder,
-                                        "index" + extension
+                                        `index${extension}`
                                     ),
                                     outputFile
                                 )
@@ -78,7 +78,7 @@ export default function(format) {
 
                     // Log end
                     .then(count => {
-                        logger.info.ok(count + " file(s) generated");
+                        logger.info.ok(`${count} file(s) generated`);
 
                         logger.debug("cleaning up... ");
                         return logger.debug.promise(fs.rmDir(outputFolder));

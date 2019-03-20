@@ -66,7 +66,7 @@ function onPage(output, page) {
 
             // Render the theme
             return (
-                Templating.renderFile(engine, prefix + "/page.html", context)
+                Templating.renderFile(engine, `${prefix}/page.html`, context)
 
                     // Write it to the disk
                     .then(tplOut =>

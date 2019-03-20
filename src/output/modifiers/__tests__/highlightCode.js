@@ -5,7 +5,7 @@ import highlightCode from "../highlightCode";
 describe("highlightCode", () => {
     function doHighlight(lang, code) {
         return {
-            text: "" + (lang || "") + "$" + code
+            text: `${lang || ""}$${code}`
         };
     }
 

@@ -26,12 +26,9 @@ const ThemesLoader = nunjucks.Loader.extend({
 
         let src = fs.readFileSync(fullpath, "utf-8");
 
-        src =
-            "{% do %}var template = template || {}; template.stack = template.stack || []; template.stack.push(template.self); template.self = " +
-            JSON.stringify(templateName) +
-            "{% enddo %}\n" +
-            src +
-            "\n{% do %}template.self = template.stack.pop();{% enddo %}";
+        src = `{% do %}var template = template || {}; template.stack = template.stack || []; template.stack.push(template.self); template.self = ${JSON.stringify(
+            templateName
+        )}{% enddo %}\n${src}\n{% do %}template.self = template.stack.pop();{% enddo %}`;
 
         return {
             src,

@@ -87,7 +87,7 @@ describe("TemplateBlock", () => {
                 const blockId = blocks.keySeq().get(0);
                 const block = blocks.get(blockId);
 
-                expect(res).toBe("{{-%" + blockId + "%-}}");
+                expect(res).toBe(`{{-%${blockId}%-}}`);
                 expect(block.get("body")).toBe("Hello");
                 expect(block.get("name")).toBe("sayhello");
             });
@@ -115,14 +115,9 @@ describe("TemplateBlock", () => {
 
         it("must apply block arguments correctly", () => {
             const templateBlock = TemplateBlock.create("sayhello", block => ({
-                body:
-                    "<" +
-                    block.kwargs.tag +
-                    ">Hello, " +
-                    block.kwargs.name +
-                    "!</" +
-                    block.kwargs.tag +
-                    ">",
+                body: `<${block.kwargs.tag}>Hello, ${block.kwargs.name}!</${
+                    block.kwargs.tag
+                }>`,
 
                 parse: true
             }));
@@ -144,7 +139,7 @@ describe("TemplateBlock", () => {
         it("must accept an async function", () => {
             const templateBlock = TemplateBlock.create("sayhello", block =>
                 Promise().then(() => ({
-                    body: "Hello " + block.body,
+                    body: `Hello ${block.body}`,
                     parse: true
                 }))
             );
@@ -175,12 +170,9 @@ describe("TemplateBlock", () => {
                     });
 
                     return {
-                        body:
-                            '<p class="yoda">' +
-                            nested.end +
-                            " " +
-                            nested.start +
-                            "</p>",
+                        body: `<p class="yoda">${nested.end} ${
+                            nested.start
+                        }</p>`,
                         parse: true
                     };
                 }

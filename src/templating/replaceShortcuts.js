@@ -15,15 +15,14 @@ function applyShortcut(content, shortcut) {
     const tagEnd = shortcut.getEndTag();
 
     const regex = new RegExp(
-        escapeStringRegexp(start) +
-            "([\\s\\S]*?[^\\$])" +
-            escapeStringRegexp(end),
+        `${escapeStringRegexp(start)}([\\s\\S]*?[^\\$])${escapeStringRegexp(
+            end
+        )}`,
         "g"
     );
     return content.replace(
         regex,
-        (all, match) =>
-            "{% " + tagStart + " %}" + match + "{% " + tagEnd + " %}"
+        (all, match) => `{% ${tagStart} %}${match}{% ${tagEnd} %}`
     );
 }
 

@@ -98,7 +98,7 @@ Plugin.prototype.getHooks = function() {
  */
 Plugin.prototype.getResources = function(type) {
     if (type != "website" && type != "ebook") {
-        throw new Error("Invalid assets type " + type);
+        throw new Error(`Invalid assets type ${type}`);
     }
 
     const content = this.getContent();

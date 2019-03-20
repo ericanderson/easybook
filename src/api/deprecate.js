@@ -112,7 +112,7 @@ function deprecateRenamedMethod(
     instance,
     oldName,
     newName,
-    msg = '"' + oldName + '" is deprecated, use "' + newName + '()" instead'
+    msg = `"${oldName}" is deprecated, use "${newName}()" instead`
 ) {
     const fn = objectPath.get(instance, newName);
 

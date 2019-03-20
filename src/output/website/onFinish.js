@@ -25,7 +25,7 @@ function onFinish(output) {
 
     // Render the theme
     return (
-        Templating.renderFile(engine, prefix + "/languages.html", context)
+        Templating.renderFile(engine, `${prefix}/languages.html`, context)
 
             // Write it to the disk
             .then(tplOut => writeFile(output, filePath, tplOut.getContent()))

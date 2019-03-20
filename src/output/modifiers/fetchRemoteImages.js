@@ -34,7 +34,7 @@ function fetchRemoteImages(rootFolder, currentFile, $) {
                 // Convert to relative
                 src = LocationUtils.relative(currentDirectory, fileName);
 
-                $img.replaceWith('<img src="' + src + '" />');
+                $img.replaceWith(`<img src="${src}" />`);
             });
     });
 }

@@ -59,7 +59,7 @@ function spawnCmd(command, args, options) {
         if (code === 0) {
             d.resolve();
         } else {
-            d.reject(new Error('Error with command "' + command + '"'));
+            d.reject(new Error(`Error with command "${command}"`));
         }
     });
 
@@ -80,7 +80,7 @@ function escapeShellArg(value) {
     value = String(value);
     value = value.replace(/"/g, '\\"');
 
-    return '"' + value + '"';
+    return `"${value}"`;
 }
 
 /**
@@ -102,7 +102,7 @@ function optionsToShellArgs(options) {
         if (is.bool(value)) {
             result.push(key);
         } else {
-            result.push(key + "=" + escapeShellArg(value));
+            result.push(`${key}=${escapeShellArg(value)}`);
         }
     }
 

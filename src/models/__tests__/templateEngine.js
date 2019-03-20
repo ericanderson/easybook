@@ -6,7 +6,7 @@ describe("TemplateBlock", () => {
             const engine = TemplateEngine.create({
                 filters: {
                     hello: function(name) {
-                        return "Hello " + name + "!";
+                        return `Hello ${name}!`;
                     }
                 }
             });
@@ -20,7 +20,7 @@ describe("TemplateBlock", () => {
             const engine = TemplateEngine.create({
                 globals: {
                     hello: function(name) {
-                        return "Hello " + name + "!";
+                        return `Hello ${name}!`;
                     }
                 }
             });
@@ -34,7 +34,7 @@ describe("TemplateBlock", () => {
             const engine = TemplateEngine.create({
                 filters: {
                     hello: function(name) {
-                        return "Hello " + name + " " + this.lastName + "!";
+                        return `Hello ${name} ${this.lastName}!`;
                     }
                 },
                 context: {

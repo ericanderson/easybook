@@ -94,7 +94,7 @@ function copyResources(output, plugin) {
     assetsFolder = path.resolve(pluginRoot, assetsFolder);
     if (!fs.existsSync(assetsFolder)) {
         logger.warn.ln(
-            'assets folder for plugin "' + plugin.getName() + "\" doesn't exist"
+            `assets folder for plugin "${plugin.getName()}" doesn't exist`
         );
         return Promise();
     }

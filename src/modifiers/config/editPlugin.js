@@ -6,7 +6,7 @@
  * @return {Config}
  */
 function editPlugin(config, pluginName, pluginConfig) {
-    return config.setValue("pluginsConfig." + pluginName, pluginConfig);
+    return config.setValue(`pluginsConfig.${pluginName}`, pluginConfig);
 }
 
 export default editPlugin;

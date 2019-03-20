@@ -23,7 +23,7 @@ function inlinePng(rootFolder, currentFile, $) {
 
         // We avoid generating twice the same PNG
         const hash = crc.crc32(src).toString(16);
-        let fileName = hash + ".png";
+        let fileName = `${hash}.png`;
 
         // Result file path
         const filePath = path.join(rootFolder, fileName);

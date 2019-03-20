@@ -20,11 +20,7 @@ function validatePlugin(plugin) {
     if (!isValid) {
         return Promise.reject(
             new Error(
-                'Error loading plugin "' +
-                    plugin.getName() +
-                    '" at "' +
-                    plugin.getPath() +
-                    '"'
+                `Error loading plugin "${plugin.getName()}" at "${plugin.getPath()}"`
             )
         );
     }
@@ -33,8 +29,7 @@ function validatePlugin(plugin) {
     if (!gitbook.satisfies(engine)) {
         return Promise.reject(
             new Error(
-                "GitBook doesn't satisfy the requirements of this plugin: " +
-                    engine
+                `GitBook doesn't satisfy the requirements of this plugin: ${engine}`
             )
         );
     }

@@ -147,7 +147,7 @@ PluginDependency.listToArray = list =>
 
             result += dep.getName();
             if (dep.getVersion() !== DEFAULT_VERSION) {
-                result += "@" + dep.getVersion();
+                result += `@${dep.getVersion()}`;
             }
 
             return result;

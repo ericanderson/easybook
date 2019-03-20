@@ -60,7 +60,7 @@ describe("Git", () => {
     describe("Cloning and resolving", () => {
         it("should clone an HTTPS url", () => {
             const git = new Git(
-                path.join(os.tmpdir(), "test-git-" + Date.now())
+                path.join(os.tmpdir(), `test-git-${Date.now()}`)
             );
             return git
                 .resolve(

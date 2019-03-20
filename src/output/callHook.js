@@ -28,13 +28,13 @@ function callHook(
     const logger = output.getLogger();
     const plugins = output.getPlugins();
 
-    logger.debug.ln('calling hook "' + name + '"');
+    logger.debug.ln(`calling hook "${name}"`);
 
     // Create the JS context for plugins
     const context = Api.encodeGlobal(output);
 
     return timing.measure(
-        "call.hook." + name,
+        `call.hook.${name}`,
 
         // Get the arguments
         Promise(getArgument(output))

@@ -58,7 +58,7 @@ function loadPlugin(book, plugin) {
                 const indexJs = path.normalize(
                     packageContent.main || "index.js"
                 );
-                packageMain = resolve.sync("./" + indexJs, {
+                packageMain = resolve.sync(`./${indexJs}`, {
                     basedir: pkgPath
                 });
             } catch (err) {
@@ -88,7 +88,7 @@ function loadPlugin(book, plugin) {
 
     p = timing.measure("plugin.load", p);
 
-    logger.info('loading plugin "' + name + '"... ');
+    logger.info(`loading plugin "${name}"... `);
     return logger.info.promise(p);
 }
 

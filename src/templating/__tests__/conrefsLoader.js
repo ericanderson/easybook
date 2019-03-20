@@ -4,7 +4,7 @@ import renderTemplate from "../render";
 import ConrefsLoader from "../conrefsLoader";
 
 describe("ConrefsLoader", () => {
-    const dirName = __dirname + "/";
+    const dirName = `${__dirname}/`;
     const fileName = path.join(dirName, "test.md");
 
     describe("Git", () => {

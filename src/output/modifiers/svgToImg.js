@@ -31,12 +31,14 @@ function svgToImg(baseFolder, currentFile, $) {
     const currentDirectory = path.dirname(currentFile);
 
     return editHTMLElement($, "svg", $svg => {
-        const content =
-            '<?xml version="1.0" encoding="UTF-8"?>' + renderDOM($, $svg);
+        const content = `<?xml version="1.0" encoding="UTF-8"?>${renderDOM(
+            $,
+            $svg
+        )}`;
 
         // We avoid generating twice the same PNG
         const hash = crc.crc32(content).toString(16);
-        const fileName = hash + ".svg";
+        const fileName = `${hash}.svg`;
         const filePath = path.join(baseFolder, fileName);
 
         // Write the svg to the file
@@ -52,7 +54,7 @@ function svgToImg(baseFolder, currentFile, $) {
                         currentDirectory,
                         fileName
                     );
-                    $svg.replaceWith('<img src="' + src + '" />');
+                    $svg.replaceWith(`<img src="${src}" />`);
                 })
         );
     });

@@ -12,7 +12,7 @@ function indexPartLevels(part, index) {
     let articles = part.getArticles();
 
     articles = articles.map((inner, i) =>
-        indexArticleLevels(inner, baseLevel + "." + (i + 1))
+        indexArticleLevels(inner, `${baseLevel}.${i + 1}`)
     );
 
     return part.merge({

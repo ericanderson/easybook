@@ -94,7 +94,7 @@ Logger.prototype.format = function(...args) {
     @param {String}
 */
 Logger.prototype.writeLn = function(msg) {
-    return this.write((msg || "") + "\n");
+    return this.write(`${msg || ""}\n`);
 };
 
 /**
@@ -110,7 +110,7 @@ Logger.prototype.log = function(level) {
     let msg = this.format(...args);
 
     if (this.lastChar == "\n") {
-        msg = COLORS.get(levelKey)(levelKey.toLowerCase() + ":") + " " + msg;
+        msg = `${COLORS.get(levelKey)(`${levelKey.toLowerCase()}:`)} ${msg}`;
     }
 
     return this.write(msg);
@@ -147,7 +147,7 @@ Logger.prototype.ok = function(level) {
     Log a "FAIL"
 */
 Logger.prototype.fail = function(level) {
-    return this.log(level, color.red("ERROR") + "\n");
+    return this.log(level, `${color.red("ERROR")}\n`);
 };
 
 /**

@@ -45,17 +45,17 @@ function loadForBook(book) {
         plugins = Immutable.OrderedMap(plugins);
 
         // Log state
-        logger.info.ln(installedMap.size + " plugins are installed");
+        logger.info.ln(`${installedMap.size} plugins are installed`);
         if (requirements.size != installedMap.size) {
-            logger.info.ln(requirements.size + " explicitly listed");
+            logger.info.ln(`${requirements.size} explicitly listed`);
         }
 
         // Verify that all plugins are present
         if (missing.length > 0) {
             throw new Error(
-                "Couldn't locate plugins \"" +
-                    missing.join(", ") +
-                    "\", Run 'gitbook install' to install plugins from registry."
+                `Couldn't locate plugins "${missing.join(
+                    ", "
+                )}", Run 'gitbook install' to install plugins from registry.`
             );
         }
 

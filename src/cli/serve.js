@@ -63,7 +63,7 @@ function generateBook(args, kwargs) {
             return server.start(outputFolder, port);
         })
         .then(() => {
-            console.log("Serving book on http://localhost:" + port);
+            console.log(`Serving book on http://localhost:${port}`);
 
             if (lrPath && hasLiveReloading) {
                 // trigger livereload
@@ -75,7 +75,7 @@ function generateBook(args, kwargs) {
             }
 
             if (hasOpen) {
-                open("http://localhost:" + port, browser);
+                open(`http://localhost:${port}`, browser);
             }
         })
         .then(() => {

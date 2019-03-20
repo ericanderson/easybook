@@ -43,10 +43,9 @@ Page.prototype.toText = function() {
         return content;
     }
 
-    const frontMatter =
-        "---\n" +
-        yaml.safeDump(attrs.toJS(), { skipInvalid: true }) +
-        "---\n\n";
+    const frontMatter = `---\n${yaml.safeDump(attrs.toJS(), {
+        skipInvalid: true
+    })}---\n\n`;
     return frontMatter + content;
 };
 

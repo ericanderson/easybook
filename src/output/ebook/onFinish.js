@@ -25,7 +25,7 @@ function writeSummary(output) {
 
     // Render the theme
     return (
-        Templating.renderFile(engine, prefix + "/summary.html", context)
+        Templating.renderFile(engine, `${prefix}/summary.html`, context)
 
             // Write it to the disk
             .then(tplOut => writeFile(output, filePath, tplOut.getContent()))
@@ -53,7 +53,7 @@ function runEbookConvert(output) {
             const cmd = [
                 "ebook-convert",
                 path.resolve(outputFolder, SUMMARY_FILE),
-                path.resolve(outputFolder, "index." + format),
+                path.resolve(outputFolder, `index.${format}`),
                 command.optionsToShellArgs(options)
             ].join(" ");
 

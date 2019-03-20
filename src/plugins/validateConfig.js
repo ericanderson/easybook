@@ -24,7 +24,7 @@ function validatePluginConfig(book, plugin) {
     if (!schema) return book;
 
     // Normalize schema
-    schema.id = "/" + configKey;
+    schema.id = `/${configKey}`;
     schema.type = "object";
 
     // Validate and throw if invalid

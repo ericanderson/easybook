@@ -4,12 +4,12 @@ import resolveLinks from "../resolveLinks";
 
 describe("resolveLinks", () => {
     function resolveFileBasic(href) {
-        return "fakeDir/" + href;
+        return `fakeDir/${href}`;
     }
 
     function resolveFileCustom(href) {
         if (path.extname(href) == ".md") {
-            return href.slice(0, -3) + ".html";
+            return `${href.slice(0, -3)}.html`;
         }
 
         return href;

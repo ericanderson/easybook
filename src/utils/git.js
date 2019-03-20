@@ -16,7 +16,7 @@ function Git() {
 
 // Return an unique ID for a combinaison host/ref
 Git.prototype.repoID = (host, ref) =>
-    crc.crc32(host + "#" + (ref || "")).toString(16);
+    crc.crc32(`${host}#${ref || ""}`).toString(16);
 
 // Allocate a temporary folder for cloning repos in it
 Git.prototype.allocateDir = function() {
@@ -49,14 +49,14 @@ Git.prototype.clone = function(host, ref) {
                 // Clone repo
                 return (
                     command
-                        .exec("git clone " + host + " " + repoPath)
+                        .exec(`git clone ${host} ${repoPath}`)
 
                         // Checkout reference if specified
                         .then(() => {
                             that.cloned[repoId] = true;
 
                             if (!ref) return;
-                            return command.exec("git checkout " + ref, {
+                            return command.exec(`git checkout ${ref}`, {
                                 cwd: repoPath
                             });
                         })
@@ -126,7 +126,7 @@ Git.parseUrl = giturl => {
     }
 
     // Recreate pathname without the real filename
-    uri.path(fileParts[0] + ".git");
+    uri.path(`${fileParts[0]}.git`);
 
     return {
         host: uri.toString(),

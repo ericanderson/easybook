@@ -47,10 +47,10 @@ function measure(type, p) {
 */
 function time(ms) {
     if (ms < 1000) {
-        return ms.toFixed(0) + "ms";
+        return `${ms.toFixed(0)}ms`;
     }
 
-    return (ms / 1000).toFixed(2) + "s";
+    return `${(ms / 1000).toFixed(2)}s`;
 }
 
 /**
@@ -77,32 +77,23 @@ function dump(logger) {
             const percent = (timer.total * 100) / totalDuration;
 
             logger.debug.ln(
-                percent.toFixed(1) +
-                    '% of time spent in "' +
-                    timer.type +
-                    '" (' +
-                    timer.count +
-                    " times) :"
+                `${percent.toFixed(1)}% of time spent in "${timer.type}" (${
+                    timer.count
+                } times) :`
             );
             logger.debug.ln(
-                prefix +
-                    "Total: " +
-                    time(timer.total) +
-                    " | Average: " +
-                    time(timer.total / timer.count)
+                `${prefix}Total: ${time(timer.total)} | Average: ${time(
+                    timer.total / timer.count
+                )}`
             );
             logger.debug.ln(
-                prefix +
-                    "Min: " +
-                    time(timer.min) +
-                    " | Max: " +
-                    time(timer.max)
+                `${prefix}Min: ${time(timer.min)} | Max: ${time(timer.max)}`
             );
             logger.debug.ln("---------------------------");
         });
 
     logger.debug.ln(
-        time(totalDuration - measured) + " spent in non-mesured sections"
+        `${time(totalDuration - measured)} spent in non-mesured sections`
     );
 
     // Rollback to previous level

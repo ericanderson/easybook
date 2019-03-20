@@ -16,7 +16,7 @@ describe("fetchRemoteImages", () => {
     process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
 
     it("should download image file", () => {
-        const $ = cheerio.load('<img src="' + URL + '" />');
+        const $ = cheerio.load(`<img src="${URL}" />`);
 
         return fetchRemoteImages(dir.name, "index.html", $).then(() => {
             const $img = $("img");
@@ -27,7 +27,7 @@ describe("fetchRemoteImages", () => {
     });
 
     it("should download image file and replace with relative path", () => {
-        const $ = cheerio.load('<img src="' + URL + '" />');
+        const $ = cheerio.load(`<img src="${URL}" />`);
 
         return fetchRemoteImages(dir.name, "test/index.html", $).then(() => {
             const $img = $("img");

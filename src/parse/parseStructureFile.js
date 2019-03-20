@@ -34,7 +34,7 @@ function parseFile(fs, file, type) {
             } else if (type === "langs") {
                 return parser.parseLanguages(content);
             } else {
-                throw new Error('Parsing invalid type "' + type + '"');
+                throw new Error(`Parsing invalid type "${type}"`);
             }
         })
         .then(result => [file, result]);

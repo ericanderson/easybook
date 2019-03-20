@@ -22,13 +22,13 @@ function generatePages(generator, output) {
         (out, page) => {
             const file = page.getFile();
 
-            logger.debug.ln('generate page "' + file.getPath() + '"');
+            logger.debug.ln(`generate page "${file.getPath()}"`);
 
             return generatePage(out, page)
                 .then(resultPage => generator.onPage(out, resultPage))
                 .fail(err => {
                     logger.error.ln(
-                        'error while generating page "' + file.getPath() + '":'
+                        `error while generating page "${file.getPath()}":`
                     );
                     throw err;
                 });

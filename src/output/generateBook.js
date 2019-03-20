@@ -88,7 +88,7 @@ function processOutput(generator, startOutput) {
 
                 logger.info.ln("");
                 logger.info.ln(
-                    'generating language "' + langBook.getLanguage() + '"'
+                    `generating language "${langBook.getLanguage()}"`
                 );
                 return processOutput(generator, langOutput);
             });
@@ -154,7 +154,7 @@ function generateBook(generator, book, options) {
                 const logger = output.getLogger();
                 const rootFolder = output.getRoot();
 
-                logger.debug.ln('cleanup folder "' + rootFolder + '"');
+                logger.debug.ln(`cleanup folder "${rootFolder}"`);
                 return fs.ensureFolder(rootFolder).thenResolve(output);
             })
 
@@ -167,9 +167,9 @@ function generateBook(generator, book, options) {
                 const duration = (end - start) / 1000;
 
                 logger.info.ok(
-                    "generation finished with success in " +
-                        duration.toFixed(1) +
-                        "s !"
+                    `generation finished with success in ${duration.toFixed(
+                        1
+                    )}s !`
                 );
 
                 return output;

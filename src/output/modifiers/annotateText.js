@@ -4,7 +4,7 @@ import escape from "escape-html";
 const ANNOTATION_IGNORE = ".no-glossary,code,pre,a,script,h1,h2,h3,h4,h5,h6";
 
 function pregQuote(str) {
-    return (str + "").replace(
+    return `${str}`.replace(
         /([\\\.\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:])/g,
         "\\$1"
     );
@@ -70,7 +70,7 @@ function annotateText(entries, glossaryFilePath, $) {
         const name = entry.getName();
         const description = entry.getDescription();
         const searchRegex = new RegExp(
-            "\\b(" + pregQuote(name.toLowerCase()) + ")\\b",
+            `\\b(${pregQuote(name.toLowerCase())})\\b`,
             "gi"
         );
 
@@ -88,16 +88,9 @@ function annotateText(entries, glossaryFilePath, $) {
                 this,
                 searchRegex,
                 match =>
-                    '<a href="/' +
-                    glossaryFilePath +
-                    "#" +
-                    entryId +
-                    '" ' +
-                    'class="glossary-term" title="' +
-                    escape(description) +
-                    '">' +
-                    match +
-                    "</a>"
+                    `<a href="/${glossaryFilePath}#${entryId}" class="glossary-term" title="${escape(
+                        description
+                    )}">${match}</a>`
             );
         });
     });

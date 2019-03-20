@@ -24,7 +24,7 @@ function convertSVGToPNG(source, dest, options) {
         .then(() => {
             if (fs.existsSync(dest)) return;
 
-            throw new Error("Error converting " + source + " into " + dest);
+            throw new Error(`Error converting ${source} into ${dest}`);
         });
 }
 
@@ -51,7 +51,7 @@ function convertInlinePNG(source, dest) {
     return fs.writeFile(dest, buf).then(() => {
         if (fs.existsSync(dest)) return;
 
-        throw new Error("Error converting " + source + " into " + dest);
+        throw new Error(`Error converting ${source} into ${dest}`);
     });
 }
 

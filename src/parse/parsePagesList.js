@@ -27,7 +27,7 @@ function parseFilePage(book, filePath) {
         )
         .fail(err => {
             const logger = book.getLogger();
-            logger.error.ln('error while parsing page "' + filePath + '":');
+            logger.error.ln(`error while parsing page "${filePath}":`);
             throw err;
         });
 }

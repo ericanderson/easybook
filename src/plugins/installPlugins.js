@@ -37,7 +37,7 @@ function installPlugins(book) {
     logger.info.ln(
         "installing",
         plugins.size,
-        "plugins using npm@" + npmi.NPM_VERSION
+        `plugins using npm@${npmi.NPM_VERSION}`
     );
 
     return forEach(plugins, plugin => installPlugin(book, plugin)).thenResolve(

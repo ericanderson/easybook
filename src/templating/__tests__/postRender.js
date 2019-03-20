@@ -9,7 +9,7 @@ describe("postRender", () => {
         blocks: [
             TemplateBlock.create("lower", blk => blk.body.toLowerCase()),
             TemplateBlock.create("prefix", blk => ({
-                body: "_" + blk.body + "_",
+                body: `_${blk.body}_`,
 
                 post: function() {
                     testPost = true;

@@ -17,7 +17,7 @@ function watch(dir) {
 
     // Watch all parsable files
     parsers.extensions.forEach(ext => {
-        toWatch.push("**/*" + ext);
+        toWatch.push(`**/*${ext}`);
     });
 
     const watcher = chokidar.watch(toWatch, {

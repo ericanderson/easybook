@@ -41,7 +41,7 @@ function resolveVersion(plugin) {
         .then(() =>
             Promise.nfcall(
                 npm.commands.view,
-                [npmId + "@" + requiredVersion, "engines"],
+                [`${npmId}@${requiredVersion}`, "engines"],
                 true
             )
         )

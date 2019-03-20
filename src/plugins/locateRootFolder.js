@@ -11,7 +11,7 @@ import DEFAULT_PLUGINS from "../constants/defaultPlugins";
 function locateRootFolder() {
     const firstDefaultPlugin = DEFAULT_PLUGINS.first();
     const pluginPath = resolve.sync(
-        firstDefaultPlugin.getNpmID() + "/package.json",
+        `${firstDefaultPlugin.getNpmID()}/package.json`,
         {
             basedir: __dirname
         }

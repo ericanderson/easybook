@@ -32,7 +32,7 @@ TemplateBlock.prototype.getName = function() {
 };
 
 TemplateBlock.prototype.getEndTag = function() {
-    return this.get("end") || "end" + this.getName();
+    return this.get("end") || `end${this.getName()}`;
 };
 
 TemplateBlock.prototype.getProcess = function() {
@@ -61,7 +61,7 @@ TemplateBlock.prototype.getShortcuts = function() {
  * @return {String}
  */
 TemplateBlock.prototype.getExtensionName = function() {
-    return "Block" + this.getName() + "Extension";
+    return `Block${this.getName()}Extension`;
 };
 
 /**
@@ -259,7 +259,7 @@ TemplateBlock.prototype.blockResultToHtml = (result, blocksOutput) => {
     }
 
     // Return it as a position marker
-    return "{{-%" + indexedKey + "%-}}";
+    return `{{-%${indexedKey}%-}}`;
 };
 
 /**

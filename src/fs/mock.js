@@ -74,7 +74,7 @@ function createMockFS(files) {
         return dir
             .map((content, name) => {
                 if (!is.string(content)) {
-                    name = name + "/";
+                    name = `${name}/`;
                 }
 
                 return name;

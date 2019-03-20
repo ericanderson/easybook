@@ -22,7 +22,7 @@ function fileToOutput(output, filePath) {
     ) {
         filePath = path.join(
             path.dirname(filePath),
-            "index" + OUTPUT_EXTENSION
+            `index${OUTPUT_EXTENSION}`
         );
     } else {
         filePath = PathUtils.setExtension(filePath, OUTPUT_EXTENSION);

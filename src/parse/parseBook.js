@@ -43,7 +43,7 @@ function parseMultilingualBook(book) {
                 .then(parseBookContent)
                 .then(result => {
                     // Ignore content of this book when generating parent book
-                    ignore = ignore.add(langID + "/**");
+                    ignore = ignore.add(`${langID}/**`);
                     currentBook = currentBook.set("ignore", ignore);
 
                     return currentBook.addLanguageBook(langID, result);

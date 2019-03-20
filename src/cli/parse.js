@@ -39,7 +39,7 @@ function printMultingualBook(book) {
     const languages = book.getLanguages();
     const books = book.getBooks();
 
-    logger.info.ln(languages.size + " languages");
+    logger.info.ln(`${languages.size} languages`);
 
     languages.forEach(lang => {
         logger.info.ln("Language:", lang.getTitle());

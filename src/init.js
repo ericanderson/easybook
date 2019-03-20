@@ -33,7 +33,7 @@ function initBook(rootFolder) {
                         // Setup default readme if doesn't found one
                         .fail(() => {
                             const readmeFile = File.createWithFilepath(
-                                "README" + extension
+                                `README${extension}`
                             );
                             const readme = Readme.create(readmeFile);
                             return book.setReadme(readme);
@@ -47,7 +47,7 @@ function initBook(rootFolder) {
                 const summary = book.getSummary();
                 const summaryFile = summary.getFile();
                 const summaryFilename =
-                    summaryFile.getPath() || "SUMMARY" + extension;
+                    summaryFile.getPath() || `SUMMARY${extension}`;
 
                 const articles = summary.getArticlesAsList();
 
@@ -67,7 +67,7 @@ function initBook(rootFolder) {
                                 logger.info.ln("create", article.getPath());
                                 return fs.writeFile(
                                     filePath,
-                                    "# " + article.getTitle() + "\n\n"
+                                    `# ${article.getTitle()}\n\n`
                                 );
                             })
                         );
@@ -82,7 +82,7 @@ function initBook(rootFolder) {
 
                             return fs.ensureFile(filePath).then(() => {
                                 logger.info.ln(
-                                    "create " + path.basename(filePath)
+                                    `create ${path.basename(filePath)}`
                                 );
                                 return fs.writeFile(
                                     filePath,

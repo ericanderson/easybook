@@ -77,7 +77,7 @@ Server.prototype.start = function(dir, port) {
 
                 res.statusCode = 301;
                 res.setHeader("Location", resultURL);
-                res.end("Redirecting to " + resultURL);
+                res.end(`Redirecting to ${resultURL}`);
             }
 
             res.setHeader("X-Current-Location", req.url);

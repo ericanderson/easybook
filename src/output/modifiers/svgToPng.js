@@ -26,7 +26,7 @@ function svgToPng(rootFolder, currentFile, $) {
 
         // We avoid generating twice the same PNG
         const hash = crc.crc32(src).toString(16);
-        let fileName = hash + ".png";
+        let fileName = `${hash}.png`;
 
         // Input file path
         const inputPath = path.join(rootFolder, src);

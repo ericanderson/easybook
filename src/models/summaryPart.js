@@ -31,7 +31,7 @@ SummaryPart.prototype.getArticles = function() {
 SummaryPart.prototype.createChildLevel = function() {
     const level = this.getLevel();
     const subArticles = this.getArticles();
-    const childLevel = level + "." + (subArticles.size + 1);
+    const childLevel = `${level}.${subArticles.size + 1}`;
 
     return childLevel;
 };

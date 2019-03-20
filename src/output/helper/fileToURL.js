@@ -21,7 +21,7 @@ function fileToURL(output, filePath) {
     filePath = fileToOutput(output, filePath);
 
     if (directoryIndex && path.basename(filePath) == "index.html") {
-        filePath = path.dirname(filePath) + "/";
+        filePath = `${path.dirname(filePath)}/`;
     }
 
     return LocationUtils.normalize(filePath);

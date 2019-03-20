@@ -74,7 +74,7 @@ function uniqueFilename(base, filename) {
 
     let i = 0;
     while (fs.existsSync(filename)) {
-        _filename = filename + "_" + i + ext;
+        _filename = `${filename}_${i}${ext}`;
         i = i + 1;
     }
 
