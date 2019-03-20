@@ -2,7 +2,7 @@ import Immutable from "immutable";
 import Summary from "../../../models/summary";
 import File from "../../../models/file";
 
-describe("moveArticleAfter", function() {
+describe("moveArticleAfter", () => {
     var moveArticleAfter = require("../moveArticleAfter").default;
     var summary = Summary.createFromParts(File(), [
         {
@@ -42,19 +42,19 @@ describe("moveArticleAfter", function() {
         }
     ]);
 
-    it("moving right after itself should be invariant", function() {
+    it("moving right after itself should be invariant", () => {
         var newSummary = moveArticleAfter(summary, "2.1", "2.1");
 
         expect(Immutable.is(summary, newSummary)).toBe(true);
     });
 
-    it("moving after previous one should be invariant too", function() {
+    it("moving after previous one should be invariant too", () => {
         var newSummary = moveArticleAfter(summary, "2.1", "2.0");
 
         expect(Immutable.is(summary, newSummary)).toBe(true);
     });
 
-    it("should move an article after a previous level", function() {
+    it("should move an article after a previous level", () => {
         var newSummary = moveArticleAfter(summary, "2.2", "2.0");
         var moved = newSummary.getByLevel("2.1");
 
@@ -62,7 +62,7 @@ describe("moveArticleAfter", function() {
         expect(newSummary.getByLevel("2.2").getTitle()).toBe("2.1");
     });
 
-    it("should move an article after a previous and less deep level", function() {
+    it("should move an article after a previous and less deep level", () => {
         var newSummary = moveArticleAfter(summary, "2.1.1", "2.0");
         var moved = newSummary.getByLevel("2.1");
 
@@ -71,7 +71,7 @@ describe("moveArticleAfter", function() {
         expect(newSummary.getByLevel("2.2").getTitle()).toBe("2.1");
     });
 
-    it("should move an article after a next level", function() {
+    it("should move an article after a next level", () => {
         var newSummary = moveArticleAfter(summary, "2.1", "2.2");
         var moved = newSummary.getByLevel("2.2");
 

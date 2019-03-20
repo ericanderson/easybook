@@ -15,7 +15,7 @@ function preparePages(output) {
         return Promise(output);
     }
 
-    return Parse.parsePagesList(book).then(function(pages) {
+    return Parse.parsePagesList(book).then(pages => {
         logger.info.ln("found", pages.size, "pages");
 
         return output.set("pages", pages);

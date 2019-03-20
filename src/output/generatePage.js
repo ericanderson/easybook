@@ -20,7 +20,7 @@ function generatePage(output, page) {
 
     return timing.measure(
         "page.generate",
-        Promise(page).then(function(resultPage) {
+        Promise(page).then(resultPage => {
             var file = resultPage.getFile();
             var filePath = file.getPath();
             var parser = file.getParser();
@@ -38,12 +38,12 @@ function generatePage(output, page) {
             return (
                 callPageHook("page:before", output, resultPage)
                     // Escape code blocks with raw tags
-                    .then(function(currentPage) {
+                    .then(currentPage => {
                         return parser.preparePage(currentPage.getContent());
                     })
 
                     // Render templating syntax
-                    .then(function(content) {
+                    .then(content => {
                         var absoluteFilePath = path.join(
                             book.getContentRoot(),
                             filePath
@@ -56,26 +56,26 @@ function generatePage(output, page) {
                         );
                     })
 
-                    .then(function(output) {
+                    .then(output => {
                         var content = output.getContent();
 
-                        return parser.parsePage(content).then(function(result) {
+                        return parser.parsePage(content).then(result => {
                             return output.setContent(result.content);
                         });
                     })
 
                     // Post processing for templating syntax
-                    .then(function(output) {
+                    .then(output => {
                         return Templating.postRender(engine, output);
                     })
 
                     // Return new page
-                    .then(function(content) {
+                    .then(content => {
                         return resultPage.set("content", content);
                     })
 
                     // Call final hook
-                    .then(function(currentPage) {
+                    .then(currentPage => {
                         return callPageHook("page", output, currentPage);
                     })
             );

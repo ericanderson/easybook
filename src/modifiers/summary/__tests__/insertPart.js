@@ -2,7 +2,7 @@ import Summary from "../../../models/summary";
 import SummaryPart from "../../../models/summaryPart";
 import File from "../../../models/file";
 
-describe("insertPart", function() {
+describe("insertPart", () => {
     var insertPart = require("../insertPart").default;
     var summary = Summary.createFromParts(File(), [
         {
@@ -29,7 +29,7 @@ describe("insertPart", function() {
         }
     ]);
 
-    it("should insert an part at a given level", function() {
+    it("should insert an part at a given level", () => {
         var part = SummaryPart.create(
             {
                 title: "Inserted"
@@ -48,7 +48,7 @@ describe("insertPart", function() {
         expect(otherArticle.getLevel()).toBe("3.1");
     });
 
-    it("should insert an part in last position", function() {
+    it("should insert an part in last position", () => {
         var part = SummaryPart.create(
             {
                 title: "Inserted"

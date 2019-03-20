@@ -16,7 +16,7 @@ function watch(dir) {
     var toWatch = ["book.json", "book.js", "_layouts/**"];
 
     // Watch all parsable files
-    parsers.extensions.forEach(function(ext) {
+    parsers.extensions.forEach(ext => {
         toWatch.push("**/*" + ext);
     });
 
@@ -26,12 +26,12 @@ function watch(dir) {
         ignoreInitial: true
     });
 
-    watcher.once("all", function(e, filepath) {
+    watcher.once("all", (e, filepath) => {
         watcher.close();
 
         d.resolve(filepath);
     });
-    watcher.once("error", function(err) {
+    watcher.once("error", err => {
         watcher.close();
 
         d.reject(err);

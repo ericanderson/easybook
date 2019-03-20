@@ -10,7 +10,7 @@ function listSearchPaths(output) {
 
     var searchPaths = plugins
         .valueSeq()
-        .map(function(plugin) {
+        .map(plugin => {
             return plugin.getPath();
         })
         .toList();

@@ -1,12 +1,12 @@
 import togglePlugin from "../togglePlugin";
 import Config from "../../../models/config";
 
-describe("togglePlugin", function() {
+describe("togglePlugin", () => {
     var config = Config.createWithValues({
         plugins: ["hello", "world", "-disabled"]
     });
 
-    it("should enable plugin", function() {
+    it("should enable plugin", () => {
         var newConfig = togglePlugin(config, "disabled");
 
         var testDep = newConfig.getPluginDependency("disabled");
@@ -15,7 +15,7 @@ describe("togglePlugin", function() {
         expect(testDep.isEnabled()).toBeTruthy();
     });
 
-    it("should disable plugin", function() {
+    it("should disable plugin", () => {
         var newConfig = togglePlugin(config, "world");
 
         var testDep = newConfig.getPluginDependency("world");

@@ -1,4 +1,4 @@
-import Promise, {forEach} from "../../utils/promise";
+import Promise, { forEach } from "../../utils/promise";
 
 /**
     Edit all elements matching a selector
@@ -6,7 +6,7 @@ import Promise, {forEach} from "../../utils/promise";
 function editHTMLElement($, selector, fn) {
     var $elements = $(selector);
 
-    return forEach($elements, function(el) {
+    return forEach($elements, el => {
         var $el = $(el);
         return fn($el);
     });

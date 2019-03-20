@@ -1,4 +1,4 @@
-import Promise, {reduce} from "../utils/promise";
+import Promise, { reduce } from "../utils/promise";
 import timing from "../utils/timing";
 import Book from "../models/book";
 import parseIgnore from "./parseIgnore";
@@ -33,7 +33,7 @@ function parseMultilingualBook(book) {
 
     return reduce(
         langList,
-        function(currentBook, lang) {
+        (currentBook, lang) => {
             var langID = lang.getID();
             var child = Book.createFromParent(currentBook, langID);
             var ignore = currentBook.getIgnore();
@@ -41,7 +41,7 @@ function parseMultilingualBook(book) {
             return Promise(child)
                 .then(parseConfig)
                 .then(parseBookContent)
-                .then(function(result) {
+                .then(result => {
                     // Ignore content of this book when generating parent book
                     ignore = ignore.add(langID + "/**");
                     currentBook = currentBook.set("ignore", ignore);
@@ -66,7 +66,7 @@ function parseBook(book) {
             .then(parseIgnore)
             .then(parseConfig)
             .then(parseLanguages)
-            .then(function(resultBook) {
+            .then(resultBook => {
                 if (resultBook.isMultilingual()) {
                     return parseMultilingualBook(resultBook);
                 } else {

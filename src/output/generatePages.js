@@ -1,4 +1,4 @@
-import Promise, {reduce} from "../utils/promise";
+import Promise, { reduce } from "../utils/promise";
 import generatePage from "./generatePage";
 
 /**
@@ -19,16 +19,16 @@ function generatePages(generator, output) {
 
     return reduce(
         pages,
-        function(out, page) {
+        (out, page) => {
             var file = page.getFile();
 
             logger.debug.ln('generate page "' + file.getPath() + '"');
 
             return generatePage(out, page)
-                .then(function(resultPage) {
+                .then(resultPage => {
                     return generator.onPage(out, resultPage);
                 })
-                .fail(function(err) {
+                .fail(err => {
                     logger.error.ln(
                         'error while generating page "' + file.getPath() + '":'
                     );

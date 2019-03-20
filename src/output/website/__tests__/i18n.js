@@ -3,15 +3,15 @@ import prepareI18n from "../prepareI18n";
 import createTemplateEngine from "../createTemplateEngine";
 import WebsiteGenerator from "../";
 
-describe("i18n", function() {
-    it("should correctly use english as default language", function() {
+describe("i18n", () => {
+    it("should correctly use english as default language", () => {
         return createMockOutput(WebsiteGenerator, {
             "README.md": "Hello World"
         })
-            .then(function(output) {
+            .then(output => {
                 return prepareI18n(output);
             })
-            .then(function(output) {
+            .then(output => {
                 var engine = createTemplateEngine(output, "README.md");
                 var t = engine.getFilters().get("t");
 
@@ -19,15 +19,15 @@ describe("i18n", function() {
             });
     });
 
-    it("should correctly use language from book.json", function() {
+    it("should correctly use language from book.json", () => {
         return createMockOutput(WebsiteGenerator, {
             "README.md": "Hello World",
             "book.json": JSON.stringify({ language: "fr" })
         })
-            .then(function(output) {
+            .then(output => {
                 return prepareI18n(output);
             })
-            .then(function(output) {
+            .then(output => {
                 var engine = createTemplateEngine(output, "README.md");
                 var t = engine.getFilters().get("t");
 

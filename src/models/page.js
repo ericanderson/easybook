@@ -63,7 +63,7 @@ Page.prototype.getPath = function() {
  * @param {File} file
  * @return {Page}
  */
-Page.createForFile = function(file) {
+Page.createForFile = file => {
     return new Page({
         file: file
     });

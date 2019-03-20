@@ -9,18 +9,18 @@ describe("installPlugins", function() {
 
     this.timeout(30000);
 
-    before(function() {
+    before(() => {
         var fs = NodeFS(path.resolve(__dirname, "../../../"));
         var baseBook = Book.createForFS(fs);
 
-        return Parse.parseConfig(baseBook).then(function(_book) {
+        return Parse.parseConfig(baseBook).then(_book => {
             book = _book;
         });
     });
 
-    it("must install all plugins from NPM", function() {
-        return installPlugins(book).then(function(n) {
-            expect(n).toBe(0);
+    it("must install all plugins from NPM", () => {
+        return installPlugins(book).then(n => {
+            expect(n).toBe(2);
         });
     });
 });

@@ -3,13 +3,13 @@ import cheerio from "cheerio";
 import GlossaryEntry from "../../../models/glossaryEntry";
 import annotateText from "../annotateText";
 
-describe("annotateText", function() {
+describe("annotateText", () => {
     var entries = Immutable.List([
         GlossaryEntry({ name: "Word" }),
         GlossaryEntry({ name: "Multiple Words" })
     ]);
 
-    it("should annotate text", function() {
+    it("should annotate text", () => {
         var $ = cheerio.load("<p>This is a word, and multiple words</p>");
 
         annotateText(entries, "GLOSSARY.md", $);
@@ -28,7 +28,7 @@ describe("annotateText", function() {
         expect(words.hasClass("glossary-term")).toBeTruthy();
     });
 
-    it("should not annotate scripts", function() {
+    it("should not annotate scripts", () => {
         var $ = cheerio.load(
             "<script>This is a word, and multiple words</script>"
         );
@@ -37,7 +37,7 @@ describe("annotateText", function() {
         expect($("a").length).toBe(0);
     });
 
-    it('should not annotate when has class "no-glossary"', function() {
+    it('should not annotate when has class "no-glossary"', () => {
         var $ = cheerio.load(
             '<p class="no-glossary">This is a word, and multiple words</p>'
         );

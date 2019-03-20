@@ -22,7 +22,7 @@ function measure(type, p) {
 
     var start = Date.now();
 
-    return p.fin(function() {
+    return p.fin(() => {
         var end = Date.now();
         var duration = end - start;
 
@@ -69,11 +69,11 @@ function dump(logger) {
 
     Immutable.Map(timers)
         .valueSeq()
-        .sortBy(function(timer) {
+        .sortBy(timer => {
             measured += timer.total;
             return timer.total;
         })
-        .forEach(function(timer) {
+        .forEach(timer => {
             var percent = (timer.total * 100) / totalDuration;
 
             logger.debug.ln(

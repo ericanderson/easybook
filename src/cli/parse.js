@@ -41,7 +41,7 @@ function printMultingualBook(book) {
 
     logger.info.ln(languages.size + " languages");
 
-    languages.forEach(function(lang) {
+    languages.forEach(lang => {
         logger.info.ln("Language:", lang.getTitle());
         printBook(books.get(lang.getID()));
         logger.info.ln("");
@@ -56,7 +56,7 @@ export default {
         var book = getBook(args, kwargs);
         var logger = book.getLogger();
 
-        return Parse.parseBook(book).then(function(resultBook) {
+        return Parse.parseBook(book).then(resultBook => {
             var rootFolder = book.getRoot();
             var contentFolder = book.getContentRoot();
 

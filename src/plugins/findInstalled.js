@@ -1,7 +1,7 @@
 import readInstalled from "read-installed";
 import Immutable from "immutable";
 import path from "path";
-import Promise, {serie} from "../utils/promise";
+import Promise, { serie } from "../utils/promise";
 import fs from "../utils/fs";
 import Plugin from "../models/plugin";
 import PREFIX from "../constants/pluginPrefix";
@@ -55,7 +55,7 @@ function findInstalled(folder) {
             );
         }
 
-        Immutable.Map(dependencies).forEach(function(dep) {
+        Immutable.Map(dependencies).forEach(dep => {
             onPackage(dep, pluginName);
         });
     }
@@ -66,11 +66,11 @@ function findInstalled(folder) {
     // List all folders in node_modules
     return fs
         .readdir(node_modules)
-        .fail(function() {
+        .fail(() => {
             return Promise.resolve([]);
         })
-        .then(function(modules) {
-            return serie(modules, function(module) {
+        .then(modules => {
+            return serie(modules, module => {
                 // Not a gitbook-plugin
                 if (!validateId(module)) {
                     return Promise.resolve();
@@ -82,12 +82,12 @@ function findInstalled(folder) {
                     readInstalled,
                     module_folder,
                     options
-                ).then(function(data) {
+                ).then(data => {
                     onPackage(data);
                 });
             });
         })
-        .then(function() {
+        .then(() => {
             // Return installed plugins
             return results;
         });

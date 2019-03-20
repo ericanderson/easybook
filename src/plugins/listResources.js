@@ -11,17 +11,17 @@ import PLUGIN_RESOURCES from "../constants/pluginResources";
     @return {Map<String:List<{url, path}>}
 */
 function listResources(plugins, resources) {
-    return plugins.reduce(function(result, plugin) {
+    return plugins.reduce((result, plugin) => {
         var npmId = plugin.getNpmID();
         var pluginResources = resources.get(plugin.getName());
 
-        PLUGIN_RESOURCES.forEach(function(resourceType) {
+        PLUGIN_RESOURCES.forEach(resourceType => {
             var assets = pluginResources.get(resourceType);
             if (!assets) return;
 
             var list = result.get(resourceType) || Immutable.List();
 
-            assets = assets.map(function(assetFile) {
+            assets = assets.map(assetFile => {
                 if (LocationUtils.isExternal(assetFile)) {
                     return {
                         url: assetFile

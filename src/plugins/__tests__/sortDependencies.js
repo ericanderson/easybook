@@ -2,8 +2,8 @@ import PluginDependency from "../../models/pluginDependency";
 import sortDependencies from "../sortDependencies";
 import toNames from "../toNames";
 
-describe("sortDependencies", function() {
-    it("must load themes after plugins", function() {
+describe("sortDependencies", () => {
+    it("must load themes after plugins", () => {
         var allPlugins = PluginDependency.listFromArray([
             "hello",
             "theme-test",
@@ -16,7 +16,7 @@ describe("sortDependencies", function() {
         expect(names).toEqual(["hello", "world", "theme-test"]);
     });
 
-    it("must keep order of themes", function() {
+    it("must keep order of themes", () => {
         var allPlugins = PluginDependency.listFromArray([
             "theme-test",
             "theme-test1",

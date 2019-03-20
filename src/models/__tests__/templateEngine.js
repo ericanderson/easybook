@@ -1,8 +1,8 @@
-describe("TemplateBlock", function() {
+describe("TemplateBlock", () => {
     var TemplateEngine = require("../templateEngine").default;
 
-    describe("create", function() {
-        it("must initialize with a list of filters", function() {
+    describe("create", () => {
+        it("must initialize with a list of filters", () => {
             var engine = TemplateEngine.create({
                 filters: {
                     hello: function(name) {
@@ -16,7 +16,7 @@ describe("TemplateBlock", function() {
             expect(res).toBe("Hello Luke!");
         });
 
-        it("must initialize with a list of globals", function() {
+        it("must initialize with a list of globals", () => {
             var engine = TemplateEngine.create({
                 globals: {
                     hello: function(name) {
@@ -30,7 +30,7 @@ describe("TemplateBlock", function() {
             expect(res).toBe("Hello Luke!");
         });
 
-        it("must pass context to filters and blocks", function() {
+        it("must pass context to filters and blocks", () => {
             var engine = TemplateEngine.create({
                 filters: {
                     hello: function(name) {

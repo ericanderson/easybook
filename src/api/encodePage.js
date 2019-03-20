@@ -27,7 +27,7 @@ function encodePage(output, page) {
         "page.progress",
         result,
         "progress",
-        function() {
+        () => {
             return encodeProgress(output, page);
         },
         '"page.progress" property is deprecated'

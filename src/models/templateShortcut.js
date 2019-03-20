@@ -61,7 +61,7 @@ TemplateShortcut.prototype.acceptParser = function(parser) {
     @param {Map} details
     @return {TemplateShortcut}
 */
-TemplateShortcut.createForBlock = function(block, details) {
+TemplateShortcut.createForBlock = (block, details) => {
     details = Immutable.fromJS(details);
 
     return new TemplateShortcut({

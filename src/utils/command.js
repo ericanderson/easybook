@@ -1,6 +1,6 @@
 import is from "is";
 import childProcess from "child_process";
-import {spawn} from "spawn-cmd";
+import { spawn } from "spawn-cmd";
 import Promise from "./promise";
 
 /**
@@ -13,11 +13,7 @@ import Promise from "./promise";
 function exec(command, options) {
     var d = Promise.defer();
 
-    var child = childProcess.exec(command, options, function(
-        err,
-        stdout,
-        stderr
-    ) {
+    var child = childProcess.exec(command, options, (err, stdout, stderr) => {
         if (!err) {
             return d.resolve();
         }
@@ -26,11 +22,11 @@ function exec(command, options) {
         d.reject(err);
     });
 
-    child.stdout.on("data", function(data) {
+    child.stdout.on("data", data => {
         d.notify(data);
     });
 
-    child.stderr.on("data", function(data) {
+    child.stderr.on("data", data => {
         d.notify(data);
     });
 
@@ -49,19 +45,19 @@ function spawnCmd(command, args, options) {
     var d = Promise.defer();
     var child = spawn(command, args, options);
 
-    child.on("error", function(error) {
+    child.on("error", error => {
         return d.reject(error);
     });
 
-    child.stdout.on("data", function(data) {
+    child.stdout.on("data", data => {
         d.notify(data);
     });
 
-    child.stderr.on("data", function(data) {
+    child.stderr.on("data", data => {
         d.notify(data);
     });
 
-    child.on("close", function(code) {
+    child.on("close", code => {
         if (code === 0) {
             d.resolve();
         } else {

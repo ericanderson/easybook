@@ -50,10 +50,10 @@ Languages.prototype.getCount = function() {
     @param {Array}
     @return {Language}
 */
-Languages.createFromList = function(file, langs) {
+Languages.createFromList = (file, langs) => {
     var list = Immutable.OrderedMap();
 
-    langs.forEach(function(lang) {
+    langs.forEach(lang => {
         lang = Language({
             title: lang.title,
             path: lang.ref

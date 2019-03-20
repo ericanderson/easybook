@@ -15,7 +15,7 @@ function parseSummary(book) {
     var logger = book.getLogger();
     var readmeFile = readme.file;
 
-    return parseStructureFile(book, "summary").spread(function(file, result) {
+    return parseStructureFile(book, "summary").spread((file, result) => {
         var summary;
 
         if (!file) {

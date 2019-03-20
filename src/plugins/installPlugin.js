@@ -21,7 +21,7 @@ function installPlugin(book, plugin) {
 
     // Find a version to install
     return resolveVersion(plugin)
-        .then(function(version) {
+        .then(version => {
             if (!version) {
                 throw new Error(
                     'Found no satisfactory version for plugin "' +
@@ -51,7 +51,7 @@ function installPlugin(book, plugin) {
                 }
             });
         })
-        .then(function() {
+        .then(() => {
             logger.info.ok('plugin "' + name + '" installed with success');
         });
 }

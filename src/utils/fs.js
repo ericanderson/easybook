@@ -14,21 +14,21 @@ function writeStream(filename, st) {
     var d = Promise.defer();
 
     var wstream = fs.createWriteStream(filename);
-    var cleanup = function() {
+    var cleanup = () => {
         destroy(wstream);
         wstream.removeAllListeners();
     };
 
-    wstream.on("finish", function() {
+    wstream.on("finish", () => {
         cleanup();
         d.resolve();
     });
-    wstream.on("error", function(err) {
+    wstream.on("error", err => {
         cleanup();
         d.reject(err);
     });
 
-    st.on("error", function(err) {
+    st.on("error", err => {
         cleanup();
         d.reject(err);
     });
@@ -42,7 +42,7 @@ function writeStream(filename, st) {
 function fileExists(filename) {
     var d = Promise.defer();
 
-    fs.exists(filename, function(exists) {
+    fs.exists(filename, exists => {
         d.resolve(exists);
     });
 
@@ -102,7 +102,7 @@ function rmDir(base) {
     @return {Promise}
 */
 function assertFile(filePath, generator) {
-    return fileExists(filePath).then(function(exists) {
+    return fileExists(filePath).then(exists => {
         if (exists) return;
 
         return generator();
@@ -133,10 +133,10 @@ function pickFile(rootFolder, fileName) {
 */
 function ensureFolder(rootFolder) {
     return rmDir(rootFolder)
-        .fail(function() {
+        .fail(() => {
             return Promise();
         })
-        .then(function() {
+        .then(() => {
             return Promise.nfcall(mkdirp, rootFolder);
         });
 }

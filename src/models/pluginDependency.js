@@ -67,7 +67,7 @@ PluginDependency.prototype.isGitDependency = function() {
  * @param {String}
  * @return {Plugin|undefined}
  */
-PluginDependency.create = function(name, version, enabled) {
+PluginDependency.create = (name, version, enabled) => {
     if (is.undefined(enabled)) {
         enabled = true;
     }
@@ -84,7 +84,7 @@ PluginDependency.create = function(name, version, enabled) {
  * @param {String}
  * @return {Plugin|undefined}
  */
-PluginDependency.createFromString = function(s) {
+PluginDependency.createFromString = s => {
     var parts = s.split("@");
     var name = parts[0];
     var version = parts.slice(1).join("@");
@@ -107,7 +107,7 @@ PluginDependency.createFromString = function(s) {
  * @param {String}
  * @return {List<PluginDependency>}
  */
-PluginDependency.listFromString = function(s) {
+PluginDependency.listFromString = s => {
     var parts = s.split(",");
     return PluginDependency.listFromArray(parts);
 };
@@ -117,9 +117,9 @@ PluginDependency.listFromString = function(s) {
  * @param {Array}
  * @return {List<PluginDependency>}
  */
-PluginDependency.listFromArray = function(arr) {
+PluginDependency.listFromArray = arr => {
     return Immutable.List(arr)
-        .map(function(entry) {
+        .map(entry => {
             if (is.string(entry)) {
                 return PluginDependency.createFromString(entry);
             } else {
@@ -129,7 +129,7 @@ PluginDependency.listFromArray = function(arr) {
                 });
             }
         })
-        .filter(function(dep) {
+        .filter(dep => {
             return Boolean(dep.getName());
         });
 };
@@ -139,9 +139,9 @@ PluginDependency.listFromArray = function(arr) {
  * @param {List<PluginDependency>} list
  * @return {Array<String>}
  */
-PluginDependency.listToArray = function(list) {
+PluginDependency.listToArray = list => {
     return list
-        .map(function(dep) {
+        .map(dep => {
             var result = "";
 
             if (!dep.isEnabled()) {
@@ -163,7 +163,7 @@ PluginDependency.listToArray = function(list) {
  * @param {String}
  * @return {String}
  */
-PluginDependency.nameToNpmID = function(s) {
+PluginDependency.nameToNpmID = s => {
     return PREFIX + s;
 };
 

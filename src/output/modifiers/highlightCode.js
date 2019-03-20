@@ -11,7 +11,7 @@ import editHTMLElement from "./editHTMLElement";
 */
 function getLanguageForClass(classNames) {
     return Immutable.List(classNames)
-        .map(function(cl) {
+        .map(cl => {
             // Markdown
             if (cl.search("lang-") === 0) {
                 return cl.slice("lang-".length);
@@ -24,7 +24,7 @@ function getLanguageForClass(classNames) {
 
             return null;
         })
-        .find(function(cl) {
+        .find(cl => {
             return Boolean(cl);
         });
 }
@@ -37,12 +37,12 @@ function getLanguageForClass(classNames) {
     @return {Promise}
 */
 function highlightCode(highlight, $) {
-    return editHTMLElement($, "code", function($code) {
+    return editHTMLElement($, "code", $code => {
         var classNames = ($code.attr("class") || "").split(" ");
         var lang = getLanguageForClass(classNames);
         var source = $code.text();
 
-        return Promise(highlight(lang, source)).then(function(r) {
+        return Promise(highlight(lang, source)).then(r => {
             if (is.string(r.html)) {
                 $code.html(r.html);
             } else {

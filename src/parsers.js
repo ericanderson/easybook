@@ -19,7 +19,7 @@ var parsers = Immutable.List([
  * @return {Parser|undefined}
  */
 function getParser(name) {
-    return parsers.find(function(parser) {
+    return parsers.find(parser => {
         return parser.getName() === name;
     });
 }
@@ -31,7 +31,7 @@ function getParser(name) {
  * @return {Parser|undefined}
  */
 function getParserByExt(ext) {
-    return parsers.find(function(parser) {
+    return parsers.find(parser => {
         return parser.matchExtension(ext);
     });
 }
@@ -48,7 +48,7 @@ function getParserForFile(filename) {
 
 // List all parsable extensions
 var extensions = parsers
-    .map(function(parser) {
+    .map(parser => {
         return parser.getExtensions();
     })
     .flatten();

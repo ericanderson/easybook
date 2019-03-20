@@ -30,7 +30,7 @@ var ConrefsLoader = nunjucks.Loader.extend({
 
         this.git
             .resolve(sourceURL)
-            .then(function(filepath) {
+            .then(filepath => {
                 // Is local file
                 if (!filepath) {
                     filepath = path.resolve(sourceURL);
@@ -47,7 +47,7 @@ var ConrefsLoader = nunjucks.Loader.extend({
                 // Read file from absolute path
                 return fs
                     .readFile(filepath)
-                    .then(function(source) {
+                    .then(source => {
                         source = source.toString("utf8");
 
                         if (that.transformFn) {
@@ -56,7 +56,7 @@ var ConrefsLoader = nunjucks.Loader.extend({
 
                         return source;
                     })
-                    .then(function(source) {
+                    .then(source => {
                         return {
                             src: source,
                             path: filepath

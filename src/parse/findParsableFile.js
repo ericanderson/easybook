@@ -1,5 +1,5 @@
 import path from "path";
-import Promise, {some} from "../utils/promise";
+import Promise, { some } from "../utils/promise";
 import parsers from "../parsers";
 
 /**
@@ -18,10 +18,10 @@ function findParsableFile(book, filename) {
     // Ordered list of extensions to test
     var exts = parsers.extensions;
 
-    return some(exts, function(ext) {
+    return some(exts, ext => {
         var filepath = basename + ext;
 
-        return fs.findFile(basedir, filepath).then(function(found) {
+        return fs.findFile(basedir, filepath).then(found => {
             if (!found || book.isContentFileIgnored(found)) {
                 return undefined;
             }

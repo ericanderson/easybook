@@ -2,8 +2,8 @@ import PluginDependency from "../../models/pluginDependency";
 import listDependencies from "../listDependencies";
 import toNames from "../toNames";
 
-describe("listDependencies", function() {
-    it("must list default", function() {
+describe("listDependencies", () => {
+    it("must list default", () => {
         var deps = PluginDependency.listFromString("ga,great");
         var plugins = listDependencies(deps);
         var names = toNames(plugins);
@@ -20,7 +20,7 @@ describe("listDependencies", function() {
         ]);
     });
 
-    it("must list from array with -", function() {
+    it("must list from array with -", () => {
         var deps = PluginDependency.listFromString("ga,-great");
         var plugins = listDependencies(deps);
         var names = toNames(plugins);
@@ -36,7 +36,7 @@ describe("listDependencies", function() {
         ]);
     });
 
-    it("must remove default plugins using -", function() {
+    it("must remove default plugins using -", () => {
         var deps = PluginDependency.listFromString("ga,-search");
         var plugins = listDependencies(deps);
         var names = toNames(plugins);

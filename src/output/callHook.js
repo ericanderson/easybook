@@ -1,4 +1,4 @@
-import Promise, {reduce} from "../utils/promise";
+import Promise, { reduce } from "../utils/promise";
 import timing from "../utils/timing";
 import Api from "../api";
 
@@ -37,10 +37,10 @@ function callHook(name, getArgument, handleResult, output) {
         // Get the arguments
         Promise(getArgument(output))
             // Call the hooks in serie
-            .then(function(arg) {
+            .then(arg => {
                 return reduce(
                     plugins,
-                    function(prev, plugin) {
+                    (prev, plugin) => {
                         var hook = plugin.getHook(name);
                         if (!hook) {
                             return prev;
@@ -53,7 +53,7 @@ function callHook(name, getArgument, handleResult, output) {
             })
 
             // Handle final result
-            .then(function(result) {
+            .then(result => {
                 output = Api.decodeGlobal(output, context);
                 return handleResult(output, result);
             })

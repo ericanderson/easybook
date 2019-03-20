@@ -15,7 +15,7 @@ import LocationUtils from "../../utils/location";
 function fetchRemoteImages(rootFolder, currentFile, $) {
     var currentDirectory = path.dirname(currentFile);
 
-    return editHTMLElement($, "img", function($img) {
+    return editHTMLElement($, "img", $img => {
         var src = $img.attr("src");
         var extension = path.extname(src);
 
@@ -29,10 +29,10 @@ function fetchRemoteImages(rootFolder, currentFile, $) {
         var filePath = path.join(rootFolder, fileName);
 
         return fs
-            .assertFile(filePath, function() {
+            .assertFile(filePath, () => {
                 return fs.download(src, filePath);
             })
-            .then(function() {
+            .then(() => {
                 // Convert to relative
                 src = LocationUtils.relative(currentDirectory, fileName);
 

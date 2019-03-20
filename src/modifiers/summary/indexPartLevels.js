@@ -11,7 +11,7 @@ function indexPartLevels(part, index) {
     var baseLevel = String(index + 1);
     var articles = part.getArticles();
 
-    articles = articles.map(function(inner, i) {
+    articles = articles.map((inner, i) => {
         return indexArticleLevels(inner, baseLevel + "." + (i + 1));
     });
 

@@ -3,47 +3,47 @@ import TemplateEngine from "../../models/templateEngine";
 import renderTemplate from "../render";
 import ConrefsLoader from "../conrefsLoader";
 
-describe("ConrefsLoader", function() {
+describe("ConrefsLoader", () => {
     var dirName = __dirname + "/";
     var fileName = path.join(dirName, "test.md");
 
-    describe("Git", function() {
+    describe("Git", () => {
         var engine = TemplateEngine({
             loader: new ConrefsLoader(dirName)
         });
 
-        it("should include content from git", function() {
+        it("should include content from git", () => {
             return renderTemplate(
                 engine,
                 fileName,
                 '{% include "git+https://gist.github.com/69ea4542e4c8967d2fa7.git/test.md" %}'
-            ).then(function(out) {
+            ).then(out => {
                 expect(out.getContent()).toBe("Hello from git");
             });
         });
 
-        it("should handle deep inclusion (1)", function() {
+        it("should handle deep inclusion (1)", () => {
             return renderTemplate(
                 engine,
                 fileName,
                 '{% include "git+https://gist.github.com/69ea4542e4c8967d2fa7.git/test2.md" %}'
-            ).then(function(out) {
+            ).then(out => {
                 expect(out.getContent()).toBe("First Hello. Hello from git");
             });
         });
 
-        it("should handle deep inclusion (2)", function() {
+        it("should handle deep inclusion (2)", () => {
             return renderTemplate(
                 engine,
                 fileName,
                 '{% include "git+https://gist.github.com/69ea4542e4c8967d2fa7.git/test3.md" %}'
-            ).then(function(out) {
+            ).then(out => {
                 expect(out.getContent()).toBe("First Hello. Hello from git");
             });
         });
     });
 
-    describe("Local", function() {
+    describe("Local", () => {
         var engine = TemplateEngine({
             loader: new ConrefsLoader(dirName)
         });
@@ -93,7 +93,7 @@ describe("ConrefsLoader", function() {
             });
         });*/
     });
-/*
+    /*
     describe("transform", function() {
         function transform(filePath, source) {
             expect(filePath).toBeA("string");

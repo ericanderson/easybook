@@ -9,7 +9,7 @@ function indexArticleLevels(article, baseLevel) {
     baseLevel = baseLevel || article.getLevel();
     var articles = article.getArticles();
 
-    articles = articles.map(function(inner, i) {
+    articles = articles.map((inner, i) => {
         return indexArticleLevels(inner, baseLevel + "." + (i + 1));
     });
 

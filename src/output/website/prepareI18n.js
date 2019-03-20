@@ -14,7 +14,7 @@ function prepareI18n(output) {
     var i18n = state.getI18n();
     var searchPaths = listSearchPaths(output);
 
-    searchPaths.reverse().forEach(function(searchPath) {
+    searchPaths.reverse().forEach(searchPath => {
         var i18nRoot = path.resolve(searchPath, "_i18n");
 
         if (!fs.existsSync(i18nRoot)) return;

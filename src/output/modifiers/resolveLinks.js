@@ -14,7 +14,7 @@ import editHTMLElement from "./editHTMLElement";
 function resolveLinks(currentFile, resolveFile, $) {
     var currentDirectory = path.dirname(currentFile);
 
-    return editHTMLElement($, "a", function($a) {
+    return editHTMLElement($, "a", $a => {
         var href = $a.attr("href");
 
         // Don't change a tag without href

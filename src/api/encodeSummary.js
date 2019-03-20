@@ -15,7 +15,7 @@ function encodeSummary(output, summary) {
             @param {Function} iter
         */
         walk: function(iter) {
-            summary.getArticle(function(article) {
+            summary.getArticle(article => {
                 var jsonArticle = encodeSummaryArticle(article, false);
 
                 return iter(jsonArticle);

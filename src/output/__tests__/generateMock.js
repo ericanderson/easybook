@@ -28,7 +28,7 @@ function generateMock(Generator, files) {
     book = book.setLogLevel("disabled");
 
     return parseBook(book)
-        .then(function(resultBook) {
+        .then(resultBook => {
             return generateBook(Generator, resultBook, {
                 root: dir.name
             });

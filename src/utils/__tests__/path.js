@@ -1,10 +1,10 @@
 import path from "path";
 
-describe("Paths", function() {
+describe("Paths", () => {
     var PathUtils = require("..//path").default;
 
-    describe("setExtension", function() {
-        it("should correctly change extension of filename", function() {
+    describe("setExtension", () => {
+        it("should correctly change extension of filename", () => {
             expect(PathUtils.setExtension("test.md", ".html")).toBe(
                 "test.html"
             );
@@ -13,7 +13,7 @@ describe("Paths", function() {
             );
         });
 
-        it("should correctly change extension of path", function() {
+        it("should correctly change extension of path", () => {
             expect(PathUtils.setExtension("hello/test.md", ".html")).toBe(
                 path.normalize("hello/test.html")
             );

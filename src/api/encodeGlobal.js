@@ -174,7 +174,7 @@ function encodeGlobal(output) {
                 @return {Promise}
             */
             hasFile: function(fileName, content) {
-                return Promise().then(function() {
+                return Promise().then(() => {
                     var filePath = PathUtils.resolveInRoot(
                         outputFolder,
                         fileName
@@ -193,13 +193,13 @@ function encodeGlobal(output) {
                 @return {Promise}
             */
             writeFile: function(fileName, content) {
-                return Promise().then(function() {
+                return Promise().then(() => {
                     var filePath = PathUtils.resolveInRoot(
                         outputFolder,
                         fileName
                     );
 
-                    return fs.ensureFile(filePath).then(function() {
+                    return fs.ensureFile(filePath).then(() => {
                         return fs.writeFile(filePath, content);
                     });
                 });
@@ -215,13 +215,13 @@ function encodeGlobal(output) {
                 @return {Promise}
             */
             copyFile: function(inputFile, outputFile, content) {
-                return Promise().then(function() {
+                return Promise().then(() => {
                     var outputFilePath = PathUtils.resolveInRoot(
                         outputFolder,
                         outputFile
                     );
 
-                    return fs.ensureFile(outputFilePath).then(function() {
+                    return fs.ensureFile(outputFilePath).then(() => {
                         return fs.copy(inputFile, outputFilePath);
                     });
                 });
@@ -264,7 +264,7 @@ function encodeGlobal(output) {
         "this.navigation",
         result,
         "navigation",
-        function() {
+        () => {
             return encodeNavigation(output);
         },
         '"navigation" property is deprecated'

@@ -1,6 +1,6 @@
 import is from "is";
 import Immutable from "immutable";
-import Promise, {forEach} from "../../utils/promise";
+import Promise, { forEach } from "../../utils/promise";
 import Api from "../../api";
 
 /**
@@ -18,11 +18,11 @@ function prepareResources(output) {
 
     var result = Immutable.Map();
 
-    return forEach(plugins, function(plugin) {
+    return forEach(plugins, plugin => {
         var pluginResources = plugin.getResources(type);
 
         return Promise()
-            .then(function() {
+            .then(() => {
                 // Apply resources if is a function
                 if (is.fn(pluginResources)) {
                     return Promise().then(pluginResources.bind(context));
@@ -30,10 +30,10 @@ function prepareResources(output) {
                     return pluginResources;
                 }
             })
-            .then(function(resources) {
+            .then(resources => {
                 result = result.set(plugin.getName(), Immutable.Map(resources));
             });
-    }).then(function() {
+    }).then(() => {
         // Set output resources
         state = state.merge({
             resources: result

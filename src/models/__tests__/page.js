@@ -1,9 +1,9 @@
 import Immutable from "immutable";
 import Page from "../page";
 
-describe("Page", function() {
-    describe("toText", function() {
-        it("must not prepend frontmatter if no attributes", function() {
+describe("Page", () => {
+    describe("toText", () => {
+        it("must not prepend frontmatter if no attributes", () => {
             var page = Page().merge({
                 content: "Hello World"
             });
@@ -11,7 +11,7 @@ describe("Page", function() {
             expect(page.toText()).toBe("Hello World");
         });
 
-        it("must prepend frontmatter if attributes", function() {
+        it("must prepend frontmatter if attributes", () => {
             var page = Page().merge({
                 content: "Hello World",
                 attributes: Immutable.fromJS({

@@ -27,7 +27,7 @@ function resolveInRoot(root) {
     var input, result;
     var args = Array.prototype.slice.call(arguments, 1);
 
-    input = args.reduce(function(current, p) {
+    input = args.reduce((current, p) => {
         // Handle path relative to book root ("/README.md")
         if (p[0] == "/" || p[0] == "\\") return p.slice(1);
 

@@ -23,11 +23,11 @@ function Logger(write, logLevel) {
 
     this._write =
         write ||
-        function(msg) {
+        (msg => {
             if (process.stdout) {
                 process.stdout.write(msg);
             }
-        };
+        });
     this.lastChar = "\n";
 
     this.setLevel(logLevel || "info");
@@ -105,7 +105,7 @@ Logger.prototype.writeLn = function(msg) {
 Logger.prototype.log = function(level) {
     if (level < this.logLevel) return;
 
-    var levelKey = LEVELS.findKey(function(v) {
+    var levelKey = LEVELS.findKey(v => {
         return v === level;
     });
     var args = Array.prototype.slice.apply(arguments, [1]);
@@ -163,11 +163,11 @@ Logger.prototype.promise = function(level, p) {
     var that = this;
 
     return p.then(
-        function(st) {
+        st => {
             that.ok(level);
             return st;
         },
-        function(err) {
+        err => {
             that.fail(level);
             throw err;
         }

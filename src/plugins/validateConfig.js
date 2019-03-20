@@ -1,7 +1,7 @@
 import Immutable from "immutable";
 import jsonschema from "jsonschema";
 import jsonSchemaDefaults from "json-schema-defaults";
-import Promise, {reduce} from "../utils/promise";
+import Promise, { reduce } from "../utils/promise";
 import error from "../utils/error";
 import mergeDefaults from "../utils/mergeDefaults";
 
@@ -60,7 +60,7 @@ function validatePluginConfig(book, plugin) {
 function validateConfig(book, plugins) {
     return reduce(
         plugins,
-        function(newBook, plugin) {
+        (newBook, plugin) => {
             return validatePluginConfig(newBook, plugin);
         },
         book

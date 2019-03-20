@@ -125,7 +125,7 @@ Plugin.prototype.getBlocks = function() {
     var blocks = this.getContent().get("blocks");
     blocks = blocks || Immutable.Map();
 
-    return blocks.map(function(block, blockName) {
+    return blocks.map((block, blockName) => {
         return TemplateBlock.create(blockName, block);
     });
 };
@@ -144,7 +144,7 @@ Plugin.prototype.getHook = function(name) {
  * @param {String}
  * @return {Plugin}
  */
-Plugin.createFromString = function(s) {
+Plugin.createFromString = s => {
     var parts = s.split("@");
     var name = parts[0];
     var version = parts.slice(1).join("@");
@@ -160,7 +160,7 @@ Plugin.createFromString = function(s) {
  * @param {PluginDependency}
  * @return {Plugin}
  */
-Plugin.createFromDep = function(dep) {
+Plugin.createFromDep = dep => {
     return new Plugin({
         name: dep.getName(),
         version: dep.getVersion()

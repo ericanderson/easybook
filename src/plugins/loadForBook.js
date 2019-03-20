@@ -1,5 +1,5 @@
 import Immutable from "immutable";
-import Promise, {map} from "../utils/promise";
+import Promise, { map } from "../utils/promise";
 import listDepsForBook from "./listDepsForBook";
 import findForBook from "./findForBook";
 import loadPlugin from "./loadPlugin";
@@ -17,15 +17,15 @@ function loadForBook(book) {
     var requirements = listDepsForBook(book);
 
     // List all plugins installed in the book
-    return findForBook(book).then(function(installedMap) {
+    return findForBook(book).then(installedMap => {
         var missing = [];
-        var plugins = requirements.reduce(function(result, dep) {
+        var plugins = requirements.reduce((result, dep) => {
             var name = dep.getName();
             var installed = installedMap.get(name);
 
             if (installed) {
                 var deps = installedMap
-                    .filter(function(plugin) {
+                    .filter(plugin => {
                         return plugin.getParent() === name;
                     })
                     .toArray();
@@ -40,7 +40,7 @@ function loadForBook(book) {
         }, []);
 
         // Convert plugins list to a map
-        plugins = Immutable.List(plugins).map(function(plugin) {
+        plugins = Immutable.List(plugins).map(plugin => {
             return [plugin.getName(), plugin];
         });
         plugins = Immutable.OrderedMap(plugins);
@@ -60,7 +60,7 @@ function loadForBook(book) {
             );
         }
 
-        return map(plugins, function(plugin) {
+        return map(plugins, plugin => {
             return loadPlugin(book, plugin);
         });
     });

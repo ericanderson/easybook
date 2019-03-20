@@ -12,7 +12,7 @@ function parseConfig(book) {
     var fs = book.getFS();
     var config = book.getConfig();
 
-    return some(CONFIG_FILES, function(filename) {
+    return some(CONFIG_FILES, filename => {
         // Is this file ignored?
         if (book.isFileIgnored(filename)) {
             return;
@@ -21,19 +21,19 @@ function parseConfig(book) {
         // Try loading it
         return fs
             .loadAsObject(filename)
-            .then(function(cfg) {
-                return fs.statFile(filename).then(function(file) {
+            .then(cfg => {
+                return fs.statFile(filename).then(file => {
                     return {
                         file: file,
                         values: cfg
                     };
                 });
             })
-            .fail(function(err) {
+            .fail(err => {
                 if (err.code != "MODULE_NOT_FOUND") throw err;
                 else return Promise(false);
             });
-    }).then(function(result) {
+    }).then(result => {
         var values = result ? result.values : {};
         values = validateConfig(values);
 

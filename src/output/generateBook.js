@@ -1,7 +1,7 @@
 import path from "path";
 import Immutable from "immutable";
 import Output from "../models/output";
-import Promise, {forEach} from "../utils/promise";
+import Promise, { forEach } from "../utils/promise";
 import fs from "../utils/fs";
 import callHook from "./callHook";
 import preparePlugins from "./preparePlugins";
@@ -27,14 +27,14 @@ function processOutput(generator, startOutput) {
             callHook.bind(
                 null,
                 "config",
-                function(output) {
+                output => {
                     var book = output.getBook();
                     var config = book.getConfig();
                     var values = config.getValues();
 
                     return values.toJS();
                 },
-                function(output, result) {
+                (output, result) => {
                     var book = output.getBook();
                     var config = book.getConfig();
 
@@ -49,16 +49,16 @@ function processOutput(generator, startOutput) {
             callHook.bind(
                 null,
                 "init",
-                function(output) {
+                output => {
                     return {};
                 },
-                function(output) {
+                output => {
                     return output;
                 }
             )
         )
 
-        .then(function(output) {
+        .then(output => {
             if (!generator.onInit) {
                 return output;
             }
@@ -69,7 +69,7 @@ function processOutput(generator, startOutput) {
         .then(generateAssets.bind(null, generator))
         .then(generatePages.bind(null, generator))
 
-        .tap(function(output) {
+        .tap(output => {
             var book = output.getBook();
 
             if (!book.isMultilingual()) {
@@ -83,7 +83,7 @@ function processOutput(generator, startOutput) {
             var state = output.getState();
             var options = output.getOptions();
 
-            return forEach(books, function(langBook) {
+            return forEach(books, langBook => {
                 // Inherits plugins list, options and state
                 var langOptions = options.set(
                     "root",
@@ -109,16 +109,16 @@ function processOutput(generator, startOutput) {
             callHook.bind(
                 null,
                 "finish:before",
-                function(output) {
+                output => {
                     return {};
                 },
-                function(output) {
+                output => {
                     return output;
                 }
             )
         )
 
-        .then(function(output) {
+        .then(output => {
             if (!generator.onFinish) {
                 return output;
             }
@@ -130,10 +130,10 @@ function processOutput(generator, startOutput) {
             callHook.bind(
                 null,
                 "finish",
-                function(output) {
+                output => {
                     return {};
                 },
-                function(output) {
+                output => {
                     return output;
                 }
             )
@@ -176,7 +176,7 @@ function generateBook(generator, book, options) {
             })
         )
             // Cleanup output folder
-            .then(function(output) {
+            .then(output => {
                 var logger = output.getLogger();
                 var rootFolder = output.getRoot();
 
@@ -187,7 +187,7 @@ function generateBook(generator, book, options) {
             .then(processOutput.bind(null, generator))
 
             // Log duration and end message
-            .then(function(output) {
+            .then(output => {
                 var logger = output.getLogger();
                 var end = Date.now();
                 var duration = (end - start) / 1000;

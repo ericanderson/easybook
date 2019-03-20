@@ -60,7 +60,7 @@ TemplateEngine.prototype.getExtensions = function() {
 */
 TemplateEngine.prototype.getBlock = function(name) {
     var blocks = this.getBlocks();
-    return blocks.find(function(block) {
+    return blocks.find(block => {
         return block.getName() === name;
     });
 };
@@ -94,12 +94,12 @@ TemplateEngine.prototype.toNunjucks = function(blocksOutput) {
     });
 
     // Add filters
-    filters.forEach(function(filterFn, filterName) {
+    filters.forEach((filterFn, filterName) => {
         env.addFilter(filterName, filterFn.bind(context));
     });
 
     // Add blocks
-    blocks.forEach(function(block) {
+    blocks.forEach(block => {
         var extName = block.getExtensionName();
         var Ext = block.toNunjucksExt(context, blocksOutput);
 
@@ -107,12 +107,12 @@ TemplateEngine.prototype.toNunjucks = function(blocksOutput) {
     });
 
     // Add globals
-    globals.forEach(function(globalValue, globalName) {
+    globals.forEach((globalValue, globalName) => {
         env.addGlobal(globalName, globalValue);
     });
 
     // Add other extensions
-    extensions.forEach(function(ext, extName) {
+    extensions.forEach((ext, extName) => {
         env.addExtension(extName, ext);
     });
 
@@ -125,7 +125,7 @@ TemplateEngine.prototype.toNunjucks = function(blocksOutput) {
     @param {Object} def
     @return {TemplateEngine}
 */
-TemplateEngine.create = function(def) {
+TemplateEngine.create = def => {
     return new TemplateEngine({
         blocks: Immutable.List(def.blocks || []),
         extensions: Immutable.Map(def.extensions || {}),

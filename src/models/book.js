@@ -8,7 +8,7 @@ import Summary from "./summary";
 import Glossary from "./glossary";
 import Languages from "./languages";
 import Ignore from "./ignore";
-import File from "../models/file"
+import File from "../models/file";
 
 var Book = Immutable.Record({
     // Logger for outptu message
@@ -275,7 +275,7 @@ Book.prototype.getDefaultExt = function() {
     var clues = [this.getReadme(), this.getSummary(), this.getGlossary()];
 
     // List their extensions
-    var exts = clues.map(function(clue) {
+    var exts = clues.map(clue => {
         var file = clue.getFile();
         if (file.exists()) {
             return file
@@ -290,7 +290,7 @@ Book.prototype.getDefaultExt = function() {
     exts.push(".md");
 
     // Choose the first non null
-    return exts.find(function(e) {
+    return exts.find(e => {
         return e !== null;
     });
 };

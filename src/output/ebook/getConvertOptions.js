@@ -16,7 +16,7 @@ function getConvertOptions(output) {
     var book = output.getBook();
     var config = book.getConfig();
 
-    return Promise().then(function() {
+    return Promise().then(() => {
         var coverPath = getCoverPath(output);
         var options = {
             "--cover": coverPath,
@@ -48,7 +48,7 @@ function getConvertOptions(output) {
         return Promise.all([
             getPDFTemplate(output, "header"),
             getPDFTemplate(output, "footer")
-        ]).spread(function(headerTpl, footerTpl) {
+        ]).spread((headerTpl, footerTpl) => {
             var pdfOptions = config.getValue("pdf").toJS();
 
             return (options = extend(options, {

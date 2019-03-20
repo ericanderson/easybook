@@ -1,6 +1,6 @@
 import path from "path";
 import ASSET_FOLDER from "../../constants/pluginAssetsFolder";
-import Promise, {forEach} from "../../utils/promise";
+import Promise, { forEach } from "../../utils/promise";
 import fs from "../../utils/fs";
 
 /**
@@ -27,8 +27,8 @@ function copyPluginAssets(output) {
         // so that first plugins can replace assets from other plugins.
         .reverse();
 
-    return forEach(plugins, function(plugin) {
-        return copyAssets(output, plugin).then(function() {
+    return forEach(plugins, plugin => {
+        return copyAssets(output, plugin).then(() => {
             return copyResources(output, plugin);
         });
     }).thenResolve(output);

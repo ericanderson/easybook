@@ -27,7 +27,7 @@ export default function(format) {
 
             return (
                 Parse.parseBook(book)
-                    .then(function(resultBook) {
+                    .then(resultBook => {
                         return Output.generate(Generator, resultBook, {
                             root: outputFolder,
                             format: format
@@ -35,14 +35,14 @@ export default function(format) {
                     })
 
                     // Extract ebook file
-                    .then(function(output) {
+                    .then(output => {
                         var book = output.getBook();
                         var languages = book.getLanguages();
 
                         if (book.isMultilingual()) {
                             return Promise.forEach(
                                 languages.getList(),
-                                function(lang) {
+                                lang => {
                                     var langID = lang.getID();
 
                                     var langOutputFile = path.join(
@@ -77,7 +77,7 @@ export default function(format) {
                     })
 
                     // Log end
-                    .then(function(count) {
+                    .then(count => {
                         logger.info.ok(count + " file(s) generated");
 
                         logger.debug("cleaning up... ");
@@ -86,4 +86,4 @@ export default function(format) {
             );
         }
     };
-};
+}

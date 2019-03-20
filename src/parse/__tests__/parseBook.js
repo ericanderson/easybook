@@ -1,10 +1,10 @@
 import Book from "../../models/book";
 import createMockFS from "../../fs/mock";
 
-describe("parseBook", function() {
+describe("parseBook", () => {
     var parseBook = require("../parseBook").default;
 
-    it("should parse multilingual book", function() {
+    it("should parse multilingual book", () => {
         var fs = createMockFS({
             "LANGS.md": "# Languages\n\n* [en](en)\n* [fr](fr)",
             en: {
@@ -16,7 +16,7 @@ describe("parseBook", function() {
         });
         var book = Book.createForFS(fs);
 
-        return parseBook(book).then(function(resultBook) {
+        return parseBook(book).then(resultBook => {
             var languages = resultBook.getLanguages();
             var books = resultBook.getBooks();
 
@@ -26,7 +26,7 @@ describe("parseBook", function() {
         });
     });
 
-    it("should extend configuration for multilingual book", function() {
+    it("should extend configuration for multilingual book", () => {
         var fs = createMockFS({
             "LANGS.md": "# Languages\n\n* [en](en)\n* [fr](fr)",
             "book.json": '{ "title": "Test", "author": "GitBook" }',
@@ -40,7 +40,7 @@ describe("parseBook", function() {
         });
         var book = Book.createForFS(fs);
 
-        return parseBook(book).then(function(resultBook) {
+        return parseBook(book).then(resultBook => {
             var books = resultBook.getBooks();
 
             expect(resultBook.isMultilingual()).toBe(true);
@@ -60,7 +60,7 @@ describe("parseBook", function() {
         });
     });
 
-    it("should parse book in a directory", function() {
+    it("should parse book in a directory", () => {
         var fs = createMockFS({
             "book.json": JSON.stringify({
                 root: "./test"
@@ -73,7 +73,7 @@ describe("parseBook", function() {
         });
         var book = Book.createForFS(fs);
 
-        return parseBook(book).then(function(resultBook) {
+        return parseBook(book).then(resultBook => {
             var readme = resultBook.getReadme();
             var summary = resultBook.getSummary();
             var articles = summary.getArticlesAsList();

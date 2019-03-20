@@ -10,7 +10,7 @@ import Glossary from "../models/glossary";
 function parseGlossary(book) {
     var logger = book.getLogger();
 
-    return parseStructureFile(book, "glossary").spread(function(file, entries) {
+    return parseStructureFile(book, "glossary").spread((file, entries) => {
         if (!file) {
             return book;
         }

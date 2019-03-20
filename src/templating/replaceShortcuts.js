@@ -20,7 +20,7 @@ function applyShortcut(content, shortcut) {
             escapeStringRegexp(end),
         "g"
     );
-    return content.replace(regex, function(all, match) {
+    return content.replace(regex, (all, match) => {
         return "{% " + tagStart + " %}" + match + "{% " + tagEnd + " %}";
     });
 }

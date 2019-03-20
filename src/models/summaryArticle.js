@@ -147,8 +147,8 @@ SummaryArticle.prototype.isExternal = function() {
  * @param {Object} def
  * @return {SummaryArticle}
  */
-SummaryArticle.create = function(def, level) {
-    var articles = (def.articles || []).map(function(article, i) {
+SummaryArticle.create = (def, level) => {
+    var articles = (def.articles || []).map((article, i) => {
         if (article instanceof SummaryArticle) {
             return article;
         }
@@ -170,10 +170,10 @@ SummaryArticle.create = function(def, level) {
  * @param {Function(article)} iter
  * @return {Article}
  */
-SummaryArticle.findArticle = function(base, iter) {
+SummaryArticle.findArticle = (base, iter) => {
     var articles = base.getArticles();
 
-    return articles.reduce(function(result, article) {
+    return articles.reduce((result, article) => {
         if (result) return result;
 
         if (iter(article)) {

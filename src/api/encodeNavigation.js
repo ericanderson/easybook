@@ -32,7 +32,7 @@ function encodeNavigation(output) {
     var articles = summary.getArticlesAsList();
 
     var navigation = articles
-        .map(function(article, i) {
+        .map((article, i) => {
             var ref = article.getRef();
             if (!ref) {
                 return undefined;
@@ -53,7 +53,7 @@ function encodeNavigation(output) {
                 }
             ];
         })
-        .filter(function(e) {
+        .filter(e => {
             return Boolean(e);
         });
 

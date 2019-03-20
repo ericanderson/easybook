@@ -42,8 +42,8 @@ SummaryPart.prototype.createChildLevel = function() {
  * @param {Object} def
  * @return {SummaryPart}
  */
-SummaryPart.create = function(def, level) {
-    var articles = (def.articles || []).map(function(article, i) {
+SummaryPart.create = (def, level) => {
+    var articles = (def.articles || []).map((article, i) => {
         if (article instanceof SummaryArticle) {
             return article;
         }

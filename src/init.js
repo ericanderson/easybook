@@ -23,7 +23,7 @@ function initBook(rootFolder) {
             .mkdirp(rootFolder)
 
             // Parse the summary and readme
-            .then(function() {
+            .then(() => {
                 var fs = createNodeFS(rootFolder);
                 var book = Book.createForFS(fs);
 
@@ -31,7 +31,7 @@ function initBook(rootFolder) {
                     Parse.parseReadme(book)
 
                         // Setup default readme if doesn't found one
-                        .fail(function() {
+                        .fail(() => {
                             var readmeFile = File.createWithFilepath(
                                 "README" + extension
                             );
@@ -42,7 +42,7 @@ function initBook(rootFolder) {
             })
             .then(Parse.parseSummary)
 
-            .then(function(book) {
+            .then(book => {
                 var logger = book.getLogger();
                 var summary = book.getSummary();
                 var summaryFile = summary.getFile();
@@ -53,7 +53,7 @@ function initBook(rootFolder) {
 
                 // Write pages
                 return (
-                    Promise.forEach(articles, function(article) {
+                    Promise.forEach(articles, article => {
                         var articlePath = article.getPath();
                         var filePath = articlePath
                             ? path.join(rootFolder, articlePath)
@@ -62,8 +62,8 @@ function initBook(rootFolder) {
                             return;
                         }
 
-                        return fs.assertFile(filePath, function() {
-                            return fs.ensureFile(filePath).then(function() {
+                        return fs.assertFile(filePath, () => {
+                            return fs.ensureFile(filePath).then(() => {
                                 logger.info.ln("create", article.getPath());
                                 return fs.writeFile(
                                     filePath,
@@ -74,13 +74,13 @@ function initBook(rootFolder) {
                     })
 
                         // Write summary
-                        .then(function() {
+                        .then(() => {
                             var filePath = path.join(
                                 rootFolder,
                                 summaryFilename
                             );
 
-                            return fs.ensureFile(filePath).then(function() {
+                            return fs.ensureFile(filePath).then(() => {
                                 logger.info.ln(
                                     "create " + path.basename(filePath)
                                 );
@@ -92,7 +92,7 @@ function initBook(rootFolder) {
                         })
 
                         // Log end
-                        .then(function() {
+                        .then(() => {
                             logger.info.ln("initialization is finished");
                         })
                 );

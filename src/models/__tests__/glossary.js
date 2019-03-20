@@ -2,7 +2,7 @@ import File from "../file";
 import Glossary from "../glossary";
 import GlossaryEntry from "../glossaryEntry";
 
-describe("Glossary", function() {
+describe("Glossary", () => {
     var glossary = Glossary.createFromEntries(File(), [
         {
             name: "Hello World",
@@ -14,22 +14,22 @@ describe("Glossary", function() {
         }
     ]);
 
-    describe("createFromEntries", function() {
-        it("must add all entries", function() {
+    describe("createFromEntries", () => {
+        it("must add all entries", () => {
             var entries = glossary.getEntries();
             expect(entries.size).toBe(2);
         });
 
-        it("must add entries as GlossaryEntries", function() {
+        it("must add entries as GlossaryEntries", () => {
             var entries = glossary.getEntries();
             var entry = entries.get("hello-world");
             expect(entry instanceof GlossaryEntry).toBeTruthy();
         });
     });
 
-    describe("toText", function() {
-        it("return as markdown", function() {
-            return glossary.toText(".md").then(function(text) {
+    describe("toText", () => {
+        it("return as markdown", () => {
+            return glossary.toText(".md").then(text => {
                 expect(text).toContain("# Glossary");
             });
         });

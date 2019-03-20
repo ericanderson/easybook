@@ -32,7 +32,7 @@ function decodePage(output, page, result) {
         page = page.set(
             "content",
             result.sections
-                .map(function(section) {
+                .map(section => {
                     return section.content;
                 })
                 .join("\n")

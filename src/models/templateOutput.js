@@ -35,7 +35,7 @@ TemplateOutput.prototype.setContent = function(content) {
  * @param {Object} blocks
  * @return {TemplateOutput}
  */
-TemplateOutput.create = function(content, blocks) {
+TemplateOutput.create = (content, blocks) => {
     return new TemplateOutput({
         content: content,
         blocks: Immutable.fromJS(blocks)

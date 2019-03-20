@@ -28,7 +28,7 @@ function onFinish(output) {
         Templating.renderFile(engine, prefix + "/languages.html", context)
 
             // Write it to the disk
-            .then(function(tplOut) {
+            .then(tplOut => {
                 return writeFile(output, filePath, tplOut.getContent());
             })
     );

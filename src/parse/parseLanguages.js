@@ -10,7 +10,7 @@ import Languages from "../models/languages";
 function parseLanguages(book) {
     var logger = book.getLogger();
 
-    return parseStructureFile(book, "langs").spread(function(file, result) {
+    return parseStructureFile(book, "langs").spread((file, result) => {
         if (!file) {
             return book;
         }

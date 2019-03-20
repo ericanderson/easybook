@@ -7,7 +7,7 @@ import Immutable from "immutable";
     @return {Map<String:TemplateBlock>}
 */
 function listBlocks(plugins) {
-    return plugins.reverse().reduce(function(result, plugin) {
+    return plugins.reverse().reduce((result, plugin) => {
         var blocks = plugin.getBlocks();
         return result.merge(blocks);
     }, Immutable.Map());

@@ -12,7 +12,7 @@ import editHTMLElement from "./editHTMLElement";
 function resolveImages(currentFile, $) {
     var currentDirectory = path.dirname(currentFile);
 
-    return editHTMLElement($, "img", function($img) {
+    return editHTMLElement($, "img", $img => {
         var src = $img.attr("src");
 
         if (LocationUtils.isExternal(src) || LocationUtils.isDataURI(src)) {

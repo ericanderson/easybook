@@ -45,7 +45,7 @@ Summary.prototype.getPart = function(i) {
 Summary.prototype.getArticle = function(iter, partIter) {
     var parts = this.getParts();
 
-    return parts.reduce(function(result, part) {
+    return parts.reduce((result, part) => {
         if (result) return result;
 
         if (partIter && partIter(part)) return part;
@@ -74,7 +74,7 @@ Summary.prototype.getByLevel = function(level) {
     @return {Article}
 */
 Summary.prototype.getByPath = function(filePath) {
-    return this.getArticle(function(article) {
+    return this.getArticle(article => {
         var articlePath = article.getPath();
 
         return (
@@ -90,7 +90,7 @@ Summary.prototype.getByPath = function(filePath) {
     @return {Article}
 */
 Summary.prototype.getFirstArticle = function() {
-    return this.getArticle(function(article) {
+    return this.getArticle(article => {
         return true;
     });
 };
@@ -105,7 +105,7 @@ Summary.prototype.getNextArticle = function(current) {
     var level = is.string(current) ? current : current.getLevel();
     var wasPrev = false;
 
-    return this.getArticle(function(article) {
+    return this.getArticle(article => {
         if (wasPrev) return true;
 
         wasPrev = article.getLevel() == level;
@@ -123,7 +123,7 @@ Summary.prototype.getPrevArticle = function(current) {
     var level = is.string(current) ? current : current.getLevel();
     var prev = undefined;
 
-    this.getArticle(function(article) {
+    this.getArticle(article => {
         if (article.getLevel() == level) {
             return true;
         }
@@ -187,7 +187,7 @@ Summary.prototype.toText = function(parseExt) {
 Summary.prototype.getArticlesAsList = function() {
     var accu = [];
 
-    this.getArticle(function(article) {
+    this.getArticle(article => {
         accu.push(article);
     });
 
@@ -201,7 +201,7 @@ Summary.prototype.getArticlesAsList = function() {
     @return {Summary}
 */
 Summary.createFromParts = function createFromParts(file, parts) {
-    parts = parts.map(function(part, i) {
+    parts = parts.map((part, i) => {
         if (part instanceof SummaryPart) {
             return part;
         }

@@ -15,7 +15,7 @@ function writeFile(output, filePath, content) {
 
     return fs
         .ensureFile(filePath)
-        .then(function() {
+        .then(() => {
             return fs.writeFile(filePath, content);
         })
         .thenResolve(output);

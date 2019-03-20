@@ -64,7 +64,7 @@ function replaceText($, el, search, replace, text_only) {
  * @param {HTMLDom} $
  */
 function annotateText(entries, glossaryFilePath, $) {
-    entries.forEach(function(entry) {
+    entries.forEach(entry => {
         var entryId = entry.getID();
         var name = entry.getName();
         var description = entry.getDescription();
@@ -82,7 +82,7 @@ function annotateText(entries, glossaryFilePath, $) {
             )
                 return;
 
-            replaceText($, this, searchRegex, function(match) {
+            replaceText($, this, searchRegex, match => {
                 return (
                     '<a href="/' +
                     glossaryFilePath +

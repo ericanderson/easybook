@@ -50,20 +50,20 @@ function deprecateMethod(book, key, fn, msg) {
 function deprecateField(book, key, instance, property, value, msg) {
     var store = undefined;
 
-    var prepare = function() {
+    var prepare = () => {
         if (!is.undefined(store)) return;
 
         if (is.fn(value)) store = value();
         else store = value;
     };
 
-    var getter = function() {
+    var getter = () => {
         prepare();
 
         logNotice(book, key, msg);
         return store;
     };
-    var setter = function(v) {
+    var setter = v => {
         prepare();
 
         logNotice(book, key, msg);

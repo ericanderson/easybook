@@ -2,7 +2,7 @@ import cheerio from "cheerio";
 import Promise from "../../../utils/promise";
 import highlightCode from "../highlightCode";
 
-describe("highlightCode", function() {
+describe("highlightCode", () => {
     function doHighlight(lang, code) {
         return {
             text: "" + (lang || "") + "$" + code
@@ -10,46 +10,46 @@ describe("highlightCode", function() {
     }
 
     function doHighlightAsync(lang, code) {
-        return Promise().then(function() {
+        return Promise().then(() => {
             return doHighlight(lang, code);
         });
     }
 
-    it("should call it for normal code element", function() {
+    it("should call it for normal code element", () => {
         var $ = cheerio.load("<p>This is a <code>test</code></p>");
 
-        return highlightCode(doHighlight, $).then(function() {
+        return highlightCode(doHighlight, $).then(() => {
             var $code = $("code");
             expect($code.text()).toBe("$test");
         });
     });
 
-    it("should call it for markdown code block", function() {
+    it("should call it for markdown code block", () => {
         var $ = cheerio.load('<pre><code class="lang-js">test</code></pre>');
 
-        return highlightCode(doHighlight, $).then(function() {
+        return highlightCode(doHighlight, $).then(() => {
             var $code = $("code");
             expect($code.text()).toBe("js$test");
         });
     });
 
-    it("should call it for asciidoc code block", function() {
+    it("should call it for asciidoc code block", () => {
         var $ = cheerio.load(
             '<pre><code class="language-python">test</code></pre>'
         );
 
-        return highlightCode(doHighlight, $).then(function() {
+        return highlightCode(doHighlight, $).then(() => {
             var $code = $("code");
             expect($code.text()).toBe("python$test");
         });
     });
 
-    it("should accept async highlighter", function() {
+    it("should accept async highlighter", () => {
         var $ = cheerio.load(
             '<pre><code class="language-python">test</code></pre>'
         );
 
-        return highlightCode(doHighlightAsync, $).then(function() {
+        return highlightCode(doHighlightAsync, $).then(() => {
             var $code = $("code");
             expect($code.text()).toBe("python$test");
         });

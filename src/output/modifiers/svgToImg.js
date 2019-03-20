@@ -30,7 +30,7 @@ function renderDOM($, dom, options) {
 function svgToImg(baseFolder, currentFile, $) {
     var currentDirectory = path.dirname(currentFile);
 
-    return editHTMLElement($, "svg", function($svg) {
+    return editHTMLElement($, "svg", $svg => {
         var content =
             '<?xml version="1.0" encoding="UTF-8"?>' + renderDOM($, $svg);
 
@@ -42,12 +42,12 @@ function svgToImg(baseFolder, currentFile, $) {
         // Write the svg to the file
         return (
             fs
-                .assertFile(filePath, function() {
+                .assertFile(filePath, () => {
                     return fs.writeFile(filePath, content, "utf8");
                 })
 
                 // Return as image
-                .then(function() {
+                .then(() => {
                     var src = LocationUtils.relative(
                         currentDirectory,
                         fileName

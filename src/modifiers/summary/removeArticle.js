@@ -17,7 +17,7 @@ function removeArticle(summary, level) {
 
     var articles = parent.getArticles();
     // Find the index to remove
-    var index = articles.findIndex(function(art) {
+    var index = articles.findIndex(art => {
         return art.getLevel() === level;
     });
     if (index === -1) {

@@ -28,7 +28,7 @@ function writeSummary(output) {
         Templating.renderFile(engine, prefix + "/summary.html", context)
 
             // Write it to the disk
-            .then(function(tplOut) {
+            .then(tplOut => {
                 return writeFile(output, filePath, tplOut.getContent());
             })
     );
@@ -51,7 +51,7 @@ function runEbookConvert(output) {
     }
 
     return getConvertOptions(output)
-        .then(function(options) {
+        .then(options => {
             var cmd = [
                 "ebook-convert",
                 path.resolve(outputFolder, SUMMARY_FILE),
@@ -61,10 +61,10 @@ function runEbookConvert(output) {
 
             return command
                 .exec(cmd)
-                .progress(function(data) {
+                .progress(data => {
                     logger.debug(data);
                 })
-                .fail(function(err) {
+                .fail(err => {
                     if (err.code == 127) {
                         throw error.RequireInstallError({
                             cmd: "ebook-convert",

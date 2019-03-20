@@ -10,16 +10,16 @@ describe("installPlugin", function() {
 
     this.timeout(30000);
 
-    before(function() {
+    before(() => {
         var fs = NodeFS(path.resolve(__dirname, "../../../"));
         var baseBook = Book.createForFS(fs);
 
-        return Parse.parseConfig(baseBook).then(function(_book) {
+        return Parse.parseConfig(baseBook).then(_book => {
             book = _book;
         });
     });
 
-    it("must install a plugin from NPM", function() {
+    it("must install a plugin from NPM", () => {
         var dep = PluginDependency.createFromString("ga");
         return installPlugin(book, dep);
     });

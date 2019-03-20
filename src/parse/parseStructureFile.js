@@ -24,7 +24,7 @@ function parseFile(fs, file, type) {
 
     return fs
         .readAsString(filepath)
-        .then(function(content) {
+        .then(content => {
             if (type === "readme") {
                 return parser.parseReadme(content);
             } else if (type === "glossary") {
@@ -37,7 +37,7 @@ function parseFile(fs, file, type) {
                 throw new Error('Parsing invalid type "' + type + '"');
             }
         })
-        .then(function(result) {
+        .then(result => {
             return [file, result];
         });
 }
@@ -53,7 +53,7 @@ function parseFile(fs, file, type) {
 function parseStructureFile(book, type) {
     var fs = book.getContentFS();
 
-    return lookupStructureFile(book, type).then(function(file) {
+    return lookupStructureFile(book, type).then(file => {
         if (!file) return [undefined, undefined];
 
         return parseFile(fs, file, type);

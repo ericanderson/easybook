@@ -7,7 +7,7 @@
     @return {List<Article>}
 */
 function editArticleInList(articles, level, newArticle) {
-    return articles.map(function(article) {
+    return articles.map(article => {
         var articleLevel = article.getLevel();
 
         if (articleLevel === level) {

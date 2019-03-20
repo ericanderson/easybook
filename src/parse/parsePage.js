@@ -11,7 +11,7 @@ function parsePage(book, page) {
     var fs = book.getContentFS();
     var file = page.getFile();
 
-    return fs.readAsString(file.getPath()).then(function(content) {
+    return fs.readAsString(file.getPath()).then(content => {
         return parsePageFromString(page, content);
     });
 }

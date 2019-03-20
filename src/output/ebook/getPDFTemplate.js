@@ -28,7 +28,7 @@ function getPDFTemplate(output, type) {
         Templating.renderFile(engine, "ebook/" + filePath, context)
 
             // Inline css and assets
-            .then(function(tplOut) {
+            .then(tplOut => {
                 return Promise.nfcall(
                     juice.juiceResources,
                     tplOut.getContent(),

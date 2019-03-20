@@ -1,6 +1,6 @@
 import npmi from "npmi";
 import DEFAULT_PLUGINS from "../constants/defaultPlugins";
-import Promise, {forEach} from "../utils/promise";
+import Promise, { forEach } from "../utils/promise";
 import installPlugin from "./installPlugin";
 
 /**
@@ -16,8 +16,8 @@ function installPlugins(book) {
 
     // Remove default plugins
     // (only if version is same as installed)
-    plugins = plugins.filterNot(function(plugin) {
-        var dependency = DEFAULT_PLUGINS.find(function(dep) {
+    plugins = plugins.filterNot(plugin => {
+        var dependency = DEFAULT_PLUGINS.find(dep => {
             return dep.getName() === plugin.getName();
         });
 
@@ -40,7 +40,7 @@ function installPlugins(book) {
         "plugins using npm@" + npmi.NPM_VERSION
     );
 
-    return forEach(plugins, function(plugin) {
+    return forEach(plugins, plugin => {
         return installPlugin(book, plugin);
     }).thenResolve(plugins.size);
 }

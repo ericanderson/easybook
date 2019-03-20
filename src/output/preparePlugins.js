@@ -13,7 +13,7 @@ function preparePlugins(output) {
     return (
         Promise()
             // Only load plugins for main book
-            .then(function() {
+            .then(() => {
                 if (book.isLanguageBook()) {
                     return output.getPlugins();
                 } else {
@@ -22,10 +22,8 @@ function preparePlugins(output) {
             })
 
             // Update book's configuration using the plugins
-            .then(function(plugins) {
-                return Plugins.validateConfig(book, plugins).then(function(
-                    newBook
-                ) {
+            .then(plugins => {
+                return Plugins.validateConfig(book, plugins).then(newBook => {
                     return output.merge({
                         book: newBook,
                         plugins: plugins

@@ -30,7 +30,7 @@ function onFinish(output) {
             )
 
             // Extend the JSON
-            .then(function(content) {
+            .then(content => {
                 var json = JSON.parse(content);
 
                 json.languages = JSONUtils.encodeLanguages(languages);
@@ -38,7 +38,7 @@ function onFinish(output) {
                 return json;
             })
 
-            .then(function(json) {
+            .then(json => {
                 return fs.writeFile(
                     path.resolve(outputRoot, "README.json"),
                     JSON.stringify(json, null, 4)

@@ -11,7 +11,7 @@ import Promise from "../../utils/promise";
     @param {String} rootFolder
 */
 function inlineAssets(rootFolder, currentFile) {
-    return function($) {
+    return $ => {
         return (
             Promise()
                 // Resolving images and fetching external images should be

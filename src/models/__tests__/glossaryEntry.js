@@ -1,8 +1,8 @@
 import GlossaryEntry from "../glossaryEntry";
 
-describe("GlossaryEntry", function() {
-    describe("getID", function() {
-        it("must return a normalized ID", function() {
+describe("GlossaryEntry", () => {
+    describe("getID", () => {
+        it("must return a normalized ID", () => {
             var entry = new GlossaryEntry({
                 name: "Hello World"
             });

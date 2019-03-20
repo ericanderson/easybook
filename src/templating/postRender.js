@@ -1,4 +1,4 @@
-import Promise, {forEach} from "../utils/promise";
+import Promise, { forEach } from "../utils/promise";
 
 /**
  * Replace position markers of blocks by body after processing
@@ -8,19 +8,19 @@ import Promise, {forEach} from "../utils/promise";
  * @return {Object} {blocks: Set, content: String}
  */
 function replaceBlocks(content, blocks) {
-    var newContent = content.replace(/\{\{\-\%([\s\S]+?)\%\-\}\}/g, function(
-        match,
-        key
-    ) {
-        var replacedWith = match;
+    var newContent = content.replace(
+        /\{\{\-\%([\s\S]+?)\%\-\}\}/g,
+        (match, key) => {
+            var replacedWith = match;
 
-        var block = blocks.get(key);
-        if (block) {
-            replacedWith = replaceBlocks(block.get("body"), blocks);
+            var block = blocks.get(key);
+            if (block) {
+                replacedWith = replaceBlocks(block.get("body"), blocks);
+            }
+
+            return replacedWith;
         }
-
-        return replacedWith;
-    });
+    );
 
     return newContent;
 }
@@ -40,7 +40,7 @@ function postRender(engine, output) {
 
     var result = replaceBlocks(content, blocks);
 
-    return forEach(blocks, function(block) {
+    return forEach(blocks, block => {
         var post = block.get("post");
 
         if (!post) {

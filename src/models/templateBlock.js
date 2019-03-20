@@ -116,7 +116,7 @@ TemplateBlock.prototype.toNunjucksExt = function(mainContext, blocksOutput) {
                 bodies.push(currentBody);
 
                 // Append arguments of this block as arguments of the run function
-                lastBlockArgs.children.forEach(function(child) {
+                lastBlockArgs.children.forEach(child => {
                     args.addChild(child);
                 });
 
@@ -165,7 +165,7 @@ TemplateBlock.prototype.toNunjucksExt = function(mainContext, blocksOutput) {
             blockNames = args.pop();
 
             // Recreate list of blocks
-            blockNames.forEach(function(name, i) {
+            blockNames.forEach((name, i) => {
                 var countArgs = blockArgCounts[i];
                 var blockBody = bodies.shift();
 
@@ -185,7 +185,7 @@ TemplateBlock.prototype.toNunjucksExt = function(mainContext, blocksOutput) {
             mainBlock.blocks = blocks;
 
             Promise()
-                .then(function() {
+                .then(() => {
                     var ctx = extend(
                         {
                             ctx: context
@@ -195,7 +195,7 @@ TemplateBlock.prototype.toNunjucksExt = function(mainContext, blocksOutput) {
 
                     return that.applyBlock(mainBlock, ctx);
                 })
-                .then(function(result) {
+                .then(result => {
                     return that.blockResultToHtml(result, blocksOutput);
                 })
                 .nodeify(callback);
@@ -248,7 +248,7 @@ TemplateBlock.prototype.normalizeBlockResult = function(result) {
  * @param {Object} blocksOutput: stored post processing blocks in this object
  * @return {String}
  */
-TemplateBlock.prototype.blockResultToHtml = function(result, blocksOutput) {
+TemplateBlock.prototype.blockResultToHtml = (result, blocksOutput) => {
     var indexedKey;
     var toIndex = !result.parse || result.post !== undefined;
 
@@ -272,7 +272,7 @@ TemplateBlock.prototype.blockResultToHtml = function(result, blocksOutput) {
  * @param {Object} block
  * @return {TemplateBlock}
  */
-TemplateBlock.create = function(blockName, block) {
+TemplateBlock.create = (blockName, block) => {
     if (is.fn(block)) {
         block = new Immutable.Map({
             process: block

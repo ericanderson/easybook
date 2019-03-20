@@ -15,7 +15,7 @@ import editHTMLElement from "./editHTMLElement";
 function svgToPng(rootFolder, currentFile, $) {
     var currentDirectory = path.dirname(currentFile);
 
-    return editHTMLElement($, "img", function($img) {
+    return editHTMLElement($, "img", $img => {
         var src = $img.attr("src");
         if (path.extname(src) !== ".svg") {
             return;
@@ -35,10 +35,10 @@ function svgToPng(rootFolder, currentFile, $) {
         var filePath = path.join(rootFolder, fileName);
 
         return fs
-            .assertFile(filePath, function() {
+            .assertFile(filePath, () => {
                 return imagesUtil.convertSVGToPNG(inputPath, filePath);
             })
-            .then(function() {
+            .then(() => {
                 // Convert filename to a relative filename
                 fileName = LocationUtils.relative(currentDirectory, fileName);
 

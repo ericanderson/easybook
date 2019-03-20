@@ -1,6 +1,6 @@
 import path from "path";
 import is from "is";
-import {Buffer} from "buffer";
+import { Buffer } from "buffer";
 import Immutable from "immutable";
 import FS from "../models/fs";
 import error from "../utils/error";
@@ -16,7 +16,7 @@ function createMockFS(files) {
 
     function getFile(filePath) {
         var parts = path.normalize(filePath).split(path.sep);
-        return parts.reduce(function(list, part, i) {
+        return parts.reduce((list, part, i) => {
             if (!list) return null;
 
             var file;
@@ -72,7 +72,7 @@ function createMockFS(files) {
         }
 
         return dir
-            .map(function(content, name) {
+            .map((content, name) => {
                 if (!is.string(content)) {
                     name = name + "/";
                 }

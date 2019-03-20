@@ -55,10 +55,10 @@ var ThemesLoader = nunjucks.Loader.extend({
      */
     getSearchPath: function(filepath) {
         return this.searchPaths
-            .sortBy(function(s) {
+            .sortBy(s => {
                 return -s.length;
             })
-            .find(function(basePath) {
+            .find(basePath => {
                 return filepath && filepath.indexOf(basePath) === 0;
             });
     },
@@ -101,7 +101,7 @@ var ThemesLoader = nunjucks.Loader.extend({
         }
 
         // Absolute template to resolve in root folder
-        var resultFolder = searchPaths.find(function(basePath) {
+        var resultFolder = searchPaths.find(basePath => {
             var p = path.resolve(basePath, to);
 
             return p.indexOf(basePath) === 0 && fs.existsSync(p);

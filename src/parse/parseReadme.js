@@ -1,5 +1,5 @@
 import parseStructureFile from "./parseStructureFile";
-import {createReadme} from "../models/readme";
+import { createReadme } from "../models/readme";
 import error from "../utils/error";
 
 /**
@@ -11,7 +11,7 @@ import error from "../utils/error";
 function parseReadme(book) {
     var logger = book.getLogger();
 
-    return parseStructureFile(book, "readme").spread(function(file, result) {
+    return parseStructureFile(book, "readme").spread((file, result) => {
         if (!file) {
             throw new error.FileNotFoundError({ filename: "README" });
         }

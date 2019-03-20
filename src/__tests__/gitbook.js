@@ -1,7 +1,7 @@
 import gitbook from "../gitbook";
 
-describe("satisfies", function() {
-    it("should return true for *", function() {
+describe("satisfies", () => {
+    it("should return true for *", () => {
         expect(gitbook.satisfies("*")).toBe(true);
     });
 });
