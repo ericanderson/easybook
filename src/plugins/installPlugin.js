@@ -42,7 +42,7 @@ function installPlugin(book, plugin) {
             );
             return Promise.nfcall(npmi, {
                 name: plugin.getNpmID(),
-                version: version,
+                version,
                 path: installFolder,
                 npmLoad: {
                     loglevel: "silent",

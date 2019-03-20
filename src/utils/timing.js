@@ -13,7 +13,7 @@ var startDate = Date.now();
 */
 function measure(type, p) {
     timers[type] = timers[type] || {
-        type: type,
+        type,
         count: 0,
         total: 0,
         min: undefined,
@@ -110,6 +110,6 @@ function dump(logger) {
 }
 
 export default {
-    measure: measure,
-    dump: dump
+    measure,
+    dump
 };

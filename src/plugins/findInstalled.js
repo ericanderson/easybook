@@ -47,10 +47,10 @@ function findInstalled(folder) {
                 pluginName,
                 Plugin({
                     name: pluginName,
-                    version: version,
+                    version,
                     path: pkgPath,
-                    depth: depth,
-                    parent: parent
+                    depth,
+                    parent
                 })
             );
         }

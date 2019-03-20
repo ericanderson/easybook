@@ -34,7 +34,7 @@ var ThemesLoader = nunjucks.Loader.extend({
             "\n{% do %}template.self = template.stack.pop();{% enddo %}";
 
         return {
-            src: src,
+            src,
             path: fullpath,
             noCache: true
         };

@@ -30,7 +30,7 @@ export default function(format) {
                     .then(resultBook =>
                         Output.generate(Generator, resultBook, {
                             root: outputFolder,
-                            format: format
+                            format
                         })
                     )
 

@@ -46,13 +46,13 @@ function encodeProgress(output, page) {
 
     return {
         // Previous percent
-        prevPercent: prevPercent,
+        prevPercent,
 
         // Current percent
-        percent: percent,
+        percent,
 
         // List of chapter with progress
-        chapters: chapters,
+        chapters,
 
         // Current chapter
         current: currentChapter

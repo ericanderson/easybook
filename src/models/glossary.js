@@ -74,8 +74,8 @@ Glossary.addEntry = function addEntry(glossary, entry) {
 */
 Glossary.addEntryByName = function addEntryByName(glossary, name, description) {
     var entry = new GlossaryEntry({
-        name: name,
-        description: description
+        name,
+        description
     });
 
     return Glossary.addEntry(glossary, entry);
@@ -98,7 +98,7 @@ Glossary.createFromEntries = function createFromEntries(file, entries) {
     });
 
     return new Glossary({
-        file: file,
+        file,
         entries: Immutable.OrderedMap(entries)
     });
 };

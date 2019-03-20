@@ -23,6 +23,6 @@ function satisfies(condition) {
 
 export default {
     version: pkg.version,
-    satisfies: satisfies,
-    START_TIME: START_TIME
+    satisfies,
+    START_TIME
 };

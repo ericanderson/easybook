@@ -262,7 +262,7 @@ Book.prototype.setLogLevel = function(level) {
 */
 Book.createForFS = function createForFS(fs) {
     return new Book({
-        fs: fs
+        fs
     });
 };
 
@@ -355,10 +355,10 @@ Book.createFromParent = function createFromParent(parent, language) {
     return new Book({
         // Inherits config. logegr and list of ignored files
         logger: parent.getLogger(),
-        config: config,
-        ignore: ignore,
+        config,
+        ignore,
 
-        language: language,
+        language,
         fs: FS.reduceScope(parent.getContentFS(), language)
     });
 };

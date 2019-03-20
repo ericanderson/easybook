@@ -62,8 +62,8 @@ Languages.createFromList = (file, langs) => {
     });
 
     return Languages({
-        file: file,
-        list: list
+        file,
+        list
     });
 };
 

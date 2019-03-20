@@ -80,18 +80,18 @@ var EbookError = WrappedError({
 });
 
 export default {
-    enforce: enforce,
+    enforce,
 
-    ParsingError: ParsingError,
-    OutputError: OutputError,
-    RequireInstallError: RequireInstallError,
+    ParsingError,
+    OutputError,
+    RequireInstallError,
 
-    FileNotParsableError: FileNotParsableError,
-    FileNotFoundError: FileNotFoundError,
-    FileOutOfScopeError: FileOutOfScopeError,
+    FileNotParsableError,
+    FileNotFoundError,
+    FileOutOfScopeError,
 
-    TemplateError: TemplateError,
-    PluginError: PluginError,
-    ConfigurationError: ConfigurationError,
-    EbookError: EbookError
+    TemplateError,
+    PluginError,
+    ConfigurationError,
+    EbookError
 };

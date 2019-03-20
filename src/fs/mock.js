@@ -59,7 +59,7 @@ function createMockFS(files) {
         }
 
         return {
-            mtime: mtime
+            mtime
         };
     }
 
@@ -84,10 +84,10 @@ function createMockFS(files) {
 
     return FS.create({
         root: "",
-        fsExists: fsExists,
-        fsReadFile: fsReadFile,
-        fsStatFile: fsStatFile,
-        fsReadDir: fsReadDir
+        fsExists,
+        fsReadFile,
+        fsStatFile,
+        fsReadDir
     });
 }
 

@@ -18,5 +18,5 @@ function getGenerator(name) {
 
 export default {
     generate: require("./generateBook").default,
-    getGenerator: getGenerator
+    getGenerator
 };

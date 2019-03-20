@@ -129,14 +129,14 @@ function areIdenticalPaths(p1, p2) {
 }
 
 export default {
-    areIdenticalPaths: areIdenticalPaths,
-    isDataURI: isDataURI,
-    isExternal: isExternal,
-    isRelative: isRelative,
-    isAnchor: isAnchor,
-    normalize: normalize,
-    toAbsolute: toAbsolute,
-    relative: relative,
-    relativeForFile: relativeForFile,
-    flatten: flatten
+    areIdenticalPaths,
+    isDataURI,
+    isExternal,
+    isRelative,
+    isAnchor,
+    normalize,
+    toAbsolute,
+    relative,
+    relativeForFile,
+    flatten
 };

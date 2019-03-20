@@ -51,7 +51,7 @@ function onPage(output, page) {
                         config: context.config,
                         file: context.file,
                         gitbook: context.gitbook,
-                        basePath: basePath,
+                        basePath,
                         book: {
                             language: book.getLanguage()
                         }

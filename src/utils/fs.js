@@ -90,7 +90,7 @@ function ensureFile(filename) {
 // Remove a folder
 function rmDir(base) {
     return Promise.nfcall(rmdir, base, {
-        fs: fs
+        fs
     });
 }
 
@@ -143,20 +143,20 @@ export default {
     mkdirp: Promise.nfbind(mkdirp),
     readFile: Promise.nfbind(fs.readFile),
     writeFile: Promise.nfbind(fs.writeFile),
-    assertFile: assertFile,
-    pickFile: pickFile,
+    assertFile,
+    pickFile,
     stat: Promise.nfbind(fs.stat),
     statSync: fs.statSync,
     readdir: Promise.nfbind(fs.readdir),
-    writeStream: writeStream,
+    writeStream,
     readStream: fs.createReadStream,
     copy: Promise.nfbind(cp),
     copyDir: Promise.nfbind(cpr),
     tmpFile: genTmpFile,
     tmpDir: genTmpDir,
-    download: download,
-    uniqueFilename: uniqueFilename,
-    ensureFile: ensureFile,
-    ensureFolder: ensureFolder,
-    rmDir: rmDir
+    download,
+    uniqueFilename,
+    ensureFile,
+    ensureFolder,
+    rmDir
 };

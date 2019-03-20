@@ -56,7 +56,7 @@ function convertInlinePNG(source, dest) {
 }
 
 export default {
-    convertSVGToPNG: convertSVGToPNG,
-    convertSVGBufferToPNG: convertSVGBufferToPNG,
-    convertInlinePNG: convertInlinePNG
+    convertSVGToPNG,
+    convertSVGBufferToPNG,
+    convertInlinePNG
 };

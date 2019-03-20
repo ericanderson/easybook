@@ -33,10 +33,10 @@ function createTemplateEngine(output) {
     var context = Api.encodeGlobal(output);
 
     return new TemplateEngine({
-        filters: filters,
-        blocks: blocks,
-        loader: loader,
-        context: context
+        filters,
+        blocks,
+        loader,
+        context
     });
 }
 

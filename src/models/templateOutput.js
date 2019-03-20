@@ -37,7 +37,7 @@ TemplateOutput.prototype.setContent = function(content) {
  */
 TemplateOutput.create = (content, blocks) =>
     new TemplateOutput({
-        content: content,
+        content,
         blocks: Immutable.fromJS(blocks)
     });
 

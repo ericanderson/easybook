@@ -46,7 +46,7 @@ function getParserForFile(filename) {
 var extensions = parsers.map(parser => parser.getExtensions()).flatten();
 
 export default {
-    extensions: extensions,
+    extensions,
     get: getParser,
     getByExt: getParserByExt,
     getForFile: getParserForFile

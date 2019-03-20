@@ -81,9 +81,9 @@ function processOutput(generator, startOutput) {
                 var langOutput = new Output({
                     book: langBook,
                     options: langOptions,
-                    state: state,
+                    state,
                     generator: generator.name,
-                    plugins: plugins
+                    plugins
                 });
 
                 logger.info.ln("");
@@ -143,9 +143,9 @@ function generateBook(generator, book, options) {
     return (
         Promise(
             new Output({
-                book: book,
-                options: options,
-                state: state,
+                book,
+                options,
+                state,
                 generator: generator.name
             })
         )

@@ -26,13 +26,13 @@ function fsLoadObject(filename) {
 
 export default function createNodeFS(root) {
     return FS.create({
-        root: root,
+        root,
 
         fsExists: fs.exists,
         fsReadFile: fs.readFile,
         fsStatFile: fs.stat,
-        fsReadDir: fsReadDir,
-        fsLoadObject: fsLoadObject,
+        fsReadDir,
+        fsLoadObject,
         fsReadAsStream: fs.readStream
     });
 }

@@ -26,7 +26,7 @@ function preparePlugins(output) {
                 Plugins.validateConfig(book, plugins).then(newBook =>
                     output.merge({
                         book: newBook,
-                        plugins: plugins
+                        plugins
                     })
                 )
             )

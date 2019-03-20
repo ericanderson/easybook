@@ -40,7 +40,7 @@ function prepareResources(output) {
         });
 
         output = output.merge({
-            state: state
+            state
         });
 
         return output;

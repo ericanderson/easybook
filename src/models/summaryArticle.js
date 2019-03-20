@@ -156,7 +156,7 @@ SummaryArticle.create = (def, level) => {
     });
 
     return new SummaryArticle({
-        level: level,
+        level,
         title: def.title,
         ref: def.ref || def.path || "",
         articles: Immutable.List(articles)

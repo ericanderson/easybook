@@ -23,7 +23,7 @@ function parseConfig(book) {
             .loadAsObject(filename)
             .then(cfg =>
                 fs.statFile(filename).then(file => ({
-                    file: file,
+                    file,
                     values: cfg
                 }))
             )

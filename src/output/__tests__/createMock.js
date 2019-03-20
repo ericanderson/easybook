@@ -27,8 +27,8 @@ function createMockOutput(generator, files, options) {
             resultBook =>
                 new Output({
                     book: resultBook,
-                    options: options,
-                    state: state,
+                    options,
+                    state,
                     generator: generator.name
                 })
         )

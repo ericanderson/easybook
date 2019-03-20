@@ -150,7 +150,7 @@ Config.prototype.mergeValues = function(values) {
  */
 Config.create = (file, values) =>
     new Config({
-        file: file,
+        file,
         values: Immutable.fromJS(values)
     });
 

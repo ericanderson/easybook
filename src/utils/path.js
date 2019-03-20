@@ -39,7 +39,7 @@ function resolveInRoot(root) {
     if (!isInRoot(root, result)) {
         throw new error.FileOutOfScopeError({
             filename: result,
-            root: root
+            root
         });
     }
 
@@ -65,9 +65,9 @@ function isPureRelative(filename) {
 }
 
 export default {
-    isInRoot: isInRoot,
-    resolveInRoot: resolveInRoot,
+    isInRoot,
+    resolveInRoot,
     normalize: normalizePath,
-    setExtension: setExtension,
-    isPureRelative: isPureRelative
+    setExtension,
+    isPureRelative
 };

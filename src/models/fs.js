@@ -54,7 +54,7 @@ FS.prototype.resolve = function() {
 
     if (!this.isInScope(filename)) {
         throw error.FileOutOfScopeError({
-            filename: filename,
+            filename,
             root: this.root
         });
     }

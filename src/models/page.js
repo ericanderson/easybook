@@ -65,7 +65,7 @@ Page.prototype.getPath = function() {
  */
 Page.createForFile = file =>
     new Page({
-        file: file
+        file
     });
 
 export default Page;

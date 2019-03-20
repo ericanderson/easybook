@@ -73,7 +73,7 @@ PluginDependency.create = (name, version, enabled) => {
     }
 
     return new PluginDependency({
-        name: name,
+        name,
         version: version || DEFAULT_VERSION,
         enabled: Boolean(enabled)
     });
@@ -96,9 +96,9 @@ PluginDependency.createFromString = s => {
     }
 
     return new PluginDependency({
-        name: name,
+        name,
         version: version || DEFAULT_VERSION,
-        enabled: enabled
+        enabled
     });
 };
 

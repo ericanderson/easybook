@@ -126,8 +126,8 @@ Git.parseUrl = giturl => {
 
     return {
         host: uri.toString(),
-        ref: ref,
-        filepath: filepath
+        ref,
+        filepath
     };
 };
 

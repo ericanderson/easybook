@@ -90,14 +90,14 @@ function createTemplateEngine(output, currentFile) {
     }
 
     return TemplateEngine.create({
-        loader: loader,
+        loader,
 
-        context: context,
+        context,
 
         globals: {
-            getArticleByPath: getArticleByPath,
-            getPageByPath: getPageByPath,
-            fileExists: fileExists
+            getArticleByPath,
+            getPageByPath,
+            fileExists
         },
 
         filters: defaultFilters.merge({

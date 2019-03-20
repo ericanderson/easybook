@@ -110,7 +110,7 @@ function optionsToShellArgs(options) {
 }
 
 export default {
-    exec: exec,
+    exec,
     spawn: spawnCmd,
-    optionsToShellArgs: optionsToShellArgs
+    optionsToShellArgs
 };

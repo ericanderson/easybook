@@ -208,7 +208,7 @@ Summary.createFromParts = function createFromParts(file, parts) {
     });
 
     return new Summary({
-        file: file,
+        file,
         parts: new Immutable.List(parts)
     });
 };

@@ -150,7 +150,7 @@ Plugin.createFromString = s => {
     var version = parts.slice(1).join("@");
 
     return new Plugin({
-        name: name,
+        name,
         version: version || DEFAULT_VERSION
     });
 };
